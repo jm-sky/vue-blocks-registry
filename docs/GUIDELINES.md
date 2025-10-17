@@ -2,77 +2,77 @@
 
 ```
 src/
-  app/
-    router/
-      index.ts                # główny router, importuje routes z modułów
-      routes.auth.ts          # trasy modułu auth
-      routes.pages.ts         # trasy modułu pages/corePages
-    store/
-      index.ts                # globalny store Pinia
-    layouts/
-      AuthenticatedLayout.vue # layout dla zalogowanych użytkowników
-      DefaultLayout.vue       # layout dla publicznych stron
-    App.vue
-    main.ts
-
-  modules/
-    auth/
-      components/             # UI komponenty auth
-        LoginForm.vue
-        RegisterForm.vue
-        LogoutButton.vue
-      pages/                  # strony auth
-        LoginPage.vue
-        RegisterPage.vue
-        ForgotPasswordPage.vue
-        ResetPasswordPage.vue
-        ChangePasswordPage.vue
-      store/
-        useAuthStore.ts       # Pinia store: token w localStorage, user ref, computed isAuthenticated
-      services/
-        authService.ts        # komunikacja z API: login, logout, register, reset, change password
-      queries/                # TanStack Query composables
-        useLoginQuery.ts
-        useRegisterMutation.ts
-        useForgotPasswordMutation.ts
-        useResetPasswordMutation.ts
-        useChangePasswordMutation.ts
-      validation/             # Zod schematy walidacji
-        login.schema.ts
-        register.schema.ts
-        forgotPassword.schema.ts
-        resetPassword.schema.ts
-        changePassword.schema.ts
-        changePassword.schema.ts
-      composables/            # helpers
-        useAuth.ts
-        useLogout.ts
-      types/
-        user.ts
-      index.ts                # eksport publiczny modułu
-
-    pages/                    # moduł globalnych stron / core pages
-      pages/
-        LandingPage.vue
-        PrivacyTermsPage.vue
-        DashboardPage.vue
-      index.ts
-
-  shared/
-    config/
-      config.ts               # wspólny obiekt config + JWT_STORE_KEY
-    ui/                        # generyczne komponenty UI (Button, Input itd.)
-    composables/               # generyczne composables (useDebounce, usePagination)
-    services/
-      httpClient.ts            # wspólny klient Axios
-      auth.interceptor.ts      # interceptor dodający JWT_STORE_KEY
-    hooks/
-    types/
-      global.d.ts
-    validation/
-      zodHelpers.ts            # helpery Zod (email, phone, NIP itd.)
-    utils/
-      typeGuards.ts            # type guard isValidationError
+├─ app/
+│  ├─ router/
+│  │  ├─ index.ts                # główny router, importuje routes z modułów
+│  │  ├─ routes.auth.ts          # trasy modułu auth
+│  │  └─ routes.pages.ts         # trasy modułu pages/corePages
+│  ├─ store/
+│  │  └─ index.ts                # globalny store Pinia
+│  ├─ layouts/
+│  │  ├─ AuthenticatedLayout.vue # layout dla zalogowanych użytkowników
+│  │  └─ DefaultLayout.vue       # layout dla publicznych stron
+│  ├─ App.vue
+│  └─ main.ts
+│  
+├─ modules/
+│   ├─ auth/
+│   │  ├─ components/             # UI komponenty auth
+│   │  │  ├─ LoginForm.vue
+│   │  │  ├─ RegisterForm.vue
+│   │  │  └─ LogoutButton.vue
+│   │  ├─ pages/                  # strony auth
+│   │  │  ├─ LoginPage.vue
+│   │  │  ├─ RegisterPage.vue
+│   │  │  ├─ ForgotPasswordPage.vue
+│   │  │  ├─ ResetPasswordPage.vue
+│   │  │  └─ ChangePasswordPage.vue
+│   │  ├─ store/
+│   │  │  └─ useAuthStore.ts       # Pinia store: token w localStorage, user ref, computed isAuthenticated
+│   │  ├─ services/
+│   │  │  └─ authService.ts        # komunikacja z API: login, logout, register, reset, change password
+│   │  ├─ queries/                 # TanStack Query composables
+│   │  │  ├─ useLoginQuery.ts
+│   │  │  ├─ useRegisterMutation.ts
+│   │  │  ├─ useForgotPasswordMutation.ts
+│   │  │  ├─ useResetPasswordMutation.ts
+│   │  │  └─ useChangePasswordMutation.ts
+│   │  ├─ validation/             # Zod schematy walidacji
+│   │  │  ├─ login.schema.ts
+│   │  │  ├─ register.schema.ts
+│   │  │  ├─ forgotPassword.schema.ts
+│   │  │  ├─ resetPassword.schema.ts
+│   │  │  ├─ changePassword.schema.ts
+│   │  │  └─ changePassword.schema.ts
+│   │  ├─ composables/            # helpers
+│   │  │  ├─ useAuth.ts
+│   │  │  └─ useLogout.ts
+│   │  ├─ types/
+│   │  │  └─ user.ts
+│   │  └─ index.ts                # eksport publiczny modułu
+│   │
+│   └─ pages/                     # moduł globalnych stron / core pages
+│      ├─ pages/
+│      │  ├─ LandingPage.vue
+│      │  ├─ PrivacyTermsPage.vue
+│      │  └─ DashboardPage.vue
+│      └─ index.ts
+│  
+└─ shared/
+    ├─ config/
+    │  └─ config.ts               # wspólny obiekt config + JWT_STORE_KEY
+    ├─ ui/                        # generyczne komponenty UI (Button, Input itd.)
+    ├─ composables/               # generyczne composables (useDebounce, usePagination)
+    ├─ services/
+    │  ├─ httpClient.ts            # wspólny klient Axios
+    │  └─ auth.interceptor.ts      # interceptor dodający JWT_STORE_KEY
+    ├─ hooks/
+    ├─ types/
+    │  └─ global.d.ts
+    ├─ validation/
+    │  └─ zodHelpers.ts            # helpery Zod (email, phone, NIP itd.)
+    └─ utils/
+       └─ typeGuards.ts            # type guard isValidationError
 ```
 
 ## Plik `config.ts` (shared/config)
@@ -89,7 +89,7 @@ export const config = {
 }
 
 // osobna zmienna do użycia w localStorage / store
-export const JWT_STORE_KEY = `${config.app.id}::token`
+export const JWT_STORE_KEY = `${config.app.id}:token`
 ```
 
 ## TypeGuard dla błędów walidacji
@@ -102,7 +102,9 @@ export interface ValidationErrorResponse {
   errors: Record<string, string[]>
 }
 
-export function isValidationError(err: any): err is { response: { status: number; data: ValidationErrorResponse } } {
+export type ValidationError = AxiosError<ValidationErrorResponse> // Czy to poprawnie?
+
+export function isValidationError(err: any): err is ValidationError {
   return err?.response?.status === HttpStatusCode.UnprocessableEntity && !!err.response.data?.errors
 }
 ```
@@ -124,6 +126,7 @@ async function login(data: { email: string; password: string }, setErrors: (erro
       setErrors(err.response.data.errors)
     } else {
       // inne błędy np. sieciowe
+      toast.error('Unexpected error occured in login process')
       console.error(err)
     }
   }
