@@ -1,0 +1,25 @@
+{
+  "$schema": "../../../../registry-item-schema.json",
+  "name": "button",
+  "type": "registry:ui",
+  "title": "Button",
+  "description": "A highly customizable button component with multiple variants, sizes, and special vibe effects for enhanced user experience",
+  "categories": ["ui", "form"],
+  "files": [
+    {
+      "path": "components/ui/button/Button.vue",
+      "type": "registry:ui"
+    },
+    {
+      "path": "components/ui/button/index.ts",
+      "type": "registry:ui"
+    }
+  ],
+  "dependencies": [
+    "reka-ui",
+    "class-variance-authority"
+  ],
+  "registryDependencies": [
+    "utils"
+  ]
+}

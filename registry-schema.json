@@ -1,0 +1,63 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Registry Schema",
+  "description": "Schema for vue-blocks-registry main registry file",
+  "type": "object",
+  "required": ["name", "version"],
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "description": "Schema reference URL"
+    },
+    "name": {
+      "type": "string",
+      "description": "Name of the registry",
+      "pattern": "^[a-z0-9-]+$"
+    },
+    "version": {
+      "type": "string",
+      "description": "Version of the registry (semver)",
+      "pattern": "^\\d+\\.\\d+\\.\\d+(-[a-zA-Z0-9.-]+)?(\\+[a-zA-Z0-9.-]+)?$"
+    },
+    "description": {
+      "type": "string",
+      "description": "Description of the registry"
+    },
+    "homepage": {
+      "type": "string",
+      "description": "Homepage URL",
+      "format": "uri"
+    },
+    "items": {
+      "type": "array",
+      "description": "Registry items",
+      "items": {
+        "$ref": "./registry-item-schema.json"
+      }
+    },
+    "components": {
+      "type": "object",
+      "description": "Legacy structure - UI components (deprecated, use items instead)",
+      "deprecated": true,
+      "additionalProperties": {
+        "type": "object"
+      }
+    },
+    "features": {
+      "type": "object",
+      "description": "Legacy structure - Feature packages (deprecated, use items instead)",
+      "deprecated": true,
+      "additionalProperties": {
+        "type": "object"
+      }
+    },
+    "bundles": {
+      "type": "object",
+      "description": "Legacy structure - Page bundles (deprecated, use items instead)",
+      "deprecated": true,
+      "additionalProperties": {
+        "type": "object"
+      }
+    }
+  }
+}

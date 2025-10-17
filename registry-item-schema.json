@@ -1,0 +1,145 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Registry Item Schema",
+  "description": "Schema for vue-blocks-registry items",
+  "type": "object",
+  "required": ["name", "type", "files"],
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "description": "Schema reference URL"
+    },
+    "name": {
+      "type": "string",
+      "description": "Unique identifier for the registry item",
+      "pattern": "^[a-z0-9-]+$"
+    },
+    "type": {
+      "type": "string",
+      "description": "Type of the registry item",
+      "enum": [
+        "registry:ui",
+        "registry:component",
+        "registry:block",
+        "registry:lib",
+        "registry:hook",
+        "registry:page",
+        "registry:file",
+        "registry:feature"
+      ]
+    },
+    "title": {
+      "type": "string",
+      "description": "Human-readable title"
+    },
+    "description": {
+      "type": "string",
+      "description": "Detailed description of the item"
+    },
+    "author": {
+      "type": "string",
+      "description": "Author information"
+    },
+    "dependencies": {
+      "type": "array",
+      "description": "NPM package dependencies",
+      "items": {
+        "type": "string"
+      }
+    },
+    "registryDependencies": {
+      "type": "array",
+      "description": "Registry dependencies (other registry items or URLs)",
+      "items": {
+        "type": "string"
+      }
+    },
+    "files": {
+      "type": "array",
+      "description": "Files included in this registry item",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["path", "type"],
+        "properties": {
+          "path": {
+            "type": "string",
+            "description": "Path to the file in the registry"
+          },
+          "type": {
+            "type": "string",
+            "description": "Type of the file",
+            "enum": [
+              "registry:ui",
+              "registry:component",
+              "registry:block",
+              "registry:lib",
+              "registry:hook",
+              "registry:page",
+              "registry:file"
+            ]
+          },
+          "target": {
+            "type": "string",
+            "description": "Target path where the file should be installed (required for registry:page and registry:file)"
+          },
+          "content": {
+            "type": "string",
+            "description": "File content (for generated registry JSON)"
+          }
+        }
+      }
+    },
+    "cssVars": {
+      "type": "object",
+      "description": "CSS variables configuration",
+      "properties": {
+        "theme": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "light": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "dark": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "css": {
+      "type": "array",
+      "description": "Custom CSS rules",
+      "items": {
+        "type": "string"
+      }
+    },
+    "docs": {
+      "type": "string",
+      "description": "Installation documentation"
+    },
+    "categories": {
+      "type": "array",
+      "description": "Categories for organization",
+      "items": {
+        "type": "string"
+      }
+    },
+    "meta": {
+      "type": "object",
+      "description": "Custom metadata"
+    },
+    "tailwind": {
+      "type": "object",
+      "description": "Tailwind configuration (deprecated, use cssVars instead)",
+      "deprecated": true
+    }
+  }
+}
