@@ -5,6 +5,7 @@ import ora from 'ora'
 import path from 'path'
 import prompts from 'prompts'
 import type { RegistryItem } from '../types/registry.js'
+import type { Config } from '../utils/config.js'
 import { getConfig } from '../utils/config.js'
 import { logger } from '../utils/logger.js'
 import { fetchFileContent, fetchRegistryItem } from '../utils/registry.js'
@@ -60,7 +61,7 @@ export const add = new Command()
 async function installComponent(
   name: string,
   cwd: string,
-  config: any,
+  config: Config,
   options: { overwrite: boolean; yes: boolean }
 ): Promise<void> {
   const spinner = ora(`Fetching ${name}...`).start()
@@ -161,7 +162,7 @@ async function resolveDependencies(
 async function installFiles(
   item: RegistryItem,
   cwd: string,
-  config: any,
+  config: Config,
   overwrite: boolean
 ): Promise<void> {
   const spinner = ora(`Installing ${item.name}...`).start()

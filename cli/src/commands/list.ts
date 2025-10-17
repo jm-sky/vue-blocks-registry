@@ -36,7 +36,10 @@ export const list = new Command()
         if (!grouped.has(type)) {
           grouped.set(type, [])
         }
-        grouped.get(type)!.push(item)
+        const typeGroup = grouped.get(type)
+        if (typeGroup) {
+          typeGroup.push(item)
+        }
       }
 
       logger.break()

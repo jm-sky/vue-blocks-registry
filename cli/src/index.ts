@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 import { Command } from 'commander'
 import { readFile } from 'fs/promises'
-import { fileURLToPath } from 'url'
 import { dirname, join } from 'path'
+import { fileURLToPath } from 'url'
 import { add } from './commands/add.js'
 import { init } from './commands/init.js'
 import { list } from './commands/list.js'
