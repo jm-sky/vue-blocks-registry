@@ -46,6 +46,270 @@
       "registryDependencies": [
         "utils"
       ]
+    },
+    {
+      "name": "config",
+      "type": "registry:lib",
+      "title": "Config",
+      "description": "Application configuration with environment variables and JWT storage key",
+      "categories": ["lib", "config"],
+      "files": [
+        {
+          "path": "shared/config/config.ts",
+          "type": "registry:lib"
+        }
+      ],
+      "dependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "type-guards",
+      "type": "registry:lib",
+      "title": "Type Guards",
+      "description": "TypeScript type guards for validation error handling with Axios",
+      "categories": ["lib", "utils", "types"],
+      "files": [
+        {
+          "path": "shared/utils/typeGuards.ts",
+          "type": "registry:lib"
+        }
+      ],
+      "dependencies": [
+        "axios"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "http-client",
+      "type": "registry:lib",
+      "title": "HTTP Client",
+      "description": "Axios HTTP client with base configuration and auth interceptor",
+      "categories": ["lib", "services"],
+      "files": [
+        {
+          "path": "shared/services/httpClient.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "shared/services/auth.interceptor.ts",
+          "type": "registry:lib"
+        }
+      ],
+      "dependencies": [
+        "axios"
+      ],
+      "registryDependencies": [
+        "config"
+      ]
+    },
+    {
+      "name": "auth-types",
+      "type": "registry:lib",
+      "title": "Auth Types",
+      "description": "TypeScript types and interfaces for authentication module",
+      "categories": ["lib", "types", "auth"],
+      "files": [
+        {
+          "path": "modules/auth/types/user.ts",
+          "type": "registry:lib"
+        }
+      ],
+      "dependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "auth-store",
+      "type": "registry:lib",
+      "title": "Auth Store",
+      "description": "Pinia store for authentication state management with localStorage persistence",
+      "categories": ["lib", "store", "auth"],
+      "files": [
+        {
+          "path": "modules/auth/store/useAuthStore.ts",
+          "type": "registry:lib"
+        }
+      ],
+      "dependencies": [
+        "pinia",
+        "vue"
+      ],
+      "registryDependencies": [
+        "config",
+        "auth-types"
+      ]
+    },
+    {
+      "name": "auth-service",
+      "type": "registry:lib",
+      "title": "Auth Service",
+      "description": "Authentication API service with login, register, password reset and change methods",
+      "categories": ["lib", "services", "auth"],
+      "files": [
+        {
+          "path": "modules/auth/services/authService.ts",
+          "type": "registry:lib"
+        }
+      ],
+      "dependencies": [],
+      "registryDependencies": [
+        "http-client",
+        "auth-types"
+      ]
+    },
+    {
+      "name": "auth-validation",
+      "type": "registry:lib",
+      "title": "Auth Validation Schemas",
+      "description": "Zod validation schemas for authentication forms (login, register, password reset, change)",
+      "categories": ["lib", "validation", "auth"],
+      "files": [
+        {
+          "path": "modules/auth/validation/login.schema.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "modules/auth/validation/register.schema.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "modules/auth/validation/forgotPassword.schema.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "modules/auth/validation/resetPassword.schema.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "modules/auth/validation/changePassword.schema.ts",
+          "type": "registry:lib"
+        }
+      ],
+      "dependencies": [
+        "zod"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "auth-composables",
+      "type": "registry:lib",
+      "title": "Auth Composables",
+      "description": "Vue composables for authentication (useAuth, useLogout)",
+      "categories": ["lib", "composables", "auth"],
+      "files": [
+        {
+          "path": "modules/auth/composables/useAuth.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "modules/auth/composables/useLogout.ts",
+          "type": "registry:lib"
+        }
+      ],
+      "dependencies": [
+        "vue-router"
+      ],
+      "registryDependencies": [
+        "auth-store",
+        "auth-service",
+        "auth-types"
+      ]
+    },
+    {
+      "name": "auth-forms",
+      "type": "registry:ui",
+      "title": "Auth Forms",
+      "description": "Authentication form components (LoginForm, RegisterForm, LogoutButton)",
+      "categories": ["ui", "form", "auth"],
+      "files": [
+        {
+          "path": "modules/auth/components/LoginForm.vue",
+          "type": "registry:ui"
+        },
+        {
+          "path": "modules/auth/components/RegisterForm.vue",
+          "type": "registry:ui"
+        },
+        {
+          "path": "modules/auth/components/LogoutButton.vue",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "vee-validate",
+        "@vee-validate/zod",
+        "vue-router"
+      ],
+      "registryDependencies": [
+        "button",
+        "auth-validation",
+        "auth-composables",
+        "type-guards"
+      ]
+    },
+    {
+      "name": "auth-pages",
+      "type": "registry:page",
+      "title": "Auth Pages",
+      "description": "Authentication pages (Login, Register, Forgot/Reset/Change Password)",
+      "categories": ["page", "auth"],
+      "files": [
+        {
+          "path": "modules/auth/pages/LoginPage.vue",
+          "type": "registry:page"
+        },
+        {
+          "path": "modules/auth/pages/RegisterPage.vue",
+          "type": "registry:page"
+        },
+        {
+          "path": "modules/auth/pages/ForgotPasswordPage.vue",
+          "type": "registry:page"
+        },
+        {
+          "path": "modules/auth/pages/ResetPasswordPage.vue",
+          "type": "registry:page"
+        },
+        {
+          "path": "modules/auth/pages/ChangePasswordPage.vue",
+          "type": "registry:page"
+        }
+      ],
+      "dependencies": [
+        "vee-validate",
+        "@vee-validate/zod",
+        "vue-router"
+      ],
+      "registryDependencies": [
+        "auth-forms",
+        "auth-validation",
+        "auth-service",
+        "button",
+        "type-guards"
+      ]
+    },
+    {
+      "name": "layouts",
+      "type": "registry:layout",
+      "title": "App Layouts",
+      "description": "Application layouts (AuthenticatedLayout for logged users, DefaultLayout for public pages)",
+      "categories": ["layout"],
+      "files": [
+        {
+          "path": "app/layouts/AuthenticatedLayout.vue",
+          "type": "registry:layout"
+        },
+        {
+          "path": "app/layouts/DefaultLayout.vue",
+          "type": "registry:layout"
+        }
+      ],
+      "dependencies": [
+        "vue-router"
+      ],
+      "registryDependencies": [
+        "auth-store",
+        "auth-forms"
+      ]
     }
   ]
 }
