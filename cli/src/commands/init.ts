@@ -2,8 +2,8 @@ import { Command } from 'commander'
 import fs from 'fs-extra'
 import path from 'path'
 import prompts from 'prompts'
-import { DEFAULT_CONFIG, saveConfig } from '../utils/config'
-import { logger } from '../utils/logger'
+import { DEFAULT_CONFIG, saveConfig } from '../utils/config.js'
+import { logger } from '../utils/logger.js'
 
 export const init = new Command()
   .name('init')

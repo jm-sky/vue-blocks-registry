@@ -1,4 +1,4 @@
-import type { RegistryItem } from '../types/registry'
+import type { RegistryItem } from '../types/registry.js'
 
 export const REGISTRY_URL = 'https://raw.githubusercontent.com/jm-sky/vue-blocks-registry/main'
 

@@ -1,9 +1,16 @@
 #!/usr/bin/env node
 import { Command } from 'commander'
-import packageJson from '../../package.json'
-import { add } from './commands/add'
-import { init } from './commands/init'
-import { list } from './commands/list'
+import { readFile } from 'fs/promises'
+import { fileURLToPath } from 'url'
+import { dirname, join } from 'path'
+import { add } from './commands/add.js'
+import { init } from './commands/init.js'
+import { list } from './commands/list.js'
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = dirname(__filename)
+const packageJsonPath = join(__dirname, '../../package.json')
+const packageJson = JSON.parse(await readFile(packageJsonPath, 'utf-8'))
 
 const program = new Command()
 

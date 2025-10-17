@@ -1,7 +1,7 @@
 import { Command } from 'commander'
 import ora from 'ora'
-import { logger } from '../utils/logger'
-import { fetchRegistry } from '../utils/registry'
+import { logger } from '../utils/logger.js'
+import { fetchRegistry } from '../utils/registry.js'
 
 export const list = new Command()
   .name('list')

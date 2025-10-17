@@ -4,10 +4,10 @@ import fs from 'fs-extra'
 import ora from 'ora'
 import path from 'path'
 import prompts from 'prompts'
-import type { RegistryItem } from '../types/registry'
-import { getConfig } from '../utils/config'
-import { logger } from '../utils/logger'
-import { fetchFileContent, fetchRegistryItem } from '../utils/registry'
+import type { RegistryItem } from '../types/registry.js'
+import { getConfig } from '../utils/config.js'
+import { logger } from '../utils/logger.js'
+import { fetchFileContent, fetchRegistryItem } from '../utils/registry.js'
 
 export const add = new Command()
   .name('add')
