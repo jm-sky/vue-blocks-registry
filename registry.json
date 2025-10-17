@@ -1,0 +1,9 @@
+{
+  "$schema": "./registry-schema.json",
+  "name": "vue-blocks-registry",
+  "version": "0.0.0",
+  "description": "Modular registry system for Vue 3 projects with reusable components, features, and bundles",
+  "components": {},
+  "features": {},
+  "bundles": {}
+}
