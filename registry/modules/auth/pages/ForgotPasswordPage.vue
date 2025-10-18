@@ -9,11 +9,13 @@ import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from '
 import { Input } from '@registry/components/ui/input'
 import { ref } from 'vue'
 
-const { setErrors, defineField } = useForm({
+const { setErrors } = useForm({
   validationSchema: toTypedSchema(forgotPasswordSchema),
+  initialValues: {
+    email: ''
+  }
 })
 
-const [email] = defineField('email')
 const successMessage = ref('')
 
 const onSubmit = async (values: any) => {
@@ -35,10 +37,10 @@ const onSubmit = async (values: any) => {
     <div class="max-w-md w-full space-y-8">
       <div>
         <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
-          Resetuj hasło
+          Reset Password
         </h2>
         <p class="mt-2 text-center text-sm text-gray-600">
-          Podaj swój adres email, a wyślemy Ci link do resetu hasła
+          Enter your email address and we'll send you a password reset link
         </p>
       </div>
 
@@ -47,23 +49,24 @@ const onSubmit = async (values: any) => {
       </div>
 
       <Form :onSubmit="onSubmit" class="space-y-4">
-        <FormField label="Email">
-          <Input
-            id="email"
-            v-model="email"
-            type="email"
-            placeholder="Wprowadź email"
-          />
+        <FormField v-slot="{ componentField }" name="email">
+          <FormItem>
+            <FormLabel>Email</FormLabel>
+            <FormControl>
+              <Input type="email" placeholder="Enter your email" v-bind="componentField" />
+            </FormControl>
+            <FormMessage />
+          </FormItem>
         </FormField>
 
         <Button type="submit" class="w-full">
-          Wyślij link resetujący
+          Send Reset Link
         </Button>
       </Form>
 
       <div class="text-center">
         <router-link to="/login" class="text-sm text-primary hover:underline">
-          Powrót do logowania
+          Back to Login
         </router-link>
       </div>
     </div>

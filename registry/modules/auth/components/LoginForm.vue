@@ -12,12 +12,13 @@ import { useRouter } from 'vue-router'
 const router = useRouter()
 const { login } = useAuth()
 
-const { handleSubmit, setErrors, defineField } = useForm({
+const { handleSubmit, setErrors } = useForm({
   validationSchema: toTypedSchema(loginSchema),
+  initialValues: {
+    email: '',
+    password: ''
+  }
 })
-
-const [email] = defineField('email')
-const [password] = defineField('password')
 
 const onSubmit = async (values: any) => {
   try {
@@ -35,26 +36,28 @@ const onSubmit = async (values: any) => {
 
 <template>
   <Form :onSubmit="onSubmit" class="space-y-4">
-    <FormField label="Email">
-      <Input
-        id="email"
-        v-model="email"
-        type="email"
-        placeholder="Wprowadź email"
-      />
+    <FormField v-slot="{ componentField }" name="email">
+      <FormItem>
+        <FormLabel>Email</FormLabel>
+        <FormControl>
+          <Input type="email" placeholder="Enter your email" v-bind="componentField" />
+        </FormControl>
+        <FormMessage />
+      </FormItem>
     </FormField>
 
-    <FormField label="Hasło">
-      <Input
-        id="password"
-        v-model="password"
-        type="password"
-        placeholder="Wprowadź hasło"
-      />
+    <FormField v-slot="{ componentField }" name="password">
+      <FormItem>
+        <FormLabel>Password</FormLabel>
+        <FormControl>
+          <Input type="password" placeholder="Enter your password" v-bind="componentField" />
+        </FormControl>
+        <FormMessage />
+      </FormItem>
     </FormField>
 
     <Button type="submit" class="w-full">
-      Zaloguj się
+      Sign In
     </Button>
   </Form>
 </template>

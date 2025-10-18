@@ -13,18 +13,16 @@ import { useRoute, useRouter } from 'vue-router'
 const route = useRoute()
 const router = useRouter()
 
-const { setErrors, defineField } = useForm({
+const { setErrors } = useForm({
   validationSchema: toTypedSchema(resetPasswordSchema),
   initialValues: {
     email: route.query.email as string || '',
     token: route.query.token as string || '',
+    password: '',
+    password_confirmation: ''
   }
 })
 
-const [email] = defineField('email')
-const [token] = defineField('token')
-const [password] = defineField('password')
-const [password_confirmation] = defineField('password_confirmation')
 const successMessage = ref('')
 
 const onSubmit = async (values: any) => {
@@ -47,7 +45,7 @@ const onSubmit = async (values: any) => {
     <div class="max-w-md w-full space-y-8">
       <div>
         <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
-          Ustaw nowe hasło
+          Set New Password
         </h2>
       </div>
 
@@ -56,37 +54,46 @@ const onSubmit = async (values: any) => {
       </div>
 
       <Form :onSubmit="onSubmit" class="space-y-4">
-        <input type="hidden" v-model="token" />
-
-        <FormField label="Email">
-          <Input
-            id="email"
-            v-model="email"
-            type="email"
-            placeholder="Wprowadź email"
-          />
+        <FormField v-slot="{ componentField }" name="token">
+          <FormItem>
+            <FormControl>
+              <Input type="hidden" v-bind="componentField" />
+            </FormControl>
+          </FormItem>
         </FormField>
 
-        <FormField label="Nowe hasło">
-          <Input
-            id="password"
-            v-model="password"
-            type="password"
-            placeholder="Wprowadź nowe hasło"
-          />
+        <FormField v-slot="{ componentField }" name="email">
+          <FormItem>
+            <FormLabel>Email</FormLabel>
+            <FormControl>
+              <Input type="email" placeholder="Enter your email" v-bind="componentField" />
+            </FormControl>
+            <FormMessage />
+          </FormItem>
         </FormField>
 
-        <FormField label="Potwierdź hasło">
-          <Input
-            id="password_confirmation"
-            v-model="password_confirmation"
-            type="password"
-            placeholder="Potwierdź hasło"
-          />
+        <FormField v-slot="{ componentField }" name="password">
+          <FormItem>
+            <FormLabel>New Password</FormLabel>
+            <FormControl>
+              <Input type="password" placeholder="Enter new password" v-bind="componentField" />
+            </FormControl>
+            <FormMessage />
+          </FormItem>
+        </FormField>
+
+        <FormField v-slot="{ componentField }" name="password_confirmation">
+          <FormItem>
+            <FormLabel>Confirm Password</FormLabel>
+            <FormControl>
+              <Input type="password" placeholder="Confirm password" v-bind="componentField" />
+            </FormControl>
+            <FormMessage />
+          </FormItem>
         </FormField>
 
         <Button type="submit" class="w-full">
-          Resetuj hasło
+          Reset Password
         </Button>
       </Form>
     </div>

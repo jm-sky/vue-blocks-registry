@@ -9,13 +9,15 @@ import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from '
 import { Input } from '@registry/components/ui/input'
 import { ref } from 'vue'
 
-const { setErrors, defineField, resetForm } = useForm({
+const { setErrors, resetForm } = useForm({
   validationSchema: toTypedSchema(changePasswordSchema),
+  initialValues: {
+    current_password: '',
+    password: '',
+    password_confirmation: ''
+  }
 })
 
-const [current_password] = defineField('current_password')
-const [password] = defineField('password')
-const [password_confirmation] = defineField('password_confirmation')
 const successMessage = ref('')
 
 const onSubmit = async (values: any) => {
@@ -38,10 +40,10 @@ const onSubmit = async (values: any) => {
     <div class="space-y-6">
       <div>
         <h2 class="text-2xl font-bold text-gray-900">
-          Zmień hasło
+          Change Password
         </h2>
         <p class="mt-1 text-sm text-gray-600">
-          Zaktualizuj swoje hasło, aby zwiększyć bezpieczeństwo konta
+          Update your password to enhance account security
         </p>
       </div>
 
@@ -50,35 +52,38 @@ const onSubmit = async (values: any) => {
       </div>
 
       <Form :onSubmit="onSubmit" class="space-y-4">
-        <FormField label="Obecne hasło">
-          <Input
-            id="current_password"
-            v-model="current_password"
-            type="password"
-            placeholder="Wprowadź obecne hasło"
-          />
+        <FormField v-slot="{ componentField }" name="current_password">
+          <FormItem>
+            <FormLabel>Current Password</FormLabel>
+            <FormControl>
+              <Input type="password" placeholder="Enter current password" v-bind="componentField" />
+            </FormControl>
+            <FormMessage />
+          </FormItem>
         </FormField>
 
-        <FormField label="Nowe hasło">
-          <Input
-            id="password"
-            v-model="password"
-            type="password"
-            placeholder="Wprowadź nowe hasło"
-          />
+        <FormField v-slot="{ componentField }" name="password">
+          <FormItem>
+            <FormLabel>New Password</FormLabel>
+            <FormControl>
+              <Input type="password" placeholder="Enter new password" v-bind="componentField" />
+            </FormControl>
+            <FormMessage />
+          </FormItem>
         </FormField>
 
-        <FormField label="Potwierdź nowe hasło">
-          <Input
-            id="password_confirmation"
-            v-model="password_confirmation"
-            type="password"
-            placeholder="Potwierdź nowe hasło"
-          />
+        <FormField v-slot="{ componentField }" name="password_confirmation">
+          <FormItem>
+            <FormLabel>Confirm New Password</FormLabel>
+            <FormControl>
+              <Input type="password" placeholder="Confirm new password" v-bind="componentField" />
+            </FormControl>
+            <FormMessage />
+          </FormItem>
         </FormField>
 
         <Button type="submit" class="w-full">
-          Zmień hasło
+          Change Password
         </Button>
       </Form>
     </div>

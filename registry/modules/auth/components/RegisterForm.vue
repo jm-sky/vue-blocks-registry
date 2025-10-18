@@ -12,14 +12,15 @@ import { useRouter } from 'vue-router'
 const router = useRouter()
 const { register } = useAuth()
 
-const { handleSubmit, setErrors, defineField } = useForm({
+const { handleSubmit, setErrors } = useForm({
   validationSchema: toTypedSchema(registerSchema),
+  initialValues: {
+    name: '',
+    email: '',
+    password: '',
+    password_confirmation: ''
+  }
 })
-
-const [email] = defineField('email')
-const [password] = defineField('password')
-const [password_confirmation] = defineField('password_confirmation')
-const [name] = defineField('name')
 
 const onSubmit = async (values: any) => {
   try {
@@ -37,44 +38,48 @@ const onSubmit = async (values: any) => {
 
 <template>
   <Form :onSubmit="onSubmit" class="space-y-4">
-    <FormField label="Imię (opcjonalne)">
-      <Input
-        id="name"
-        v-model="name"
-        type="text"
-        placeholder="Wprowadź imię"
-      />
+    <FormField v-slot="{ componentField }" name="name">
+      <FormItem>
+        <FormLabel>Name (optional)</FormLabel>
+        <FormControl>
+          <Input type="text" placeholder="Enter your name" v-bind="componentField" />
+        </FormControl>
+        <FormMessage />
+      </FormItem>
     </FormField>
 
-    <FormField label="Email">
-      <Input
-        id="email"
-        v-model="email"
-        type="email"
-        placeholder="Wprowadź email"
-      />
+    <FormField v-slot="{ componentField }" name="email">
+      <FormItem>
+        <FormLabel>Email</FormLabel>
+        <FormControl>
+          <Input type="email" placeholder="Enter your email" v-bind="componentField" />
+        </FormControl>
+        <FormMessage />
+      </FormItem>
     </FormField>
 
-    <FormField label="Hasło">
-      <Input
-        id="password"
-        v-model="password"
-        type="password"
-        placeholder="Wprowadź hasło"
-      />
+    <FormField v-slot="{ componentField }" name="password">
+      <FormItem>
+        <FormLabel>Password</FormLabel>
+        <FormControl>
+          <Input type="password" placeholder="Enter your password" v-bind="componentField" />
+        </FormControl>
+        <FormMessage />
+      </FormItem>
     </FormField>
 
-    <FormField label="Potwierdź hasło">
-      <Input
-        id="password_confirmation"
-        v-model="password_confirmation"
-        type="password"
-        placeholder="Potwierdź hasło"
-      />
+    <FormField v-slot="{ componentField }" name="password_confirmation">
+      <FormItem>
+        <FormLabel>Confirm Password</FormLabel>
+        <FormControl>
+          <Input type="password" placeholder="Confirm your password" v-bind="componentField" />
+        </FormControl>
+        <FormMessage />
+      </FormItem>
     </FormField>
 
     <Button type="submit" class="w-full">
-      Zarejestruj się
+      Sign Up
     </Button>
   </Form>
 </template>
