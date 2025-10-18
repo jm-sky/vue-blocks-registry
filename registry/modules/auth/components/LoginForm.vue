@@ -5,17 +5,20 @@ import { loginSchema } from '../validation/login.schema'
 import { useAuth } from '../composables/useAuth'
 import { isValidationError } from '@registry/shared/utils/typeGuards'
 import { Button } from '@registry/components/ui/button'
+import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from '@registry/components/ui/form'
+import { Input } from '@registry/components/ui/input'
 import { useRouter } from 'vue-router'
 
 const router = useRouter()
 const { login } = useAuth()
 
-const { handleSubmit, errors, setErrors, defineField } = useForm({
+const { handleSubmit, setErrors, isSubmitting } = useForm({
   validationSchema: toTypedSchema(loginSchema),
+  initialValues: {
+    email: '',
+    password: ''
+  }
 })
-
-const [email] = defineField('email')
-const [password] = defineField('password')
 
 const onSubmit = handleSubmit(async (values) => {
   try {
@@ -32,33 +35,29 @@ const onSubmit = handleSubmit(async (values) => {
 </script>
 
 <template>
-  <form @submit="onSubmit" class="space-y-4">
-    <div>
-      <label for="email" class="block text-sm font-medium mb-1">Email</label>
-      <input
-        id="email"
-        v-model="email"
-        type="email"
-        class="w-full px-3 py-2 border rounded-md"
-        :class="{ 'border-red-500': errors.email }"
-      />
-      <p v-if="errors.email" class="text-red-500 text-sm mt-1">{{ errors.email }}</p>
-    </div>
+  <Form :onSubmit="onSubmit" class="space-y-4">
+    <FormField v-slot="{ componentField }" name="email">
+      <FormItem>
+        <FormLabel>Email</FormLabel>
+        <FormControl>
+          <Input type="email" placeholder="Enter your email" v-bind="componentField" />
+        </FormControl>
+        <FormMessage />
+      </FormItem>
+    </FormField>
 
-    <div>
-      <label for="password" class="block text-sm font-medium mb-1">Hasło</label>
-      <input
-        id="password"
-        v-model="password"
-        type="password"
-        class="w-full px-3 py-2 border rounded-md"
-        :class="{ 'border-red-500': errors.password }"
-      />
-      <p v-if="errors.password" class="text-red-500 text-sm mt-1">{{ errors.password }}</p>
-    </div>
+    <FormField v-slot="{ componentField }" name="password">
+      <FormItem>
+        <FormLabel>Password</FormLabel>
+        <FormControl>
+          <Input type="password" placeholder="Enter your password" v-bind="componentField" />
+        </FormControl>
+        <FormMessage />
+      </FormItem>
+    </FormField>
 
-    <Button type="submit" class="w-full">
-      Zaloguj się
+    <Button type="submit" class="w-full" :loading="isSubmitting">
+      Sign In
     </Button>
-  </form>
+  </Form>
 </template>
