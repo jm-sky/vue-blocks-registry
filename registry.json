@@ -48,6 +48,106 @@
       ]
     },
     {
+      "name": "label",
+      "type": "registry:ui",
+      "title": "Label",
+      "description": "Accessible label component for form elements",
+      "categories": ["ui", "form"],
+      "files": [
+        {
+          "path": "components/ui/label/Label.vue",
+          "type": "registry:ui"
+        },
+        {
+          "path": "components/ui/label/index.ts",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "reka-ui"
+      ],
+      "registryDependencies": [
+        "utils"
+      ]
+    },
+    {
+      "name": "input",
+      "type": "registry:ui",
+      "title": "Input",
+      "description": "Text input component with various types support",
+      "categories": ["ui", "form"],
+      "files": [
+        {
+          "path": "components/ui/input/Input.vue",
+          "type": "registry:ui"
+        },
+        {
+          "path": "components/ui/input/index.ts",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [],
+      "registryDependencies": [
+        "utils"
+      ]
+    },
+    {
+      "name": "form",
+      "type": "registry:ui",
+      "title": "Form",
+      "description": "Form components with vee-validate integration for validation",
+      "categories": ["ui", "form"],
+      "files": [
+        {
+          "path": "components/ui/form/Form.vue",
+          "type": "registry:ui"
+        },
+        {
+          "path": "components/ui/form/FormControl.vue",
+          "type": "registry:ui"
+        },
+        {
+          "path": "components/ui/form/FormDescription.vue",
+          "type": "registry:ui"
+        },
+        {
+          "path": "components/ui/form/FormField.vue",
+          "type": "registry:ui"
+        },
+        {
+          "path": "components/ui/form/FormItem.vue",
+          "type": "registry:ui"
+        },
+        {
+          "path": "components/ui/form/FormLabel.vue",
+          "type": "registry:ui"
+        },
+        {
+          "path": "components/ui/form/FormMessage.vue",
+          "type": "registry:ui"
+        },
+        {
+          "path": "components/ui/form/index.ts",
+          "type": "registry:ui"
+        },
+        {
+          "path": "components/ui/form/injectionKeys.ts",
+          "type": "registry:ui"
+        },
+        {
+          "path": "components/ui/form/useFormField.ts",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "vee-validate"
+      ],
+      "registryDependencies": [
+        "utils",
+        "label"
+      ]
+    },
+    {
       "name": "config",
       "type": "registry:lib",
       "title": "Config",

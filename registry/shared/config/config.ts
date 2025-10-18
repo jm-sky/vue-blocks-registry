@@ -2,9 +2,9 @@
 
 export const config = {
   app: {
-    id: import.meta.env.VITE_APP_ID ?? 'defaultApp',
+    id: import.meta.env.VITE_APP_ID ?? 'my-app',
     name: import.meta.env.VITE_APP_NAME ?? 'MyApp',
-    description: import.meta.env.VITE_APP_DESCRIPTION ?? 'Auth module',
+    description: import.meta.env.VITE_APP_DESCRIPTION ?? 'My App to make life better',
   }
 }
 

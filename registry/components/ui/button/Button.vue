@@ -12,6 +12,7 @@ interface Props extends PrimitiveProps {
   class?: HTMLAttributes['class']
   vibe?: ButtonVariants['vibe']
   loading?: boolean
+  disabled?: boolean
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -28,7 +29,7 @@ const props = withDefaults(defineProps<Props>(), {
     :disabled="loading || disabled"
     :class="cn(buttonVariants({ variant, size, vibe }), props.class)"
   >
-    <Loader2 v-if="loading" class="mr-2 h-4 w-4 animate-spin" />
+    <Loader2 v-if="loading" class="mr-1 size-4 animate-spin" />
     <slot />
   </Primitive>
 </template>
