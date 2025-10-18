@@ -3,6 +3,10 @@ import { useAuthStore } from '../store/useAuthStore'
 import { authService } from '../services/authService'
 import type { LoginCredentials, RegisterCredentials } from '../types/user'
 
+/**
+ * Legacy auth composable for backward compatibility
+ * @deprecated Use useAuthQuery instead for new components
+ */
 export function useAuth() {
   const authStore = useAuthStore()
 

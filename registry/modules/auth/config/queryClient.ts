@@ -1,42 +1,38 @@
-import './css/style.css'
-
-import { createPinia } from 'pinia'
-import { createApp } from 'vue'
-import { VueQueryPlugin } from '@tanstack/vue-query'
+// modules/auth/config/queryClient.ts
 import { QueryClient } from '@tanstack/vue-query'
-import App from './App.vue'
-import router from './router'
 
-const app = createApp(App)
-
-// Create query client with auth-optimized defaults
-const queryClient = new QueryClient({
+/**
+ * Query client configuration optimized for auth operations
+ */
+export const authQueryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      staleTime: 5 * 60 * 1000, // 5 minutes
+      // Auth queries should be fresh by default
+      staleTime: 0,
+      // Retry auth queries less aggressively
       retry: (failureCount, error: any) => {
         // Don't retry on authentication errors
         if (error?.response?.status === 401 || error?.response?.status === 403) {
           return false
         }
-        return failureCount < 3
+        // Retry other errors up to 2 times
+        return failureCount < 2
       },
+      // Don't refetch on window focus for auth queries
       refetchOnWindowFocus: false,
+      // Don't refetch on reconnect for auth queries
+      refetchOnReconnect: false,
     },
     mutations: {
+      // Retry mutations less aggressively
       retry: (failureCount, error: any) => {
         // Don't retry on client errors (4xx)
         if (error?.response?.status >= 400 && error?.response?.status < 500) {
           return false
         }
+        // Retry server errors up to 2 times
         return failureCount < 2
       },
     },
   },
 })
-
-app.use(createPinia())
-app.use(router)
-app.use(VueQueryPlugin, { queryClient })
-
-app.mount('#app')
