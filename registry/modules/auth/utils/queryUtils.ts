@@ -27,29 +27,39 @@ export function isClientError(error: any): boolean {
 }
 
 /**
- * Default retry function for auth queries
+ * Create retry function for auth queries with configurable attempts
  */
-export function createAuthRetryFunction() {
+export function createAuthRetryFunction(maxAttempts: number = 2) {
   return (failureCount: number, error: any) => {
     // Don't retry on authentication errors
     if (isAuthError(error)) {
       return false
     }
-    // Retry other errors up to 2 times
-    return failureCount < 2
+    // Retry other errors up to maxAttempts times
+    return failureCount < maxAttempts
   }
 }
 
 /**
- * Default retry function for auth mutations
+ * Create retry function for auth mutations with configurable attempts
  */
-export function createAuthMutationRetryFunction() {
+export function createAuthMutationRetryFunction(maxAttempts: number = 2) {
   return (failureCount: number, error: any) => {
     // Don't retry on client errors (4xx)
     if (isClientError(error)) {
       return false
     }
-    // Retry server errors up to 2 times
-    return failureCount < 2
+    // Retry server errors up to maxAttempts times
+    return failureCount < maxAttempts
   }
 }
+
+/**
+ * Default retry function for auth queries (2 attempts)
+ */
+export const authRetryFunction = createAuthRetryFunction()
+
+/**
+ * Default retry function for auth mutations (2 attempts)
+ */
+export const authMutationRetryFunction = createAuthMutationRetryFunction()

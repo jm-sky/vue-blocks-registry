@@ -4,9 +4,10 @@ import { useAuthStore } from '../store/useAuthStore'
 import { authService } from '../services/authService'
 import { 
   authQueryKeys, 
-  createAuthRetryFunction, 
-  createAuthMutationRetryFunction 
+  authRetryFunction, 
+  authMutationRetryFunction 
 } from '../utils/queryUtils'
+import { getAuthConfig } from '../config/auth.config'
 import type { 
   LoginCredentials, 
   RegisterCredentials, 
@@ -22,13 +23,14 @@ import type {
  */
 export function useCurrentUser() {
   const authStore = useAuthStore()
+  const config = getAuthConfig()
   
   return useQuery({
     queryKey: authQueryKeys.me(),
     queryFn: () => authService.getCurrentUser(),
     enabled: !!authStore.token, // Only fetch if user is authenticated
-    staleTime: 5 * 60 * 1000, // 5 minutes
-    retry: createAuthRetryFunction(),
+    staleTime: config.query.staleTime,
+    retry: authRetryFunction,
   })
 }
 
@@ -56,7 +58,7 @@ export function useLogin() {
       // Clear auth state on error
       authStore.logout()
     },
-    retry: createAuthMutationRetryFunction(),
+    retry: authMutationRetryFunction,
   })
 }
 
@@ -84,7 +86,7 @@ export function useRegister() {
       // Clear auth state on error
       authStore.logout()
     },
-    retry: createAuthMutationRetryFunction(),
+    retry: authMutationRetryFunction,
   })
 }
 
@@ -109,7 +111,7 @@ export function useLogout() {
       queryClient.removeQueries({ queryKey: authQueryKeys.all })
       authStore.logout()
     },
-    retry: createAuthMutationRetryFunction(),
+    retry: authMutationRetryFunction,
   })
 }
 
@@ -119,7 +121,7 @@ export function useLogout() {
 export function useForgotPassword() {
   return useMutation({
     mutationFn: (data: ForgotPasswordData) => authService.forgotPassword(data),
-    retry: createAuthMutationRetryFunction(),
+    retry: authMutationRetryFunction,
   })
 }
 
@@ -129,7 +131,7 @@ export function useForgotPassword() {
 export function useResetPassword() {
   return useMutation({
     mutationFn: (data: ResetPasswordData) => authService.resetPassword(data),
-    retry: createAuthMutationRetryFunction(),
+    retry: authMutationRetryFunction,
   })
 }
 
@@ -139,7 +141,7 @@ export function useResetPassword() {
 export function useChangePassword() {
   return useMutation({
     mutationFn: (data: ChangePasswordData) => authService.changePassword(data),
-    retry: createAuthMutationRetryFunction(),
+    retry: authMutationRetryFunction,
   })
 }
 
