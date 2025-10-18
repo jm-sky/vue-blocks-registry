@@ -12,7 +12,7 @@ import { useRouter } from 'vue-router'
 const router = useRouter()
 const { login } = useAuth()
 
-const { handleSubmit, setErrors } = useForm({
+const { handleSubmit, setErrors, isSubmitting } = useForm({
   validationSchema: toTypedSchema(loginSchema),
   initialValues: {
     email: '',
@@ -20,7 +20,7 @@ const { handleSubmit, setErrors } = useForm({
   }
 })
 
-const onSubmit = async (values: any) => {
+const onSubmit = handleSubmit(async (values) => {
   try {
     await login(values)
     router.push('/dashboard')
@@ -31,7 +31,7 @@ const onSubmit = async (values: any) => {
       console.error('Login error:', err)
     }
   }
-}
+})
 </script>
 
 <template>
@@ -56,7 +56,7 @@ const onSubmit = async (values: any) => {
       </FormItem>
     </FormField>
 
-    <Button type="submit" class="w-full">
+    <Button type="submit" class="w-full" :loading="isSubmitting">
       Sign In
     </Button>
   </Form>

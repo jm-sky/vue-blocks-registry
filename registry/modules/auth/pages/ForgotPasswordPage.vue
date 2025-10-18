@@ -9,7 +9,7 @@ import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from '
 import { Input } from '@registry/components/ui/input'
 import { ref } from 'vue'
 
-const { setErrors } = useForm({
+const { handleSubmit, setErrors, isSubmitting } = useForm({
   validationSchema: toTypedSchema(forgotPasswordSchema),
   initialValues: {
     email: ''
@@ -18,7 +18,7 @@ const { setErrors } = useForm({
 
 const successMessage = ref('')
 
-const onSubmit = async (values: any) => {
+const onSubmit = handleSubmit(async (values) => {
   try {
     const response = await authService.forgotPassword(values)
     successMessage.value = response.message
@@ -29,7 +29,7 @@ const onSubmit = async (values: any) => {
       console.error('Forgot password error:', err)
     }
   }
-}
+})
 </script>
 
 <template>
@@ -59,7 +59,7 @@ const onSubmit = async (values: any) => {
           </FormItem>
         </FormField>
 
-        <Button type="submit" class="w-full">
+        <Button type="submit" class="w-full" :loading="isSubmitting">
           Send Reset Link
         </Button>
       </Form>

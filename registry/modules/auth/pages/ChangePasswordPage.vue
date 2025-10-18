@@ -9,18 +9,18 @@ import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from '
 import { Input } from '@registry/components/ui/input'
 import { ref } from 'vue'
 
-const { setErrors, resetForm } = useForm({
+const { handleSubmit, setErrors, resetForm, isSubmitting } = useForm({
   validationSchema: toTypedSchema(changePasswordSchema),
   initialValues: {
-    current_password: '',
+    currentPassword: '',
     password: '',
-    password_confirmation: ''
+    passwordConfirmation: ''
   }
 })
 
 const successMessage = ref('')
 
-const onSubmit = async (values: any) => {
+const onSubmit = handleSubmit(async (values) => {
   try {
     const response = await authService.changePassword(values)
     successMessage.value = response.message
@@ -32,7 +32,7 @@ const onSubmit = async (values: any) => {
       console.error('Change password error:', err)
     }
   }
-}
+})
 </script>
 
 <template>
@@ -52,7 +52,7 @@ const onSubmit = async (values: any) => {
       </div>
 
       <Form :onSubmit="onSubmit" class="space-y-4">
-        <FormField v-slot="{ componentField }" name="current_password">
+        <FormField v-slot="{ componentField }" name="currentPassword">
           <FormItem>
             <FormLabel>Current Password</FormLabel>
             <FormControl>
@@ -72,7 +72,7 @@ const onSubmit = async (values: any) => {
           </FormItem>
         </FormField>
 
-        <FormField v-slot="{ componentField }" name="password_confirmation">
+        <FormField v-slot="{ componentField }" name="passwordConfirmation">
           <FormItem>
             <FormLabel>Confirm New Password</FormLabel>
             <FormControl>
@@ -82,7 +82,7 @@ const onSubmit = async (values: any) => {
           </FormItem>
         </FormField>
 
-        <Button type="submit" class="w-full">
+        <Button type="submit" class="w-full" :loading="isSubmitting">
           Change Password
         </Button>
       </Form>

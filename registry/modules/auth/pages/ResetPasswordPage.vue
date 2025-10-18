@@ -13,19 +13,19 @@ import { useRoute, useRouter } from 'vue-router'
 const route = useRoute()
 const router = useRouter()
 
-const { setErrors } = useForm({
+const { handleSubmit, setErrors, isSubmitting } = useForm({
   validationSchema: toTypedSchema(resetPasswordSchema),
   initialValues: {
     email: route.query.email as string || '',
     token: route.query.token as string || '',
     password: '',
-    password_confirmation: ''
+    passwordConfirmation: ''
   }
 })
 
 const successMessage = ref('')
 
-const onSubmit = async (values: any) => {
+const onSubmit = handleSubmit(async (values) => {
   try {
     const response = await authService.resetPassword(values)
     successMessage.value = response.message
@@ -37,7 +37,7 @@ const onSubmit = async (values: any) => {
       console.error('Reset password error:', err)
     }
   }
-}
+})
 </script>
 
 <template>
@@ -82,7 +82,7 @@ const onSubmit = async (values: any) => {
           </FormItem>
         </FormField>
 
-        <FormField v-slot="{ componentField }" name="password_confirmation">
+        <FormField v-slot="{ componentField }" name="passwordConfirmation">
           <FormItem>
             <FormLabel>Confirm Password</FormLabel>
             <FormControl>
@@ -92,7 +92,7 @@ const onSubmit = async (values: any) => {
           </FormItem>
         </FormField>
 
-        <Button type="submit" class="w-full">
+        <Button type="submit" class="w-full" :loading="isSubmitting">
           Reset Password
         </Button>
       </Form>

@@ -12,17 +12,17 @@ import { useRouter } from 'vue-router'
 const router = useRouter()
 const { register } = useAuth()
 
-const { handleSubmit, setErrors } = useForm({
+const { handleSubmit, setErrors, isSubmitting } = useForm({
   validationSchema: toTypedSchema(registerSchema),
   initialValues: {
     name: '',
     email: '',
     password: '',
-    password_confirmation: ''
+    passwordConfirmation: ''
   }
 })
 
-const onSubmit = async (values: any) => {
+const onSubmit = handleSubmit(async (values) => {
   try {
     await register(values)
     router.push('/dashboard')
@@ -33,7 +33,7 @@ const onSubmit = async (values: any) => {
       console.error('Register error:', err)
     }
   }
-}
+})
 </script>
 
 <template>
@@ -68,7 +68,7 @@ const onSubmit = async (values: any) => {
       </FormItem>
     </FormField>
 
-    <FormField v-slot="{ componentField }" name="password_confirmation">
+    <FormField v-slot="{ componentField }" name="passwordConfirmation">
       <FormItem>
         <FormLabel>Confirm Password</FormLabel>
         <FormControl>
@@ -78,7 +78,7 @@ const onSubmit = async (values: any) => {
       </FormItem>
     </FormField>
 
-    <Button type="submit" class="w-full">
+    <Button type="submit" class="w-full" :loading="isSubmitting">
       Sign Up
     </Button>
   </Form>
