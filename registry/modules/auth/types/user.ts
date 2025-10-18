@@ -1,5 +1,5 @@
 // modules/auth/types/user.ts
-import type { TULID } from '@/shared/types/base.type'
+import type { TULID } from '@registry/shared/types/base.type'
 
 export interface User {
   id: TULID
@@ -16,7 +16,7 @@ export interface LoginCredentials {
 export interface RegisterCredentials {
   email: string
   password: string
-  password_confirmation: string
+  passwordConfirmation: string
   name?: string
 }
 
@@ -28,13 +28,13 @@ export interface ResetPasswordData {
   email: string
   token: string
   password: string
-  password_confirmation: string
+  passwordConfirmation: string
 }
 
 export interface ChangePasswordData {
-  current_password: string
+  currentPassword: string
   password: string
-  password_confirmation: string
+  passwordConfirmation: string
 }
 
 export interface AuthResponse {

@@ -5,9 +5,10 @@ import { loginSchema } from '../validation/login.schema'
 import { useAuth } from '../composables/useAuth'
 import { isValidationError } from '@registry/shared/utils/typeGuards'
 import { Button } from '@registry/components/ui/button'
-import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from '@registry/components/ui/form'
+import { FormField, FormItem, FormLabel, FormControl, FormMessage } from '@registry/components/ui/form'
 import { Input } from '@registry/components/ui/input'
 import { useRouter } from 'vue-router'
+import type { LoginCredentials } from '../types/user'
 
 const router = useRouter()
 const { login } = useAuth()
@@ -20,7 +21,7 @@ const { handleSubmit, setErrors, isSubmitting } = useForm({
   }
 })
 
-const onSubmit = handleSubmit(async (values) => {
+const onSubmit = handleSubmit(async (values: LoginCredentials) => {
   try {
     await login(values)
     router.push('/dashboard')
@@ -28,6 +29,8 @@ const onSubmit = handleSubmit(async (values) => {
     if (isValidationError(err)) {
       setErrors(err.response.data.errors)
     } else {
+      // TODO: add toast/sonner notification from shadcn-vue
+      // toast.error('Unexpected error occured in login process')
       console.error('Login error:', err)
     }
   }
@@ -35,7 +38,7 @@ const onSubmit = handleSubmit(async (values) => {
 </script>
 
 <template>
-  <Form :onSubmit="onSubmit" class="space-y-4">
+  <form @submit="onSubmit" class="space-y-4">
     <FormField v-slot="{ componentField }" name="email">
       <FormItem>
         <FormLabel>Email</FormLabel>
@@ -59,5 +62,5 @@ const onSubmit = handleSubmit(async (values) => {
     <Button type="submit" class="w-full" :loading="isSubmitting">
       Sign In
     </Button>
-  </Form>
+  </form>
 </template>

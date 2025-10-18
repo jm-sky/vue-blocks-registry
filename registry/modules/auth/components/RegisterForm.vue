@@ -5,9 +5,10 @@ import { registerSchema } from '../validation/register.schema'
 import { useAuth } from '../composables/useAuth'
 import { isValidationError } from '@registry/shared/utils/typeGuards'
 import { Button } from '@registry/components/ui/button'
-import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from '@registry/components/ui/form'
+import { FormField, FormItem, FormLabel, FormControl, FormMessage } from '@registry/components/ui/form'
 import { Input } from '@registry/components/ui/input'
 import { useRouter } from 'vue-router'
+import type { RegisterCredentials } from '../types/user'
 
 const router = useRouter()
 const { register } = useAuth()
@@ -22,7 +23,7 @@ const { handleSubmit, setErrors, isSubmitting } = useForm({
   }
 })
 
-const onSubmit = handleSubmit(async (values) => {
+const onSubmit = handleSubmit(async (values: RegisterCredentials) => {
   try {
     await register(values)
     router.push('/dashboard')
@@ -30,6 +31,8 @@ const onSubmit = handleSubmit(async (values) => {
     if (isValidationError(err)) {
       setErrors(err.response.data.errors)
     } else {
+      // TODO: add toast/sonner notification from shadcn-vue
+      // toast.error('Unexpected error occured in register process')
       console.error('Register error:', err)
     }
   }
@@ -37,7 +40,7 @@ const onSubmit = handleSubmit(async (values) => {
 </script>
 
 <template>
-  <Form :onSubmit="onSubmit" class="space-y-4">
+  <form @submit="onSubmit" class="space-y-4">
     <FormField v-slot="{ componentField }" name="name">
       <FormItem>
         <FormLabel>Name (optional)</FormLabel>
@@ -81,5 +84,5 @@ const onSubmit = handleSubmit(async (values) => {
     <Button type="submit" class="w-full" :loading="isSubmitting">
       Sign Up
     </Button>
-  </Form>
+  </form>
 </template>

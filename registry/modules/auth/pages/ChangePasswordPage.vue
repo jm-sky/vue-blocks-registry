@@ -5,9 +5,10 @@ import { changePasswordSchema } from '../validation/changePassword.schema'
 import { authService } from '../services/authService'
 import { isValidationError } from '@registry/shared/utils/typeGuards'
 import { Button } from '@registry/components/ui/button'
-import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from '@registry/components/ui/form'
+import { FormField, FormItem, FormLabel, FormControl, FormMessage } from '@registry/components/ui/form'
 import { Input } from '@registry/components/ui/input'
 import { ref } from 'vue'
+import type { ChangePasswordData } from '../types/user'
 
 const { handleSubmit, setErrors, resetForm, isSubmitting } = useForm({
   validationSchema: toTypedSchema(changePasswordSchema),
@@ -20,7 +21,7 @@ const { handleSubmit, setErrors, resetForm, isSubmitting } = useForm({
 
 const successMessage = ref('')
 
-const onSubmit = handleSubmit(async (values) => {
+const onSubmit = handleSubmit(async (values: ChangePasswordData) => {
   try {
     const response = await authService.changePassword(values)
     successMessage.value = response.message
@@ -29,6 +30,8 @@ const onSubmit = handleSubmit(async (values) => {
     if (isValidationError(err)) {
       setErrors(err.response.data.errors)
     } else {
+      // TODO: add toast/sonner notification from shadcn-vue
+      // toast.error('Unexpected error occured in change password process')
       console.error('Change password error:', err)
     }
   }
@@ -51,7 +54,7 @@ const onSubmit = handleSubmit(async (values) => {
         {{ successMessage }}
       </div>
 
-      <Form :onSubmit="onSubmit" class="space-y-4">
+      <form @submit="onSubmit" class="space-y-4">
         <FormField v-slot="{ componentField }" name="currentPassword">
           <FormItem>
             <FormLabel>Current Password</FormLabel>
@@ -85,7 +88,7 @@ const onSubmit = handleSubmit(async (values) => {
         <Button type="submit" class="w-full" :loading="isSubmitting">
           Change Password
         </Button>
-      </Form>
+      </form>
     </div>
   </div>
 </template>

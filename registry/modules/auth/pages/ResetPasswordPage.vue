@@ -5,10 +5,11 @@ import { resetPasswordSchema } from '../validation/resetPassword.schema'
 import { authService } from '../services/authService'
 import { isValidationError } from '@registry/shared/utils/typeGuards'
 import { Button } from '@registry/components/ui/button'
-import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from '@registry/components/ui/form'
+import { FormField, FormItem, FormLabel, FormControl, FormMessage } from '@registry/components/ui/form'
 import { Input } from '@registry/components/ui/input'
 import { ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
+import type { ResetPasswordData } from '../types/user'
 
 const route = useRoute()
 const router = useRouter()
@@ -25,7 +26,7 @@ const { handleSubmit, setErrors, isSubmitting } = useForm({
 
 const successMessage = ref('')
 
-const onSubmit = handleSubmit(async (values) => {
+const onSubmit = handleSubmit(async (values: ResetPasswordData) => {
   try {
     const response = await authService.resetPassword(values)
     successMessage.value = response.message
@@ -34,6 +35,8 @@ const onSubmit = handleSubmit(async (values) => {
     if (isValidationError(err)) {
       setErrors(err.response.data.errors)
     } else {
+      // TODO: add toast/sonner notification from shadcn-vue
+      // toast.error('Unexpected error occured in reset password process')
       console.error('Reset password error:', err)
     }
   }
@@ -53,7 +56,7 @@ const onSubmit = handleSubmit(async (values) => {
         {{ successMessage }}
       </div>
 
-      <Form :onSubmit="onSubmit" class="space-y-4">
+      <form @submit="onSubmit" class="space-y-4">
         <FormField v-slot="{ componentField }" name="token">
           <FormItem>
             <FormControl>
@@ -95,7 +98,7 @@ const onSubmit = handleSubmit(async (values) => {
         <Button type="submit" class="w-full" :loading="isSubmitting">
           Reset Password
         </Button>
-      </Form>
+      </form>
     </div>
   </div>
 </template>

@@ -5,9 +5,10 @@ import { forgotPasswordSchema } from '../validation/forgotPassword.schema'
 import { authService } from '../services/authService'
 import { isValidationError } from '@registry/shared/utils/typeGuards'
 import { Button } from '@registry/components/ui/button'
-import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from '@registry/components/ui/form'
+import { FormField, FormItem, FormLabel, FormControl, FormMessage } from '@registry/components/ui/form'
 import { Input } from '@registry/components/ui/input'
 import { ref } from 'vue'
+import type { ForgotPasswordData } from '../types/user'
 
 const { handleSubmit, setErrors, isSubmitting } = useForm({
   validationSchema: toTypedSchema(forgotPasswordSchema),
@@ -18,7 +19,7 @@ const { handleSubmit, setErrors, isSubmitting } = useForm({
 
 const successMessage = ref('')
 
-const onSubmit = handleSubmit(async (values) => {
+const onSubmit = handleSubmit(async (values: ForgotPasswordData) => {
   try {
     const response = await authService.forgotPassword(values)
     successMessage.value = response.message
@@ -26,6 +27,8 @@ const onSubmit = handleSubmit(async (values) => {
     if (isValidationError(err)) {
       setErrors(err.response.data.errors)
     } else {
+      // TODO: add toast/sonner notification from shadcn-vue
+      // toast.error('Unexpected error occured in forgot password process')
       console.error('Forgot password error:', err)
     }
   }
@@ -48,7 +51,7 @@ const onSubmit = handleSubmit(async (values) => {
         {{ successMessage }}
       </div>
 
-      <Form :onSubmit="onSubmit" class="space-y-4">
+      <form @submit="onSubmit" class="space-y-4">
         <FormField v-slot="{ componentField }" name="email">
           <FormItem>
             <FormLabel>Email</FormLabel>
@@ -62,7 +65,7 @@ const onSubmit = handleSubmit(async (values) => {
         <Button type="submit" class="w-full" :loading="isSubmitting">
           Send Reset Link
         </Button>
-      </Form>
+      </form>
 
       <div class="text-center">
         <router-link to="/login" class="text-sm text-primary hover:underline">
