@@ -1,9 +1,3 @@
-<template>
-  <form v-bind="$attrs" @submit="onSubmit">
-    <slot />
-  </form>
-</template>
-
 <script setup lang="ts">
 import { useForm } from 'vee-validate'
 
@@ -19,3 +13,9 @@ const onSubmit = handleSubmit((values) => {
   props.onSubmit?.(values)
 })
 </script>
+
+<template>
+  <form v-bind="$attrs" @submit="onSubmit">
+    <slot />
+  </form>
+</template>

@@ -1,7 +1,3 @@
-<template>
-  <slot />
-</template>
-
 <script setup lang="ts">
 interface Props {
   name: string
@@ -9,3 +5,7 @@ interface Props {
 
 defineProps<Props>()
 </script>
+
+<template>
+  <slot />
+</template>
