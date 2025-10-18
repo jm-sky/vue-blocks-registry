@@ -5,16 +5,18 @@ import { forgotPasswordSchema } from '../validation/forgotPassword.schema'
 import { authService } from '../services/authService'
 import { isValidationError } from '@registry/shared/utils/typeGuards'
 import { Button } from '@registry/components/ui/button'
+import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from '@registry/components/ui/form'
+import { Input } from '@registry/components/ui/input'
 import { ref } from 'vue'
 
-const { handleSubmit, errors, setErrors, defineField } = useForm({
+const { setErrors, defineField } = useForm({
   validationSchema: toTypedSchema(forgotPasswordSchema),
 })
 
 const [email] = defineField('email')
 const successMessage = ref('')
 
-const onSubmit = handleSubmit(async (values) => {
+const onSubmit = async (values: any) => {
   try {
     const response = await authService.forgotPassword(values)
     successMessage.value = response.message
@@ -25,7 +27,7 @@ const onSubmit = handleSubmit(async (values) => {
       console.error('Forgot password error:', err)
     }
   }
-})
+}
 </script>
 
 <template>
@@ -44,23 +46,20 @@ const onSubmit = handleSubmit(async (values) => {
         {{ successMessage }}
       </div>
 
-      <form @submit="onSubmit" class="space-y-4">
-        <div>
-          <label for="email" class="block text-sm font-medium mb-1">Email</label>
-          <input
+      <Form :onSubmit="onSubmit" class="space-y-4">
+        <FormField label="Email">
+          <Input
             id="email"
             v-model="email"
             type="email"
-            class="w-full px-3 py-2 border rounded-md"
-            :class="{ 'border-red-500': errors.email }"
+            placeholder="Wprowadź email"
           />
-          <p v-if="errors.email" class="text-red-500 text-sm mt-1">{{ errors.email }}</p>
-        </div>
+        </FormField>
 
         <Button type="submit" class="w-full">
           Wyślij link resetujący
         </Button>
-      </form>
+      </Form>
 
       <div class="text-center">
         <router-link to="/login" class="text-sm text-primary hover:underline">

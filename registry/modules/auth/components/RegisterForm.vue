@@ -5,12 +5,14 @@ import { registerSchema } from '../validation/register.schema'
 import { useAuth } from '../composables/useAuth'
 import { isValidationError } from '@registry/shared/utils/typeGuards'
 import { Button } from '@registry/components/ui/button'
+import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from '@registry/components/ui/form'
+import { Input } from '@registry/components/ui/input'
 import { useRouter } from 'vue-router'
 
 const router = useRouter()
 const { register } = useAuth()
 
-const { handleSubmit, errors, setErrors, defineField } = useForm({
+const { handleSubmit, setErrors, defineField } = useForm({
   validationSchema: toTypedSchema(registerSchema),
 })
 
@@ -19,7 +21,7 @@ const [password] = defineField('password')
 const [password_confirmation] = defineField('password_confirmation')
 const [name] = defineField('name')
 
-const onSubmit = handleSubmit(async (values) => {
+const onSubmit = async (values: any) => {
   try {
     await register(values)
     router.push('/dashboard')
@@ -30,61 +32,49 @@ const onSubmit = handleSubmit(async (values) => {
       console.error('Register error:', err)
     }
   }
-})
+}
 </script>
 
 <template>
-  <form @submit="onSubmit" class="space-y-4">
-    <div>
-      <label for="name" class="block text-sm font-medium mb-1">Imię (opcjonalne)</label>
-      <input
+  <Form :onSubmit="onSubmit" class="space-y-4">
+    <FormField label="Imię (opcjonalne)">
+      <Input
         id="name"
         v-model="name"
         type="text"
-        class="w-full px-3 py-2 border rounded-md"
-        :class="{ 'border-red-500': errors.name }"
+        placeholder="Wprowadź imię"
       />
-      <p v-if="errors.name" class="text-red-500 text-sm mt-1">{{ errors.name }}</p>
-    </div>
+    </FormField>
 
-    <div>
-      <label for="email" class="block text-sm font-medium mb-1">Email</label>
-      <input
+    <FormField label="Email">
+      <Input
         id="email"
         v-model="email"
         type="email"
-        class="w-full px-3 py-2 border rounded-md"
-        :class="{ 'border-red-500': errors.email }"
+        placeholder="Wprowadź email"
       />
-      <p v-if="errors.email" class="text-red-500 text-sm mt-1">{{ errors.email }}</p>
-    </div>
+    </FormField>
 
-    <div>
-      <label for="password" class="block text-sm font-medium mb-1">Hasło</label>
-      <input
+    <FormField label="Hasło">
+      <Input
         id="password"
         v-model="password"
         type="password"
-        class="w-full px-3 py-2 border rounded-md"
-        :class="{ 'border-red-500': errors.password }"
+        placeholder="Wprowadź hasło"
       />
-      <p v-if="errors.password" class="text-red-500 text-sm mt-1">{{ errors.password }}</p>
-    </div>
+    </FormField>
 
-    <div>
-      <label for="password_confirmation" class="block text-sm font-medium mb-1">Potwierdź hasło</label>
-      <input
+    <FormField label="Potwierdź hasło">
+      <Input
         id="password_confirmation"
         v-model="password_confirmation"
         type="password"
-        class="w-full px-3 py-2 border rounded-md"
-        :class="{ 'border-red-500': errors.password_confirmation }"
+        placeholder="Potwierdź hasło"
       />
-      <p v-if="errors.password_confirmation" class="text-red-500 text-sm mt-1">{{ errors.password_confirmation }}</p>
-    </div>
+    </FormField>
 
     <Button type="submit" class="w-full">
       Zarejestruj się
     </Button>
-  </form>
+  </Form>
 </template>

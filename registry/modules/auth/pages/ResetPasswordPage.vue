@@ -5,13 +5,15 @@ import { resetPasswordSchema } from '../validation/resetPassword.schema'
 import { authService } from '../services/authService'
 import { isValidationError } from '@registry/shared/utils/typeGuards'
 import { Button } from '@registry/components/ui/button'
+import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from '@registry/components/ui/form'
+import { Input } from '@registry/components/ui/input'
 import { ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 
 const route = useRoute()
 const router = useRouter()
 
-const { handleSubmit, errors, setErrors, defineField } = useForm({
+const { setErrors, defineField } = useForm({
   validationSchema: toTypedSchema(resetPasswordSchema),
   initialValues: {
     email: route.query.email as string || '',
@@ -25,7 +27,7 @@ const [password] = defineField('password')
 const [password_confirmation] = defineField('password_confirmation')
 const successMessage = ref('')
 
-const onSubmit = handleSubmit(async (values) => {
+const onSubmit = async (values: any) => {
   try {
     const response = await authService.resetPassword(values)
     successMessage.value = response.message
@@ -37,7 +39,7 @@ const onSubmit = handleSubmit(async (values) => {
       console.error('Reset password error:', err)
     }
   }
-})
+}
 </script>
 
 <template>
@@ -53,49 +55,40 @@ const onSubmit = handleSubmit(async (values) => {
         {{ successMessage }}
       </div>
 
-      <form @submit="onSubmit" class="space-y-4">
+      <Form :onSubmit="onSubmit" class="space-y-4">
         <input type="hidden" v-model="token" />
 
-        <div>
-          <label for="email" class="block text-sm font-medium mb-1">Email</label>
-          <input
+        <FormField label="Email">
+          <Input
             id="email"
             v-model="email"
             type="email"
-            class="w-full px-3 py-2 border rounded-md"
-            :class="{ 'border-red-500': errors.email }"
+            placeholder="Wprowadź email"
           />
-          <p v-if="errors.email" class="text-red-500 text-sm mt-1">{{ errors.email }}</p>
-        </div>
+        </FormField>
 
-        <div>
-          <label for="password" class="block text-sm font-medium mb-1">Nowe hasło</label>
-          <input
+        <FormField label="Nowe hasło">
+          <Input
             id="password"
             v-model="password"
             type="password"
-            class="w-full px-3 py-2 border rounded-md"
-            :class="{ 'border-red-500': errors.password }"
+            placeholder="Wprowadź nowe hasło"
           />
-          <p v-if="errors.password" class="text-red-500 text-sm mt-1">{{ errors.password }}</p>
-        </div>
+        </FormField>
 
-        <div>
-          <label for="password_confirmation" class="block text-sm font-medium mb-1">Potwierdź hasło</label>
-          <input
+        <FormField label="Potwierdź hasło">
+          <Input
             id="password_confirmation"
             v-model="password_confirmation"
             type="password"
-            class="w-full px-3 py-2 border rounded-md"
-            :class="{ 'border-red-500': errors.password_confirmation }"
+            placeholder="Potwierdź hasło"
           />
-          <p v-if="errors.password_confirmation" class="text-red-500 text-sm mt-1">{{ errors.password_confirmation }}</p>
-        </div>
+        </FormField>
 
         <Button type="submit" class="w-full">
           Resetuj hasło
         </Button>
-      </form>
+      </Form>
     </div>
   </div>
 </template>
