@@ -82,12 +82,12 @@
     {
       "name": "http-client",
       "type": "registry:lib",
-      "title": "HTTP Client",
-      "description": "Axios HTTP client with base configuration and auth interceptor",
+      "title": "API Client",
+      "description": "Axios API client with base configuration and automatically applied auth interceptor",
       "categories": ["lib", "services"],
       "files": [
         {
-          "path": "shared/services/httpClient.ts",
+          "path": "shared/services/apiClient.ts",
           "type": "registry:lib"
         },
         {
