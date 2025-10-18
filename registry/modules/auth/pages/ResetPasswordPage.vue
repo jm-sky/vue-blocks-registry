@@ -2,7 +2,7 @@
 import { useForm } from 'vee-validate'
 import { toTypedSchema } from '@vee-validate/zod'
 import { resetPasswordSchema } from '../validation/resetPassword.schema'
-import { authService } from '../services/authService'
+import { useAuth } from '../composables/useAuth'
 import { isValidationError } from '@registry/shared/utils/typeGuards'
 import { Button } from '@registry/components/ui/button'
 import { FormField, FormItem, FormLabel, FormControl, FormMessage } from '@registry/components/ui/form'
@@ -13,8 +13,9 @@ import type { ResetPasswordData } from '../types/user'
 
 const route = useRoute()
 const router = useRouter()
+const { resetPassword, isResetPasswordLoading } = useAuth()
 
-const { handleSubmit, setErrors, isSubmitting } = useForm({
+const { handleSubmit, setErrors } = useForm({
   validationSchema: toTypedSchema(resetPasswordSchema),
   initialValues: {
     email: route.query.email as string || '',
@@ -28,7 +29,7 @@ const successMessage = ref('')
 
 const onSubmit = handleSubmit(async (values: ResetPasswordData) => {
   try {
-    const response = await authService.resetPassword(values)
+    const response = await resetPassword(values)
     successMessage.value = response.message
     setTimeout(() => router.push('/login'), 2000)
   } catch (err: any) {
@@ -36,7 +37,7 @@ const onSubmit = handleSubmit(async (values: ResetPasswordData) => {
       setErrors(err.response.data.errors)
     } else {
       // TODO: add toast/sonner notification from shadcn-vue
-      // toast.error('Unexpected error occured in reset password process')
+      // toast.error('Unexpected error occurred in reset password process')
       console.error('Reset password error:', err)
     }
   }
@@ -95,7 +96,7 @@ const onSubmit = handleSubmit(async (values: ResetPasswordData) => {
           </FormItem>
         </FormField>
 
-        <Button type="submit" class="w-full" :loading="isSubmitting">
+        <Button type="submit" class="w-full" :loading="isResetPasswordLoading">
           Reset Password
         </Button>
       </form>

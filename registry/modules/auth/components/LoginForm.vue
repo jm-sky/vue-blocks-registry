@@ -11,9 +11,9 @@ import { useRouter } from 'vue-router'
 import type { LoginCredentials } from '../types/user'
 
 const router = useRouter()
-const { login } = useAuth()
+const { login, isLoggingIn } = useAuth()
 
-const { handleSubmit, setErrors, isSubmitting } = useForm({
+const { handleSubmit, setErrors } = useForm({
   validationSchema: toTypedSchema(loginSchema),
   initialValues: {
     email: '',
@@ -30,7 +30,7 @@ const onSubmit = handleSubmit(async (values: LoginCredentials) => {
       setErrors(err.response.data.errors)
     } else {
       // TODO: add toast/sonner notification from shadcn-vue
-      // toast.error('Unexpected error occured in login process')
+      // toast.error('Unexpected error occurred in login process')
       console.error('Login error:', err)
     }
   }
@@ -59,7 +59,7 @@ const onSubmit = handleSubmit(async (values: LoginCredentials) => {
       </FormItem>
     </FormField>
 
-    <Button type="submit" class="w-full" :loading="isSubmitting">
+    <Button type="submit" class="w-full" :loading="isLoggingIn">
       Sign In
     </Button>
   </form>

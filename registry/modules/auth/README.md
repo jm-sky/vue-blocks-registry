@@ -19,7 +19,7 @@ This module provides authentication functionality with TanStack Query integratio
 
 ```vue
 <script setup>
-import { useAuthQuery } from '../composables/useAuthQuery'
+import { useAuth } from '../composables/useAuth'
 
 const { 
   user, 
@@ -27,7 +27,7 @@ const {
   login, 
   logout, 
   isLoggingIn 
-} = useAuthQuery()
+} = useAuth()
 
 const handleLogin = async (credentials) => {
   try {
@@ -53,9 +53,9 @@ const handleLogin = async (credentials) => {
 
 ## API Reference
 
-### useAuthQuery()
+### useAuth()
 
-Main composable that provides all authentication functionality.
+Main composable that provides all authentication functionality with TanStack Query integration.
 
 ```typescript
 const {
@@ -72,7 +72,7 @@ const {
   forgotPassword,         // Forgot password function
   resetPassword,          // Reset password function
   changePassword,         // Change password function
-  refreshUser,            // Refresh user data
+  fetchUser,              // Refresh user data
   
   // Loading states
   isLoggingIn,            // Login loading state
@@ -84,7 +84,7 @@ const {
   
   // Helpers
   updateUser,             // Update user data optimistically
-} = useAuthQuery()
+} = useAuth()
 ```
 
 ### Individual Query Hooks
@@ -97,7 +97,7 @@ import {
   useLogin, 
   useRegister, 
   useLogout 
-} from '../composables/useAuthQuery'
+} from '../composables/useAuth'
 
 // Fetch current user
 const { data: user, isLoading, error } = useCurrentUser()

@@ -2,7 +2,7 @@
 import { useForm } from 'vee-validate'
 import { toTypedSchema } from '@vee-validate/zod'
 import { forgotPasswordSchema } from '../validation/forgotPassword.schema'
-import { authService } from '../services/authService'
+import { useAuth } from '../composables/useAuth'
 import { isValidationError } from '@registry/shared/utils/typeGuards'
 import { Button } from '@registry/components/ui/button'
 import { FormField, FormItem, FormLabel, FormControl, FormMessage } from '@registry/components/ui/form'
@@ -10,7 +10,9 @@ import { Input } from '@registry/components/ui/input'
 import { ref } from 'vue'
 import type { ForgotPasswordData } from '../types/user'
 
-const { handleSubmit, setErrors, isSubmitting } = useForm({
+const { forgotPassword, isForgotPasswordLoading } = useAuth()
+
+const { handleSubmit, setErrors } = useForm({
   validationSchema: toTypedSchema(forgotPasswordSchema),
   initialValues: {
     email: ''
@@ -21,14 +23,14 @@ const successMessage = ref('')
 
 const onSubmit = handleSubmit(async (values: ForgotPasswordData) => {
   try {
-    const response = await authService.forgotPassword(values)
+    const response = await forgotPassword(values)
     successMessage.value = response.message
   } catch (err: any) {
     if (isValidationError(err)) {
       setErrors(err.response.data.errors)
     } else {
       // TODO: add toast/sonner notification from shadcn-vue
-      // toast.error('Unexpected error occured in forgot password process')
+      // toast.error('Unexpected error occurred in forgot password process')
       console.error('Forgot password error:', err)
     }
   }
@@ -62,7 +64,7 @@ const onSubmit = handleSubmit(async (values: ForgotPasswordData) => {
           </FormItem>
         </FormField>
 
-        <Button type="submit" class="w-full" :loading="isSubmitting">
+        <Button type="submit" class="w-full" :loading="isForgotPasswordLoading">
           Send Reset Link
         </Button>
       </form>

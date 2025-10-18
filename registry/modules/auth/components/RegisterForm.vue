@@ -11,9 +11,9 @@ import { useRouter } from 'vue-router'
 import type { RegisterCredentials } from '../types/user'
 
 const router = useRouter()
-const { register } = useAuth()
+const { register, isRegistering } = useAuth()
 
-const { handleSubmit, setErrors, isSubmitting } = useForm({
+const { handleSubmit, setErrors } = useForm({
   validationSchema: toTypedSchema(registerSchema),
   initialValues: {
     name: '',
@@ -81,7 +81,7 @@ const onSubmit = handleSubmit(async (values: RegisterCredentials) => {
       </FormItem>
     </FormField>
 
-    <Button type="submit" class="w-full" :loading="isSubmitting">
+    <Button type="submit" class="w-full" :loading="isRegistering">
       Sign Up
     </Button>
   </form>
