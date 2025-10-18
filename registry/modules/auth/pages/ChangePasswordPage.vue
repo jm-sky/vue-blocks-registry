@@ -5,15 +5,19 @@ import { changePasswordSchema } from '../validation/changePassword.schema'
 import { authService } from '../services/authService'
 import { isValidationError } from '@registry/shared/utils/typeGuards'
 import { Button } from '@registry/components/ui/button'
+import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from '@registry/components/ui/form'
+import { Input } from '@registry/components/ui/input'
 import { ref } from 'vue'
 
-const { handleSubmit, errors, setErrors, defineField, resetForm } = useForm({
+const { handleSubmit, setErrors, resetForm, isSubmitting } = useForm({
   validationSchema: toTypedSchema(changePasswordSchema),
+  initialValues: {
+    currentPassword: '',
+    password: '',
+    passwordConfirmation: ''
+  }
 })
 
-const [current_password] = defineField('current_password')
-const [password] = defineField('password')
-const [password_confirmation] = defineField('password_confirmation')
 const successMessage = ref('')
 
 const onSubmit = handleSubmit(async (values) => {
@@ -36,10 +40,10 @@ const onSubmit = handleSubmit(async (values) => {
     <div class="space-y-6">
       <div>
         <h2 class="text-2xl font-bold text-gray-900">
-          Zmień hasło
+          Change Password
         </h2>
         <p class="mt-1 text-sm text-gray-600">
-          Zaktualizuj swoje hasło, aby zwiększyć bezpieczeństwo konta
+          Update your password to enhance account security
         </p>
       </div>
 
@@ -47,47 +51,41 @@ const onSubmit = handleSubmit(async (values) => {
         {{ successMessage }}
       </div>
 
-      <form @submit="onSubmit" class="space-y-4">
-        <div>
-          <label for="current_password" class="block text-sm font-medium mb-1">Obecne hasło</label>
-          <input
-            id="current_password"
-            v-model="current_password"
-            type="password"
-            class="w-full px-3 py-2 border rounded-md"
-            :class="{ 'border-red-500': errors.current_password }"
-          />
-          <p v-if="errors.current_password" class="text-red-500 text-sm mt-1">{{ errors.current_password }}</p>
-        </div>
+      <Form :onSubmit="onSubmit" class="space-y-4">
+        <FormField v-slot="{ componentField }" name="currentPassword">
+          <FormItem>
+            <FormLabel>Current Password</FormLabel>
+            <FormControl>
+              <Input type="password" placeholder="Enter current password" v-bind="componentField" />
+            </FormControl>
+            <FormMessage />
+          </FormItem>
+        </FormField>
 
-        <div>
-          <label for="password" class="block text-sm font-medium mb-1">Nowe hasło</label>
-          <input
-            id="password"
-            v-model="password"
-            type="password"
-            class="w-full px-3 py-2 border rounded-md"
-            :class="{ 'border-red-500': errors.password }"
-          />
-          <p v-if="errors.password" class="text-red-500 text-sm mt-1">{{ errors.password }}</p>
-        </div>
+        <FormField v-slot="{ componentField }" name="password">
+          <FormItem>
+            <FormLabel>New Password</FormLabel>
+            <FormControl>
+              <Input type="password" placeholder="Enter new password" v-bind="componentField" />
+            </FormControl>
+            <FormMessage />
+          </FormItem>
+        </FormField>
 
-        <div>
-          <label for="password_confirmation" class="block text-sm font-medium mb-1">Potwierdź nowe hasło</label>
-          <input
-            id="password_confirmation"
-            v-model="password_confirmation"
-            type="password"
-            class="w-full px-3 py-2 border rounded-md"
-            :class="{ 'border-red-500': errors.password_confirmation }"
-          />
-          <p v-if="errors.password_confirmation" class="text-red-500 text-sm mt-1">{{ errors.password_confirmation }}</p>
-        </div>
+        <FormField v-slot="{ componentField }" name="passwordConfirmation">
+          <FormItem>
+            <FormLabel>Confirm New Password</FormLabel>
+            <FormControl>
+              <Input type="password" placeholder="Confirm new password" v-bind="componentField" />
+            </FormControl>
+            <FormMessage />
+          </FormItem>
+        </FormField>
 
-        <Button type="submit" class="w-full">
-          Zmień hasło
+        <Button type="submit" class="w-full" :loading="isSubmitting">
+          Change Password
         </Button>
-      </form>
+      </Form>
     </div>
   </div>
 </template>
