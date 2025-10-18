@@ -2,7 +2,7 @@
 import { useForm } from 'vee-validate'
 import { toTypedSchema } from '@vee-validate/zod'
 import { changePasswordSchema } from '../validation/changePassword.schema'
-import { authService } from '../services/authService'
+import { useAuth } from '../composables/useAuth'
 import { isValidationError } from '@registry/shared/utils/typeGuards'
 import { Button } from '@registry/components/ui/button'
 import { FormField, FormItem, FormLabel, FormControl, FormMessage } from '@registry/components/ui/form'
@@ -10,7 +10,9 @@ import { Input } from '@registry/components/ui/input'
 import { ref } from 'vue'
 import type { ChangePasswordData } from '../types/user'
 
-const { handleSubmit, setErrors, resetForm, isSubmitting } = useForm({
+const { changePassword, isChangePasswordLoading } = useAuth()
+
+const { handleSubmit, setErrors, resetForm } = useForm({
   validationSchema: toTypedSchema(changePasswordSchema),
   initialValues: {
     currentPassword: '',
@@ -23,7 +25,7 @@ const successMessage = ref('')
 
 const onSubmit = handleSubmit(async (values: ChangePasswordData) => {
   try {
-    const response = await authService.changePassword(values)
+    const response = await changePassword(values)
     successMessage.value = response.message
     resetForm()
   } catch (err: any) {
@@ -31,7 +33,7 @@ const onSubmit = handleSubmit(async (values: ChangePasswordData) => {
       setErrors(err.response.data.errors)
     } else {
       // TODO: add toast/sonner notification from shadcn-vue
-      // toast.error('Unexpected error occured in change password process')
+      // toast.error('Unexpected error occurred in change password process')
       console.error('Change password error:', err)
     }
   }
@@ -85,7 +87,7 @@ const onSubmit = handleSubmit(async (values: ChangePasswordData) => {
           </FormItem>
         </FormField>
 
-        <Button type="submit" class="w-full" :loading="isSubmitting">
+        <Button type="submit" class="w-full" :loading="isChangePasswordLoading">
           Change Password
         </Button>
       </form>
