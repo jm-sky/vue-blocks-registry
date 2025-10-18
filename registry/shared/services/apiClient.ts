@@ -1,4 +1,4 @@
-// shared/services/httpClient.ts
+// shared/services/apiClient.ts
 import axios from 'axios'
 import { authInterceptor } from './auth.interceptor'
 

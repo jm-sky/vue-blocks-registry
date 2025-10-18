@@ -1,5 +1,5 @@
 // modules/auth/services/authService.ts
-import { apiClient } from '@registry/shared/services/httpClient'
+import { apiClient } from '@registry/shared/services/apiClient'
 import type {
   LoginCredentials,
   RegisterCredentials,

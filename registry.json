@@ -87,7 +87,7 @@
       "categories": ["lib", "services"],
       "files": [
         {
-          "path": "shared/services/httpClient.ts",
+          "path": "shared/services/apiClient.ts",
           "type": "registry:lib"
         },
         {

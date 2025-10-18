@@ -64,7 +64,7 @@ src/
     ├─ ui/                        # generyczne komponenty UI (Button, Input itd.)
     ├─ composables/               # generyczne composables (useDebounce, usePagination)
     ├─ services/
-    │  ├─ httpClient.ts            # wspólny klient Axios (apiClient)
+    │  ├─ apiClient.ts             # wspólny klient Axios
     │  └─ auth.interceptor.ts      # interceptor dodający JWT_STORE_KEY
     ├─ hooks/
     ├─ types/
@@ -137,7 +137,7 @@ async function login(data: { email: string; password: string }, setErrors: (erro
 
 - **Moduł auth** zawiera tylko elementy związane z autentykacją: komponenty, pages, store, queries, validation, composables.  
 - **TanStack Query** w katalogu `queries/` obsługuje fetchy i mutacje API.  
-- **authService.ts** korzysta ze wspólnego klienta Axios (`shared/services/httpClient.ts`) z automatycznie zastosowanym interceptorem.  
+- **authService.ts** korzysta ze wspólnego klienta Axios (`shared/services/apiClient.ts`) z automatycznie zastosowanym interceptorem.  
 - **Shared config** jest dostępny dla wszystkich modułów i zawiera obiekt `config` oraz stałą `JWT_STORE_KEY`.  
 - **Moduł pages/corePages** przechowuje strony niezwiązane stricte z auth: Landing, Privacy Terms, Dashboard.  
 - **UI** bazuje na shadcn-vue + Tailwind.  
