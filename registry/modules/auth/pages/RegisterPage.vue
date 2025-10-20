@@ -1,21 +1,26 @@
 <script setup lang="ts">
+import AuthLayout from '@registry/app/layouts/AuthLayout.vue'
 import RegisterForm from '../components/RegisterForm.vue'
 </script>
 
 <template>
-  <div class="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+  <AuthLayout>
     <div class="max-w-md w-full space-y-8">
       <div>
-        <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
+        <h2 class="text-center text-3xl font-extrabold text-gray-900">
           Utwórz nowe konto
         </h2>
+        <p class="mt-2 text-center text-sm text-gray-600">
+          Lub
+          <router-link to="/auth/login" class="font-medium text-primary hover:underline">
+            zaloguj się na istniejące konto
+          </router-link>
+        </p>
       </div>
-      <RegisterForm />
-      <div class="text-center">
-        <router-link to="/login" class="text-sm text-primary hover:underline">
-          Masz już konto? Zaloguj się
-        </router-link>
+
+      <div class="bg-white py-8 px-6 shadow-lg rounded-lg">
+        <RegisterForm />
       </div>
     </div>
-  </div>
+  </AuthLayout>
 </template>

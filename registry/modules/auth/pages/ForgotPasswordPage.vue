@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import AuthLayout from '@registry/app/layouts/AuthLayout.vue'
 import { useForm } from 'vee-validate'
 import { toTypedSchema } from '@vee-validate/zod'
 import { forgotPasswordSchema } from '../validation/forgotPassword.schema'
@@ -36,10 +37,10 @@ const onSubmit = handleSubmit(async (values: ForgotPasswordData) => {
 </script>
 
 <template>
-  <div class="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+  <AuthLayout>
     <div class="max-w-md w-full space-y-8">
       <div>
-        <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
+        <h2 class="text-center text-3xl font-extrabold text-gray-900">
           Reset Password
         </h2>
         <p class="mt-2 text-center text-sm text-gray-600">
@@ -47,31 +48,33 @@ const onSubmit = handleSubmit(async (values: ForgotPasswordData) => {
         </p>
       </div>
 
-      <div v-if="successMessage" class="bg-green-50 border border-green-200 text-green-700 px-4 py-3 rounded">
-        {{ successMessage }}
+      <div class="bg-white py-8 px-6 shadow-lg rounded-lg space-y-4">
+        <div v-if="successMessage" class="bg-green-50 border border-green-200 text-green-700 px-4 py-3 rounded">
+          {{ successMessage }}
+        </div>
+
+        <form @submit="onSubmit" class="space-y-4">
+          <FormField v-slot="{ componentField }" name="email">
+            <FormItem>
+              <FormLabel>Email</FormLabel>
+              <FormControl>
+                <Input type="email" placeholder="Enter your email" v-bind="componentField" />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          </FormField>
+
+          <Button type="submit" class="w-full" :loading="isSubmitting">
+            Send Reset Link
+          </Button>
+        </form>
       </div>
 
-      <form @submit="onSubmit" class="space-y-4">
-        <FormField v-slot="{ componentField }" name="email">
-          <FormItem>
-            <FormLabel>Email</FormLabel>
-            <FormControl>
-              <Input type="email" placeholder="Enter your email" v-bind="componentField" />
-            </FormControl>
-            <FormMessage />
-          </FormItem>
-        </FormField>
-
-        <Button type="submit" class="w-full" :loading="isSubmitting">
-          Send Reset Link
-        </Button>
-      </form>
-
       <div class="text-center">
-        <router-link to="/login" class="text-sm text-primary hover:underline">
+        <router-link to="/auth/login" class="text-sm text-primary hover:underline">
           Back to Login
         </router-link>
       </div>
     </div>
-  </div>
+  </AuthLayout>
 </template>

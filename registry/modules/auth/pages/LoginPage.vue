@@ -1,26 +1,32 @@
 <script setup lang="ts">
+import AuthLayout from '@registry/app/layouts/AuthLayout.vue'
 import LoginForm from '../components/LoginForm.vue'
 </script>
 
 <template>
-  <div class="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+  <AuthLayout>
     <div class="max-w-md w-full space-y-8">
       <div>
-        <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
+        <h2 class="text-center text-3xl font-extrabold text-gray-900">
           Zaloguj się do konta
         </h2>
+        <p class="mt-2 text-center text-sm text-gray-600">
+          Lub
+          <router-link to="/auth/register" class="font-medium text-primary hover:underline">
+            utwórz nowe konto
+          </router-link>
+        </p>
       </div>
-      <LoginForm />
-      <div class="text-center">
-        <router-link to="/register" class="text-sm text-primary hover:underline">
-          Nie masz konta? Zarejestruj się
-        </router-link>
+
+      <div class="bg-white py-8 px-6 shadow-lg rounded-lg">
+        <LoginForm />
       </div>
+
       <div class="text-center">
-        <router-link to="/forgot-password" class="text-sm text-gray-600 hover:underline">
+        <router-link to="/auth/forgot-password" class="text-sm text-gray-600 hover:underline">
           Zapomniałeś hasła?
         </router-link>
       </div>
     </div>
-  </div>
+  </AuthLayout>
 </template>

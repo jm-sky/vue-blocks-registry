@@ -25,7 +25,36 @@ export const routes: RouteRecordRaw[] = [
         path: 'layout',
         component: () => import('@/pages/demo/Layout.vue'),
       },
+      {
+        path: 'auth',
+        component: () => import('@/pages/demo/Auth.vue'),
+      },
     ],
+  },
+  {
+    path: '/auth/login',
+    name: 'Login',
+    component: () => import('@registry/modules/auth/pages/LoginPage.vue'),
+  },
+  {
+    path: '/auth/register',
+    name: 'Register',
+    component: () => import('@registry/modules/auth/pages/RegisterPage.vue'),
+  },
+  {
+    path: '/auth/forgot-password',
+    name: 'ForgotPassword',
+    component: () => import('@registry/modules/auth/pages/ForgotPasswordPage.vue'),
+  },
+  {
+    path: '/auth/reset-password',
+    name: 'ResetPassword',
+    component: () => import('@registry/modules/auth/pages/ResetPasswordPage.vue'),
+  },
+  {
+    path: '/auth/change-password',
+    name: 'ChangePassword',
+    component: () => import('@registry/modules/auth/pages/ChangePasswordPage.vue'),
   },
   {
     path: '/:pathMatch(.*)*',
