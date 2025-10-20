@@ -44,15 +44,15 @@ const onSubmit = handleSubmit(async (values: ChangePasswordData) => {
     <div class="max-w-md mx-auto py-8">
       <div class="space-y-6">
         <div>
-          <h2 class="text-2xl font-bold text-gray-900">
+          <h2 class="text-2xl font-bold text-gray-900 dark:text-white">
             Change Password
           </h2>
-          <p class="mt-1 text-sm text-gray-600">
+          <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
             Update your password to enhance account security
           </p>
         </div>
 
-        <div class="bg-white py-8 px-6 shadow-lg rounded-lg space-y-4">
+        <div class="bg-white dark:bg-gray-800 py-8 px-6 shadow-lg rounded-lg space-y-4">
           <div v-if="successMessage" class="bg-green-50 border border-green-200 text-green-700 px-4 py-3 rounded">
             {{ successMessage }}
           </div>

@@ -48,15 +48,15 @@ const onSubmit = handleSubmit(async (values: ResetPasswordData) => {
   <AuthLayout>
     <div class="max-w-md w-full space-y-8">
       <div>
-        <h2 class="text-center text-3xl font-extrabold text-gray-900">
+        <h2 class="text-center text-3xl font-extrabold text-gray-900 dark:text-white">
           Set New Password
         </h2>
-        <p class="mt-2 text-center text-sm text-gray-600">
+        <p class="mt-2 text-center text-sm text-gray-600 dark:text-gray-400">
           Enter your new password below
         </p>
       </div>
 
-      <div class="bg-white py-8 px-6 shadow-lg rounded-lg space-y-4">
+      <div class="bg-white dark:bg-gray-800 py-8 px-6 shadow-lg rounded-lg space-y-4">
         <div v-if="successMessage" class="bg-green-50 border border-green-200 text-green-700 px-4 py-3 rounded">
           {{ successMessage }}
         </div>
@@ -107,9 +107,9 @@ const onSubmit = handleSubmit(async (values: ResetPasswordData) => {
       </div>
 
       <div class="text-center">
-        <router-link to="/auth/login" class="text-sm text-primary hover:underline">
+        <RouterLink to="/auth/login" class="text-sm text-primary hover:underline">
           Back to Login
-        </router-link>
+        </RouterLink>
       </div>
     </div>
   </AuthLayout>

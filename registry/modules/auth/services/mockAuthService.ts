@@ -52,7 +52,9 @@ export const mockAuthService = {
         response: {
           status: HttpStatusCode.UnprocessableEntity,
           data: {
-            message: 'Invalid email or password',
+            errors: {
+              email: ['Invalid email or password'],
+            },
           },
         },
       }
@@ -75,7 +77,7 @@ export const mockAuthService = {
           status: HttpStatusCode.UnprocessableEntity,
           data: {
             errors: {
-              email: 'Email already exists',
+              email: ['Email already exists'],
             },
           },
         },
@@ -145,7 +147,7 @@ export const mockAuthService = {
     }
   },
 
-  async changePassword(data: ChangePasswordData): Promise<{ message: string }> {
+  async changePassword(_data: ChangePasswordData): Promise<{ message: string }> {
     await delay()
 
     // For mock, we'll just return success

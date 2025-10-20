@@ -7,18 +7,18 @@ import RegisterForm from '../components/RegisterForm.vue'
   <AuthLayout>
     <div class="max-w-md w-full space-y-8">
       <div>
-        <h2 class="text-center text-3xl font-extrabold text-gray-900">
+        <h2 class="text-center text-3xl font-extrabold text-gray-900 dark:text-white">
           Utwórz nowe konto
         </h2>
-        <p class="mt-2 text-center text-sm text-gray-600">
+        <p class="mt-2 text-center text-sm text-gray-600 dark:text-gray-400">
           Lub
-          <router-link to="/auth/login" class="font-medium text-primary hover:underline">
+          <RouterLink to="/auth/login" class="font-medium text-primary hover:underline">
             zaloguj się na istniejące konto
-          </router-link>
+          </RouterLink>
         </p>
       </div>
 
-      <div class="bg-white py-8 px-6 shadow-lg rounded-lg">
+      <div class="bg-white dark:bg-gray-800 py-8 px-6 shadow-lg rounded-lg">
         <RegisterForm />
       </div>
     </div>

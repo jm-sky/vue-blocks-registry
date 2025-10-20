@@ -20,12 +20,12 @@
             <div class="flex-1">
               <div class="flex items-center gap-2">
                 <span class="font-medium text-gray-900">Login Form</span>
-                <router-link
+                <RouterLink
                   to="/auth/login"
                   class="text-xs text-blue-600 hover:text-blue-700 underline"
                 >
                   (Zobacz pełną stronę)
-                </router-link>
+                </RouterLink>
               </div>
               <p class="text-sm text-gray-600">Formularz logowania z walidacją</p>
               <p class="text-xs text-green-700 mt-1">✅ Działa w trybie demo z mock API</p>
@@ -37,12 +37,12 @@
             <div class="flex-1">
               <div class="flex items-center gap-2">
                 <span class="font-medium text-gray-900">Register Form</span>
-                <router-link
+                <RouterLink
                   to="/auth/register"
                   class="text-xs text-blue-600 hover:text-blue-700 underline"
                 >
                   (Zobacz pełną stronę)
-                </router-link>
+                </RouterLink>
               </div>
               <p class="text-sm text-gray-600">Formularz rejestracji z potwierdzeniem hasła</p>
               <p class="text-xs text-green-700 mt-1">✅ Działa w trybie demo z mock API</p>
@@ -54,12 +54,12 @@
             <div class="flex-1">
               <div class="flex items-center gap-2">
                 <span class="font-medium text-gray-900">Forgot Password</span>
-                <router-link
+                <RouterLink
                   to="/auth/forgot-password"
                   class="text-xs text-blue-600 hover:text-blue-700 underline"
                 >
                   (Zobacz pełną stronę)
-                </router-link>
+                </RouterLink>
               </div>
               <p class="text-sm text-gray-600">Formularz resetowania hasła</p>
               <p class="text-xs text-green-700 mt-1">✅ Działa w trybie demo z mock API</p>
@@ -71,12 +71,12 @@
             <div class="flex-1">
               <div class="flex items-center gap-2">
                 <span class="font-medium text-gray-900">Reset Password</span>
-                <router-link
+                <RouterLink
                   to="/auth/reset-password"
                   class="text-xs text-blue-600 hover:text-blue-700 underline"
                 >
                   (Zobacz pełną stronę)
-                </router-link>
+                </RouterLink>
               </div>
               <p class="text-sm text-gray-600">Formularz ustawiania nowego hasła</p>
               <p class="text-xs text-green-700 mt-1">✅ Działa w trybie demo z mock API</p>
@@ -88,12 +88,12 @@
             <div class="flex-1">
               <div class="flex items-center gap-2">
                 <span class="font-medium text-gray-900">Change Password</span>
-                <router-link
+                <RouterLink
                   to="/auth/change-password"
                   class="text-xs text-blue-600 hover:text-blue-700 underline"
                 >
                   (Zobacz pełną stronę)
-                </router-link>
+                </RouterLink>
               </div>
               <p class="text-sm text-gray-600">Formularz zmiany hasła dla zalogowanych użytkowników</p>
               <p class="text-xs text-green-700 mt-1">✅ Działa w trybie demo z mock API</p>

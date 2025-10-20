@@ -35,6 +35,9 @@ export const routes: RouteRecordRaw[] = [
     path: '/auth/login',
     name: 'Login',
     component: () => import('@registry/modules/auth/pages/LoginPage.vue'),
+    meta: {
+      message: 'Demo credentials: "demo@example.com" with password: "password123"',
+    },
   },
   {
     path: '/auth/register',
@@ -55,6 +58,10 @@ export const routes: RouteRecordRaw[] = [
     path: '/auth/change-password',
     name: 'ChangePassword',
     component: () => import('@registry/modules/auth/pages/ChangePasswordPage.vue'),
+  },
+  {
+    path: '/dashboard',
+    redirect: '/demo',
   },
   {
     path: '/:pathMatch(.*)*',
