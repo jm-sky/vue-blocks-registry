@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import AuthenticatedLayout from '@registry/app/layouts/AuthenticatedLayout.vue'
 import { useAuthStore } from '@registry/modules/auth/store/useAuthStore'
-import { User, Mail, Shield, Clock } from 'lucide-vue-next'
+import { Clock, Mail, Shield, User } from 'lucide-vue-next'
 import { computed } from 'vue'
 
 const authStore = useAuthStore()
@@ -9,14 +9,14 @@ const authStore = useAuthStore()
 const stats = computed(() => [
   {
     name: 'User ID',
-    value: authStore.user?.id || '-',
+    value: authStore.user?.id ?? '-',
     icon: User,
     color: 'text-blue-600 dark:text-blue-400',
     bgColor: 'bg-blue-50 dark:bg-blue-900/20',
   },
   {
     name: 'Email',
-    value: authStore.user?.email || '-',
+    value: authStore.user?.email ?? '-',
     icon: Mail,
     color: 'text-green-600 dark:text-green-400',
     bgColor: 'bg-green-50 dark:bg-green-900/20',
@@ -105,25 +105,33 @@ const quickActions = [
         <div class="p-6">
           <dl class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-              <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">Full Name</dt>
+              <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">
+                Full Name
+              </dt>
               <dd class="mt-1 text-sm text-gray-900 dark:text-white">
-                {{ authStore.user?.name || 'Not provided' }}
+                {{ authStore.user?.name ?? 'Not provided' }}
               </dd>
             </div>
             <div>
-              <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">Email Address</dt>
+              <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">
+                Email Address
+              </dt>
               <dd class="mt-1 text-sm text-gray-900 dark:text-white">
                 {{ authStore.user?.email }}
               </dd>
             </div>
             <div>
-              <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">User ID</dt>
+              <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">
+                User ID
+              </dt>
               <dd class="mt-1 text-sm text-gray-900 dark:text-white font-mono">
                 {{ authStore.user?.id }}
               </dd>
             </div>
             <div>
-              <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">Authentication Status</dt>
+              <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">
+                Authentication Status
+              </dt>
               <dd class="mt-1">
                 <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400">
                   Authenticated
@@ -145,11 +153,15 @@ const quickActions = [
                 v-else
                 class="size-16 rounded-full bg-gradient-to-br from-blue-600 to-purple-600 flex items-center justify-center text-white text-2xl font-bold"
               >
-                {{ authStore.user?.name?.charAt(0) || authStore.user?.email?.charAt(0) }}
+                {{ authStore.user?.name?.charAt(0) ?? authStore.user?.email?.charAt(0) }}
               </div>
               <div>
-                <p class="text-sm font-medium text-gray-900 dark:text-white">Profile Picture</p>
-                <p class="text-xs text-gray-500 dark:text-gray-400">Auto-generated from UI Avatars</p>
+                <p class="text-sm font-medium text-gray-900 dark:text-white">
+                  Profile Picture
+                </p>
+                <p class="text-xs text-gray-500 dark:text-gray-400">
+                  Auto-generated from UI Avatars
+                </p>
               </div>
             </div>
           </div>
@@ -170,8 +182,12 @@ const quickActions = [
             :to="action.href"
             :class="[action.color, 'block p-6 rounded-lg text-white transition-colors']"
           >
-            <h3 class="text-lg font-semibold mb-2">{{ action.title }}</h3>
-            <p class="text-sm text-white/80">{{ action.description }}</p>
+            <h3 class="text-lg font-semibold mb-2">
+              {{ action.title }}
+            </h3>
+            <p class="text-sm text-white/80">
+              {{ action.description }}
+            </p>
           </RouterLink>
         </div>
       </div>

@@ -18,8 +18,8 @@ const router = useRouter()
 const { handleSubmit, setErrors, isSubmitting } = useForm({
   validationSchema: toTypedSchema(resetPasswordSchema),
   initialValues: {
-    email: route.query.email as string || '',
-    token: route.query.token as string || '',
+    email: route.query.email as string ?? '',
+    token: route.query.token as string ?? '',
     password: '',
     passwordConfirmation: ''
   }

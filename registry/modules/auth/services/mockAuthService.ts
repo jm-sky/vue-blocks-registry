@@ -31,8 +31,8 @@ function createUserObject(email: string, name?: string): User {
   return {
     id: `usr_${email.split('@')[0]}` as any, // Mock TULID
     email,
-    name: name || email.split('@')[0],
-    avatar: `https://ui-avatars.com/api/?name=${encodeURIComponent(name || email)}&background=random`,
+    name: name ?? email.split('@')[0],
+    avatar: `https://ui-avatars.com/api/?name=${encodeURIComponent(name ?? email)}&background=random`,
   }
 }
 

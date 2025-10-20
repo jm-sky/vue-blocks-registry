@@ -16,7 +16,7 @@
         </h3>
         <div class="space-y-4">
           <div class="flex items-start gap-3">
-            <div class="size-2 bg-blue-600 rounded-full mt-2"></div>
+            <div class="size-2 bg-blue-600 rounded-full mt-2" />
             <div class="flex-1">
               <div class="flex items-center gap-2">
                 <span class="font-medium text-gray-900">Login Form</span>
@@ -27,13 +27,17 @@
                   (Zobacz pełną stronę)
                 </RouterLink>
               </div>
-              <p class="text-sm text-gray-600">Formularz logowania z walidacją</p>
-              <p class="text-xs text-green-700 mt-1">✅ Działa w trybie demo z mock API</p>
+              <p class="text-sm text-gray-600">
+                Formularz logowania z walidacją
+              </p>
+              <p class="text-xs text-green-700 mt-1">
+                ✅ Działa w trybie demo z mock API
+              </p>
             </div>
           </div>
 
           <div class="flex items-start gap-3">
-            <div class="size-2 bg-blue-600 rounded-full mt-2"></div>
+            <div class="size-2 bg-blue-600 rounded-full mt-2" />
             <div class="flex-1">
               <div class="flex items-center gap-2">
                 <span class="font-medium text-gray-900">Register Form</span>
@@ -44,13 +48,17 @@
                   (Zobacz pełną stronę)
                 </RouterLink>
               </div>
-              <p class="text-sm text-gray-600">Formularz rejestracji z potwierdzeniem hasła</p>
-              <p class="text-xs text-green-700 mt-1">✅ Działa w trybie demo z mock API</p>
+              <p class="text-sm text-gray-600">
+                Formularz rejestracji z potwierdzeniem hasła
+              </p>
+              <p class="text-xs text-green-700 mt-1">
+                ✅ Działa w trybie demo z mock API
+              </p>
             </div>
           </div>
 
           <div class="flex items-start gap-3">
-            <div class="size-2 bg-blue-600 rounded-full mt-2"></div>
+            <div class="size-2 bg-blue-600 rounded-full mt-2" />
             <div class="flex-1">
               <div class="flex items-center gap-2">
                 <span class="font-medium text-gray-900">Forgot Password</span>
@@ -61,13 +69,17 @@
                   (Zobacz pełną stronę)
                 </RouterLink>
               </div>
-              <p class="text-sm text-gray-600">Formularz resetowania hasła</p>
-              <p class="text-xs text-green-700 mt-1">✅ Działa w trybie demo z mock API</p>
+              <p class="text-sm text-gray-600">
+                Formularz resetowania hasła
+              </p>
+              <p class="text-xs text-green-700 mt-1">
+                ✅ Działa w trybie demo z mock API
+              </p>
             </div>
           </div>
 
           <div class="flex items-start gap-3">
-            <div class="size-2 bg-blue-600 rounded-full mt-2"></div>
+            <div class="size-2 bg-blue-600 rounded-full mt-2" />
             <div class="flex-1">
               <div class="flex items-center gap-2">
                 <span class="font-medium text-gray-900">Reset Password</span>
@@ -78,13 +90,17 @@
                   (Zobacz pełną stronę)
                 </RouterLink>
               </div>
-              <p class="text-sm text-gray-600">Formularz ustawiania nowego hasła</p>
-              <p class="text-xs text-green-700 mt-1">✅ Działa w trybie demo z mock API</p>
+              <p class="text-sm text-gray-600">
+                Formularz ustawiania nowego hasła
+              </p>
+              <p class="text-xs text-green-700 mt-1">
+                ✅ Działa w trybie demo z mock API
+              </p>
             </div>
           </div>
 
           <div class="flex items-start gap-3">
-            <div class="size-2 bg-blue-600 rounded-full mt-2"></div>
+            <div class="size-2 bg-blue-600 rounded-full mt-2" />
             <div class="flex-1">
               <div class="flex items-center gap-2">
                 <span class="font-medium text-gray-900">Change Password</span>
@@ -95,8 +111,12 @@
                   (Zobacz pełną stronę)
                 </RouterLink>
               </div>
-              <p class="text-sm text-gray-600">Formularz zmiany hasła dla zalogowanych użytkowników</p>
-              <p class="text-xs text-green-700 mt-1">✅ Działa w trybie demo z mock API</p>
+              <p class="text-sm text-gray-600">
+                Formularz zmiany hasła dla zalogowanych użytkowników
+              </p>
+              <p class="text-xs text-green-700 mt-1">
+                ✅ Działa w trybie demo z mock API
+              </p>
             </div>
           </div>
         </div>
@@ -142,7 +162,9 @@
           Aplikacja działa w trybie demo z mock API (bez prawdziwego backendu). Możesz przetestować wszystkie funkcje auth!
         </p>
         <div class="bg-green-100 p-3 rounded text-sm">
-          <p class="font-semibold text-green-900 mb-1">Testowe konta:</p>
+          <p class="font-semibold text-green-900 mb-1">
+            Testowe konta:
+          </p>
           <ul class="space-y-1 text-green-800">
             <li>• Email: <code class="bg-green-200 px-1.5 py-0.5 rounded">demo@example.com</code> | Hasło: <code class="bg-green-200 px-1.5 py-0.5 rounded">password123</code></li>
             <li>• Email: <code class="bg-green-200 px-1.5 py-0.5 rounded">test@test.com</code> | Hasło: <code class="bg-green-200 px-1.5 py-0.5 rounded">test1234</code></li>
@@ -162,7 +184,9 @@
         </p>
         <pre class="bg-blue-900 text-blue-100 p-3 rounded text-xs overflow-x-auto mb-2"><code>VITE_USE_MOCK_AUTH=false
 VITE_API_BASE_URL=https://your-api.com/api</code></pre>
-        <p class="text-sm text-blue-800 mb-2">Backend musi udostępniać endpointy:</p>
+        <p class="text-sm text-blue-800 mb-2">
+          Backend musi udostępniać endpointy:
+        </p>
         <ul class="text-xs text-blue-800 space-y-1 ml-4">
           <li>• <code class="bg-blue-100 px-1.5 py-0.5 rounded">POST /auth/login</code></li>
           <li>• <code class="bg-blue-100 px-1.5 py-0.5 rounded">POST /auth/register</code></li>
