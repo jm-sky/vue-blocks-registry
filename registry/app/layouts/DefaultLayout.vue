@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import LogoText from '@registry/components/ui/LogoText.vue'
 import DarkModeToggle from '@registry/shared/components/DarkModeToggle.vue'
 
 // Default layout for public pages (no authentication required)
@@ -11,7 +12,7 @@ import DarkModeToggle from '@registry/shared/components/DarkModeToggle.vue'
         <div class="flex justify-between h-16">
           <div class="flex items-center">
             <RouterLink to="/" class="text-xl font-bold text-gray-900 dark:text-white">
-              MyApp
+              <LogoText />
             </RouterLink>
           </div>
 

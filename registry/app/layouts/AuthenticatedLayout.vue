@@ -2,6 +2,7 @@
 import { useAuthStore } from '@registry/modules/auth/store/useAuthStore'
 import LogoutButton from '@registry/modules/auth/components/LogoutButton.vue'
 import DarkModeToggle from '@registry/shared/components/DarkModeToggle.vue'
+import LogoText from '@registry/components/ui/LogoText.vue'
 
 const authStore = useAuthStore()
 </script>
@@ -13,7 +14,7 @@ const authStore = useAuthStore()
         <div class="flex justify-between h-16">
           <div class="flex items-center">
             <RouterLink to="/dashboard" class="text-xl font-bold text-gray-900 dark:text-white">
-              MyApp
+              <LogoText />
             </RouterLink>
           </div>
 

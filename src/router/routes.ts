@@ -61,7 +61,8 @@ export const routes: RouteRecordRaw[] = [
   },
   {
     path: '/dashboard',
-    redirect: '/demo',
+    name: 'Dashboard',
+    component: () => import('@/pages/dashboard/DashboardPage.vue'),
   },
   {
     path: '/:pathMatch(.*)*',

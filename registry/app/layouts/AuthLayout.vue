@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import LogoText from '@/components/layout/LogoText.vue'
+import LogoText from '@registry/components/ui/LogoText.vue'
 import DarkModeToggle from '@registry/shared/components/DarkModeToggle.vue'
 
 // Auth layout for login, register, forgot password pages
