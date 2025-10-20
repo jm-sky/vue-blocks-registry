@@ -12,49 +12,49 @@ const categories = [
     description: 'Różnorodne style przycisków z wariantami i wibracjami',
     linkTo: '/demo/buttons',
     iconComponent: ButtonIcon,
-    iconClass: 'size-6 text-blue-600',
-    iconBgClass: 'w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mr-4'
+    iconClass: 'size-7 text-blue-600',
+    iconBgClass: 'bg-gradient-to-br from-blue-50 to-blue-100'
   },
   {
     title: 'Forms',
     description: 'Komponenty formularzy i pól input',
     linkTo: '/demo/forms',
     iconComponent: FormIcon,
-    iconClass: 'size-6 text-green-600',
-    iconBgClass: 'w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mr-4'
+    iconClass: 'size-7 text-emerald-600',
+    iconBgClass: 'bg-gradient-to-br from-emerald-50 to-emerald-100'
   },
   {
     title: 'Layout',
     description: 'Komponenty układu i kontenerów',
     linkTo: '/demo/layout',
     iconComponent: LayoutIcon,
-    iconClass: 'size-6 text-purple-600',
-    iconBgClass: 'w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mr-4'
+    iconClass: 'size-7 text-violet-600',
+    iconBgClass: 'bg-gradient-to-br from-violet-50 to-violet-100'
   }
 ]
 
 const stats = [
   { value: 1, label: 'Kategoria', colorClass: 'text-blue-600' },
-  { value: 6, label: 'Warianty Button', colorClass: 'text-green-600' },
-  { value: 3, label: 'Wibracje Button', colorClass: 'text-purple-600' }
+  { value: 6, label: 'Warianty Button', colorClass: 'text-emerald-600' },
+  { value: 3, label: 'Wibracje Button', colorClass: 'text-violet-600' }
 ]
 </script>
 
 <template>
-  <div class="space-y-8">
+  <div class="space-y-16">
     <!-- Welcome Section -->
-    <div class="text-center py-12">
-      <h2 class="text-4xl font-bold text-gray-900 mb-4">
+    <div class="text-center py-16">
+      <h2 class="text-5xl font-bold text-slate-900 mb-6 tracking-tight">
         Witaj w
-        <LogoText class="text-4xl" />
+        <LogoText class="text-5xl" />
       </h2>
-      <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+      <p class="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed font-light">
         Odkryj naszą kolekcję gotowych komponentów UI, zaprojektowanych z myślą o nowoczesnych aplikacjach Vue.js
       </p>
     </div>
 
     <!-- Component Categories -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       <CategoryCard
         v-for="category in categories"
         :key="category.title"
