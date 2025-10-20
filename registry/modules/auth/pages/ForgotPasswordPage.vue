@@ -8,6 +8,8 @@ import { isValidationError } from '@registry/shared/utils/typeGuards'
 import { Button } from '@registry/components/ui/button'
 import { FormField, FormItem, FormLabel, FormControl, FormMessage } from '@registry/components/ui/form'
 import { Input } from '@registry/components/ui/input'
+import { Alert, AlertDescription } from '@registry/components/ui/alert'
+import { CircleCheck } from 'lucide-vue-next'
 import { ref } from 'vue'
 import type { ForgotPasswordData } from '../types/user'
 
@@ -49,9 +51,12 @@ const onSubmit = handleSubmit(async (values: ForgotPasswordData) => {
       </div>
 
       <div class="bg-white dark:bg-gray-800 py-8 px-6 shadow-lg rounded-lg space-y-4">
-        <div v-if="successMessage" class="bg-green-50 border border-green-200 text-green-700 px-4 py-3 rounded">
-          {{ successMessage }}
-        </div>
+        <Alert v-if="successMessage" variant="default" class="bg-green-50 dark:bg-green-900/20 border-green-200 dark:border-green-800">
+          <CircleCheck class="size-4 text-green-600 dark:text-green-400" />
+          <AlertDescription class="text-green-700 dark:text-green-300">
+            {{ successMessage }}
+          </AlertDescription>
+        </Alert>
 
         <form @submit="onSubmit" class="space-y-4">
           <FormField v-slot="{ componentField }" name="email">

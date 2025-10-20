@@ -43,13 +43,16 @@ const stats = [
 <template>
   <div class="space-y-16">
     <!-- Welcome Section -->
-    <div class="text-center py-16">
+    <div class="text-center py-16 space-y-4">
       <h2 class="text-5xl font-bold text-slate-900 mb-6 tracking-tight">
         Witaj w
         <LogoText class="text-5xl" />
       </h2>
       <p class="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed font-light">
         Odkryj naszą kolekcję gotowych komponentów UI, zaprojektowanych z myślą o nowoczesnych aplikacjach Vue.js
+      </p>
+      <p class="text-base text-slate-600 max-w-3xl mx-auto leading-relaxed font-light">
+        Używamy Tailwind CSS i Shadcn Vue, Vee Validate, Zod...
       </p>
     </div>
 

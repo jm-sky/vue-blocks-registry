@@ -3,6 +3,8 @@ import AuthenticatedLayout from '@registry/app/layouts/AuthenticatedLayout.vue'
 import { useAuthStore } from '@registry/modules/auth/store/useAuthStore'
 import { Clock, Mail, Shield, User } from 'lucide-vue-next'
 import { computed } from 'vue'
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 
 const authStore = useAuthStore()
 
@@ -74,35 +76,31 @@ const quickActions = [
 
       <!-- Stats Grid -->
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div
-          v-for="stat in stats"
-          :key="stat.name"
-          class="bg-white dark:bg-gray-800 rounded-lg shadow p-6 border border-gray-200 dark:border-gray-700"
-        >
-          <div class="flex items-center justify-between">
-            <div class="flex-1">
-              <p class="text-sm font-medium text-gray-600 dark:text-gray-400">
-                {{ stat.name }}
-              </p>
-              <p class="mt-2 text-lg font-semibold text-gray-900 dark:text-white truncate">
-                {{ stat.value }}
-              </p>
+        <Card v-for="stat in stats" :key="stat.name">
+          <CardContent class="p-6">
+            <div class="flex items-center justify-between">
+              <div class="flex-1">
+                <p class="text-sm font-medium text-gray-600 dark:text-gray-400">
+                  {{ stat.name }}
+                </p>
+                <p class="mt-2 text-lg font-semibold text-gray-900 dark:text-white truncate">
+                  {{ stat.value }}
+                </p>
+              </div>
+              <div :class="[stat.bgColor, 'p-3 rounded-lg']">
+                <component :is="stat.icon" :class="[stat.color, 'size-6']" />
+              </div>
             </div>
-            <div :class="[stat.bgColor, 'p-3 rounded-lg']">
-              <component :is="stat.icon" :class="[stat.color, 'size-6']" />
-            </div>
-          </div>
-        </div>
+          </CardContent>
+        </Card>
       </div>
 
       <!-- User Info Card -->
-      <div class="bg-white dark:bg-gray-800 rounded-lg shadow border border-gray-200 dark:border-gray-700">
-        <div class="px-6 py-4 border-b border-gray-200 dark:border-gray-700">
-          <h2 class="text-xl font-semibold text-gray-900 dark:text-white">
-            User Information
-          </h2>
-        </div>
-        <div class="p-6">
+      <Card>
+        <CardHeader>
+          <CardTitle>User Information</CardTitle>
+        </CardHeader>
+        <CardContent>
           <dl class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
               <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">
@@ -165,17 +163,15 @@ const quickActions = [
               </div>
             </div>
           </div>
-        </div>
-      </div>
+        </CardContent>
+      </Card>
 
       <!-- Quick Actions -->
-      <div class="bg-white dark:bg-gray-800 rounded-lg shadow border border-gray-200 dark:border-gray-700">
-        <div class="px-6 py-4 border-b border-gray-200 dark:border-gray-700">
-          <h2 class="text-xl font-semibold text-gray-900 dark:text-white">
-            Quick Actions
-          </h2>
-        </div>
-        <div class="p-6 grid grid-cols-1 md:grid-cols-3 gap-4">
+      <Card>
+        <CardHeader>
+          <CardTitle>Quick Actions</CardTitle>
+        </CardHeader>
+        <CardContent class="grid grid-cols-1 md:grid-cols-3 gap-4">
           <RouterLink
             v-for="action in quickActions"
             :key="action.title"
@@ -189,24 +185,18 @@ const quickActions = [
               {{ action.description }}
             </p>
           </RouterLink>
-        </div>
-      </div>
+        </CardContent>
+      </Card>
 
       <!-- Demo Info -->
-      <div class="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg p-6">
-        <div class="flex gap-3">
-          <Shield class="size-6 text-blue-600 dark:text-blue-400 shrink-0" />
-          <div>
-            <h3 class="text-sm font-semibold text-blue-900 dark:text-blue-300 mb-1">
-              Demo Mode Active
-            </h3>
-            <p class="text-sm text-blue-800 dark:text-blue-400">
-              This dashboard is part of the Vue Blocks Registry demo. You're logged in with mock authentication.
-              All data is stored in-memory and will be reset on page refresh.
-            </p>
-          </div>
-        </div>
-      </div>
+      <Alert>
+        <Shield class="size-4" />
+        <AlertTitle>Demo Mode Active</AlertTitle>
+        <AlertDescription>
+          This dashboard is part of the Vue Blocks Registry demo. You're logged in with mock authentication.
+          All data is stored in-memory and will be reset on page refresh.
+        </AlertDescription>
+      </Alert>
     </div>
   </AuthenticatedLayout>
 </template>
