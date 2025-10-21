@@ -1,7 +1,7 @@
 <script setup lang="ts">
+import DemoFooter from '@/components/pages/demo/DemoFooter.vue'
 import Header from '@/components/pages/demo/Header.vue'
 import NavbarTop from '@/components/pages/demo/NavbarTop.vue'
-
 </script>
 
 <template>
@@ -23,26 +23,7 @@ import NavbarTop from '@/components/pages/demo/NavbarTop.vue'
       </main>
 
       <!-- Footer -->
-      <footer class="bg-white/60 dark:bg-slate-900/60 backdrop-blur-md border-t border-slate-200/60 dark:border-slate-700/60 shadow-sm">
-        <div class="container mx-auto px-6 py-8 max-w-7xl">
-          <div class="flex flex-col md:flex-row justify-between items-center gap-4">
-            <div class="text-slate-600 dark:text-slate-300 text-sm">
-              © 2024 Vue Blocks Registry. Wszystkie prawa zastrzeżone.
-            </div>
-            <div class="flex gap-6 text-sm">
-              <a href="#" class="text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-colors">
-                Dokumentacja
-              </a>
-              <a href="#" class="text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-colors">
-                GitHub
-              </a>
-              <a href="#" class="text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-colors">
-                Licencja
-              </a>
-            </div>
-          </div>
-        </div>
-      </footer>
+      <DemoFooter />
     </div>
   </div>
 </template>
