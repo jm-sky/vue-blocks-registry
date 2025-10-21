@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import LogoText from '@registry/components/ui/LogoText.vue';
+import LogoText from '@registry/components/ui/LogoText.vue'
 import DarkModeToggle from '@registry/shared/components/DarkModeToggle.vue'
 
 // Auth layout for login, register, forgot password pages
@@ -14,7 +14,9 @@ import DarkModeToggle from '@registry/shared/components/DarkModeToggle.vue'
 
     <main class="flex-1 flex flex-col items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
       <div class="mx-auto text-center mb-8">
-        <LogoText class="text-3xl drop-shadow" />
+        <RouterLink to="/" class="block hover:opacity-80 hover:scale-105 transition-all">
+          <LogoText class="text-3xl drop-shadow" />
+        </RouterLink>
       </div>
 
       <slot />

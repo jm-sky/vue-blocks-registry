@@ -1,7 +1,6 @@
-// modules/auth/composables/useLogout.ts
-import { useAuthStore } from '../store/useAuthStore'
-import { authService } from '../services/authService'
-import { authRoutes } from '../config/routes'
+import { authRoutes } from '@registry/modules/auth/config/routes'
+import { authService } from '@registry/modules/auth/services/authService'
+import { useAuthStore } from '@registry/modules/auth/store/useAuthStore'
 import { useRouter } from 'vue-router'
 
 export function useLogout() {
@@ -15,7 +14,7 @@ export function useLogout() {
       console.error('Logout error:', error)
     } finally {
       authStore.logout()
-      router.push(authRoutes.login)
+      await router.push(authRoutes.login)
     }
   }
 

@@ -1,5 +1,5 @@
 // shared/composables/useDarkMode.ts
-import { ref, watch, onMounted } from 'vue'
+import { onMounted, ref, watch } from 'vue'
 
 const DARK_MODE_KEY = 'vue-blocks:dark-mode'
 

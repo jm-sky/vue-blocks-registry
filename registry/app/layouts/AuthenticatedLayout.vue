@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { useAuthStore } from '@registry/modules/auth/store/useAuthStore'
-import LogoutButton from '@registry/modules/auth/components/LogoutButton.vue'
-import DarkModeToggle from '@registry/shared/components/DarkModeToggle.vue'
 import LogoText from '@registry/components/ui/LogoText.vue'
+import LogoutButton from '@registry/modules/auth/components/LogoutButton.vue'
+import { useAuthStore } from '@registry/modules/auth/store/useAuthStore'
+import DarkModeToggle from '@registry/shared/components/DarkModeToggle.vue'
 
 const authStore = useAuthStore()
 </script>

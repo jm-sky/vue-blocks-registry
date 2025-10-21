@@ -1,10 +1,10 @@
 <!-- eslint-disable vue/require-default-prop -->
 <script setup lang="ts">
-import { Primitive, type PrimitiveProps } from 'reka-ui'
 import { cn } from '@registry/lib/utils'
+import { Loader2 } from 'lucide-vue-next'
+import { Primitive, type PrimitiveProps } from 'reka-ui'
 import { type ButtonVariants, buttonVariants } from '.'
 import type { HTMLAttributes } from 'vue'
-import { Loader2 } from 'lucide-vue-next'
 
 interface Props extends PrimitiveProps {
   variant?: ButtonVariants['variant']

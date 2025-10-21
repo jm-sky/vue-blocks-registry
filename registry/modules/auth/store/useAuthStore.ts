@@ -1,8 +1,8 @@
+import { JWT_STORE_KEY } from '@registry/shared/config/config'
 // modules/auth/store/useAuthStore.ts
 import { defineStore } from 'pinia'
-import { ref, computed } from 'vue'
-import type { User } from '../types/user'
-import { JWT_STORE_KEY } from '@registry/shared/config/config'
+import { computed, ref } from 'vue'
+import type { User } from '@registry/modules/auth/types/user'
 
 export const useAuthStore = defineStore('auth', () => {
   const user = ref<User | null>(null)
@@ -10,7 +10,7 @@ export const useAuthStore = defineStore('auth', () => {
 
   const isAuthenticated = computed(() => !!token.value && !!user.value)
 
-  function setToken(newToken: string | null) {
+  const setToken = (newToken: string) => {
     token.value = newToken
     if (newToken) {
       localStorage.setItem(JWT_STORE_KEY, newToken)
@@ -19,13 +19,20 @@ export const useAuthStore = defineStore('auth', () => {
     }
   }
 
-  function setUser(newUser: User | null) {
+  const setUser = (newUser: User | null) => {
     user.value = newUser
   }
 
-  function logout() {
-    setToken(null)
-    setUser(null)
+  const clearToken = () => {
+    token.value = null
+    localStorage.removeItem(JWT_STORE_KEY)
+  }
+
+  const clearUser = () => user.value = null
+
+  const logout = () => {
+    clearToken()
+    clearUser()
   }
 
   return {
@@ -33,7 +40,9 @@ export const useAuthStore = defineStore('auth', () => {
     token,
     isAuthenticated,
     setToken,
+    clearToken,
     setUser,
+    clearUser,
     logout,
   }
 })

@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import { useLogout } from '../composables/useLogout'
 import { Button } from '@registry/components/ui/button'
+import { useLogout } from '@registry/modules/auth/composables/useLogout'
 
 const { logout } = useLogout()
 </script>
 
 <template>
-  <Button @click="logout" variant="ghost">
+  <Button variant="ghost" @click="logout">
     Wyloguj się
   </Button>
 </template>

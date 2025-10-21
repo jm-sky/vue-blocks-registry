@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import AuthLayout from '@registry/app/layouts/AuthLayout.vue'
-import LoginForm from '../components/LoginForm.vue'
+import LoginForm from '@registry/modules/auth/components/LoginForm.vue'
 import { useRoute } from 'vue-router'
 
 const route = useRoute()

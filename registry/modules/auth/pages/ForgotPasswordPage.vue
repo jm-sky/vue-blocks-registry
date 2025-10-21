@@ -1,17 +1,17 @@
 <script setup lang="ts">
 import AuthLayout from '@registry/app/layouts/AuthLayout.vue'
-import { useForm } from 'vee-validate'
-import { toTypedSchema } from '@vee-validate/zod'
-import { forgotPasswordSchema } from '../validation/forgotPassword.schema'
-import { authService } from '../services/authService'
-import { isValidationError } from '@registry/shared/utils/typeGuards'
-import { Button } from '@registry/components/ui/button'
-import { FormField, FormItem, FormLabel, FormControl, FormMessage } from '@registry/components/ui/form'
-import { Input } from '@registry/components/ui/input'
 import { Alert, AlertDescription } from '@registry/components/ui/alert'
+import { Button } from '@registry/components/ui/button'
+import { FormControl, FormField, FormItem, FormLabel, FormMessage } from '@registry/components/ui/form'
+import { Input } from '@registry/components/ui/input'
+import { authService } from '@registry/modules/auth/services/authService'
+import { forgotPasswordSchema } from '@registry/modules/auth/validation/forgotPassword.schema'
+import { isValidationError } from '@registry/shared/utils/typeGuards'
+import { toTypedSchema } from '@vee-validate/zod'
 import { CircleCheck } from 'lucide-vue-next'
+import { useForm } from 'vee-validate'
 import { ref } from 'vue'
-import type { ForgotPasswordData } from '../types/user'
+import type { ForgotPasswordData } from '@registry/modules/auth/types/user'
 
 const { handleSubmit, setErrors, isSubmitting } = useForm({
   validationSchema: toTypedSchema(forgotPasswordSchema),
@@ -26,7 +26,7 @@ const onSubmit = handleSubmit(async (values: ForgotPasswordData) => {
   try {
     const response = await authService.forgotPassword(values)
     successMessage.value = response.message
-  } catch (err: any) {
+  } catch (err: unknown) {
     if (isValidationError(err)) {
       setErrors(err.response.data.errors)
     } else {
@@ -58,7 +58,7 @@ const onSubmit = handleSubmit(async (values: ForgotPasswordData) => {
           </AlertDescription>
         </Alert>
 
-        <form @submit="onSubmit" class="space-y-4">
+        <form class="space-y-4" @submit="onSubmit">
           <FormField v-slot="{ componentField }" name="email">
             <FormItem>
               <FormLabel>Email</FormLabel>

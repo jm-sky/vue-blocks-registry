@@ -1,7 +1,6 @@
-// modules/auth/composables/useAuth.ts
-import { useAuthStore } from '../store/useAuthStore'
-import { authService } from '../services/authService'
-import type { LoginCredentials, RegisterCredentials } from '../types/user'
+import { authService } from '@registry/modules/auth/services/authService'
+import { useAuthStore } from '@registry/modules/auth/store/useAuthStore'
+import type { LoginCredentials, RegisterCredentials } from '@registry/modules/auth/types/user'
 
 export function useAuth() {
   const authStore = useAuthStore()

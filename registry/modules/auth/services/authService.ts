@@ -2,14 +2,14 @@
 import { apiClient } from '@registry/shared/services/apiClient'
 import { mockAuthService } from './mockAuthService'
 import type {
+  AuthResponse,
+  ChangePasswordData,
+  ForgotPasswordData,
   LoginCredentials,
   RegisterCredentials,
-  ForgotPasswordData,
   ResetPasswordData,
-  ChangePasswordData,
-  AuthResponse,
   User,
-} from '../types/user'
+} from '@registry/modules/auth/types/user'
 
 // Check if we should use mock service (for demo purposes)
 const USE_MOCK = import.meta.env.VITE_USE_MOCK_AUTH === 'true'

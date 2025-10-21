@@ -1,14 +1,14 @@
 <script setup lang="ts">
-import { useForm } from 'vee-validate'
-import { toTypedSchema } from '@vee-validate/zod'
-import { registerSchema } from '../validation/register.schema'
-import { useAuth } from '../composables/useAuth'
-import { isValidationError } from '@registry/shared/utils/typeGuards'
 import { Button } from '@registry/components/ui/button'
-import { FormField, FormItem, FormLabel, FormControl, FormMessage } from '@registry/components/ui/form'
+import { FormControl, FormField, FormItem, FormLabel, FormMessage } from '@registry/components/ui/form'
 import { Input } from '@registry/components/ui/input'
+import { useAuth } from '@registry/modules/auth/composables/useAuth'
+import { registerSchema } from '@registry/modules/auth/validation/register.schema'
+import { isValidationError } from '@registry/shared/utils/typeGuards'
+import { toTypedSchema } from '@vee-validate/zod'
+import { useForm } from 'vee-validate'
 import { useRouter } from 'vue-router'
-import type { RegisterCredentials } from '../types/user'
+import type { RegisterCredentials } from '@registry/modules/auth/types/user'
 
 const router = useRouter()
 const { register } = useAuth()
@@ -26,8 +26,8 @@ const { handleSubmit, setErrors, isSubmitting } = useForm({
 const onSubmit = handleSubmit(async (values: RegisterCredentials) => {
   try {
     await register(values)
-    router.push('/dashboard')
-  } catch (err: any) {
+    await router.push('/dashboard')
+  } catch (err: unknown) {
     if (isValidationError(err)) {
       setErrors(err.response.data.errors)
     } else {
@@ -40,7 +40,7 @@ const onSubmit = handleSubmit(async (values: RegisterCredentials) => {
 </script>
 
 <template>
-  <form @submit="onSubmit" class="space-y-4">
+  <form class="space-y-4" @submit="onSubmit">
     <FormField v-slot="{ componentField }" name="name">
       <FormItem>
         <FormLabel>Name (optional)</FormLabel>

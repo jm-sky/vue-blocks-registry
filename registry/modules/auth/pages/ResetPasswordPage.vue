@@ -1,16 +1,16 @@
 <script setup lang="ts">
 import AuthLayout from '@registry/app/layouts/AuthLayout.vue'
-import { useForm } from 'vee-validate'
-import { toTypedSchema } from '@vee-validate/zod'
-import { resetPasswordSchema } from '../validation/resetPassword.schema'
-import { authService } from '../services/authService'
-import { isValidationError } from '@registry/shared/utils/typeGuards'
 import { Button } from '@registry/components/ui/button'
-import { FormField, FormItem, FormLabel, FormControl, FormMessage } from '@registry/components/ui/form'
+import { FormControl, FormField, FormItem, FormLabel, FormMessage } from '@registry/components/ui/form'
 import { Input } from '@registry/components/ui/input'
+import { authService } from '@registry/modules/auth/services/authService'
+import { resetPasswordSchema } from '@registry/modules/auth/validation/resetPassword.schema'
+import { isValidationError } from '@registry/shared/utils/typeGuards'
+import { toTypedSchema } from '@vee-validate/zod'
+import { useForm } from 'vee-validate'
 import { ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import type { ResetPasswordData } from '../types/user'
+import type { ResetPasswordData } from '@registry/modules/auth/types/user'
 
 const route = useRoute()
 const router = useRouter()
@@ -18,8 +18,8 @@ const router = useRouter()
 const { handleSubmit, setErrors, isSubmitting } = useForm({
   validationSchema: toTypedSchema(resetPasswordSchema),
   initialValues: {
-    email: route.query.email as string ?? '',
-    token: route.query.token as string ?? '',
+    email: (route.query.email as string | null) ?? '',
+    token: (route.query.token as string | null) ?? '',
     password: '',
     passwordConfirmation: ''
   }
@@ -32,7 +32,7 @@ const onSubmit = handleSubmit(async (values: ResetPasswordData) => {
     const response = await authService.resetPassword(values)
     successMessage.value = response.message
     setTimeout(() => router.push('/auth/login'), 2000)
-  } catch (err: any) {
+  } catch (err: unknown) {
     if (isValidationError(err)) {
       setErrors(err.response.data.errors)
     } else {
@@ -61,7 +61,7 @@ const onSubmit = handleSubmit(async (values: ResetPasswordData) => {
           {{ successMessage }}
         </div>
 
-        <form @submit="onSubmit" class="space-y-4">
+        <form class="space-y-4" @submit="onSubmit">
           <FormField v-slot="{ componentField }" name="token">
             <FormItem>
               <FormControl>

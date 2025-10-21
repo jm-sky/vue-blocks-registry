@@ -1,11 +1,15 @@
 <script lang="ts" setup>
-import type { LabelProps } from "reka-ui"
-import type { HTMLAttributes } from "vue"
-import { cn } from "@registry/lib/utils"
 import { Label } from '@registry/components/ui/label'
-import { useFormField } from "./useFormField"
+import { cn } from '@registry/lib/utils'
+import { useFormField } from './useFormField'
+import type { LabelProps } from 'reka-ui'
+import type { HTMLAttributes } from 'vue'
 
-const props = defineProps<LabelProps & { class?: HTMLAttributes["class"] }>()
+const props = defineProps<LabelProps & {
+  class?: HTMLAttributes['class']
+  label?: string
+  required?: boolean
+}>()
 
 const { error, formItemId } = useFormField()
 </script>
@@ -20,6 +24,9 @@ const { error, formItemId } = useFormField()
     )"
     :for="formItemId"
   >
-    <slot />
+    <slot>
+      {{ label }}
+    </slot>
+    <span v-if="required" class="text-destructive">*</span>
   </Label>
 </template>

@@ -1,23 +1,23 @@
 // Mock auth service for demo purposes (no real backend needed)
-import { HttpStatusCode } from 'axios';
+import { HttpStatusCode } from 'axios'
 import type {
+  AuthResponse,
+  ChangePasswordData,
+  ForgotPasswordData,
   LoginCredentials,
   RegisterCredentials,
-  ForgotPasswordData,
   ResetPasswordData,
-  ChangePasswordData,
-  AuthResponse,
   User,
-} from '../types/user'
+} from '@registry/modules/auth/types/user'
 
 // Mock user database (in-memory)
-const mockUsers: Map<string, { email: string; password: string; name?: string }> = new Map([
+const mockUsers = new Map<string, { email: string; password: string; name?: string }>([
   ['demo@example.com', { email: 'demo@example.com', password: 'password123', name: 'Demo User' }],
   ['test@test.com', { email: 'test@test.com', password: 'test1234', name: 'Test User' }],
 ])
 
 // Mock tokens storage
-const mockTokens: Map<string, string> = new Map()
+const mockTokens = new Map<string, string>()
 
 // Helper to generate mock JWT token
 function generateMockToken(email: string): string {
@@ -29,15 +29,28 @@ function generateMockToken(email: string): string {
 // Helper to create User object
 function createUserObject(email: string, name?: string): User {
   return {
-    id: `usr_${email.split('@')[0]}` as any, // Mock TULID
+    id: `usr_${email.split('@')[0]}`,
     email,
     name: name ?? email.split('@')[0],
     avatar: `https://ui-avatars.com/api/?name=${encodeURIComponent(name ?? email)}&background=random`,
   }
 }
 
+function createHttpError(status: HttpStatusCode, message: string, errors?: Record<string, string[]>): Error {
+  const error = new Error(message)
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  ;(error as any).response = {
+    status,
+    data: {
+      message,
+      errors,
+    },
+  }
+  return error
+}
+
 // Simulate network delay
-function delay(ms: number = 500): Promise<void> {
+function delay(ms = 500): Promise<void> {
   return new Promise(resolve => setTimeout(resolve, ms))
 }
 
@@ -48,16 +61,9 @@ export const mockAuthService = {
     const user = mockUsers.get(credentials.email)
 
     if (!user || user.password !== credentials.password) {
-      throw {
-        response: {
-          status: HttpStatusCode.UnprocessableEntity,
-          data: {
-            errors: {
-              email: ['Invalid email or password'],
-            },
-          },
-        },
-      }
+      throw createHttpError(HttpStatusCode.UnprocessableEntity, 'Invalid email or password', {
+        email: ['Invalid email or password'],
+      })
     }
 
     const token = generateMockToken(credentials.email)
@@ -72,16 +78,9 @@ export const mockAuthService = {
     await delay()
 
     if (mockUsers.has(credentials.email)) {
-      throw {
-        response: {
-          status: HttpStatusCode.UnprocessableEntity,
-          data: {
-            errors: {
-              email: ['Email already exists'],
-            },
-          },
-        },
-      }
+      throw createHttpError(HttpStatusCode.UnprocessableEntity, 'Email already exists', {
+        email: ['Email already exists'],
+      })
     }
 
     mockUsers.set(credentials.email, {
@@ -108,14 +107,7 @@ export const mockAuthService = {
     await delay()
 
     if (!mockUsers.has(data.email)) {
-      throw {
-        response: {
-          status: 404,
-          data: {
-            message: 'User not found',
-          },
-        },
-      }
+      throw createHttpError(HttpStatusCode.NotFound, 'User not found')
     }
 
     return {
@@ -129,14 +121,7 @@ export const mockAuthService = {
     const user = mockUsers.get(data.email)
 
     if (!user) {
-      throw {
-        response: {
-          status: 404,
-          data: {
-            message: 'User not found',
-          },
-        },
-      }
+      throw createHttpError(HttpStatusCode.NotFound, 'User not found')
     }
 
     // Update password in mock database
@@ -149,6 +134,7 @@ export const mockAuthService = {
 
   async changePassword(_data: ChangePasswordData): Promise<{ message: string }> {
     await delay()
+    console.log('[MockAuthService] changePassword', _data)
 
     // For mock, we'll just return success
     // In real implementation, you'd verify currentPassword
@@ -162,6 +148,7 @@ export const mockAuthService = {
 
     // In mock, we'll return the demo user
     // In real implementation, this would use the JWT token
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     const demoUser = mockUsers.get('demo@example.com')!
     return createUserObject(demoUser.email, demoUser.name)
   },

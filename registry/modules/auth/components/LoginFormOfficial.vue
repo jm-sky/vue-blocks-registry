@@ -1,23 +1,17 @@
 <script setup lang="ts">
 import { Button } from '@registry/components/ui/button'
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@registry/components/ui/card'
+import { FormControl, FormField, FormItem, FormLabel, FormMessage } from '@registry/components/ui/form'
 import { Input } from '@registry/components/ui/input'
 import { cn } from '@registry/lib/utils'
-import type { HTMLAttributes } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
-import { useForm } from 'vee-validate'
-import { toTypedSchema } from '@vee-validate/zod'
-import { loginSchema } from '../validation/login.schema'
-import { useAuth } from '../composables/useAuth'
+import { useAuth } from '@registry/modules/auth/composables/useAuth'
+import { loginSchema } from '@registry/modules/auth/validation/login.schema'
 import { isValidationError } from '@registry/shared/utils/typeGuards'
-import type { LoginCredentials } from '../types/user'
-import { FormField, FormItem, FormLabel, FormControl, FormMessage } from '@registry/components/ui/form'
+import { toTypedSchema } from '@vee-validate/zod'
+import { useForm } from 'vee-validate'
+import { useRoute, useRouter } from 'vue-router'
+import type { LoginCredentials } from '@registry/modules/auth/types/user'
+import type { HTMLAttributes } from 'vue'
 
 const router = useRouter()
 const route = useRoute()
@@ -40,8 +34,8 @@ const { handleSubmit, setErrors, isSubmitting } = useForm({
 const onSubmit = handleSubmit(async (values: LoginCredentials) => {
   try {
     await login(values)
-    router.push('/dashboard')
-  } catch (err: any) {
+    await router.push('/dashboard')
+  } catch (err: unknown) {
     if (isValidationError(err)) {
       setErrors(err.response.data.errors)
     } else {
@@ -69,7 +63,12 @@ const onSubmit = handleSubmit(async (values: LoginCredentials) => {
               <FormItem>
                 <FormLabel>Email</FormLabel>
                 <FormControl>
-                  <Input type="email" placeholder="Enter your email" v-bind="componentField" required />
+                  <Input
+                    type="email"
+                    placeholder="Enter your email"
+                    v-bind="componentField"
+                    required
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -94,10 +93,15 @@ const onSubmit = handleSubmit(async (values: LoginCredentials) => {
             </FormField>
 
             <div class="flex flex-col gap-3">
-              <Button type="submit" class="w-full">
-                Login
+              <Button
+                type="submit"
+                class="w-full"
+                :disabled="isSubmitting"
+                :loading="isSubmitting"
+              >
+                {{ isSubmitting ? 'Logging in...' : 'Login' }}
               </Button>
-              <Button variant="outline" class="w-full">
+              <Button variant="outline" class="w-full" :disabled="isSubmitting">
                 Login with Google
               </Button>
             </div>

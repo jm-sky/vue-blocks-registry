@@ -1,15 +1,15 @@
 <script setup lang="ts">
 import AuthenticatedLayout from '@registry/app/layouts/AuthenticatedLayout.vue'
-import { useForm } from 'vee-validate'
-import { toTypedSchema } from '@vee-validate/zod'
-import { changePasswordSchema } from '../validation/changePassword.schema'
-import { authService } from '../services/authService'
-import { isValidationError } from '@registry/shared/utils/typeGuards'
 import { Button } from '@registry/components/ui/button'
-import { FormField, FormItem, FormLabel, FormControl, FormMessage } from '@registry/components/ui/form'
+import { FormControl, FormField, FormItem, FormLabel, FormMessage } from '@registry/components/ui/form'
 import { Input } from '@registry/components/ui/input'
+import { authService } from '@registry/modules/auth/services/authService'
+import { changePasswordSchema } from '@registry/modules/auth/validation/changePassword.schema'
+import { isValidationError } from '@registry/shared/utils/typeGuards'
+import { toTypedSchema } from '@vee-validate/zod'
+import { useForm } from 'vee-validate'
 import { ref } from 'vue'
-import type { ChangePasswordData } from '../types/user'
+import type { ChangePasswordData } from '@registry/modules/auth/types/user'
 
 const { handleSubmit, setErrors, resetForm, isSubmitting } = useForm({
   validationSchema: toTypedSchema(changePasswordSchema),
@@ -27,7 +27,7 @@ const onSubmit = handleSubmit(async (values: ChangePasswordData) => {
     const response = await authService.changePassword(values)
     successMessage.value = response.message
     resetForm()
-  } catch (err: any) {
+  } catch (err: unknown) {
     if (isValidationError(err)) {
       setErrors(err.response.data.errors)
     } else {
@@ -57,7 +57,7 @@ const onSubmit = handleSubmit(async (values: ChangePasswordData) => {
             {{ successMessage }}
           </div>
 
-          <form @submit="onSubmit" class="space-y-4">
+          <form class="space-y-4" @submit="onSubmit">
             <FormField v-slot="{ componentField }" name="currentPassword">
               <FormItem>
                 <FormLabel>Current Password</FormLabel>
