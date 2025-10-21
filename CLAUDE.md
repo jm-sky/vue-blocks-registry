@@ -1,0 +1,1 @@
+- We need to keep track of version in package.json and bump it before every publish to npm and we need a changelog.
