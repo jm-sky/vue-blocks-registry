@@ -94,6 +94,33 @@ export default defineConfigWithVueTs(
     },
   },
 
+  // Modules-specific rules: enforce absolute @registry imports (no relative parent paths)
+  {
+    name: 'registry/modules/enforce-absolute-imports',
+    files: ['registry/modules/**/*.{ts,tsx,vue}'],
+    rules: {
+      'no-restricted-imports': [
+        'error',
+        {
+          patterns: [
+            {
+              group: ['@/*'],
+              message: 'Use @registry imports in registry files instead of @/ imports. Registry components must use @registry/* to work when installed in user projects.',
+            },
+            {
+              group: ['~/*'],
+              message: 'Use @registry imports in registry files instead of ~/ imports.',
+            },
+            {
+              group: ['../*'],
+              message: 'Use absolute @registry imports instead of relative parent imports in modules/. For example, use "@registry/modules/auth/types/user" instead of "../types/user".',
+            },
+          ],
+        },
+      ],
+    },
+  },
+
   // Src-specific rules: update internal patterns for perfectionist
   {
     name: 'src/allow-both-imports',
