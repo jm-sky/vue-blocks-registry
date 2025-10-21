@@ -3,7 +3,7 @@ import AuthLayout from '@registry/app/layouts/AuthLayout.vue'
 import { Button } from '@registry/components/ui/button'
 import { FormControl, FormField, FormItem, FormLabel, FormMessage } from '@registry/components/ui/form'
 import { Input } from '@registry/components/ui/input'
-import { authService } from '@registry/modules/auth/services/authService'
+import { useAuth } from '@registry/modules/auth/composables/useAuth'
 import { resetPasswordSchema } from '@registry/modules/auth/validation/resetPassword.schema'
 import { isValidationError } from '@registry/shared/utils/typeGuards'
 import { toTypedSchema } from '@vee-validate/zod'
@@ -14,8 +14,9 @@ import type { ResetPasswordData } from '@registry/modules/auth/types/user'
 
 const route = useRoute()
 const router = useRouter()
+const { resetPassword, isResetPasswordLoading } = useAuth()
 
-const { handleSubmit, setErrors, isSubmitting } = useForm({
+const { handleSubmit, setErrors } = useForm({
   validationSchema: toTypedSchema(resetPasswordSchema),
   initialValues: {
     email: (route.query.email as string | null) ?? '',
@@ -29,7 +30,7 @@ const successMessage = ref('')
 
 const onSubmit = handleSubmit(async (values: ResetPasswordData) => {
   try {
-    const response = await authService.resetPassword(values)
+    const response = await resetPassword(values)
     successMessage.value = response.message
     setTimeout(() => router.push('/auth/login'), 2000)
   } catch (err: unknown) {
@@ -37,7 +38,7 @@ const onSubmit = handleSubmit(async (values: ResetPasswordData) => {
       setErrors(err.response.data.errors)
     } else {
       // TODO: add toast/sonner notification from shadcn-vue
-      // toast.error('Unexpected error occured in reset password process')
+      // toast.error('Unexpected error occurred in reset password process')
       console.error('Reset password error:', err)
     }
   }
@@ -100,7 +101,7 @@ const onSubmit = handleSubmit(async (values: ResetPasswordData) => {
             </FormItem>
           </FormField>
 
-          <Button type="submit" class="w-full" :loading="isSubmitting">
+          <Button type="submit" class="w-full" :loading="isResetPasswordLoading">
             Reset Password
           </Button>
         </form>

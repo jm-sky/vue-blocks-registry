@@ -4,7 +4,7 @@ import { Alert, AlertDescription } from '@registry/components/ui/alert'
 import { Button } from '@registry/components/ui/button'
 import { FormControl, FormField, FormItem, FormLabel, FormMessage } from '@registry/components/ui/form'
 import { Input } from '@registry/components/ui/input'
-import { authService } from '@registry/modules/auth/services/authService'
+import { useAuth } from '@registry/modules/auth/composables/useAuth'
 import { forgotPasswordSchema } from '@registry/modules/auth/validation/forgotPassword.schema'
 import { isValidationError } from '@registry/shared/utils/typeGuards'
 import { toTypedSchema } from '@vee-validate/zod'
@@ -13,7 +13,9 @@ import { useForm } from 'vee-validate'
 import { ref } from 'vue'
 import type { ForgotPasswordData } from '@registry/modules/auth/types/user'
 
-const { handleSubmit, setErrors, isSubmitting } = useForm({
+const { forgotPassword, isForgotPasswordLoading } = useAuth()
+
+const { handleSubmit, setErrors } = useForm({
   validationSchema: toTypedSchema(forgotPasswordSchema),
   initialValues: {
     email: ''
@@ -24,14 +26,14 @@ const successMessage = ref('')
 
 const onSubmit = handleSubmit(async (values: ForgotPasswordData) => {
   try {
-    const response = await authService.forgotPassword(values)
+    const response = await forgotPassword(values)
     successMessage.value = response.message
   } catch (err: unknown) {
     if (isValidationError(err)) {
       setErrors(err.response.data.errors)
     } else {
       // TODO: add toast/sonner notification from shadcn-vue
-      // toast.error('Unexpected error occured in forgot password process')
+      // toast.error('Unexpected error occurred in forgot password process')
       console.error('Forgot password error:', err)
     }
   }
@@ -69,7 +71,7 @@ const onSubmit = handleSubmit(async (values: ForgotPasswordData) => {
             </FormItem>
           </FormField>
 
-          <Button type="submit" class="w-full" :loading="isSubmitting">
+          <Button type="submit" class="w-full" :loading="isForgotPasswordLoading">
             Send Reset Link
           </Button>
         </form>

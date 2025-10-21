@@ -11,13 +11,13 @@ import { useRouter } from 'vue-router'
 import type { LoginCredentials } from '@registry/modules/auth/types/user'
 
 const router = useRouter()
-const { login } = useAuth()
+const { login, isLoggingIn } = useAuth()
 
-const { handleSubmit, setErrors, isSubmitting } = useForm({
+const { handleSubmit, setErrors } = useForm({
   validationSchema: toTypedSchema(loginSchema),
   initialValues: {
-    email: '',
-    password: ''
+    email: import.meta.env.VITE_DEFAULT_USER_EMAIL ?? '',
+    password: import.meta.env.VITE_DEFAULT_USER_PASSWORD ?? ''
   }
 })
 
@@ -30,7 +30,7 @@ const onSubmit = handleSubmit(async (values: LoginCredentials) => {
       setErrors(err.response.data.errors)
     } else {
       // TODO: add toast/sonner notification from shadcn-vue
-      // toast.error('Unexpected error occured in login process')
+      // toast.error('Unexpected error occurred in login process')
       console.error('Login error:', err)
     }
   }
@@ -63,7 +63,7 @@ const onSubmit = handleSubmit(async (values: LoginCredentials) => {
       </FormItem>
     </FormField>
 
-    <Button type="submit" class="w-full" :loading="isSubmitting">
+    <Button type="submit" class="w-full" :loading="isLoggingIn">
       Sign In
     </Button>
   </form>
