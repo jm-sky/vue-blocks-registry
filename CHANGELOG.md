@@ -7,6 +7,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.8] - 2025-01-27
+
+### Added
+- Registry build script (`scripts/build-registry.ts`) to auto-generate component JSON files from registry.json
+- `build:registry` npm script for generating registry component files
+- All 20 component JSON files in `public/r/styles/default/` directory
+- Automated registry build integrated into `prepublishOnly` hook
+
+### Fixed
+- Fixed CLI unable to install components other than `utils` and `button`
+- Updated vite to 7.1.11 to fix security vulnerability (GHSA-93m4-6634-74q7)
+
+### Changed
+- All registry components now available for CLI installation (label, input, form, config, type-guards, http-client, auth-*, layouts, alert, dark-mode, bundles)
+- Improved registry JSON generation process for better maintainability
+
 ## [0.1.7] - 2025-01-27
 
 ### Added

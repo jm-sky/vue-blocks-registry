@@ -1,6 +1,6 @@
 {
   "name": "vue-blocks-registry",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "type": "module",
   "description": "A modular system for Vue 3 projects with reusable UI components, features, and bundles",
   "author": "Jan madeyski <jan.madeyski@gmail.com>",
@@ -93,7 +93,7 @@
     "tailwindcss": "^4.1.14",
     "tsx": "^4.20.6",
     "typescript": "~5.9.0",
-    "vite": "^7.1.7",
+    "vite": "^7.1.11",
     "vite-plugin-vue-devtools": "^8.0.2",
     "vitest": "^3.2.4",
     "vue-tsc": "^3.1.0"
