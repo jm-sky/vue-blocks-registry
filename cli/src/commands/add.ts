@@ -183,7 +183,7 @@ async function installFiles(
       const remainingRegistryImports = validateTransformation(content)
       if (remainingRegistryImports.length > 0) {
         logger.warn(`Warning: Some @registry imports may not have been transformed in ${file.path}:`)
-        remainingRegistryImports.forEach(imp => logger.warn(`  - ${imp}`))
+        remainingRegistryImports.forEach(imp => { logger.warn(`  - ${imp}`) })
       }
 
       // Determine target path

@@ -60,5 +60,5 @@ export function transformImports(content: string, config: Config): string {
 export function validateTransformation(content: string): string[] {
   const registryImportRegex = /@registry\/[\w/.-]+/g
   const matches = content.match(registryImportRegex)
-  return matches || []
+  return matches ?? []
 }
