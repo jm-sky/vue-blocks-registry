@@ -1,6 +1,6 @@
 {
   "name": "vue-blocks-registry",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "type": "module",
   "description": "A modular system for Vue 3 projects with reusable UI components, features, and bundles",
   "author": "Jan madeyski <jan.madeyski@gmail.com>",
@@ -28,7 +28,7 @@
     "prepublishOnly": "pnpm run build:cli && pnpm run type-check && pnpm run lint"
   },
   "license": "MIT",
-  "homepage": "https://github.com/jm-sky/vue-blocks-registry#readme",
+  "homepage": "https://vue-blocks-registry.dev-made.it",
   "repository": {
     "type": "git",
     "url": "https://github.com/jm-sky/vue-blocks-registry.git"
