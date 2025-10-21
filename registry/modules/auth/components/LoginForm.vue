@@ -16,8 +16,8 @@ const { login, isLoggingIn } = useAuth()
 const { handleSubmit, setErrors } = useForm({
   validationSchema: toTypedSchema(loginSchema),
   initialValues: {
-    email: '',
-    password: ''
+    email: import.meta.env.VITE_DEFAULT_USER_EMAIL ?? '',
+    password: import.meta.env.VITE_DEFAULT_USER_PASSWORD ?? ''
   }
 })
 
