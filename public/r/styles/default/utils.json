@@ -4,7 +4,10 @@
   "type": "registry:lib",
   "title": "Utils",
   "description": "Utility functions for class name merging and conditional styling",
-  "categories": ["lib", "utils"],
+  "categories": [
+    "lib",
+    "utils"
+  ],
   "files": [
     {
       "path": "lib/utils.ts",

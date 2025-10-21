@@ -8,7 +8,9 @@ import type { RegistryItem } from '../types/registry.js'
 import type { Config } from '../utils/config.js'
 import { getConfig } from '../utils/config.js'
 import { logger } from '../utils/logger.js'
+import { detectPackageManager, getAddCommand } from '../utils/package-manager.js'
 import { fetchFileContent, fetchRegistryItem } from '../utils/registry.js'
+import { transformImports, validateTransformation } from '../utils/transformers.js'
 
 export const add = new Command()
   .name('add')
@@ -114,7 +116,11 @@ async function installComponent(
   if (allNpmDeps.size > 0) {
     const depsSpinner = ora('Installing dependencies...').start()
     try {
-      await execa('pnpm', ['add', ...Array.from(allNpmDeps)], { cwd })
+      const packageManager = detectPackageManager(cwd)
+      const addCommand = getAddCommand(packageManager, Array.from(allNpmDeps))
+
+      logger.info(`Using ${packageManager.name} to install dependencies...`)
+      await execa(addCommand[0], addCommand.slice(1), { cwd })
       depsSpinner.succeed('Dependencies installed')
     }
     catch (error) {
@@ -170,9 +176,19 @@ async function installFiles(
   try {
     for (const file of item.files) {
       // Fetch file content
-      const content = await fetchFileContent(file.path)
+      let content = await fetchFileContent(file.path)
       if (!content) {
         throw new Error(`Failed to fetch ${file.path}`)
+      }
+
+      // Transform @registry imports to user's aliases
+      content = transformImports(content, config)
+
+      // Validate transformation (optional - for debugging)
+      const remainingRegistryImports = validateTransformation(content)
+      if (remainingRegistryImports.length > 0) {
+        logger.warn(`Warning: Some @registry imports may not have been transformed in ${file.path}:`)
+        remainingRegistryImports.forEach(imp => { logger.warn(`  - ${imp}`) })
       }
 
       // Determine target path
@@ -203,8 +219,20 @@ async function installFiles(
 
       // Check if file exists
       if (await fs.pathExists(targetPath) && !overwrite) {
-        spinner.warn(`Skipping ${path.relative(cwd, targetPath)} (already exists)`)
-        continue
+        spinner.stop()
+        const { shouldOverwrite } = await prompts({
+          type: 'confirm',
+          name: 'shouldOverwrite',
+          message: `${path.relative(cwd, targetPath)} already exists. Overwrite?`,
+          initial: false,
+        })
+
+        if (!shouldOverwrite) {
+          spinner.warn(`Skipping ${path.relative(cwd, targetPath)}`)
+          continue
+        }
+
+        spinner.start(`Installing ${item.name}...`)
       }
 
       // Ensure directory exists

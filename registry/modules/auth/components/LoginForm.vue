@@ -1,14 +1,14 @@
 <script setup lang="ts">
-import { useForm } from 'vee-validate'
-import { toTypedSchema } from '@vee-validate/zod'
-import { loginSchema } from '../validation/login.schema'
-import { useAuth } from '../composables/useAuth'
-import { isValidationError } from '@registry/shared/utils/typeGuards'
 import { Button } from '@registry/components/ui/button'
-import { FormField, FormItem, FormLabel, FormControl, FormMessage } from '@registry/components/ui/form'
+import { FormControl, FormField, FormItem, FormLabel, FormMessage } from '@registry/components/ui/form'
 import { Input } from '@registry/components/ui/input'
+import { useAuth } from '@registry/modules/auth/composables/useAuth'
+import { loginSchema } from '@registry/modules/auth/validation/login.schema'
+import { isValidationError } from '@registry/shared/utils/typeGuards'
+import { toTypedSchema } from '@vee-validate/zod'
+import { useForm } from 'vee-validate'
 import { useRouter } from 'vue-router'
-import type { LoginCredentials } from '../types/user'
+import type { LoginCredentials } from '@registry/modules/auth/types/user'
 
 const router = useRouter()
 const { login, isLoggingIn } = useAuth()
@@ -24,8 +24,8 @@ const { handleSubmit, setErrors } = useForm({
 const onSubmit = handleSubmit(async (values: LoginCredentials) => {
   try {
     await login(values)
-    router.push('/dashboard')
-  } catch (err: any) {
+    await router.push('/dashboard')
+  } catch (err: unknown) {
     if (isValidationError(err)) {
       setErrors(err.response.data.errors)
     } else {
@@ -38,10 +38,12 @@ const onSubmit = handleSubmit(async (values: LoginCredentials) => {
 </script>
 
 <template>
-  <form @submit="onSubmit" class="space-y-4">
+  <form class="space-y-4" @submit="onSubmit">
     <FormField v-slot="{ componentField }" name="email">
       <FormItem>
-        <FormLabel>Email</FormLabel>
+        <FormLabel required>
+          Email
+        </FormLabel>
         <FormControl>
           <Input type="email" placeholder="Enter your email" v-bind="componentField" />
         </FormControl>
@@ -51,7 +53,9 @@ const onSubmit = handleSubmit(async (values: LoginCredentials) => {
 
     <FormField v-slot="{ componentField }" name="password">
       <FormItem>
-        <FormLabel>Password</FormLabel>
+        <FormLabel required>
+          Password
+        </FormLabel>
         <FormControl>
           <Input type="password" placeholder="Enter your password" v-bind="componentField" />
         </FormControl>

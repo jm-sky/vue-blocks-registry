@@ -1,0 +1,26 @@
+{
+  "$schema": "../../../../registry-item-schema.json",
+  "name": "auth-store",
+  "type": "registry:lib",
+  "title": "Auth Store",
+  "description": "Pinia store for authentication state management with localStorage persistence",
+  "categories": [
+    "lib",
+    "store",
+    "auth"
+  ],
+  "files": [
+    {
+      "path": "modules/auth/store/useAuthStore.ts",
+      "type": "registry:lib"
+    }
+  ],
+  "dependencies": [
+    "pinia",
+    "vue"
+  ],
+  "registryDependencies": [
+    "config",
+    "auth-types"
+  ]
+}

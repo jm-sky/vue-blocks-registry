@@ -29,3 +29,6 @@ coverage
 
 *.tsbuildinfo
 pnpm-workspace.yaml
+
+# Test project
+tmp-test-project

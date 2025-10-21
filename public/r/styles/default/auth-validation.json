@@ -1,0 +1,38 @@
+{
+  "$schema": "../../../../registry-item-schema.json",
+  "name": "auth-validation",
+  "type": "registry:lib",
+  "title": "Auth Validation Schemas",
+  "description": "Zod validation schemas for authentication forms (login, register, password reset, change)",
+  "categories": [
+    "lib",
+    "validation",
+    "auth"
+  ],
+  "files": [
+    {
+      "path": "modules/auth/validation/login.schema.ts",
+      "type": "registry:lib"
+    },
+    {
+      "path": "modules/auth/validation/register.schema.ts",
+      "type": "registry:lib"
+    },
+    {
+      "path": "modules/auth/validation/forgotPassword.schema.ts",
+      "type": "registry:lib"
+    },
+    {
+      "path": "modules/auth/validation/resetPassword.schema.ts",
+      "type": "registry:lib"
+    },
+    {
+      "path": "modules/auth/validation/changePassword.schema.ts",
+      "type": "registry:lib"
+    }
+  ],
+  "dependencies": [
+    "zod"
+  ],
+  "registryDependencies": []
+}

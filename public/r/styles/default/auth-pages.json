@@ -1,0 +1,45 @@
+{
+  "$schema": "../../../../registry-item-schema.json",
+  "name": "auth-pages",
+  "type": "registry:page",
+  "title": "Auth Pages",
+  "description": "Authentication pages (Login, Register, Forgot/Reset/Change Password)",
+  "categories": [
+    "page",
+    "auth"
+  ],
+  "files": [
+    {
+      "path": "modules/auth/pages/LoginPage.vue",
+      "type": "registry:page"
+    },
+    {
+      "path": "modules/auth/pages/RegisterPage.vue",
+      "type": "registry:page"
+    },
+    {
+      "path": "modules/auth/pages/ForgotPasswordPage.vue",
+      "type": "registry:page"
+    },
+    {
+      "path": "modules/auth/pages/ResetPasswordPage.vue",
+      "type": "registry:page"
+    },
+    {
+      "path": "modules/auth/pages/ChangePasswordPage.vue",
+      "type": "registry:page"
+    }
+  ],
+  "dependencies": [
+    "vee-validate",
+    "@vee-validate/zod",
+    "vue-router"
+  ],
+  "registryDependencies": [
+    "auth-forms",
+    "auth-validation",
+    "auth-service",
+    "button",
+    "type-guards"
+  ]
+}

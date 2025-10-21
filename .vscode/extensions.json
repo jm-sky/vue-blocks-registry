@@ -3,6 +3,9 @@
     "Vue.volar",
     "vitest.explorer",
     "dbaeumer.vscode-eslint",
-    "EditorConfig.EditorConfig"
+    "EditorConfig.EditorConfig",
+    "mikestead.dotenv",
+    "wmaurer.change-case",
+    "bradlc.vscode-tailwindcss"
   ]
 }

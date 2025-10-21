@@ -13,24 +13,30 @@ export const authQueryKeys = {
 /**
  * Check if an error is an authentication error (401 or 403)
  */
-export function isAuthError(error: any): boolean {
-  const status = error?.response?.status
+export function isAuthError(error: unknown): boolean {
+  const errorObj = error as { response?: { status?: number } }
+  if (!errorObj.response) return false
+  const status = errorObj.response.status
   return status === HttpStatusCode.Unauthorized || status === HttpStatusCode.Forbidden
 }
 
 /**
  * Check if an error is a client error (4xx)
  */
-export function isClientError(error: any): boolean {
-  const status = error?.response?.status
-  return status >= HttpStatusCode.BadRequest && status < HttpStatusCode.InternalServerError
+export function isClientError(error: unknown): boolean {
+  const errorObj = error as { response?: { status?: number } }
+  if (!errorObj.response) return false
+  const status = errorObj.response.status
+  const badRequest = HttpStatusCode.BadRequest as number
+  const internalServerError = HttpStatusCode.InternalServerError as number
+  return !!status && status >= badRequest && status < internalServerError
 }
 
 /**
  * Create retry function for auth queries with configurable attempts
  */
-export function createAuthRetryFunction(maxAttempts: number = 2) {
-  return (failureCount: number, error: any) => {
+export function createAuthRetryFunction(maxAttempts = 2) {
+  return (failureCount: number, error: unknown) => {
     // Don't retry on authentication errors
     if (isAuthError(error)) {
       return false
@@ -43,8 +49,8 @@ export function createAuthRetryFunction(maxAttempts: number = 2) {
 /**
  * Create retry function for auth mutations with configurable attempts
  */
-export function createAuthMutationRetryFunction(maxAttempts: number = 2) {
-  return (failureCount: number, error: any) => {
+export function createAuthMutationRetryFunction(maxAttempts = 2) {
+  return (failureCount: number, error: unknown) => {
     // Don't retry on client errors (4xx)
     if (isClientError(error)) {
       return false

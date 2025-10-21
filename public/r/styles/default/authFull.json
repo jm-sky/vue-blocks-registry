@@ -1,0 +1,19 @@
+{
+  "$schema": "../../../../registry-item-schema.json",
+  "name": "authFull",
+  "type": "registry:bundle",
+  "title": "Complete Authentication Module",
+  "description": "Full authentication module with pages, forms, layouts, store, services, and all dependencies",
+  "categories": [
+    "bundle",
+    "auth"
+  ],
+  "files": [],
+  "dependencies": [],
+  "registryDependencies": [
+    "authFeat",
+    "auth-forms",
+    "auth-pages",
+    "layouts"
+  ]
+}

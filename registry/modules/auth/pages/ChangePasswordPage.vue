@@ -1,14 +1,15 @@
 <script setup lang="ts">
-import { useForm } from 'vee-validate'
-import { toTypedSchema } from '@vee-validate/zod'
-import { changePasswordSchema } from '../validation/changePassword.schema'
-import { useAuth } from '../composables/useAuth'
-import { isValidationError } from '@registry/shared/utils/typeGuards'
+import AuthenticatedLayout from '@registry/app/layouts/AuthenticatedLayout.vue'
 import { Button } from '@registry/components/ui/button'
-import { FormField, FormItem, FormLabel, FormControl, FormMessage } from '@registry/components/ui/form'
+import { FormControl, FormField, FormItem, FormLabel, FormMessage } from '@registry/components/ui/form'
 import { Input } from '@registry/components/ui/input'
+import { useAuth } from '@registry/modules/auth/composables/useAuth'
+import { changePasswordSchema } from '@registry/modules/auth/validation/changePassword.schema'
+import { isValidationError } from '@registry/shared/utils/typeGuards'
+import { toTypedSchema } from '@vee-validate/zod'
+import { useForm } from 'vee-validate'
 import { ref } from 'vue'
-import type { ChangePasswordData } from '../types/user'
+import type { ChangePasswordData } from '@registry/modules/auth/types/user'
 
 const { changePassword, isChangePasswordLoading } = useAuth()
 
@@ -28,7 +29,7 @@ const onSubmit = handleSubmit(async (values: ChangePasswordData) => {
     const response = await changePassword(values)
     successMessage.value = response.message
     resetForm()
-  } catch (err: any) {
+  } catch (err: unknown) {
     if (isValidationError(err)) {
       setErrors(err.response.data.errors)
     } else {
@@ -41,56 +42,60 @@ const onSubmit = handleSubmit(async (values: ChangePasswordData) => {
 </script>
 
 <template>
-  <div class="max-w-md mx-auto py-8">
-    <div class="space-y-6">
-      <div>
-        <h2 class="text-2xl font-bold text-gray-900">
-          Change Password
-        </h2>
-        <p class="mt-1 text-sm text-gray-600">
-          Update your password to enhance account security
-        </p>
+  <AuthenticatedLayout>
+    <div class="max-w-md mx-auto py-8">
+      <div class="space-y-6">
+        <div>
+          <h2 class="text-2xl font-bold text-gray-900 dark:text-white">
+            Change Password
+          </h2>
+          <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
+            Update your password to enhance account security
+          </p>
+        </div>
+
+        <div class="bg-white dark:bg-gray-800 py-8 px-6 shadow-lg rounded-lg space-y-4">
+          <div v-if="successMessage" class="bg-green-50 border border-green-200 text-green-700 px-4 py-3 rounded">
+            {{ successMessage }}
+          </div>
+
+          <form class="space-y-4" @submit="onSubmit">
+            <FormField v-slot="{ componentField }" name="currentPassword">
+              <FormItem>
+                <FormLabel>Current Password</FormLabel>
+                <FormControl>
+                  <Input type="password" placeholder="Enter current password" v-bind="componentField" />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            </FormField>
+
+            <FormField v-slot="{ componentField }" name="password">
+              <FormItem>
+                <FormLabel>New Password</FormLabel>
+                <FormControl>
+                  <Input type="password" placeholder="Enter new password" v-bind="componentField" />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            </FormField>
+
+            <FormField v-slot="{ componentField }" name="passwordConfirmation">
+              <FormItem>
+                <FormLabel>Confirm New Password</FormLabel>
+                <FormControl>
+                  <Input type="password" placeholder="Confirm new password" v-bind="componentField" />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            </FormField>
+
+            <Button type="submit" class="w-full" :loading="isChangePasswordLoading">
+              Change Password
+            </Button>
+          </form>
+        </div>
       </div>
-
-      <div v-if="successMessage" class="bg-green-50 border border-green-200 text-green-700 px-4 py-3 rounded">
-        {{ successMessage }}
-      </div>
-
-      <form @submit="onSubmit" class="space-y-4">
-        <FormField v-slot="{ componentField }" name="currentPassword">
-          <FormItem>
-            <FormLabel>Current Password</FormLabel>
-            <FormControl>
-              <Input type="password" placeholder="Enter current password" v-bind="componentField" />
-            </FormControl>
-            <FormMessage />
-          </FormItem>
-        </FormField>
-
-        <FormField v-slot="{ componentField }" name="password">
-          <FormItem>
-            <FormLabel>New Password</FormLabel>
-            <FormControl>
-              <Input type="password" placeholder="Enter new password" v-bind="componentField" />
-            </FormControl>
-            <FormMessage />
-          </FormItem>
-        </FormField>
-
-        <FormField v-slot="{ componentField }" name="passwordConfirmation">
-          <FormItem>
-            <FormLabel>Confirm New Password</FormLabel>
-            <FormControl>
-              <Input type="password" placeholder="Confirm new password" v-bind="componentField" />
-            </FormControl>
-            <FormMessage />
-          </FormItem>
-        </FormField>
-
-        <Button type="submit" class="w-full" :loading="isChangePasswordLoading">
-          Change Password
-        </Button>
-      </form>
     </div>
-  </div>
+  </AuthenticatedLayout>
 </template>

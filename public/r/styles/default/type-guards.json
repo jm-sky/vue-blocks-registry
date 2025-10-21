@@ -1,0 +1,22 @@
+{
+  "$schema": "../../../../registry-item-schema.json",
+  "name": "type-guards",
+  "type": "registry:lib",
+  "title": "Type Guards",
+  "description": "TypeScript type guards for validation error handling with Axios",
+  "categories": [
+    "lib",
+    "utils",
+    "types"
+  ],
+  "files": [
+    {
+      "path": "shared/utils/typeGuards.ts",
+      "type": "registry:lib"
+    }
+  ],
+  "dependencies": [
+    "axios"
+  ],
+  "registryDependencies": []
+}

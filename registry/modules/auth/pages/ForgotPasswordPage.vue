@@ -1,14 +1,17 @@
 <script setup lang="ts">
-import { useForm } from 'vee-validate'
-import { toTypedSchema } from '@vee-validate/zod'
-import { forgotPasswordSchema } from '../validation/forgotPassword.schema'
-import { useAuth } from '../composables/useAuth'
-import { isValidationError } from '@registry/shared/utils/typeGuards'
+import AuthLayout from '@registry/app/layouts/AuthLayout.vue'
+import { Alert, AlertDescription } from '@registry/components/ui/alert'
 import { Button } from '@registry/components/ui/button'
-import { FormField, FormItem, FormLabel, FormControl, FormMessage } from '@registry/components/ui/form'
+import { FormControl, FormField, FormItem, FormLabel, FormMessage } from '@registry/components/ui/form'
 import { Input } from '@registry/components/ui/input'
+import { useAuth } from '@registry/modules/auth/composables/useAuth'
+import { forgotPasswordSchema } from '@registry/modules/auth/validation/forgotPassword.schema'
+import { isValidationError } from '@registry/shared/utils/typeGuards'
+import { toTypedSchema } from '@vee-validate/zod'
+import { CircleCheck } from 'lucide-vue-next'
+import { useForm } from 'vee-validate'
 import { ref } from 'vue'
-import type { ForgotPasswordData } from '../types/user'
+import type { ForgotPasswordData } from '@registry/modules/auth/types/user'
 
 const { forgotPassword, isForgotPasswordLoading } = useAuth()
 
@@ -25,7 +28,7 @@ const onSubmit = handleSubmit(async (values: ForgotPasswordData) => {
   try {
     const response = await forgotPassword(values)
     successMessage.value = response.message
-  } catch (err: any) {
+  } catch (err: unknown) {
     if (isValidationError(err)) {
       setErrors(err.response.data.errors)
     } else {
@@ -38,42 +41,47 @@ const onSubmit = handleSubmit(async (values: ForgotPasswordData) => {
 </script>
 
 <template>
-  <div class="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+  <AuthLayout>
     <div class="max-w-md w-full space-y-8">
       <div>
-        <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
+        <h2 class="text-center text-3xl font-extrabold text-gray-900 dark:text-white">
           Reset Password
         </h2>
-        <p class="mt-2 text-center text-sm text-gray-600">
+        <p class="mt-2 text-center text-sm text-gray-600 dark:text-gray-400">
           Enter your email address and we'll send you a password reset link
         </p>
       </div>
 
-      <div v-if="successMessage" class="bg-green-50 border border-green-200 text-green-700 px-4 py-3 rounded">
-        {{ successMessage }}
+      <div class="bg-white dark:bg-gray-800 py-8 px-6 shadow-lg rounded-lg space-y-4">
+        <Alert v-if="successMessage" variant="default" class="bg-green-50 dark:bg-green-900/20 border-green-200 dark:border-green-800">
+          <CircleCheck class="size-4 text-green-600 dark:text-green-400" />
+          <AlertDescription class="text-green-700 dark:text-green-300">
+            {{ successMessage }}
+          </AlertDescription>
+        </Alert>
+
+        <form class="space-y-4" @submit="onSubmit">
+          <FormField v-slot="{ componentField }" name="email">
+            <FormItem>
+              <FormLabel>Email</FormLabel>
+              <FormControl>
+                <Input type="email" placeholder="Enter your email" v-bind="componentField" />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          </FormField>
+
+          <Button type="submit" class="w-full" :loading="isForgotPasswordLoading">
+            Send Reset Link
+          </Button>
+        </form>
       </div>
-
-      <form @submit="onSubmit" class="space-y-4">
-        <FormField v-slot="{ componentField }" name="email">
-          <FormItem>
-            <FormLabel>Email</FormLabel>
-            <FormControl>
-              <Input type="email" placeholder="Enter your email" v-bind="componentField" />
-            </FormControl>
-            <FormMessage />
-          </FormItem>
-        </FormField>
-
-        <Button type="submit" class="w-full" :loading="isForgotPasswordLoading">
-          Send Reset Link
-        </Button>
-      </form>
 
       <div class="text-center">
-        <router-link to="/login" class="text-sm text-primary hover:underline">
+        <RouterLink to="/auth/login" class="text-sm text-primary hover:underline">
           Back to Login
-        </router-link>
+        </RouterLink>
       </div>
     </div>
-  </div>
+  </AuthLayout>
 </template>

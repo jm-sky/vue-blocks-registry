@@ -120,7 +120,7 @@ async function login(data: { email: string; password: string }, setErrors: (erro
   try {
     await authService.login(data)
     // np. redirect po udanym logowaniu
-  } catch (err: any) {
+  } catch (err: unknown) {
     if (isValidationError(err)) {
       // ustawienie błędów w VeeValidate
       setErrors(err.response.data.errors)

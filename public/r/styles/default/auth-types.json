@@ -1,0 +1,20 @@
+{
+  "$schema": "../../../../registry-item-schema.json",
+  "name": "auth-types",
+  "type": "registry:lib",
+  "title": "Auth Types",
+  "description": "TypeScript types and interfaces for authentication module",
+  "categories": [
+    "lib",
+    "types",
+    "auth"
+  ],
+  "files": [
+    {
+      "path": "modules/auth/types/user.ts",
+      "type": "registry:lib"
+    }
+  ],
+  "dependencies": [],
+  "registryDependencies": []
+}

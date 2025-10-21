@@ -15,11 +15,11 @@ defineProps<Props>()
 </script>
 
 <template>
-  <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow">
-    <div class="flex items-center mb-4">
+  <div class="group bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm rounded-2xl border border-slate-200/60 dark:border-slate-700/60 p-8 hover:shadow-2xl hover:shadow-slate-200/60 dark:hover:shadow-slate-900/60 hover:border-slate-300/80 dark:hover:border-slate-600/80 hover:bg-white/90 dark:hover:bg-slate-800/90 transition-all duration-500 hover:-translate-y-2 hover:scale-[1.02]">
+    <div class="flex items-start mb-6">
       <div
         :class="[
-          'w-12 h-12 rounded-lg flex items-center justify-center mr-4',
+          'size-14 rounded-2xl flex items-center justify-center mr-5',
           iconBgClass
         ]"
       >
@@ -28,20 +28,22 @@ defineProps<Props>()
           :class="iconClass"
         />
       </div>
-      <h3 class="text-xl font-semibold text-gray-900">
-        {{ title }}
-      </h3>
+      <div class="flex-1">
+        <h3 class="text-xl font-semibold tracking-tight text-slate-900 dark:text-slate-100 mb-2 group-hover:text-slate-700 dark:group-hover:text-slate-200 transition-colors">
+          {{ title }}
+        </h3>
+        <p class="text-slate-600 dark:text-slate-300 leading-relaxed">
+          {{ description }}
+        </p>
+      </div>
     </div>
-    <p class="text-gray-600 mb-4">
-      {{ description }}
-    </p>
     <RouterLink
       :to="linkTo"
-      class="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium"
+      class="inline-flex items-center text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-medium group-hover:gap-3 transition-all duration-200"
     >
       Zobacz komponenty
       <svg
-        class="size-4 ml-1"
+        class="size-4 ml-2 group-hover:translate-x-1 transition-transform duration-200"
         fill="none"
         stroke="currentColor"
         viewBox="0 0 24 24"

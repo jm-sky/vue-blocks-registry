@@ -1,0 +1,27 @@
+{
+  "$schema": "../../../../registry-item-schema.json",
+  "name": "layouts",
+  "type": "registry:layout",
+  "title": "App Layouts",
+  "description": "Application layouts (AuthenticatedLayout for logged users, DefaultLayout for public pages)",
+  "categories": [
+    "layout"
+  ],
+  "files": [
+    {
+      "path": "app/layouts/AuthenticatedLayout.vue",
+      "type": "registry:layout"
+    },
+    {
+      "path": "app/layouts/DefaultLayout.vue",
+      "type": "registry:layout"
+    }
+  ],
+  "dependencies": [
+    "vue-router"
+  ],
+  "registryDependencies": [
+    "auth-store",
+    "auth-forms"
+  ]
+}

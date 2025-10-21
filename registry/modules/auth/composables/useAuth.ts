@@ -1,21 +1,22 @@
+import { getAuthConfig } from '@registry/modules/auth/config/auth.config'
+import { authService } from '@registry/modules/auth/services/authService'
+import { useAuthStore } from '@registry/modules/auth/store/useAuthStore'
+import {
+  authMutationRetryFunction,
+  authQueryKeys,
+  authRetryFunction
+} from '@registry/modules/auth/utils/queryUtils'
 // modules/auth/composables/useAuth.ts
 import { useMutation, useQuery, useQueryClient } from '@tanstack/vue-query'
-import { useAuthStore } from '../store/useAuthStore'
-import { authService } from '../services/authService'
-import { 
-  authQueryKeys, 
-  authRetryFunction, 
-  authMutationRetryFunction 
-} from '../utils/queryUtils'
-import { getAuthConfig } from '../config/auth.config'
-import type { 
-  LoginCredentials, 
-  RegisterCredentials, 
-  ForgotPasswordData, 
-  ResetPasswordData, 
+import type {
   ChangePasswordData,
-  User 
-} from '../types/user'
+  ForgotPasswordData,
+  LoginCredentials,
+  RegisterCredentials,
+  ResetPasswordData,
+  User
+} from '@registry/modules/auth/types/user'
+import type { AuthResponse } from '@registry/modules/auth/types/user'
 
 /**
  * Hook for fetching current user data
@@ -24,7 +25,7 @@ import type {
 export function useCurrentUser() {
   const authStore = useAuthStore()
   const config = getAuthConfig()
-  
+
   return useQuery({
     queryKey: authQueryKeys.me(),
     queryFn: () => authService.getCurrentUser(),
@@ -40,17 +41,17 @@ export function useCurrentUser() {
 export function useLogin() {
   const authStore = useAuthStore()
   const queryClient = useQueryClient()
-  
+
   return useMutation({
     mutationFn: async (credentials: LoginCredentials) => {
       const response = await authService.login(credentials)
       authStore.setToken(response.token)
       return response
     },
-    onSuccess: async (data) => {
+    onSuccess: async (data: AuthResponse) => {
       // Set user from login response
       authStore.setUser(data.user)
-      
+
       // Invalidate and refetch user data to ensure consistency
       await queryClient.invalidateQueries({ queryKey: authQueryKeys.me() })
     },
@@ -68,17 +69,17 @@ export function useLogin() {
 export function useRegister() {
   const authStore = useAuthStore()
   const queryClient = useQueryClient()
-  
+
   return useMutation({
     mutationFn: async (credentials: RegisterCredentials) => {
       const response = await authService.register(credentials)
       authStore.setToken(response.token)
       return response
     },
-    onSuccess: async (data) => {
+    onSuccess: async (data: AuthResponse) => {
       // Set user from registration response
       authStore.setUser(data.user)
-      
+
       // Invalidate and refetch user data to ensure consistency
       await queryClient.invalidateQueries({ queryKey: authQueryKeys.me() })
     },
@@ -96,13 +97,13 @@ export function useRegister() {
 export function useLogout() {
   const authStore = useAuthStore()
   const queryClient = useQueryClient()
-  
+
   return useMutation({
     mutationFn: () => authService.logout(),
     onSuccess: () => {
       // Clear all auth-related cache
       queryClient.removeQueries({ queryKey: authQueryKeys.all })
-      
+
       // Clear auth store
       authStore.logout()
     },
@@ -151,10 +152,10 @@ export function useChangePassword() {
 export function useAuth() {
   const authStore = useAuthStore()
   const queryClient = useQueryClient()
-  
+
   // Queries
   const currentUserQuery = useCurrentUser()
-  
+
   // Mutations
   const loginMutation = useLogin()
   const registerMutation = useRegister()
@@ -162,34 +163,34 @@ export function useAuth() {
   const forgotPasswordMutation = useForgotPassword()
   const resetPasswordMutation = useResetPassword()
   const changePasswordMutation = useChangePassword()
-  
+
   // Computed values
-  const user = currentUserQuery.data.value || authStore.user
+  const user = currentUserQuery.data.value ?? authStore.user
   const isAuthenticated = !!authStore.token && !!user
   const isLoading = currentUserQuery.isLoading.value
   const isError = currentUserQuery.isError.value
-  
+
   // Helper function to refresh user data
   const fetchUser = () => {
     return queryClient.invalidateQueries({ queryKey: authQueryKeys.me() })
   }
-  
+
   // Helper function to update user data optimistically
   const updateUser = (updater: (oldUser: User | null) => User | null) => {
     queryClient.setQueryData(authQueryKeys.me(), updater)
     authStore.setUser(updater(authStore.user))
   }
-  
+
   return {
     // Data
     user,
     isAuthenticated,
     isLoading,
     isError,
-    
+
     // Queries
     currentUserQuery,
-    
+
     // Actions
     login: loginMutation.mutateAsync,
     register: registerMutation.mutateAsync,
@@ -198,7 +199,7 @@ export function useAuth() {
     resetPassword: resetPasswordMutation.mutateAsync,
     changePassword: changePasswordMutation.mutateAsync,
     fetchUser,
-    
+
     // Mutation states
     isLoggingIn: loginMutation.isPending,
     isRegistering: registerMutation.isPending,
@@ -206,7 +207,7 @@ export function useAuth() {
     isForgotPasswordLoading: forgotPasswordMutation.isPending,
     isResetPasswordLoading: resetPasswordMutation.isPending,
     isChangePasswordLoading: changePasswordMutation.isPending,
-    
+
     // Helpers
     updateUser,
   }

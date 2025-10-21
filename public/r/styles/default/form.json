@@ -1,0 +1,60 @@
+{
+  "$schema": "../../../../registry-item-schema.json",
+  "name": "form",
+  "type": "registry:ui",
+  "title": "Form",
+  "description": "Form components with vee-validate integration for validation",
+  "categories": [
+    "ui",
+    "form"
+  ],
+  "files": [
+    {
+      "path": "components/ui/form/Form.vue",
+      "type": "registry:ui"
+    },
+    {
+      "path": "components/ui/form/FormControl.vue",
+      "type": "registry:ui"
+    },
+    {
+      "path": "components/ui/form/FormDescription.vue",
+      "type": "registry:ui"
+    },
+    {
+      "path": "components/ui/form/FormField.vue",
+      "type": "registry:ui"
+    },
+    {
+      "path": "components/ui/form/FormItem.vue",
+      "type": "registry:ui"
+    },
+    {
+      "path": "components/ui/form/FormLabel.vue",
+      "type": "registry:ui"
+    },
+    {
+      "path": "components/ui/form/FormMessage.vue",
+      "type": "registry:ui"
+    },
+    {
+      "path": "components/ui/form/index.ts",
+      "type": "registry:ui"
+    },
+    {
+      "path": "components/ui/form/injectionKeys.ts",
+      "type": "registry:ui"
+    },
+    {
+      "path": "components/ui/form/useFormField.ts",
+      "type": "registry:ui"
+    }
+  ],
+  "dependencies": [
+    "vee-validate"
+  ],
+  "registryDependencies": [
+    "utils",
+    "label"
+  ]
+}

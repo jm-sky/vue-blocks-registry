@@ -1,0 +1,25 @@
+{
+  "$schema": "../../../../registry-item-schema.json",
+  "name": "dark-mode",
+  "type": "registry:feature",
+  "title": "Dark Mode",
+  "description": "Dark mode toggle component with composable for theme management",
+  "categories": [
+    "feature",
+    "ui"
+  ],
+  "files": [
+    {
+      "path": "shared/components/DarkModeToggle.vue",
+      "type": "registry:ui"
+    },
+    {
+      "path": "shared/composables/useDarkMode.ts",
+      "type": "registry:lib"
+    }
+  ],
+  "dependencies": [
+    "@vueuse/core"
+  ],
+  "registryDependencies": []
+}

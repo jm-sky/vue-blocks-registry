@@ -1,0 +1,30 @@
+{
+  "$schema": "../../../../registry-item-schema.json",
+  "name": "auth-composables",
+  "type": "registry:lib",
+  "title": "Auth Composables",
+  "description": "Vue composables for authentication (useAuth, useLogout)",
+  "categories": [
+    "lib",
+    "composables",
+    "auth"
+  ],
+  "files": [
+    {
+      "path": "modules/auth/composables/useAuth.ts",
+      "type": "registry:lib"
+    },
+    {
+      "path": "modules/auth/composables/useLogout.ts",
+      "type": "registry:lib"
+    }
+  ],
+  "dependencies": [
+    "vue-router"
+  ],
+  "registryDependencies": [
+    "auth-store",
+    "auth-service",
+    "auth-types"
+  ]
+}

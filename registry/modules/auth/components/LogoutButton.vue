@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import { useAuth } from '../composables/useAuth'
 import { Button } from '@registry/components/ui/button'
+import { useAuth } from '@registry/modules/auth/composables/useAuth'
 
 const { logout, isLoggingOut } = useAuth()
 </script>
 
 <template>
-  <Button @click="logout" variant="ghost" :loading="isLoggingOut">
+  <Button variant="ghost" :loading="isLoggingOut" @click="logout">
     Wyloguj się
   </Button>
 </template>
