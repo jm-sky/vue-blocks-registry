@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import AuthenticatedLayout from '@registry/app/layouts/AuthenticatedLayout.vue'
-import { useAuthStore } from '@registry/modules/auth/store/useAuthStore'
 import { Clock, Mail, Shield, User } from 'lucide-vue-next'
 import { computed } from 'vue'
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import AuthenticatedLayout from '@registry/app/layouts/AuthenticatedLayout.vue'
+import { useAuthStore } from '@registry/modules/auth/store/useAuthStore'
 
 const authStore = useAuthStore()
 
