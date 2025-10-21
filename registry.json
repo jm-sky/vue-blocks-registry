@@ -410,6 +410,92 @@
         "auth-store",
         "auth-forms"
       ]
+    },
+    {
+      "name": "alert",
+      "type": "registry:ui",
+      "title": "Alert",
+      "description": "Alert component for displaying important messages with variants",
+      "categories": ["ui", "feedback"],
+      "files": [
+        {
+          "path": "components/ui/alert/Alert.vue",
+          "type": "registry:ui"
+        },
+        {
+          "path": "components/ui/alert/AlertDescription.vue",
+          "type": "registry:ui"
+        },
+        {
+          "path": "components/ui/alert/AlertTitle.vue",
+          "type": "registry:ui"
+        },
+        {
+          "path": "components/ui/alert/index.ts",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "utils"
+      ]
+    },
+    {
+      "name": "dark-mode",
+      "type": "registry:feature",
+      "title": "Dark Mode",
+      "description": "Dark mode toggle component with composable for theme management",
+      "categories": ["feature", "ui"],
+      "files": [
+        {
+          "path": "shared/components/DarkModeToggle.vue",
+          "type": "registry:ui"
+        },
+        {
+          "path": "shared/composables/useDarkMode.ts",
+          "type": "registry:lib"
+        }
+      ],
+      "dependencies": [
+        "@vueuse/core"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "authFeat",
+      "type": "registry:bundle",
+      "title": "Authentication Feature Bundle",
+      "description": "Complete authentication feature with store, services, composables, and validation (no UI)",
+      "categories": ["bundle", "auth"],
+      "files": [],
+      "dependencies": [],
+      "registryDependencies": [
+        "config",
+        "type-guards",
+        "http-client",
+        "auth-types",
+        "auth-store",
+        "auth-service",
+        "auth-validation",
+        "auth-composables"
+      ]
+    },
+    {
+      "name": "authFull",
+      "type": "registry:bundle",
+      "title": "Complete Authentication Module",
+      "description": "Full authentication module with pages, forms, layouts, store, services, and all dependencies",
+      "categories": ["bundle", "auth"],
+      "files": [],
+      "dependencies": [],
+      "registryDependencies": [
+        "authFeat",
+        "auth-forms",
+        "auth-pages",
+        "layouts"
+      ]
     }
   ]
 }

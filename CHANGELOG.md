@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.3] - 2025-10-21
+
+### Added
+- Alert component for displaying important messages with variants
+- Dark mode feature with toggle component and composable for theme management
+- `authFeat` bundle - Complete authentication feature with store, services, composables, and validation (no UI)
+- `authFull` bundle - Full authentication module with pages, forms, layouts, and all dependencies
+
 ## [0.1.2] - 2025-10-21
 
 ### Fixed
