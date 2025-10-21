@@ -9,7 +9,7 @@ export default defineConfigWithVueTs(
     files: ['**/*.{ts,mts,tsx,vue}'],
   },
 
-  globalIgnores(['**/dist/**', '**/dist-ssr/**', '**/coverage/**', '**/docs/**', '**/registry/**']),
+  globalIgnores(['**/dist/**', '**/dist-ssr/**', '**/coverage/**', '**/docs/**', '**/tmp-test-project/**']),
 
   pluginVue.configs['flat/recommended'],
   vueTsConfigs.strictTypeChecked,
@@ -69,5 +69,56 @@ export default defineConfigWithVueTs(
       ],
       // ----------------------------------------
     }
+  },
+
+  // Registry-specific rules: enforce @registry imports only
+  {
+    name: 'registry/enforce-registry-imports',
+    files: ['registry/**/*.{ts,tsx,vue}'],
+    rules: {
+      'no-restricted-imports': [
+        'error',
+        {
+          patterns: [
+            {
+              group: ['@/*'],
+              message: 'Use @registry imports in registry files instead of @/ imports. Registry components must use @registry/* to work when installed in user projects.',
+            },
+            {
+              group: ['~/*'],
+              message: 'Use @registry imports in registry files instead of ~/ imports.',
+            },
+          ],
+        },
+      ],
+    },
+  },
+
+  // Src-specific rules: update internal patterns for perfectionist
+  {
+    name: 'src/allow-both-imports',
+    files: ['src/**/*.{ts,tsx,vue}'],
+    rules: {
+      'perfectionist/sort-imports': [
+        'error',
+        {
+          type: 'alphabetical',
+          order: 'asc',
+          fallbackSort: { type: 'alphabetical', order: 'asc' },
+          newlinesBetween: 'never',
+          internalPattern: ['^~/.*', '^@/.*', '^@registry/.*'],
+          groups: [
+            ['builtin', 'external'],
+            'internal',
+            ['parent-type', 'sibling-type', 'index-type'],
+            ['parent', 'sibling', 'index'],
+            'object',
+            'unknown',
+            'type',
+            'internal-type',
+          ],
+        }
+      ],
+    },
   },
 )
