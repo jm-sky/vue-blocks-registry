@@ -1,6 +1,6 @@
 {
   "name": "vue-blocks-registry",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "type": "module",
   "description": "A modular system for Vue 3 projects with reusable UI components, features, and bundles",
   "keywords": [

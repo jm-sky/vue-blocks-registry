@@ -214,8 +214,20 @@ async function installFiles(
 
       // Check if file exists
       if (await fs.pathExists(targetPath) && !overwrite) {
-        spinner.warn(`Skipping ${path.relative(cwd, targetPath)} (already exists)`)
-        continue
+        spinner.stop()
+        const { shouldOverwrite } = await prompts({
+          type: 'confirm',
+          name: 'shouldOverwrite',
+          message: `${path.relative(cwd, targetPath)} already exists. Overwrite?`,
+          initial: false,
+        })
+
+        if (!shouldOverwrite) {
+          spinner.warn(`Skipping ${path.relative(cwd, targetPath)}`)
+          continue
+        }
+
+        spinner.start(`Installing ${item.name}...`)
       }
 
       // Ensure directory exists
