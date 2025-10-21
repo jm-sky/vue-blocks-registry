@@ -9,6 +9,7 @@ import type { Config } from '../utils/config.js'
 import { getConfig } from '../utils/config.js'
 import { logger } from '../utils/logger.js'
 import { fetchFileContent, fetchRegistryItem } from '../utils/registry.js'
+import { transformImports, validateTransformation } from '../utils/transformers.js'
 
 export const add = new Command()
   .name('add')
@@ -170,9 +171,19 @@ async function installFiles(
   try {
     for (const file of item.files) {
       // Fetch file content
-      const content = await fetchFileContent(file.path)
+      let content = await fetchFileContent(file.path)
       if (!content) {
         throw new Error(`Failed to fetch ${file.path}`)
+      }
+
+      // Transform @registry imports to user's aliases
+      content = transformImports(content, config)
+
+      // Validate transformation (optional - for debugging)
+      const remainingRegistryImports = validateTransformation(content)
+      if (remainingRegistryImports.length > 0) {
+        logger.warn(`Warning: Some @registry imports may not have been transformed in ${file.path}:`)
+        remainingRegistryImports.forEach(imp => logger.warn(`  - ${imp}`))
       }
 
       // Determine target path

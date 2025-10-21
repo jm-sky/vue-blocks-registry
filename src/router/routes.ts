@@ -42,10 +42,20 @@ export const routes: RouteRecordRaw[] = [
   {
     path: RoutePaths.AUTH_LOGIN,
     name: RouteNames.AUTH_LOGIN,
-    component: () => import('@registry/modules/auth/pages/LoginPage.vue'),
+    component: () => import('@/pages/AuthLoginParent.vue'),
     meta: {
       message: 'Demo credentials: "demo@example.com" with password: "password123"',
     },
+    children: [
+      {
+        path: '',
+        component: () => import('@/pages/auth/LoginPage.vue'),
+      },
+      {
+        path: 'official',
+        component: () => import('@/pages/auth/LoginOfficialPage.vue'),
+      },
+    ],
   },
   {
     path: RoutePaths.AUTH_REGISTER,

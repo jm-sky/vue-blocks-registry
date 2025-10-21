@@ -1,8 +1,26 @@
 {
   "name": "vue-blocks-registry",
-  "version": "0.1.0",
-  "private": true,
+  "version": "0.1.1",
   "type": "module",
+  "description": "A modular system for Vue 3 projects with reusable UI components, features, and bundles",
+  "keywords": ["vue", "vue3", "components", "ui", "registry", "cli"],
+  "author": "Jan madeyski <jan.madeyski@gmail.com>",
+  "license": "MIT",
+  "homepage": "https://github.com/jm-sky/vue-blocks-registry#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jm-sky/vue-blocks-registry.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jm-sky/vue-blocks-registry/issues"
+  },
+  "files": [
+    "cli/dist/**/*",
+    "registry/**/*",
+    "public/r/**/*",
+    "registry.json",
+    "README.md"
+  ],
   "engines": {
     "node": "^20.19.0 || >=22.12.0"
   },
