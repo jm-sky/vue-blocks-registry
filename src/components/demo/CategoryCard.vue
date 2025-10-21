@@ -15,11 +15,11 @@ defineProps<Props>()
 </script>
 
 <template>
-  <div class="group bg-white/70 backdrop-blur-sm rounded-2xl border border-slate-200/60 p-8 hover:shadow-xl hover:shadow-slate-200/50 hover:border-slate-300/60 transition-all duration-300 hover:-translate-y-1">
+  <div class="group bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm rounded-2xl border border-slate-200/60 dark:border-slate-700/60 p-8 hover:shadow-2xl hover:shadow-slate-200/60 dark:hover:shadow-slate-900/60 hover:border-slate-300/80 dark:hover:border-slate-600/80 hover:bg-white/90 dark:hover:bg-slate-800/90 transition-all duration-500 hover:-translate-y-2 hover:scale-[1.02]">
     <div class="flex items-start mb-6">
       <div
         :class="[
-          'w-14 h-14 rounded-2xl flex items-center justify-center mr-5 group-hover:scale-110 transition-transform duration-300',
+          'size-14 rounded-2xl flex items-center justify-center mr-5',
           iconBgClass
         ]"
       >
@@ -29,17 +29,17 @@ defineProps<Props>()
         />
       </div>
       <div class="flex-1">
-        <h3 class="text-xl font-semibold text-slate-900 mb-2 group-hover:text-slate-700 transition-colors">
+        <h3 class="text-xl font-semibold tracking-tight text-slate-900 dark:text-slate-100 mb-2 group-hover:text-slate-700 dark:group-hover:text-slate-200 transition-colors">
           {{ title }}
         </h3>
-        <p class="text-slate-600 leading-relaxed">
+        <p class="text-slate-600 dark:text-slate-300 leading-relaxed">
           {{ description }}
         </p>
       </div>
     </div>
     <RouterLink
       :to="linkTo"
-      class="inline-flex items-center text-blue-600 hover:text-blue-700 font-medium group-hover:gap-3 transition-all duration-200"
+      class="inline-flex items-center text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-medium group-hover:gap-3 transition-all duration-200"
     >
       Zobacz komponenty
       <svg

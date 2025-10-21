@@ -43,21 +43,21 @@ const stats = [
 <template>
   <div class="space-y-16">
     <!-- Welcome Section -->
-    <div class="text-center py-16 space-y-4">
-      <h2 class="text-5xl font-bold text-slate-900 mb-6 tracking-tight">
+    <div class="text-center py-16 space-y-4 animate-fade-in">
+      <h2 class="text-5xl font-bold tracking-tight text-slate-900 dark:text-slate-100 mb-6">
         Witaj w
         <LogoText class="text-5xl" />
       </h2>
-      <p class="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed font-light">
+      <p class="text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto leading-relaxed font-light">
         Odkryj naszą kolekcję gotowych komponentów UI, zaprojektowanych z myślą o nowoczesnych aplikacjach Vue.js
       </p>
-      <p class="text-base text-slate-600 max-w-3xl mx-auto leading-relaxed font-light">
+      <p class="text-base text-slate-600 dark:text-slate-400 max-w-3xl mx-auto leading-relaxed font-light">
         Używamy Tailwind CSS i Shadcn Vue, Vee Validate, Zod...
       </p>
     </div>
 
     <!-- Component Categories -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 animate-slide-up">
       <CategoryCard
         v-for="category in categories"
         :key="category.title"
@@ -71,9 +71,11 @@ const stats = [
     </div>
 
     <!-- Quick Stats -->
-    <StatsSection
-      title="Statystyki"
-      :stats="stats"
-    />
+    <div class="animate-scale-in">
+      <StatsSection
+        title="Statystyki"
+        :stats="stats"
+      />
+    </div>
   </div>
 </template>

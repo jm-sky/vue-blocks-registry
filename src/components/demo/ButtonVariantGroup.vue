@@ -1,23 +1,3 @@
-<template>
-  <div class="space-y-3">
-    <h4 class="font-medium text-gray-700">
-      {{ title }}
-    </h4>
-    <div class="flex flex-wrap gap-2">
-      <Button
-        v-for="size in sizes"
-        :key="String(size)"
-        :variant="variant"
-        :vibe="vibe"
-        :size="size ?? undefined"
-        :disabled="disabled"
-      >
-        {{ getSizeLabel(size) }}
-      </Button>
-    </div>
-  </div>
-</template>
-
 <script setup lang="ts">
 import { Button, type ButtonVariants } from '@registry/components/ui/button'
 
@@ -40,3 +20,24 @@ const getSizeLabel = (size: ButtonVariants['size']) => {
   return props.title
 }
 </script>
+
+<template>
+  <div class="space-y-3">
+    <h4 class="font-medium tracking-tight text-slate-700 dark:text-slate-300">
+      {{ title }}
+    </h4>
+    <div class="flex flex-wrap gap-2">
+      <Button
+        v-for="size in sizes"
+        :key="String(size)"
+        :variant="variant"
+        :vibe="vibe"
+        :size="size ?? undefined"
+        :disabled="disabled"
+      >
+        {{ getSizeLabel(size) }}
+      </Button>
+    </div>
+  </div>
+</template>
+

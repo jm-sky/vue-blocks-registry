@@ -5,6 +5,9 @@
 
 @theme {
   --animate-text-gradient: text-gradient 3s ease-in-out infinite alternate;
+  --animate-fade-in: fade-in 0.6s ease-out;
+  --animate-slide-up: slide-up 0.6s ease-out;
+  --animate-scale-in: scale-in 0.4s ease-out;
 
   @keyframes text-gradient {
       0%, 15% {
@@ -12,6 +15,37 @@
       }
       85%, 100% {
         background-position: 100% 100%;
+    }
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes slide-up {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes scale-in {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
     }
   }
 }
@@ -138,15 +172,36 @@
   --sidebar-ring: oklch(0.446 0.043 257.281);
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
 @layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
+  /* Removed global * selector - use utility classes instead */
+
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans;
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   }
 
   html {
     scroll-behavior: smooth;
+  }
+
+  /* Typography improvements - removed global overrides */
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-slate-100 dark:bg-slate-800;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-slate-300 dark:bg-slate-600 rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-slate-400 dark:bg-slate-500;
   }
 }
