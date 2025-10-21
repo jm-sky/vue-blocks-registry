@@ -7,6 +7,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.7] - 2025-01-27
+
+### Added
+- Automatic package manager detection for CLI commands
+- Support for npm, pnpm, and yarn package managers
+- Dynamic dependency installation using the detected package manager
+
+### Fixed
+- Fixed "pnpm is not recognized" error when using CLI with npm or yarn projects
+- CLI now automatically detects and uses the correct package manager based on lock files
+
+### Changed
+- Updated `add` command to use detected package manager instead of hardcoded pnpm
+- Enhanced CLI logging to show which package manager is being used
+
 ## [0.1.6] - 2025-10-21
 
 ### Changed

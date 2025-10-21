@@ -86,6 +86,21 @@ vue-blocks-registry list
 vue-blocks-registry --help
 ```
 
+### 📦 Package Manager Support
+
+The CLI automatically detects and uses the package manager in your project:
+
+- **pnpm** (detected by `pnpm-lock.yaml`)
+- **yarn** (detected by `yarn.lock`) 
+- **npm** (detected by `package-lock.json` or as fallback)
+
+When you run `vue-blocks-registry add <component>`, it will:
+1. Detect your package manager
+2. Install any required dependencies using the appropriate command
+3. Copy component files to your project
+
+No need to worry about having the "wrong" package manager installed!
+
 ### 🤝 Contributing
 
 Contributions are welcome! Please read our [Contributing Guide](CONTRIBUTING.md) for details.

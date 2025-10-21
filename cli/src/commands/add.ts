@@ -8,6 +8,7 @@ import type { RegistryItem } from '../types/registry.js'
 import type { Config } from '../utils/config.js'
 import { getConfig } from '../utils/config.js'
 import { logger } from '../utils/logger.js'
+import { detectPackageManager, getAddCommand } from '../utils/package-manager.js'
 import { fetchFileContent, fetchRegistryItem } from '../utils/registry.js'
 import { transformImports, validateTransformation } from '../utils/transformers.js'
 
@@ -115,7 +116,11 @@ async function installComponent(
   if (allNpmDeps.size > 0) {
     const depsSpinner = ora('Installing dependencies...').start()
     try {
-      await execa('pnpm', ['add', ...Array.from(allNpmDeps)], { cwd })
+      const packageManager = detectPackageManager(cwd)
+      const addCommand = getAddCommand(packageManager, Array.from(allNpmDeps))
+
+      logger.info(`Using ${packageManager.name} to install dependencies...`)
+      await execa(addCommand[0], addCommand.slice(1), { cwd })
       depsSpinner.succeed('Dependencies installed')
     }
     catch (error) {
