@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.5] - 2025-10-21
+
+### Added
+- ESLint rules to keep import paths in order - import from @registry only inside registry/ folder
+- Added some missing default shadcn-vue components
+- Added `required` and `label` props to `FormLabel` component
+
 ## [0.1.4] - 2025-10-21
 
 ### Changed
