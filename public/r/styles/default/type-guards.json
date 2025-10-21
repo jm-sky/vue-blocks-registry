@@ -1,22 +1,22 @@
 {
   "$schema": "../../../../registry-item-schema.json",
-  "name": "utils",
+  "name": "type-guards",
   "type": "registry:lib",
-  "title": "Utils",
-  "description": "Utility functions for class name merging and conditional styling",
+  "title": "Type Guards",
+  "description": "TypeScript type guards for validation error handling with Axios",
   "categories": [
     "lib",
-    "utils"
+    "utils",
+    "types"
   ],
   "files": [
     {
-      "path": "lib/utils.ts",
+      "path": "shared/utils/typeGuards.ts",
       "type": "registry:lib"
     }
   ],
   "dependencies": [
-    "clsx",
-    "tailwind-merge"
+    "axios"
   ],
   "registryDependencies": []
 }

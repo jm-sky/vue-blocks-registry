@@ -4,7 +4,10 @@
   "type": "registry:ui",
   "title": "Button",
   "description": "A highly customizable button component with multiple variants, sizes, and special vibe effects for enhanced user experience",
-  "categories": ["ui", "form"],
+  "categories": [
+    "ui",
+    "form"
+  ],
   "files": [
     {
       "path": "components/ui/button/Button.vue",

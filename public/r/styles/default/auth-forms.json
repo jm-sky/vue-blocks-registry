@@ -1,0 +1,37 @@
+{
+  "$schema": "../../../../registry-item-schema.json",
+  "name": "auth-forms",
+  "type": "registry:ui",
+  "title": "Auth Forms",
+  "description": "Authentication form components (LoginForm, RegisterForm, LogoutButton)",
+  "categories": [
+    "ui",
+    "form",
+    "auth"
+  ],
+  "files": [
+    {
+      "path": "modules/auth/components/LoginForm.vue",
+      "type": "registry:ui"
+    },
+    {
+      "path": "modules/auth/components/RegisterForm.vue",
+      "type": "registry:ui"
+    },
+    {
+      "path": "modules/auth/components/LogoutButton.vue",
+      "type": "registry:ui"
+    }
+  ],
+  "dependencies": [
+    "vee-validate",
+    "@vee-validate/zod",
+    "vue-router"
+  ],
+  "registryDependencies": [
+    "button",
+    "auth-validation",
+    "auth-composables",
+    "type-guards"
+  ]
+}

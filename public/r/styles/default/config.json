@@ -1,0 +1,19 @@
+{
+  "$schema": "../../../../registry-item-schema.json",
+  "name": "config",
+  "type": "registry:lib",
+  "title": "Config",
+  "description": "Application configuration with environment variables and JWT storage key",
+  "categories": [
+    "lib",
+    "config"
+  ],
+  "files": [
+    {
+      "path": "shared/config/config.ts",
+      "type": "registry:lib"
+    }
+  ],
+  "dependencies": [],
+  "registryDependencies": []
+}

@@ -1,0 +1,23 @@
+{
+  "$schema": "../../../../registry-item-schema.json",
+  "name": "authFeat",
+  "type": "registry:bundle",
+  "title": "Authentication Feature Bundle",
+  "description": "Complete authentication feature with store, services, composables, and validation (no UI)",
+  "categories": [
+    "bundle",
+    "auth"
+  ],
+  "files": [],
+  "dependencies": [],
+  "registryDependencies": [
+    "config",
+    "type-guards",
+    "http-client",
+    "auth-types",
+    "auth-store",
+    "auth-service",
+    "auth-validation",
+    "auth-composables"
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "$schema": "../../../../registry-item-schema.json",
+  "name": "auth-service",
+  "type": "registry:lib",
+  "title": "Auth Service",
+  "description": "Authentication API service with login, register, password reset and change methods",
+  "categories": [
+    "lib",
+    "services",
+    "auth"
+  ],
+  "files": [
+    {
+      "path": "modules/auth/services/authService.ts",
+      "type": "registry:lib"
+    }
+  ],
+  "dependencies": [],
+  "registryDependencies": [
+    "http-client",
+    "auth-types"
+  ]
+}

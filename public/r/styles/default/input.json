@@ -1,0 +1,25 @@
+{
+  "$schema": "../../../../registry-item-schema.json",
+  "name": "input",
+  "type": "registry:ui",
+  "title": "Input",
+  "description": "Text input component with various types support",
+  "categories": [
+    "ui",
+    "form"
+  ],
+  "files": [
+    {
+      "path": "components/ui/input/Input.vue",
+      "type": "registry:ui"
+    },
+    {
+      "path": "components/ui/input/index.ts",
+      "type": "registry:ui"
+    }
+  ],
+  "dependencies": [],
+  "registryDependencies": [
+    "utils"
+  ]
+}

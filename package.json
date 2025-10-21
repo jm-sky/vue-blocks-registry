@@ -16,6 +16,7 @@
     "dev": "vite",
     "build": "run-p type-check \"build-only {@}\" --",
     "build:cli": "tsc --project cli/tsconfig.json",
+    "build:registry": "tsx scripts/build-registry.ts",
     "preview": "vite preview",
     "test:unit": "vitest",
     "build-only": "vite build",
@@ -25,7 +26,7 @@
     "version:patch": "npm version patch --no-git-tag-version",
     "version:minor": "npm version minor --no-git-tag-version",
     "version:major": "npm version major --no-git-tag-version",
-    "prepublishOnly": "pnpm run build:cli && pnpm run type-check && pnpm run lint"
+    "prepublishOnly": "pnpm run build:registry && pnpm run build:cli && pnpm run type-check && pnpm run lint"
   },
   "license": "MIT",
   "homepage": "https://vue-blocks-registry.dev-made.it",

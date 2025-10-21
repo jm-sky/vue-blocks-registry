@@ -1,0 +1,27 @@
+{
+  "$schema": "../../../../registry-item-schema.json",
+  "name": "http-client",
+  "type": "registry:lib",
+  "title": "API Client",
+  "description": "Axios API client with base configuration and automatically applied auth interceptor",
+  "categories": [
+    "lib",
+    "services"
+  ],
+  "files": [
+    {
+      "path": "shared/services/apiClient.ts",
+      "type": "registry:lib"
+    },
+    {
+      "path": "shared/services/auth.interceptor.ts",
+      "type": "registry:lib"
+    }
+  ],
+  "dependencies": [
+    "axios"
+  ],
+  "registryDependencies": [
+    "config"
+  ]
+}

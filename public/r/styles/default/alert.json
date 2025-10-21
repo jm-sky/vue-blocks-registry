@@ -1,0 +1,35 @@
+{
+  "$schema": "../../../../registry-item-schema.json",
+  "name": "alert",
+  "type": "registry:ui",
+  "title": "Alert",
+  "description": "Alert component for displaying important messages with variants",
+  "categories": [
+    "ui",
+    "feedback"
+  ],
+  "files": [
+    {
+      "path": "components/ui/alert/Alert.vue",
+      "type": "registry:ui"
+    },
+    {
+      "path": "components/ui/alert/AlertDescription.vue",
+      "type": "registry:ui"
+    },
+    {
+      "path": "components/ui/alert/AlertTitle.vue",
+      "type": "registry:ui"
+    },
+    {
+      "path": "components/ui/alert/index.ts",
+      "type": "registry:ui"
+    }
+  ],
+  "dependencies": [
+    "class-variance-authority"
+  ],
+  "registryDependencies": [
+    "utils"
+  ]
+}
