@@ -1,21 +1,12 @@
 <script setup lang="ts">
-import Button from '@registry/components/ui/button/Button.vue'
-
+import { ButtonLink } from '@registry/components/ui/button-link'
 </script>
 
 <template>
-  <RouterLink
-    v-slot="{ navigate, href }"
+  <ButtonLink
     to="/demo"
-    custom
+    variant="ghost"
   >
-    <Button
-      as="a"
-      variant="ghost"
-      :href
-      @click="navigate"
-    >
-      Demo Home
-    </Button>
-  </RouterLink>
+    Demo Home
+  </ButtonLink>
 </template>

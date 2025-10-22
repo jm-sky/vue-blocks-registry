@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Button } from '@/components/ui/button'
+import { ButtonLink } from '@registry/components/ui/button-link'
 </script>
 
 <template>
@@ -15,11 +15,9 @@ import { Button } from '@/components/ui/button'
         Sorry, we couldn’t find the page you’re looking for.
       </p>
       <div class="mt-10 flex items-center justify-center gap-x-6">
-        <RouterLink v-slot="{ navigate, href }" to="/" custom>
-          <Button as="a" :href="href" @click="navigate">
-            Go back home
-          </Button>
-        </RouterLink>
+        <ButtonLink to="/">
+          Go back home
+        </ButtonLink>
       </div>
     </div>
   </main>
