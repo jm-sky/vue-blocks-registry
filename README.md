@@ -7,6 +7,8 @@ It's inspired by **shadcn-vue**, but goes beyond UI — providing ready-to-use l
 
 You can use it to quickly assemble new projects or standardize architecture across multiple apps.
 
+![Vue Blocks Registry](public/hero.jpg)
+
 ---
 
 ### 🚀 Quick Start
