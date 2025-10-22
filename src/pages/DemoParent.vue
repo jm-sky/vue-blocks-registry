@@ -2,6 +2,7 @@
 import DemoFooter from '@/components/pages/demo/DemoFooter.vue'
 import Header from '@/components/pages/demo/Header.vue'
 import NavbarTop from '@/components/pages/demo/NavbarTop.vue'
+import ScrollToTop from '@registry/components/ui/scroll-to-top/ScrollToTop.vue'
 </script>
 
 <template>
@@ -25,5 +26,8 @@ import NavbarTop from '@/components/pages/demo/NavbarTop.vue'
       <!-- Footer -->
       <DemoFooter />
     </div>
+
+    <!-- Scroll to Top Button -->
+    <ScrollToTop />
   </div>
 </template>

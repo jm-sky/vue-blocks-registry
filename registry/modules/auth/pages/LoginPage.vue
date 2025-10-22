@@ -1,5 +1,7 @@
 <script setup lang="ts">
-import AuthLayout from '@registry/app/layouts/AuthLayout.vue'
+import GuestLayoutCentered from '@registry/app/layouts/GuestLayoutCentered.vue'
+import Alert from '@registry/components/ui/alert/Alert.vue'
+import AlertDescription from '@registry/components/ui/alert/AlertDescription.vue'
 import LoginForm from '@registry/modules/auth/components/LoginForm.vue'
 import { useRoute } from 'vue-router'
 
@@ -8,7 +10,7 @@ const message: string | null = route.meta.message as string | null
 </script>
 
 <template>
-  <AuthLayout>
+  <GuestLayoutCentered>
     <template #actions>
       <slot name="actions" />
     </template>
@@ -33,9 +35,9 @@ const message: string | null = route.meta.message as string | null
         </RouterLink>
       </div>
 
-      <div v-if="message" class="border rounded-lg bg-blue-500/10 p-4 text-sm shadow">
-        {{ message }}
-      </div>
+      <Alert v-if="message" variant="info">
+        <AlertDescription>{{ message }}</AlertDescription>
+      </Alert>
     </div>
-  </AuthLayout>
+  </GuestLayoutCentered>
 </template>

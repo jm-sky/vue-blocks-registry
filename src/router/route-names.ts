@@ -9,10 +9,13 @@ export const RouteNames = {
   DEMO_BUTTONS: 'DemoButtons',
   DEMO_FORMS: 'DemoForms',
   DEMO_LAYOUT: 'DemoLayout',
+  DEMO_DATA_TABLE: 'DemoDataTable',
   DEMO_AUTH: 'DemoAuth',
 
   // Auth routes
+  AUTH: 'Auth',
   AUTH_LOGIN: 'Login',
+  AUTH_LOGIN_OFFICIAL: 'LoginOfficial',
   AUTH_REGISTER: 'Register',
   AUTH_FORGOT_PASSWORD: 'ForgotPassword',
   AUTH_RESET_PASSWORD: 'ResetPassword',
@@ -36,9 +39,12 @@ export const RoutePaths = {
   DEMO_BUTTONS: '/demo/buttons',
   DEMO_FORMS: '/demo/forms',
   DEMO_LAYOUT: '/demo/layout',
+  DEMO_DATA_TABLE: '/demo/data-table',
   DEMO_AUTH: '/demo/auth',
 
+  AUTH: '/auth',
   AUTH_LOGIN: '/auth/login',
+  AUTH_LOGIN_OFFICIAL: '/auth/login/official',
   AUTH_REGISTER: '/auth/register',
   AUTH_FORGOT_PASSWORD: '/auth/forgot-password',
   AUTH_RESET_PASSWORD: '/auth/reset-password',

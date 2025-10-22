@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import AuthLayout from '@registry/app/layouts/AuthLayout.vue'
+import GuestLayoutCentered from '@registry/app/layouts/GuestLayoutCentered.vue'
 import { Button } from '@registry/components/ui/button'
 import { FormControl, FormField, FormItem, FormLabel, FormMessage } from '@registry/components/ui/form'
 import { Input } from '@registry/components/ui/input'
@@ -46,7 +46,7 @@ const onSubmit = handleSubmit(async (values: ResetPasswordData) => {
 </script>
 
 <template>
-  <AuthLayout>
+  <GuestLayoutCentered>
     <div class="max-w-md w-full space-y-8">
       <div>
         <h2 class="text-center text-3xl font-extrabold text-gray-900 dark:text-white">
@@ -113,5 +113,5 @@ const onSubmit = handleSubmit(async (values: ResetPasswordData) => {
         </RouterLink>
       </div>
     </div>
-  </AuthLayout>
+  </GuestLayoutCentered>
 </template>

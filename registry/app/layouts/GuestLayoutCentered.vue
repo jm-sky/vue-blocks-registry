@@ -1,14 +1,19 @@
 <script setup lang="ts">
 import LogoText from '@registry/components/ui/LogoText.vue'
 import DarkModeToggle from '@registry/shared/components/DarkModeToggle.vue'
+import { useRoute } from 'vue-router'
 
 // Auth layout for login, register, forgot password pages
+const route = useRoute()
+const layoutActionsComponent = route.meta.layoutActionsComponent
 </script>
 
 <template>
   <div class="min-h-screen bg-gradient-to-br from-blue-200 via-slate-100 to-purple-200 dark:from-gray-950 dark:via-gray-800 dark:to-gray-950 flex flex-col">
     <nav class="fixed top-2 right-2 flex gap-2 rounded-lg p-2 bg-card/50 backdrop-blur-sm">
-      <slot name="actions" />
+      <slot name="actions">
+        <component :is="layoutActionsComponent" v-if="layoutActionsComponent" />
+      </slot>
       <DarkModeToggle />
     </nav>
 

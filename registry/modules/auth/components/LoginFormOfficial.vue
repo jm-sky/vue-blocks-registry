@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import Alert from '@registry/components/ui/alert/Alert.vue'
+import AlertDescription from '@registry/components/ui/alert/AlertDescription.vue'
 import { Button } from '@registry/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@registry/components/ui/card'
 import { FormControl, FormField, FormItem, FormLabel, FormMessage } from '@registry/components/ui/form'
@@ -117,8 +119,8 @@ const onSubmit = handleSubmit(async (values: LoginCredentials) => {
       </CardContent>
     </Card>
 
-    <div v-if="message" class="border rounded-lg bg-blue-500/10 p-4 text-sm shadow">
-      {{ message }}
-    </div>
+    <Alert v-if="message" variant="info">
+      <AlertDescription>{{ message }}</AlertDescription>
+    </Alert>
   </div>
 </template>

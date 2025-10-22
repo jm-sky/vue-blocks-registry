@@ -30,13 +30,21 @@ const categories = [
     iconComponent: LayoutIcon,
     iconClass: 'size-7 text-violet-600',
     iconBgClass: 'bg-gradient-to-br from-violet-50 to-violet-100'
+  },
+  {
+    title: 'Data Table',
+    description: 'Zaawansowana tabela z sortowaniem, filtrowaniem i paginacją',
+    linkTo: '/demo/data-table',
+    iconComponent: LayoutIcon,
+    iconClass: 'size-7 text-amber-600',
+    iconBgClass: 'bg-gradient-to-br from-amber-50 to-amber-100'
   }
 ]
 
 const stats = [
-  { value: 1, label: 'Kategoria', colorClass: 'text-blue-600' },
-  { value: 6, label: 'Warianty Button', colorClass: 'text-emerald-600' },
-  { value: 3, label: 'Wibracje Button', colorClass: 'text-violet-600' }
+  { value: 4, label: 'Kategorie', colorClass: 'text-blue-600' },
+  { value: 20, label: 'Komponenty UI', colorClass: 'text-emerald-600' },
+  { value: 5, label: 'Layouty', colorClass: 'text-violet-600' }
 ]
 </script>
 

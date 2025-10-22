@@ -216,3 +216,4 @@ Run `pnpm run lint` to check for import violations.
 - `VERSIONING.md` - Complete release workflow
 - `IMPORT-TRANSFORMATION.md` - Import transformation documentation
 - `CHANGELOG.md` - Version history (MUST be updated before releases)
+- W plikach SPF .vue zawsze pierwszy powinien być <script setup> a potem dopiero <template>

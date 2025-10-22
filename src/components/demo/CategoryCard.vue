@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { RouterLink } from 'vue-router'
+import LinkWithArrow from './LinkWithArrow.vue'
 import type { Component } from 'vue'
 
 interface Props {
@@ -37,24 +37,6 @@ defineProps<Props>()
         </p>
       </div>
     </div>
-    <RouterLink
-      :to="linkTo"
-      class="inline-flex items-center text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-medium group-hover:gap-3 transition-all duration-200"
-    >
-      Zobacz komponenty
-      <svg
-        class="size-4 ml-2 group-hover:translate-x-1 transition-transform duration-200"
-        fill="none"
-        stroke="currentColor"
-        viewBox="0 0 24 24"
-      >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M9 5l7 7-7 7"
-        />
-      </svg>
-    </RouterLink>
+    <LinkWithArrow :link-to="linkTo" label="Zobacz komponenty" />
   </div>
 </template>

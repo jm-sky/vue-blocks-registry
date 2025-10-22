@@ -391,7 +391,7 @@
       "name": "layouts",
       "type": "registry:layout",
       "title": "App Layouts",
-      "description": "Application layouts (AuthenticatedLayout for logged users, DefaultLayout for public pages)",
+      "description": "Application layouts (AuthenticatedLayout with MainNav/UserNav, PublicLayout for landing pages, GuestLayoutCentered/CenteredGlass/TwoColumns for auth pages)",
       "categories": ["layout"],
       "files": [
         {
@@ -399,16 +399,30 @@
           "type": "registry:layout"
         },
         {
-          "path": "app/layouts/DefaultLayout.vue",
+          "path": "app/layouts/PublicLayout.vue",
+          "type": "registry:layout"
+        },
+        {
+          "path": "app/layouts/GuestLayoutCentered.vue",
+          "type": "registry:layout"
+        },
+        {
+          "path": "app/layouts/GuestLayoutCenteredGlass.vue",
+          "type": "registry:layout"
+        },
+        {
+          "path": "app/layouts/GuestLayoutTwoColumns.vue",
           "type": "registry:layout"
         }
       ],
       "dependencies": [
-        "vue-router"
+        "vue-router",
+        "lucide-vue-next"
       ],
       "registryDependencies": [
         "auth-store",
-        "auth-forms"
+        "layout-components",
+        "dark-mode"
       ]
     },
     {
@@ -446,7 +460,7 @@
       "name": "dark-mode",
       "type": "registry:feature",
       "title": "Dark Mode",
-      "description": "Dark mode toggle component with composable for theme management",
+      "description": "Dark mode toggle component with smooth icon transitions and composable for theme management",
       "categories": ["feature", "ui"],
       "files": [
         {
@@ -459,7 +473,276 @@
         }
       ],
       "dependencies": [
-        "@vueuse/core"
+        "@vueuse/core",
+        "lucide-vue-next"
+      ],
+      "registryDependencies": [
+        "button"
+      ]
+    },
+    {
+      "name": "hover-link",
+      "type": "registry:ui",
+      "title": "Hover Link",
+      "description": "Link component with glass-morphism hover effect and smooth transitions",
+      "categories": ["ui", "navigation"],
+      "files": [
+        {
+          "path": "components/ui/hover-link/HoverLink.vue",
+          "type": "registry:ui"
+        },
+        {
+          "path": "components/ui/hover-link/index.ts",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "scroll-to-top",
+      "type": "registry:ui",
+      "title": "Scroll To Top",
+      "description": "Fixed position button that appears after scrolling down, with smooth scroll to top behavior",
+      "categories": ["ui", "navigation"],
+      "files": [
+        {
+          "path": "components/ui/scroll-to-top/ScrollToTop.vue",
+          "type": "registry:ui"
+        },
+        {
+          "path": "components/ui/scroll-to-top/index.ts",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "lucide-vue-next"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "table",
+      "type": "registry:ui",
+      "title": "Table",
+      "description": "Base table components from shadcn-vue (Table, TableHeader, TableBody, TableRow, TableHead, TableCell, TableEmpty, TableCaption, TableFooter)",
+      "categories": ["ui", "data"],
+      "files": [
+        {
+          "path": "components/ui/table/Table.vue",
+          "type": "registry:ui"
+        },
+        {
+          "path": "components/ui/table/TableHeader.vue",
+          "type": "registry:ui"
+        },
+        {
+          "path": "components/ui/table/TableBody.vue",
+          "type": "registry:ui"
+        },
+        {
+          "path": "components/ui/table/TableRow.vue",
+          "type": "registry:ui"
+        },
+        {
+          "path": "components/ui/table/TableHead.vue",
+          "type": "registry:ui"
+        },
+        {
+          "path": "components/ui/table/TableCell.vue",
+          "type": "registry:ui"
+        },
+        {
+          "path": "components/ui/table/TableEmpty.vue",
+          "type": "registry:ui"
+        },
+        {
+          "path": "components/ui/table/TableCaption.vue",
+          "type": "registry:ui"
+        },
+        {
+          "path": "components/ui/table/TableFooter.vue",
+          "type": "registry:ui"
+        },
+        {
+          "path": "components/ui/table/index.ts",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [],
+      "registryDependencies": [
+        "utils"
+      ]
+    },
+    {
+      "name": "checkbox",
+      "type": "registry:ui",
+      "title": "Checkbox",
+      "description": "Checkbox component from shadcn-vue for forms and row selection",
+      "categories": ["ui", "form"],
+      "files": [
+        {
+          "path": "components/ui/checkbox/Checkbox.vue",
+          "type": "registry:ui"
+        },
+        {
+          "path": "components/ui/checkbox/index.ts",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "reka-ui"
+      ],
+      "registryDependencies": [
+        "utils"
+      ]
+    },
+    {
+      "name": "dropdown-menu",
+      "type": "registry:ui",
+      "title": "Dropdown Menu",
+      "description": "Dropdown menu components from shadcn-vue for actions and options",
+      "categories": ["ui", "navigation"],
+      "files": [
+        {
+          "path": "components/ui/dropdown-menu/DropdownMenu.vue",
+          "type": "registry:ui"
+        },
+        {
+          "path": "components/ui/dropdown-menu/DropdownMenuCheckboxItem.vue",
+          "type": "registry:ui"
+        },
+        {
+          "path": "components/ui/dropdown-menu/DropdownMenuContent.vue",
+          "type": "registry:ui"
+        },
+        {
+          "path": "components/ui/dropdown-menu/DropdownMenuGroup.vue",
+          "type": "registry:ui"
+        },
+        {
+          "path": "components/ui/dropdown-menu/DropdownMenuItem.vue",
+          "type": "registry:ui"
+        },
+        {
+          "path": "components/ui/dropdown-menu/DropdownMenuLabel.vue",
+          "type": "registry:ui"
+        },
+        {
+          "path": "components/ui/dropdown-menu/DropdownMenuRadioGroup.vue",
+          "type": "registry:ui"
+        },
+        {
+          "path": "components/ui/dropdown-menu/DropdownMenuRadioItem.vue",
+          "type": "registry:ui"
+        },
+        {
+          "path": "components/ui/dropdown-menu/DropdownMenuSeparator.vue",
+          "type": "registry:ui"
+        },
+        {
+          "path": "components/ui/dropdown-menu/DropdownMenuShortcut.vue",
+          "type": "registry:ui"
+        },
+        {
+          "path": "components/ui/dropdown-menu/DropdownMenuSub.vue",
+          "type": "registry:ui"
+        },
+        {
+          "path": "components/ui/dropdown-menu/DropdownMenuSubContent.vue",
+          "type": "registry:ui"
+        },
+        {
+          "path": "components/ui/dropdown-menu/DropdownMenuSubTrigger.vue",
+          "type": "registry:ui"
+        },
+        {
+          "path": "components/ui/dropdown-menu/DropdownMenuTrigger.vue",
+          "type": "registry:ui"
+        },
+        {
+          "path": "components/ui/dropdown-menu/index.ts",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "reka-ui"
+      ],
+      "registryDependencies": [
+        "utils"
+      ]
+    },
+    {
+      "name": "data-table",
+      "type": "registry:ui",
+      "title": "DataTable",
+      "description": "Advanced DataTable with TanStack Table v8 - sorting, filtering, pagination, row selection, column visibility",
+      "categories": ["ui", "data"],
+      "files": [
+        {
+          "path": "components/data-table/DataTable.vue",
+          "type": "registry:ui"
+        },
+        {
+          "path": "examples/data-table/types.ts",
+          "type": "registry:example"
+        },
+        {
+          "path": "examples/data-table/data.ts",
+          "type": "registry:example"
+        },
+        {
+          "path": "examples/data-table/columns-full.ts",
+          "type": "registry:example"
+        }
+      ],
+      "dependencies": [
+        "@tanstack/vue-table",
+        "lucide-vue-next"
+      ],
+      "registryDependencies": [
+        "utils",
+        "table",
+        "checkbox",
+        "dropdown-menu",
+        "button",
+        "input"
+      ]
+    },
+    {
+      "name": "layout-components",
+      "type": "registry:ui",
+      "title": "Layout Components",
+      "description": "Utility components for page layouts (MainNav, UserNav, PageCard, PageListHeader, PageListWrapper)",
+      "categories": ["ui", "layout"],
+      "files": [
+        {
+          "path": "components/layout/MainNav.vue",
+          "type": "registry:ui"
+        },
+        {
+          "path": "components/layout/UserNav.vue",
+          "type": "registry:ui"
+        },
+        {
+          "path": "components/layout/PageCard.vue",
+          "type": "registry:ui"
+        },
+        {
+          "path": "components/layout/PageListHeader.vue",
+          "type": "registry:ui"
+        },
+        {
+          "path": "components/layout/PageListWrapper.vue",
+          "type": "registry:ui"
+        },
+        {
+          "path": "components/layout/index.ts",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "lucide-vue-next",
+        "vue-router"
       ],
       "registryDependencies": []
     },

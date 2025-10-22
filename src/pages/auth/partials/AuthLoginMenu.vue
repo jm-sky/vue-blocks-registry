@@ -15,12 +15,12 @@ import CardTitle from '@/components/ui/card/CardTitle.vue'
     <CardContent>
       <ul class="space-y-2 text-sm -mx-2">
         <li>
-          <RouterLink to="/auth/login" class="block p-2 rounded-md text-muted-foreground hover:bg-accent" exact-active-class="bg-accent">
+          <RouterLink to="/auth/login" class="block px-4 py-2 rounded-md text-muted-foreground hover:bg-accent" exact-active-class="bg-accent">
             Login Standard
           </RouterLink>
         </li>
         <li>
-          <RouterLink to="/auth/login/official" class="block p-2 rounded-md text-muted-foreground hover:bg-accent" exact-active-class="bg-accent">
+          <RouterLink to="/auth/login/official" class="block px-4 py-2 rounded-md text-muted-foreground hover:bg-accent" exact-active-class="bg-accent">
             Login Official
           </RouterLink>
         </li>
