@@ -1,19 +1,16 @@
 <script setup lang="ts">
-import { Button, type ButtonVariants } from '@registry/components/ui/button'
+import { Button, type ButtonProps } from '@registry/components/ui/button'
 import { cn } from '@registry/lib/utils'
 import { type RouteLocationRaw, RouterLink } from 'vue-router'
-import type { HTMLAttributes } from 'vue'
 
-interface Props extends HTMLAttributes, Omit<ButtonVariants, 'as'> {
+interface Props extends Omit<ButtonProps, 'as'> {
   to: RouteLocationRaw
   replace?: boolean
   activeClass?: string
   exactActiveClass?: string
   custom?: boolean
   ariaCurrentValue?: 'true' | 'false' | 'page' | 'step' | 'location' | 'date' | 'time'
-  class?: HTMLAttributes['class']
-  loading?: boolean
-  disabled?: boolean
+  class?: string
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -35,7 +32,7 @@ const linkProps = {
   ariaCurrentValue: props.ariaCurrentValue
 }
 
-const buttonProps = {
+const buttonProps: Omit<ButtonProps, 'as'> = {
   variant: props.variant,
   size: props.size,
   vibe: props.vibe,
