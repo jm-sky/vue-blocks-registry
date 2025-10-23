@@ -8,7 +8,6 @@ import SidebarInset from '@/components/ui/sidebar/SidebarInset.vue'
 import SidebarMenu from '@/components/ui/sidebar/SidebarMenu.vue'
 import SidebarMenuButton from '@/components/ui/sidebar/SidebarMenuButton.vue'
 import SidebarMenuItem from '@/components/ui/sidebar/SidebarMenuItem.vue'
-import SidebarProvider from '@/components/ui/sidebar/SidebarProvider.vue'
 import { RoutePaths } from '@/router/route-names'
 
 const sidebarNav = [
@@ -40,30 +39,31 @@ const sidebarNav = [
 
 <template>
   <div class="mx-auto max-w-screen-2xl">
-    <SidebarProvider>
-      <Sidebar collapsible="offcanvas">
-        <SidebarContent>
-          <SidebarGroup v-for="group in sidebarNav" :key="group.title">
-            <SidebarGroupLabel>{{ group.title }}</SidebarGroupLabel>
-            <SidebarMenu>
-              <SidebarMenuItem v-for="item in group.items" :key="item.title">
-                <SidebarMenuButton as-child>
-                  <RouterLink :to="item.href">
-                    <component :is="item.icon" />
-                    <span>{{ item.title }}</span>
-                  </RouterLink>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-            </SidebarMenu>
-          </SidebarGroup>
-        </SidebarContent>
-      </Sidebar>
+    <Sidebar collapsible="offcanvas">
+      <SidebarContent>
+        <SidebarGroup v-for="group in sidebarNav" :key="group.title">
+          <SidebarGroupLabel>{{ group.title }}</SidebarGroupLabel>
+          <SidebarMenu>
+            <SidebarMenuItem v-for="item in group.items" :key="item.title">
+              <SidebarMenuButton as-child class="border border-transparent hover:bg-primary/5 hover:shadow-md transition-all duration-300">
+                <RouterLink
+                  :to="item.href"
+                  exact-active-class="bg-primary/10 !border-primary/30 shadow-sm"
+                >
+                  <component :is="item.icon" />
+                  <span>{{ item.title }}</span>
+                </RouterLink>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+          </SidebarMenu>
+        </SidebarGroup>
+      </SidebarContent>
+    </Sidebar>
 
-      <SidebarInset>
-        <div class="flex flex-1 flex-col gap-4 px-4 py-6 lg:gap-6 lg:py-8">
-          <slot />
-        </div>
-      </SidebarInset>
-    </SidebarProvider>
+    <SidebarInset>
+      <div class="flex flex-1 flex-col gap-4 px-4 py-6 lg:gap-6 lg:py-8">
+        <slot />
+      </div>
+    </SidebarInset>
   </div>
 </template>
