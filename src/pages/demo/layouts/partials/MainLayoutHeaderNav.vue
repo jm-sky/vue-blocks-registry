@@ -7,6 +7,11 @@ import ButtonLinkExternal from '@registry/components/ui/button-link/ButtonLinkEx
 import HoverLink from '@registry/components/ui/hover-link/HoverLink.vue'
 import DarkModeToggle from '@registry/shared/components/DarkModeToggle.vue'
 import LocaleToggle from '@registry/shared/i18n/components/LocaleToggle.vue'
+import { SidebarTrigger } from '@/components/ui/sidebar'
+import { useRoute } from 'vue-router'
+import { computed } from 'vue'
+
+const route = useRoute()
 
 const links = [
   {
@@ -22,12 +27,23 @@ const links = [
     label: 'Examples'
   }
 ]
+
+// Check if we should show the sidebar trigger (on docs pages)
+const showSidebarTrigger = computed(() => {
+  const path = route.path
+  return path.includes('/introduction') ||
+         path.includes('/components') ||
+         path.includes('/examples')
+})
 </script>
 
 <template>
   <header class="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
     <div class="mx-auto flex h-14 max-w-screen-2xl items-center px-4">
       <div class="mr-4 flex md:mr-6">
+        <!-- Mobile sidebar trigger -->
+        <SidebarTrigger v-if="showSidebarTrigger" class="mr-2 md:hidden" />
+        
         <RouterLink :to="RoutePaths.DEMO" class="mr-6 flex items-center gap-2 hover:scale-[102%] hover:brightness-80 transition-all duration-300">
           <LogoIcon class="size-6" />
           <LogoText class="hidden md:inline" />
