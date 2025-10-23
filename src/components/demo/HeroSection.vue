@@ -1,8 +1,8 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n'
 import LogoText from '@/components/brand/LogoText.vue'
 import { RoutePaths } from '@/router/route-names'
 import ButtonLink from '@registry/components/ui/button-link/ButtonLink.vue'
-import { useI18n } from 'vue-i18n'
 
 const { t } = useI18n()
 </script>
