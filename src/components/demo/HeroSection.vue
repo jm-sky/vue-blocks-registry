@@ -2,21 +2,24 @@
 import LogoText from '@/components/brand/LogoText.vue'
 import { RoutePaths } from '@/router/route-names'
 import ButtonLink from '@registry/components/ui/button-link/ButtonLink.vue'
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
 </script>
 
 <template>
   <div class="text-center py-20 space-y-6 animate-fade-in">
     <h2 class="text-5xl md:text-6xl font-bold tracking-tight text-foreground mb-6">
-      Witaj w
+      {{ t('demo.hero.welcome') }}
       <LogoText class="text-5xl md:text-6xl" />
     </h2>
 
     <p class="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-      Odkryj naszą kolekcję gotowych komponentów UI, zaprojektowanych z myślą o nowoczesnych aplikacjach Vue.js
+      {{ t('demo.hero.subtitle') }}
     </p>
 
     <p class="text-base text-muted-foreground/80 max-w-3xl mx-auto leading-relaxed">
-      Używamy Tailwind CSS i Shadcn Vue, Vee Validate, Zod...
+      {{ t('demo.hero.tech_stack') }}
     </p>
 
     <div class="flex gap-6 justify-center pt-4">
@@ -25,7 +28,7 @@ import ButtonLink from '@registry/components/ui/button-link/ButtonLink.vue'
         vibe="primary"
         size="lg"
       >
-        Get Started
+        {{ t('demo.hero.get_started') }}
       </ButtonLink>
 
       <ButtonLink
@@ -34,7 +37,7 @@ import ButtonLink from '@registry/components/ui/button-link/ButtonLink.vue'
         vibe="outline"
         size="lg"
       >
-        View Components
+        {{ t('demo.hero.view_components') }}
       </ButtonLink>
     </div>
   </div>

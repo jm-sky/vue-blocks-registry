@@ -65,5 +65,32 @@
     "unauthorized": "Nie masz uprawnień do wykonania tej akcji",
     "not_found": "Zasób nie został znaleziony",
     "server_error": "Błąd serwera. Spróbuj ponownie później"
+  },
+  "demo": {
+    "hero": {
+      "welcome": "Witaj w",
+      "subtitle": "Odkryj naszą kolekcję gotowych komponentów UI, zaprojektowanych z myślą o nowoczesnych aplikacjach Vue.js",
+      "tech_stack": "Używamy Tailwind CSS, Shadcn Vue, Vee Validate, Zod...",
+      "get_started": "Rozpocznij",
+      "view_components": "Zobacz Komponenty"
+    },
+    "overview": {
+      "buttons": {
+        "title": "Przyciski",
+        "description": "Różnorodne style przycisków z wariantami i wibracjami"
+      },
+      "links": {
+        "title": "Linki",
+        "description": "Komponenty linków z hover efektem i smooth transitions"
+      },
+      "layout": {
+        "title": "Układ",
+        "description": "Komponenty układu i kontenerów"
+      },
+      "dataTable": {
+        "title": "Tabela Danych",
+        "description": "Zaawansowana tabela z sortowaniem i filtrowaniem"
+      }
+    }
   }
 }

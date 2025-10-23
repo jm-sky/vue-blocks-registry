@@ -65,5 +65,32 @@
     "unauthorized": "You are not authorized to perform this action",
     "not_found": "Resource not found",
     "server_error": "Server error. Please try again later"
+  },
+  "demo": {
+    "hero": {
+      "welcome": "Welcome to",
+      "subtitle": "Discover our collection of ready-to-use UI components, designed for modern Vue.js applications",
+      "tech_stack": "Using Tailwind CSS, Shadcn Vue, Vee Validate, Zod...",
+      "get_started": "Get Started",
+      "view_components": "View Components"
+    },
+    "overview": {
+      "buttons": {
+        "title": "Buttons",
+        "description": "Various button styles with variants and vibrations"
+      },
+      "links": {
+        "title": "Links",
+        "description": "Link components with hover effects and smooth transitions"
+      },
+      "layout": {
+        "title": "Layout",
+        "description": "Layout and container components"
+      },
+      "dataTable": {
+        "title": "Data Table",
+        "description": "Advanced table with sorting and filtering"
+      }
+    }
   }
 }
