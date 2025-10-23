@@ -7,6 +7,84 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.0] - 2025-01-23
+
+### Added
+- **UI Components Suite**:
+  - HoverCard components with gradient overlay and link variants
+  - DropdownMenu components (14 components: menu, item, label, separator, checkbox, radio, sub-menu, shortcuts, etc.)
+  - Table components suite (Table, TableBody, TableHead, TableRow, TableCell, TableEmpty, etc.)
+  - DataTable components with TanStack Table integration (DataTable, DataTableBasic)
+  - ButtonLink and ButtonLinkExternal components
+  - Checkbox component
+  - ScrollToTop component
+  - GradientButton component
+  - HoverLink and HoverLinkExternal components
+  - Sidebar components suite (18 components with provider, menu, rail, trigger, etc.)
+  - Sheet components suite (9 components: dialog, content, header, footer, etc.)
+  - Separator component
+  - Skeleton component
+  - Tooltip components suite (Tooltip, TooltipContent, TooltipProvider, TooltipTrigger)
+
+- **Layout Components**:
+  - MainNav component for main navigation
+  - PageCard component for page wrapping
+  - PageListHeader and PageListWrapper components
+  - UserNav component with dropdown menu
+
+- **Auth Module Enhancements**:
+  - TanStack Query integration for auth module
+  - Auth query configuration (`auth.config.ts`, `queryClient.ts`)
+  - Query utilities (`queryUtils.ts`)
+  - Enhanced useAuth composable with query support
+  - Auth module comprehensive README documentation
+
+- **Layouts**:
+  - GuestLayoutCenteredGlass - Glass-morphism centered layout
+  - GuestLayoutTwoColumns - Two-column guest layout
+  - Renamed AuthLayout to GuestLayoutCentered for clarity
+  - Renamed DefaultLayout to PublicLayout for clarity
+
+- **Demo & Documentation**:
+  - New demo pages structure with main layout
+  - Introduction page with hero section
+  - Components showcase page
+  - Examples page with auth and dashboard examples
+  - Data table examples with full column definitions
+  - Enhanced demo layouts (MainLayout, DocsLayout with sidebar)
+  - ComponentCard, FeatureCard, HeroSection components
+  - Auth links and menu components
+
+- **Assets**:
+  - Hero image and video for demo
+  - Logo image
+  - GithubIcon component
+
+- **Configuration**:
+  - Enhanced registry.json with all new components
+  - Added tanstack/vue-query and tanstack/vue-table dependencies
+
+### Changed
+- Enhanced AuthenticatedLayout with improved structure
+- Updated dark mode toggle with better styling
+- Improved button component variants
+- Enhanced CSS styles with new utility classes
+- Restructured demo router with cleaner route organization
+- Updated auth pages with new layout components
+- Improved NotFoundPage styling
+
+### Removed
+- Removed deprecated StandoutCard components
+- Removed old demo structure (DemoParent, Auth.vue, Forms.vue, Layout.vue, Buttons.vue)
+- Removed ComingSoon and StatsSection components
+- Removed old icon components (ButtonIcon, FormIcon, LayoutIcon)
+- Removed deprecated Header and NavbarTop components
+
+### Documentation
+- Added comprehensive auth module README
+- Added data table README with usage examples
+- Added planning document for component collection
+
 ## [0.1.8] - 2025-01-27
 
 ### Added
