@@ -19,6 +19,7 @@ const showDocsLayout = computed(() => {
 </script>
 
 <template>
+  <!-- SidebarProvider for context (enables SidebarTrigger in header) -->
   <SidebarProvider>
     <div class="relative flex min-h-screen flex-col bg-background">
       <!-- Background patterns -->

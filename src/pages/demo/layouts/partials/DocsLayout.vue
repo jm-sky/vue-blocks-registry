@@ -10,6 +10,7 @@ import SidebarMenuButton from '@/components/ui/sidebar/SidebarMenuButton.vue'
 import SidebarMenuItem from '@/components/ui/sidebar/SidebarMenuItem.vue'
 import { RoutePaths } from '@/router/route-names'
 
+// TODO: Extract to separate config file when navigation grows
 const sidebarNav = [
   {
     title: 'Getting Started',
@@ -38,6 +39,7 @@ const sidebarNav = [
 </script>
 
 <template>
+  <!-- Positioned below header (top-14), full height minus header, z-30 -->
   <Sidebar
     collapsible="offcanvas"
     wrapper-class="[&>div:last-child]:!top-14 [&>div:last-child]:!bottom-0 [&>div:last-child]:!h-[calc(100vh-3.5rem)] [&>div:last-child]:!z-30"
@@ -62,6 +64,7 @@ const sidebarNav = [
     </SidebarContent>
   </Sidebar>
 
+  <!-- Content with left margin (16rem) on desktop to avoid sidebar overlap -->
   <SidebarInset class="md:ml-[var(--sidebar-width)]">
     <div class="mx-auto w-full max-w-screen-2xl px-4 py-6 lg:py-8">
       <slot />
