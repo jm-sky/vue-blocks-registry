@@ -6,8 +6,8 @@ import HoverLink from '@registry/components/ui/hover-link/HoverLinkExternal.vue'
 <template>
   <footer class="border-t py-6 md:py-0">
     <div class="mx-auto max-w-screen-2xl px-4">
-      <div class="flex h-16 items-center justify-between text-sm text-muted-foreground">
-        <p>
+      <div class="flex flex-col gap-4 md:flex-row md:h-16 items-center justify-between text-sm text-muted-foreground">
+        <p class="text-center md:text-left">
           © 2025 |
           <HoverLink href="https://dev-made.it">
             DEV Made IT
