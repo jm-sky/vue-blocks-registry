@@ -10,7 +10,7 @@ defineProps<{
 <template>
   <RouterLink
     :to="linkTo"
-    class="group inline-flex items-center text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 font-medium group-hover:gap-3 transition-all duration-200"
+    class="group inline-flex items-center text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 font-medium transition-all duration-200"
   >
     {{ label }}
     <svg
