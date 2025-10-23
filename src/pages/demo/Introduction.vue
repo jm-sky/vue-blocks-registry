@@ -4,37 +4,47 @@ import { type Component, computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 import FeatureCard from '@/components/demo/FeatureCard.vue'
 import { RoutePaths } from '@/router/route-names'
+import ButtonLink from '@registry/components/ui/button-link/ButtonLink.vue'
+import ButtonLinkExternal from '@registry/components/ui/button-link/ButtonLinkExternal.vue'
 import Card from '@registry/components/ui/card/Card.vue'
 import CardContent from '@registry/components/ui/card/CardContent.vue'
+import LinkExternal from '@registry/components/ui/link/LinkExternal.vue'
 import DocsPageHeader from './layouts/partials/DocsPageHeader.vue'
 
-const { t } = useI18n()
+// eslint-disable-next-line @typescript-eslint/unbound-method
+const { t, tm } = useI18n()
+
+// Helper to convert translation message object to array
+const toArray = (key: string): string[] => {
+  const msg = tm(key)
+  return Array.isArray(msg) ? msg : Object.values(msg)
+}
 
 const features = computed(() => [
   {
     title: t('demo.introduction.features.ui_components.title'),
-    items: t('demo.introduction.features.ui_components.items') as unknown as string[],
+    items: toArray('demo.introduction.features.ui_components.items'),
     iconComponent: Star as Component,
     iconClass: 'size-5 text-blue-600',
     iconBgClass: 'bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-blue-800/20'
   },
   {
     title: t('demo.introduction.features.layouts.title'),
-    items: t('demo.introduction.features.layouts.items') as unknown as string[],
+    items: toArray('demo.introduction.features.layouts.items'),
     iconComponent: LayoutDashboard as Component,
     iconClass: 'size-5 text-violet-600',
     iconBgClass: 'bg-gradient-to-br from-violet-50 to-violet-100 dark:from-violet-900/20 dark:to-violet-800/20'
   },
   {
     title: t('demo.introduction.features.auth_modules.title'),
-    items: t('demo.introduction.features.auth_modules.items') as unknown as string[],
+    items: toArray('demo.introduction.features.auth_modules.items'),
     iconComponent: Lock as Component,
     iconClass: 'size-5 text-emerald-600',
     iconBgClass: 'bg-gradient-to-br from-emerald-50 to-emerald-100 dark:from-emerald-900/20 dark:to-emerald-800/20'
   },
   {
     title: t('demo.introduction.features.data_table.title'),
-    items: t('demo.introduction.features.data_table.items') as unknown as string[],
+    items: toArray('demo.introduction.features.data_table.items'),
     iconComponent: Table as Component,
     iconClass: 'size-5 text-amber-600',
     iconBgClass: 'bg-gradient-to-br from-amber-50 to-amber-100 dark:from-amber-900/20 dark:to-amber-800/20'
@@ -57,6 +67,7 @@ const features = computed(() => [
         {{ t('demo.introduction.what_is_title') }}
       </h2>
 
+      <!-- eslint-disable-next-line vue/no-v-html -->
       <p class="leading-7 text-muted-foreground" v-html="t('demo.introduction.what_is_p1')" />
 
       <p class="leading-7 text-muted-foreground">
@@ -90,11 +101,11 @@ const features = computed(() => [
     <div class="grid grid-cols-2 gap-4 not-prose my-6">
       <FeatureCard
         :title="t('demo.introduction.tech.frontend')"
-        :items="t('demo.introduction.tech.frontend_items') as unknown as string[]"
+        :items="toArray('demo.introduction.tech.frontend_items')"
       />
       <FeatureCard
         :title="t('demo.introduction.tech.tools')"
-        :items="t('demo.introduction.tech.tools_items') as unknown as string[]"
+        :items="toArray('demo.introduction.tech.tools_items')"
       />
     </div>
 
@@ -106,20 +117,13 @@ const features = computed(() => [
       {{ t('demo.introduction.get_started_text') }}
     </p>
 
-    <div class="flex flex-wrap gap-4 not-prose my-6">
-      <RouterLink
-        :to="RoutePaths.DEMO_COMPONENTS_BUTTON"
-        class="inline-flex items-center justify-center rounded-md bg-primary px-6 py-3 text-sm font-medium text-primary-foreground shadow hover:bg-primary/90 transition-colors duration-200"
-      >
+    <div class="flex flex-wrap gap-4 justify-center md:justify-start not-prose my-6">
+      <ButtonLink :to="RoutePaths.DEMO_COMPONENTS_BUTTON" size="lg" variant="primary">
         {{ t('demo.introduction.view_components') }}
-      </RouterLink>
-      <a
-        href="https://github.com/jm-sky/vue-blocks-registry"
-        target="_blank"
-        class="inline-flex items-center justify-center rounded-md border border-input bg-background px-6 py-3 text-sm font-medium shadow-sm hover:bg-accent hover:text-accent-foreground transition-colors duration-200"
-      >
+      </ButtonLink>
+      <ButtonLinkExternal href="https://github.com/jm-sky/vue-blocks-registry" size="lg" variant="outline">
         {{ t('demo.introduction.github_repo') }}
-      </a>
+      </ButtonLinkExternal>
     </div>
   </div>
 </template>

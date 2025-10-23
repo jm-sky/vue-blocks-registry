@@ -1,64 +1,66 @@
 <script setup lang="ts">
 import { Clock, Mail, Shield, User } from 'lucide-vue-next'
 import { computed } from 'vue'
+import { useI18n } from 'vue-i18n'
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import AuthenticatedLayout from '@registry/app/layouts/AuthenticatedLayout.vue'
 import { useAuthStore } from '@registry/modules/auth/store/useAuthStore'
 
 const authStore = useAuthStore()
+const { t } = useI18n()
 
 const stats = computed(() => [
   {
-    name: 'User ID',
+    name: t('dashboard.stats.user_id'),
     value: authStore.user?.id ?? '-',
     icon: User,
     color: 'text-blue-600 dark:text-blue-400',
     bgColor: 'bg-blue-50 dark:bg-blue-900/20',
   },
   {
-    name: 'Email',
+    name: t('dashboard.stats.email'),
     value: authStore.user?.email ?? '-',
     icon: Mail,
     color: 'text-green-600 dark:text-green-400',
     bgColor: 'bg-green-50 dark:bg-green-900/20',
   },
   {
-    name: 'Status',
-    value: authStore.isAuthenticated ? 'Active' : 'Inactive',
+    name: t('dashboard.stats.status'),
+    value: authStore.isAuthenticated ? t('dashboard.status_values.active') : t('dashboard.status_values.inactive'),
     icon: Shield,
     color: 'text-purple-600 dark:text-purple-400',
     bgColor: 'bg-purple-50 dark:bg-purple-900/20',
   },
   {
-    name: 'Session',
-    value: 'Valid',
+    name: t('dashboard.stats.session'),
+    value: t('dashboard.status_values.valid'),
     icon: Clock,
     color: 'text-orange-600 dark:text-orange-400',
     bgColor: 'bg-orange-50 dark:bg-orange-900/20',
   },
 ])
 
-const quickActions = [
+const quickActions = computed(() => [
   {
-    title: 'Change Password',
-    description: 'Update your account password',
+    title: t('dashboard.quick_actions.change_password.title'),
+    description: t('dashboard.quick_actions.change_password.description'),
     href: '/auth/change-password',
     color: 'bg-blue-600 hover:bg-blue-700',
   },
   {
-    title: 'View Demo',
-    description: 'Explore component demos',
+    title: t('dashboard.quick_actions.view_demo.title'),
+    description: t('dashboard.quick_actions.view_demo.description'),
     href: '/demo',
     color: 'bg-green-600 hover:bg-green-700',
   },
   {
-    title: 'Auth Components',
-    description: 'View authentication module',
+    title: t('dashboard.quick_actions.auth_components.title'),
+    description: t('dashboard.quick_actions.auth_components.description'),
     href: '/demo/auth',
     color: 'bg-purple-600 hover:bg-purple-700',
   },
-]
+])
 </script>
 
 <template>
@@ -67,10 +69,10 @@ const quickActions = [
       <!-- Welcome Section -->
       <div class="bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg shadow-lg p-8 text-white">
         <h1 class="text-3xl font-bold mb-2">
-          Welcome back, {{ authStore.user?.name || 'User' }}! 👋
+          {{ t('dashboard.welcome', { name: authStore.user?.name || 'User' }) }} 👋
         </h1>
         <p class="text-blue-100">
-          This is your dashboard. You're viewing a demo of the Vue Blocks Registry authentication system.
+          {{ t('dashboard.subtitle') }}
         </p>
       </div>
 
@@ -98,21 +100,21 @@ const quickActions = [
       <!-- User Info Card -->
       <Card>
         <CardHeader>
-          <CardTitle>User Information</CardTitle>
+          <CardTitle>{{ t('dashboard.user_info.title') }}</CardTitle>
         </CardHeader>
         <CardContent>
           <dl class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
               <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">
-                Full Name
+                {{ t('dashboard.user_info.full_name') }}
               </dt>
               <dd class="mt-1 text-sm text-gray-900 dark:text-white">
-                {{ authStore.user?.name ?? 'Not provided' }}
+                {{ authStore.user?.name ?? t('dashboard.user_info.not_provided') }}
               </dd>
             </div>
             <div>
               <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">
-                Email Address
+                {{ t('dashboard.user_info.email_address') }}
               </dt>
               <dd class="mt-1 text-sm text-gray-900 dark:text-white">
                 {{ authStore.user?.email }}
@@ -120,7 +122,7 @@ const quickActions = [
             </div>
             <div>
               <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">
-                User ID
+                {{ t('dashboard.user_info.user_id') }}
               </dt>
               <dd class="mt-1 text-sm text-gray-900 dark:text-white font-mono">
                 {{ authStore.user?.id }}
@@ -128,11 +130,11 @@ const quickActions = [
             </div>
             <div>
               <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">
-                Authentication Status
+                {{ t('dashboard.user_info.auth_status') }}
               </dt>
               <dd class="mt-1">
                 <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400">
-                  Authenticated
+                  {{ t('dashboard.user_info.authenticated') }}
                 </span>
               </dd>
             </div>
@@ -155,10 +157,10 @@ const quickActions = [
               </div>
               <div>
                 <p class="text-sm font-medium text-gray-900 dark:text-white">
-                  Profile Picture
+                  {{ t('dashboard.user_info.profile_picture') }}
                 </p>
                 <p class="text-xs text-gray-500 dark:text-gray-400">
-                  Auto-generated from UI Avatars
+                  {{ t('dashboard.user_info.avatar_generated') }}
                 </p>
               </div>
             </div>
@@ -169,7 +171,7 @@ const quickActions = [
       <!-- Quick Actions -->
       <Card>
         <CardHeader>
-          <CardTitle>Quick Actions</CardTitle>
+          <CardTitle>{{ t('dashboard.quick_actions.title') }}</CardTitle>
         </CardHeader>
         <CardContent class="grid grid-cols-1 md:grid-cols-3 gap-4">
           <RouterLink
@@ -191,10 +193,9 @@ const quickActions = [
       <!-- Demo Info -->
       <Alert>
         <Shield class="size-4" />
-        <AlertTitle>Demo Mode Active</AlertTitle>
+        <AlertTitle>{{ t('dashboard.demo_mode.title') }}</AlertTitle>
         <AlertDescription>
-          This dashboard is part of the Vue Blocks Registry demo. You're logged in with mock authentication.
-          All data is stored in-memory and will be reset on page refresh.
+          {{ t('dashboard.demo_mode.description') }}
         </AlertDescription>
       </Alert>
     </div>

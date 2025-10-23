@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n'
 import GuestLayoutCentered from '@registry/app/layouts/GuestLayoutCentered.vue'
 import { Alert, AlertDescription } from '@registry/components/ui/alert'
 import { Button } from '@registry/components/ui/button'
@@ -13,6 +14,7 @@ import { useForm } from 'vee-validate'
 import { ref } from 'vue'
 import type { ForgotPasswordData } from '@registry/modules/auth/types/user'
 
+const { t } = useI18n()
 const { forgotPassword, isForgotPasswordLoading } = useAuth()
 
 const { handleSubmit, setErrors } = useForm({
@@ -45,10 +47,10 @@ const onSubmit = handleSubmit(async (values: ForgotPasswordData) => {
     <div class="max-w-md w-full space-y-8">
       <div>
         <h2 class="text-center text-3xl font-extrabold text-gray-900 dark:text-white">
-          Reset Password
+          {{ t('auth.forgot_password_page.title') }}
         </h2>
         <p class="mt-2 text-center text-sm text-gray-600 dark:text-gray-400">
-          Enter your email address and we'll send you a password reset link
+          {{ t('auth.forgot_password_page.subtitle') }}
         </p>
       </div>
 
@@ -63,23 +65,23 @@ const onSubmit = handleSubmit(async (values: ForgotPasswordData) => {
         <form class="space-y-4" @submit="onSubmit">
           <FormField v-slot="{ componentField }" name="email">
             <FormItem>
-              <FormLabel>Email</FormLabel>
+              <FormLabel>{{ t('auth.email') }}</FormLabel>
               <FormControl>
-                <Input type="email" placeholder="Enter your email" v-bind="componentField" />
+                <Input type="email" :placeholder="t('auth.form.email_placeholder')" v-bind="componentField" />
               </FormControl>
               <FormMessage />
             </FormItem>
           </FormField>
 
           <Button type="submit" class="w-full" :loading="isForgotPasswordLoading">
-            Send Reset Link
+            {{ t('auth.form.submit_reset') }}
           </Button>
         </form>
       </div>
 
       <div class="text-center">
         <RouterLink to="/auth/login" class="text-sm text-primary hover:underline">
-          Back to Login
+          {{ t('auth.forgot_password_page.back_to_login') }}
         </RouterLink>
       </div>
     </div>

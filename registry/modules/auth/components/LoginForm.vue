@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n'
 import { Button } from '@registry/components/ui/button'
 import { FormControl, FormField, FormItem, FormLabel, FormMessage } from '@registry/components/ui/form'
 import { Input } from '@registry/components/ui/input'
@@ -10,6 +11,7 @@ import { useForm } from 'vee-validate'
 import { useRouter } from 'vue-router'
 import type { LoginCredentials } from '@registry/modules/auth/types/user'
 
+const { t } = useI18n()
 const router = useRouter()
 const { login, isLoggingIn } = useAuth()
 
@@ -42,10 +44,10 @@ const onSubmit = handleSubmit(async (values: LoginCredentials) => {
     <FormField v-slot="{ componentField }" name="email">
       <FormItem>
         <FormLabel required>
-          Email
+          {{ t('auth.email') }}
         </FormLabel>
         <FormControl>
-          <Input type="email" placeholder="Enter your email" v-bind="componentField" />
+          <Input type="email" :placeholder="t('auth.form.email_placeholder')" v-bind="componentField" />
         </FormControl>
         <FormMessage />
       </FormItem>
@@ -54,17 +56,17 @@ const onSubmit = handleSubmit(async (values: LoginCredentials) => {
     <FormField v-slot="{ componentField }" name="password">
       <FormItem>
         <FormLabel required>
-          Password
+          {{ t('auth.password') }}
         </FormLabel>
         <FormControl>
-          <Input type="password" placeholder="Enter your password" v-bind="componentField" />
+          <Input type="password" :placeholder="t('auth.form.password_placeholder')" v-bind="componentField" />
         </FormControl>
         <FormMessage />
       </FormItem>
     </FormField>
 
     <Button type="submit" class="w-full" :loading="isLoggingIn">
-      Sign In
+      {{ t('auth.form.submit_login') }}
     </Button>
   </form>
 </template>

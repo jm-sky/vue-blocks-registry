@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n'
 import { Button } from '@registry/components/ui/button'
 import { FormControl, FormField, FormItem, FormLabel, FormMessage } from '@registry/components/ui/form'
 import { Input } from '@registry/components/ui/input'
@@ -10,6 +11,7 @@ import { useForm } from 'vee-validate'
 import { useRouter } from 'vue-router'
 import type { RegisterCredentials } from '@registry/modules/auth/types/user'
 
+const { t } = useI18n()
 const router = useRouter()
 const { register, isRegistering } = useAuth()
 
@@ -43,9 +45,9 @@ const onSubmit = handleSubmit(async (values: RegisterCredentials) => {
   <form class="space-y-4" @submit="onSubmit">
     <FormField v-slot="{ componentField }" name="name">
       <FormItem>
-        <FormLabel>Name (optional)</FormLabel>
+        <FormLabel>{{ t('auth.form.name') }} (optional)</FormLabel>
         <FormControl>
-          <Input type="text" placeholder="Enter your name" v-bind="componentField" />
+          <Input type="text" :placeholder="t('auth.form.name_placeholder')" v-bind="componentField" />
         </FormControl>
         <FormMessage />
       </FormItem>
@@ -53,9 +55,9 @@ const onSubmit = handleSubmit(async (values: RegisterCredentials) => {
 
     <FormField v-slot="{ componentField }" name="email">
       <FormItem>
-        <FormLabel>Email</FormLabel>
+        <FormLabel>{{ t('auth.email') }}</FormLabel>
         <FormControl>
-          <Input type="email" placeholder="Enter your email" v-bind="componentField" />
+          <Input type="email" :placeholder="t('auth.form.email_placeholder')" v-bind="componentField" />
         </FormControl>
         <FormMessage />
       </FormItem>
@@ -63,9 +65,9 @@ const onSubmit = handleSubmit(async (values: RegisterCredentials) => {
 
     <FormField v-slot="{ componentField }" name="password">
       <FormItem>
-        <FormLabel>Password</FormLabel>
+        <FormLabel>{{ t('auth.password') }}</FormLabel>
         <FormControl>
-          <Input type="password" placeholder="Enter your password" v-bind="componentField" />
+          <Input type="password" :placeholder="t('auth.form.password_placeholder')" v-bind="componentField" />
         </FormControl>
         <FormMessage />
       </FormItem>
@@ -73,16 +75,16 @@ const onSubmit = handleSubmit(async (values: RegisterCredentials) => {
 
     <FormField v-slot="{ componentField }" name="passwordConfirmation">
       <FormItem>
-        <FormLabel>Confirm Password</FormLabel>
+        <FormLabel>{{ t('auth.password_confirm') }}</FormLabel>
         <FormControl>
-          <Input type="password" placeholder="Confirm your password" v-bind="componentField" />
+          <Input type="password" :placeholder="t('auth.form.password_confirm_placeholder')" v-bind="componentField" />
         </FormControl>
         <FormMessage />
       </FormItem>
     </FormField>
 
     <Button type="submit" class="w-full" :loading="isRegistering">
-      Sign Up
+      {{ t('auth.form.submit_register') }}
     </Button>
   </form>
 </template>

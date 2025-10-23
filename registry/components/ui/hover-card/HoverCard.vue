@@ -59,11 +59,11 @@ const hoverClass = 'hover:-translate-y-2 hover:scale-[1.02] hover:shadow-2xl'
           {{ description }}
         </p>
 
-        <div class="space-y-4">
+        <div v-if="$slots.default" class="space-y-4">
           <slot />
         </div>
 
-        <ul v-if="items" class="relative space-y-1.5 text-sm text-muted-foreground mt-4">
+        <ul v-if="items" class="relative space-y-1.5 text-sm text-muted-foreground">
           <li v-for="(item, index) in items" :key="index" class="flex items-start">
             <span class="mr-2">•</span>
             <span>{{ item }}</span>
@@ -72,6 +72,11 @@ const hoverClass = 'hover:-translate-y-2 hover:scale-[1.02] hover:shadow-2xl'
       </div>
     </div>
 
-    <HoverCardLinkWithArrow v-if="linkTo && linkLabel" :link-to="linkTo" :label="linkLabel" />
+    <HoverCardLinkWithArrow
+      v-if="linkTo && linkLabel"
+      :link-to="linkTo"
+      :label="linkLabel"
+      class="mt-4"
+    />
   </div>
 </template>

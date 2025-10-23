@@ -41,7 +41,36 @@
     "create_account": "Utwórz nowe konto",
     "current_password": "Obecne hasło",
     "new_password": "Nowe hasło",
-    "new_password_confirm": "Potwierdź nowe hasło"
+    "new_password_confirm": "Potwierdź nowe hasło",
+    "form": {
+      "email_placeholder": "Wprowadź swój email",
+      "password_placeholder": "Wprowadź swoje hasło",
+      "password_confirm_placeholder": "Potwierdź swoje hasło",
+      "current_password_placeholder": "Wprowadź obecne hasło",
+      "new_password_placeholder": "Wprowadź nowe hasło",
+      "new_password_confirm_placeholder": "Potwierdź nowe hasło",
+      "submit_login": "Zaloguj się",
+      "submit_register": "Utwórz konto",
+      "submit_reset": "Wyślij link resetujący",
+      "submit_change_password": "Zmień hasło",
+      "name": "Imię",
+      "name_placeholder": "Wprowadź swoje imię"
+    },
+    "forgot_password_page": {
+      "title": "Resetuj Hasło",
+      "subtitle": "Wprowadź swój adres email, a wyślemy Ci link do resetowania hasła",
+      "back_to_login": "Powrót do logowania"
+    },
+    "change_password_page": {
+      "title": "Zmień Hasło",
+      "subtitle": "Zaktualizuj swoje hasło, aby zwiększyć bezpieczeństwo konta"
+    },
+    "links": {
+      "or_create_account": "Lub",
+      "create_new_account": "utwórz nowe konto",
+      "or_sign_in": "Lub",
+      "sign_in_existing": "zaloguj się do istniejącego konta"
+    }
   },
   "navigation": {
     "home": "Start",
@@ -65,6 +94,51 @@
     "unauthorized": "Nie masz uprawnień do wykonania tej akcji",
     "not_found": "Zasób nie został znaleziony",
     "server_error": "Błąd serwera. Spróbuj ponownie później"
+  },
+  "dashboard": {
+    "welcome": "Witaj ponownie, {name}!",
+    "subtitle": "To jest Twój panel. Przeglądasz demo systemu uwierzytelniania Vue Blocks Registry.",
+    "stats": {
+      "user_id": "ID Użytkownika",
+      "email": "Email",
+      "status": "Status",
+      "session": "Sesja"
+    },
+    "status_values": {
+      "active": "Aktywny",
+      "inactive": "Nieaktywny",
+      "valid": "Ważna"
+    },
+    "quick_actions": {
+      "title": "Szybkie Akcje",
+      "change_password": {
+        "title": "Zmień Hasło",
+        "description": "Zaktualizuj hasło do swojego konta"
+      },
+      "view_demo": {
+        "title": "Zobacz Demo",
+        "description": "Przeglądaj demo komponentów"
+      },
+      "auth_components": {
+        "title": "Komponenty Auth",
+        "description": "Zobacz moduł uwierzytelniania"
+      }
+    },
+    "user_info": {
+      "title": "Informacje o Użytkowniku",
+      "full_name": "Imię i Nazwisko",
+      "email_address": "Adres Email",
+      "user_id": "ID Użytkownika",
+      "auth_status": "Status Uwierzytelnienia",
+      "authenticated": "Uwierzytelniony",
+      "not_provided": "Nie podano",
+      "profile_picture": "Zdjęcie Profilowe",
+      "avatar_generated": "Wygenerowane automatycznie z UI Avatars"
+    },
+    "demo_mode": {
+      "title": "Tryb Demo Aktywny",
+      "description": "Ten panel jest częścią demo Vue Blocks Registry. Jesteś zalogowany za pomocą mock uwierzytelniania. Wszystkie dane są przechowywane w pamięci i zostaną zresetowane po odświeżeniu strony."
+    }
   },
   "demo": {
     "hero": {

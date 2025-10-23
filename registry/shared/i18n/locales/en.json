@@ -41,7 +41,36 @@
     "create_account": "Create a new account",
     "current_password": "Current Password",
     "new_password": "New Password",
-    "new_password_confirm": "Confirm New Password"
+    "new_password_confirm": "Confirm New Password",
+    "form": {
+      "email_placeholder": "Enter your email",
+      "password_placeholder": "Enter your password",
+      "password_confirm_placeholder": "Confirm your password",
+      "current_password_placeholder": "Enter your current password",
+      "new_password_placeholder": "Enter your new password",
+      "new_password_confirm_placeholder": "Confirm your new password",
+      "submit_login": "Log in",
+      "submit_register": "Create account",
+      "submit_reset": "Send reset link",
+      "submit_change_password": "Change password",
+      "name": "Name",
+      "name_placeholder": "Enter your name"
+    },
+    "forgot_password_page": {
+      "title": "Reset Password",
+      "subtitle": "Enter your email address and we'll send you a password reset link",
+      "back_to_login": "Back to Login"
+    },
+    "change_password_page": {
+      "title": "Change Password",
+      "subtitle": "Update your password to enhance account security"
+    },
+    "links": {
+      "or_create_account": "Or",
+      "create_new_account": "create a new account",
+      "or_sign_in": "Or",
+      "sign_in_existing": "sign in to existing account"
+    }
   },
   "navigation": {
     "home": "Home",
@@ -65,6 +94,51 @@
     "unauthorized": "You are not authorized to perform this action",
     "not_found": "Resource not found",
     "server_error": "Server error. Please try again later"
+  },
+  "dashboard": {
+    "welcome": "Welcome back, {name}!",
+    "subtitle": "This is your dashboard. You're viewing a demo of the Vue Blocks Registry authentication system.",
+    "stats": {
+      "user_id": "User ID",
+      "email": "Email",
+      "status": "Status",
+      "session": "Session"
+    },
+    "status_values": {
+      "active": "Active",
+      "inactive": "Inactive",
+      "valid": "Valid"
+    },
+    "quick_actions": {
+      "title": "Quick Actions",
+      "change_password": {
+        "title": "Change Password",
+        "description": "Update your account password"
+      },
+      "view_demo": {
+        "title": "View Demo",
+        "description": "Explore component demos"
+      },
+      "auth_components": {
+        "title": "Auth Components",
+        "description": "View authentication module"
+      }
+    },
+    "user_info": {
+      "title": "User Information",
+      "full_name": "Full Name",
+      "email_address": "Email Address",
+      "user_id": "User ID",
+      "auth_status": "Authentication Status",
+      "authenticated": "Authenticated",
+      "not_provided": "Not provided",
+      "profile_picture": "Profile Picture",
+      "avatar_generated": "Auto-generated from UI Avatars"
+    },
+    "demo_mode": {
+      "title": "Demo Mode Active",
+      "description": "This dashboard is part of the Vue Blocks Registry demo. You're logged in with mock authentication. All data is stored in-memory and will be reset on page refresh."
+    }
   },
   "demo": {
     "hero": {

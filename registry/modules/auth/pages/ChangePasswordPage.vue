@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n'
 import AuthenticatedLayout from '@registry/app/layouts/AuthenticatedLayout.vue'
 import { Button } from '@registry/components/ui/button'
 import { FormControl, FormField, FormItem, FormLabel, FormMessage } from '@registry/components/ui/form'
@@ -11,6 +12,7 @@ import { useForm } from 'vee-validate'
 import { ref } from 'vue'
 import type { ChangePasswordData } from '@registry/modules/auth/types/user'
 
+const { t } = useI18n()
 const { changePassword, isChangePasswordLoading } = useAuth()
 
 const { handleSubmit, setErrors, resetForm } = useForm({
@@ -47,10 +49,10 @@ const onSubmit = handleSubmit(async (values: ChangePasswordData) => {
       <div class="space-y-6">
         <div>
           <h2 class="text-2xl font-bold text-gray-900 dark:text-white">
-            Change Password
+            {{ t('auth.change_password_page.title') }}
           </h2>
           <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
-            Update your password to enhance account security
+            {{ t('auth.change_password_page.subtitle') }}
           </p>
         </div>
 
@@ -62,9 +64,9 @@ const onSubmit = handleSubmit(async (values: ChangePasswordData) => {
           <form class="space-y-4" @submit="onSubmit">
             <FormField v-slot="{ componentField }" name="currentPassword">
               <FormItem>
-                <FormLabel>Current Password</FormLabel>
+                <FormLabel>{{ t('auth.current_password') }}</FormLabel>
                 <FormControl>
-                  <Input type="password" placeholder="Enter current password" v-bind="componentField" />
+                  <Input type="password" :placeholder="t('auth.form.current_password_placeholder')" v-bind="componentField" />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -72,9 +74,9 @@ const onSubmit = handleSubmit(async (values: ChangePasswordData) => {
 
             <FormField v-slot="{ componentField }" name="password">
               <FormItem>
-                <FormLabel>New Password</FormLabel>
+                <FormLabel>{{ t('auth.new_password') }}</FormLabel>
                 <FormControl>
-                  <Input type="password" placeholder="Enter new password" v-bind="componentField" />
+                  <Input type="password" :placeholder="t('auth.form.new_password_placeholder')" v-bind="componentField" />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -82,16 +84,16 @@ const onSubmit = handleSubmit(async (values: ChangePasswordData) => {
 
             <FormField v-slot="{ componentField }" name="passwordConfirmation">
               <FormItem>
-                <FormLabel>Confirm New Password</FormLabel>
+                <FormLabel>{{ t('auth.new_password_confirm') }}</FormLabel>
                 <FormControl>
-                  <Input type="password" placeholder="Confirm new password" v-bind="componentField" />
+                  <Input type="password" :placeholder="t('auth.form.new_password_confirm_placeholder')" v-bind="componentField" />
                 </FormControl>
                 <FormMessage />
               </FormItem>
             </FormField>
 
             <Button type="submit" class="w-full" :loading="isChangePasswordLoading">
-              Change Password
+              {{ t('auth.form.submit_change_password') }}
             </Button>
           </form>
         </div>

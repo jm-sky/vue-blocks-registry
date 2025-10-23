@@ -1,10 +1,12 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n'
 import GuestLayoutCentered from '@registry/app/layouts/GuestLayoutCentered.vue'
 import Alert from '@registry/components/ui/alert/Alert.vue'
 import AlertDescription from '@registry/components/ui/alert/AlertDescription.vue'
 import LoginForm from '@registry/modules/auth/components/LoginForm.vue'
 import { useRoute } from 'vue-router'
 
+const { t } = useI18n()
 const route = useRoute()
 const message: string | null = route.meta.message as string | null
 </script>
@@ -18,12 +20,12 @@ const message: string | null = route.meta.message as string | null
     <div class="max-w-md w-full space-y-8">
       <div class="space-y-4 bg-card/80 py-8 px-6 shadow-lg rounded-lg">
         <h2 class="text-center text-2xl font-bold text-gray-900 dark:text-white">
-          Zaloguj się
+          {{ t('auth.sign_in_to_account') }}
         </h2>
         <p class="mt-2 text-center text-sm text-gray-600 dark:text-gray-400">
-          Lub
+          {{ t('auth.links.or_create_account') }}
           <RouterLink to="/auth/register" class="font-medium text-primary hover:underline">
-            utwórz nowe konto
+            {{ t('auth.links.create_new_account') }}
           </RouterLink>
         </p>
         <LoginForm />
@@ -31,7 +33,7 @@ const message: string | null = route.meta.message as string | null
 
       <div class="text-center">
         <RouterLink to="/auth/forgot-password" class="text-sm text-gray-600 dark:text-gray-400 hover:underline">
-          Zapomniałeś hasła?
+          {{ t('auth.forgot_password') }}
         </RouterLink>
       </div>
 
