@@ -50,7 +50,7 @@ const features = [
     </Card>
 
     <div class="space-y-4">
-      <h2 class="scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight">
+      <h2 class="scroll-m-20 border-b pb-2 text-2xl md:text-3xl font-semibold tracking-tight">
         Czym jest Vue Blocks Registry?
       </h2>
 
@@ -65,7 +65,7 @@ const features = [
     </div>
 
     <div class="space-y-4 animate-slide-up">
-      <h2 class="scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight">
+      <h2 class="scroll-m-20 border-b pb-2 text-2xl md:text-3xl font-semibold tracking-tight">
         Główne Funkcje
       </h2>
 
@@ -83,7 +83,7 @@ const features = [
       </div>
     </div>
 
-    <h2 class="scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight">
+    <h2 class="scroll-m-20 border-b pb-2 text-2xl md:text-3xl font-semibold tracking-tight">
       Technologie
     </h2>
 
@@ -98,7 +98,7 @@ const features = [
       />
     </div>
 
-    <h2 class="scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight">
+    <h2 class="scroll-m-20 border-b pb-2 text-2xl md:text-3xl font-semibold tracking-tight">
       Rozpocznij
     </h2>
 
