@@ -6,6 +6,7 @@ export interface SidebarProps {
   variant?: 'sidebar' | 'floating' | 'inset'
   collapsible?: 'offcanvas' | 'icon' | 'none'
   class?: HTMLAttributes['class']
+  wrapperClass?: HTMLAttributes['class']
 }
 
 export { default as Sidebar } from './Sidebar.vue'

@@ -15,6 +15,7 @@ const props = withDefaults(defineProps<SidebarProps>(), {
   side: 'left',
   variant: 'sidebar',
   collapsible: 'offcanvas',
+  wrapperClass: undefined,
 })
 
 const { isMobile, state, openMobile, setOpenMobile } = useSidebar()
@@ -58,7 +59,7 @@ const { isMobile, state, openMobile, setOpenMobile } = useSidebar()
 
   <div
     v-else
-    class="group peer text-sidebar-foreground hidden md:block"
+    :class="cn('group peer text-sidebar-foreground hidden md:block', wrapperClass)"
     data-slot="sidebar"
     :data-state="state"
     :data-collapsible="state === 'collapsed' ? collapsible : ''"

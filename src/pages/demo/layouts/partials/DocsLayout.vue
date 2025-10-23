@@ -38,32 +38,33 @@ const sidebarNav = [
 </script>
 
 <template>
-  <div class="mx-auto max-w-screen-2xl">
-    <Sidebar collapsible="offcanvas">
-      <SidebarContent>
-        <SidebarGroup v-for="group in sidebarNav" :key="group.title">
-          <SidebarGroupLabel>{{ group.title }}</SidebarGroupLabel>
-          <SidebarMenu>
-            <SidebarMenuItem v-for="item in group.items" :key="item.title">
-              <SidebarMenuButton as-child class="border border-transparent hover:bg-primary/5 hover:shadow-md transition-all duration-300">
-                <RouterLink
-                  :to="item.href"
-                  exact-active-class="bg-primary/10 !border-primary/30 shadow-sm"
-                >
-                  <component :is="item.icon" />
-                  <span>{{ item.title }}</span>
-                </RouterLink>
-              </SidebarMenuButton>
-            </SidebarMenuItem>
-          </SidebarMenu>
-        </SidebarGroup>
-      </SidebarContent>
-    </Sidebar>
+  <Sidebar
+    collapsible="offcanvas"
+    wrapper-class="[&>div:last-child]:!top-14 [&>div:last-child]:!bottom-0 [&>div:last-child]:!h-[calc(100vh-3.5rem)] [&>div:last-child]:!z-30"
+  >
+    <SidebarContent>
+      <SidebarGroup v-for="group in sidebarNav" :key="group.title">
+        <SidebarGroupLabel>{{ group.title }}</SidebarGroupLabel>
+        <SidebarMenu>
+          <SidebarMenuItem v-for="item in group.items" :key="item.title">
+            <SidebarMenuButton as-child class="border border-transparent hover:bg-primary/5 hover:shadow-md transition-all duration-300">
+              <RouterLink
+                :to="item.href"
+                exact-active-class="bg-primary/10 !border-primary/30 shadow-sm"
+              >
+                <component :is="item.icon" />
+                <span>{{ item.title }}</span>
+              </RouterLink>
+            </SidebarMenuButton>
+          </SidebarMenuItem>
+        </SidebarMenu>
+      </SidebarGroup>
+    </SidebarContent>
+  </Sidebar>
 
-    <SidebarInset>
-      <div class="flex flex-1 flex-col gap-4 px-4 py-6 lg:gap-6 lg:py-8">
-        <slot />
-      </div>
-    </SidebarInset>
-  </div>
+  <SidebarInset class="md:ml-[var(--sidebar-width)]">
+    <div class="mx-auto w-full max-w-screen-2xl px-4 py-6 lg:py-8">
+      <slot />
+    </div>
+  </SidebarInset>
 </template>
