@@ -30,7 +30,7 @@ const links = [
       <div class="mr-4 flex md:mr-6">
         <RouterLink :to="RoutePaths.DEMO" class="mr-6 flex items-center gap-2 hover:scale-[102%] hover:brightness-80 transition-all duration-300">
           <LogoIcon class="size-6" />
-          <LogoText />
+          <LogoText class="hidden md:inline" />
         </RouterLink>
         <nav class="hidden md:flex items-center gap-6 text-sm">
           <template v-for="link in links" :key="link.to">
