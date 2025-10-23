@@ -1,0 +1,19 @@
+{
+  "$schema": "../../../../registry-item-schema.json",
+  "name": "i18n",
+  "type": "registry:feature",
+  "title": "Internationalization (i18n)",
+  "description": "Complete i18n setup with PL/EN translations, locale switcher components, and composables",
+  "categories": [
+    "feature",
+    "i18n"
+  ],
+  "files": [],
+  "dependencies": [],
+  "registryDependencies": [
+    "i18n-config",
+    "i18n-composables",
+    "locale-switcher",
+    "locale-dropdown"
+  ]
+}

@@ -6,6 +6,7 @@ import { RoutePaths } from '@/router/route-names'
 import ButtonLinkExternal from '@registry/components/ui/button-link/ButtonLinkExternal.vue'
 import HoverLink from '@registry/components/ui/hover-link/HoverLink.vue'
 import DarkModeToggle from '@registry/shared/components/DarkModeToggle.vue'
+import LocaleToggle from '@registry/shared/i18n/components/LocaleToggle.vue'
 
 const links = [
   {
@@ -45,6 +46,7 @@ const links = [
           <ButtonLinkExternal href="https://github.com/jm-sky/vue-blocks-registry" size="icon">
             <GithubIcon class="size-4" />
           </ButtonLinkExternal>
+          <LocaleToggle />
           <DarkModeToggle />
         </nav>
       </div>

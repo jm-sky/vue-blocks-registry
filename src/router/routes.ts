@@ -64,6 +64,11 @@ export const routes: RouteRecordRaw[] = [
         name: RouteNames.DEMO_EXAMPLES_AUTH,
         component: () => import('@/pages/demo/examples/Auth.vue'),
       },
+      {
+        path: 'examples/i18n',
+        name: RouteNames.DEMO_EXAMPLES_I18N,
+        component: () => import('@/pages/demo/I18nDemo.vue'),
+      },
     ],
   },
   {

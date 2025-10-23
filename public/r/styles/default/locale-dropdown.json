@@ -1,0 +1,25 @@
+{
+  "$schema": "../../../../registry-item-schema.json",
+  "name": "locale-dropdown",
+  "type": "registry:ui",
+  "title": "Locale Dropdown",
+  "description": "Dropdown menu for language selection with icon button",
+  "categories": [
+    "ui",
+    "i18n"
+  ],
+  "files": [
+    {
+      "path": "shared/i18n/components/LocaleDropdown.vue",
+      "type": "registry:ui"
+    }
+  ],
+  "dependencies": [
+    "lucide-vue-next"
+  ],
+  "registryDependencies": [
+    "button",
+    "dropdown-menu",
+    "i18n-composables"
+  ]
+}

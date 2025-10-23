@@ -16,6 +16,7 @@ export const RouteNames = {
   DEMO_EXAMPLES: 'DemoExamples',
   DEMO_EXAMPLES_DASHBOARD: 'DemoExamplesDashboard',
   DEMO_EXAMPLES_AUTH: 'DemoExamplesAuth',
+  DEMO_EXAMPLES_I18N: 'DemoExamplesI18n',
 
   // Auth routes
   AUTH: 'Auth',
@@ -51,6 +52,7 @@ export const RoutePaths = {
   DEMO_EXAMPLES: '/demo/examples',
   DEMO_EXAMPLES_DASHBOARD: '/demo/examples/dashboard',
   DEMO_EXAMPLES_AUTH: '/demo/examples/auth',
+  DEMO_EXAMPLES_I18N: '/demo/examples/i18n',
 
   AUTH: '/auth',
   AUTH_LOGIN: '/auth/login',
