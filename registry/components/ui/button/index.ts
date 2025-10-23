@@ -25,7 +25,7 @@ export const buttonVariants = cva(
       vibe: {
         primary: 'transition-all duration-300 text-shadow-sm dark:text-shadow-none font-semibold relative overflow-hidden shadow-2xl before:absolute before:h-0 before:w-0 before:rounded-full before:-z-10 before:bg-white before:duration-200 before:ease-out hover:text-primary hover:shadow-primary-800/50 dark:hover:shadow-primary-300/50 hover:before:h-56 hover:before:w-56 hover:before:blur-md hover:scale-110 hover:ring',
         outline: 'transition-all duration-200 hover:outline-2 hover:bg-white outline-primary-500 outline-offset-4 hover:ring hover:ring-primary hover:scale-105 hover:text-primary hover:shadow-2xl hover:shadow-primary-800/50 dark:hover:shadow-primary-300/50',
-        underline: 'rounded-b-none relative before:absolute before:bottom-0 before:rounded-md before:h-0.5 before:w-0 before:bg-primary before:transition-all before:duration-300 before:ease-in-out hover:before:w-full hover:text-primary hover:bg-transparent dark:hover:bg-transparent',
+        underline: 'bg-transparent text-primary rounded-b-none relative before:absolute before:bottom-0 before:rounded-md before:h-0.5 before:w-0 before:bg-primary before:transition-all before:duration-300 before:ease-in-out hover:before:w-full hover:text-primary hover:bg-transparent dark:hover:bg-transparent',
       }
     },
     defaultVariants: {

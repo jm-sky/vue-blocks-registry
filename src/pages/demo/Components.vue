@@ -7,7 +7,7 @@ const components = [
   {
     title: 'Buttons',
     description: 'Różnorodne style przycisków z wariantami',
-    to: RoutePaths.DEMO_COMPONENTS_BUTTONS
+    to: RoutePaths.DEMO_COMPONENTS_BUTTON
   },
   {
     title: 'Links',

@@ -1,88 +1,215 @@
 <script setup lang="ts">
-import Card from '@registry/components/ui/card/Card.vue'
-import CardContent from '@registry/components/ui/card/CardContent.vue'
+import { ExternalLink } from 'lucide-vue-next'
+import CodePreview from '@/components/demo/CodePreview.vue'
+import ComponentSection from '@/components/demo/ComponentSection.vue'
+import ButtonLink from '@registry/components/ui/button-link/ButtonLink.vue'
 import HoverLink from '@registry/components/ui/hover-link/HoverLink.vue'
 import HoverLinkExternal from '@registry/components/ui/hover-link/HoverLinkExternal.vue'
-import LinkExternal from '@registry/components/ui/link/LinkExternal.vue'
 import DocsPageHeader from '../layouts/partials/DocsPageHeader.vue'
+
+const installCode = 'npx vue-blocks-registry add hover-link button-link'
+
+const hoverLinkCode = `<script setup lang="ts">
+import { HoverLink } from '@registry/components/ui/hover-link'
+<\/script>
+
+<template>
+  <div class="flex flex-row gap-4">
+    <HoverLink to="/demo">
+      Navigate to Demo
+    </HoverLink>
+    |
+    <HoverLinkExternal href="https://vuejs.org" target="_blank">
+      External Link
+    </HoverLinkExternal>
+  </div>
+</template>`
+
+const hoverLinkExternalCode = `<script setup lang="ts">
+import { HoverLinkExternal } from '@registry/components/ui/hover-link'
+<\/script>
+
+<template>
+  <HoverLinkExternal href="https://vuejs.org" target="_blank">
+    Vue.js Documentation
+  </HoverLinkExternal>
+</template>`
+
+const buttonLinkCode = `<script setup lang="ts">
+import { ButtonLink } from '@registry/components/ui/button-link'
+<\/script>
+
+<template>
+  <div class="flex gap-2">
+    <ButtonLink to="/demo" variant="primary">
+      Primary Link
+    </ButtonLink>
+    <ButtonLink to="/demo" variant="outline">
+      Outline Link
+    </ButtonLink>
+  </div>
+</template>`
+
+const buttonLinkVibesCode = `<script setup lang="ts">
+import { ButtonLink } from '@registry/components/ui/button-link'
+<\/script>
+
+<template>
+  <div class="flex gap-4">
+    <ButtonLink to="/demo" vibe="primary">
+      Primary Vibe
+    </ButtonLink>
+    <ButtonLink to="/demo" vibe="outline">
+      Outline Vibe
+    </ButtonLink>
+    <ButtonLink to="/demo" vibe="underline">
+      Underline Vibe
+    </ButtonLink>
+  </div>
+</template>`
 </script>
 
 <template>
   <div class="space-y-12">
-    <DocsPageHeader title="Links Components" description="Komponenty linków z hover efektem i smooth transitions" />
     <!-- Page Header -->
+    <DocsPageHeader
+      title="Links"
+      description="Router links with hover effects and smooth transitions."
+    />
 
-    <!-- LinkExternal Component -->
-    <div class="space-y-4 animate-slide-up">
-      <h3 class="text-2xl font-semibold text-slate-800 dark:text-slate-200">
-        LinkExternal
-      </h3>
-      <p class="text-slate-600 dark:text-slate-400">
-        Link z underline hover efektem i smooth transitions
-      </p>
-      <Card>
-        <CardContent>
-          <ul class="list-none flex flex-col gap-5 text-muted-foreground">
-            <li>
-              <LinkExternal href="https://vuejs.org" target="_blank" aria-label="Vue.js">
-                <span class="text-lg">Vue.js Documentation</span>
-              </LinkExternal>
-            </li>
-            <li>
-              <LinkExternal href="https://github.com/jm-sky/vue-blocks-registry" aria-label="GitHub Repository">
-                <span class="text-lg">GitHub Repository</span>
-              </LinkExternal>
-            </li>
-          </ul>
-        </CardContent>
-      </Card>
-    </div>
+    <!-- Preview -->
+    <ComponentSection title="Preview">
+      <CodePreview :code="hoverLinkCode">
+        <template #preview>
+          <div class="flex flex-row gap-4">
+            <HoverLink to="/demo">
+              Navigate to Demo
+            </HoverLink>
+            |
+            <HoverLinkExternal href="https://vuejs.org" target="_blank">
+              External Link
+            </HoverLinkExternal>
+          </div>
+        </template>
+      </CodePreview>
+    </ComponentSection>
 
-    <!-- HoverLink Component -->
-    <div class="space-y-4 animate-slide-up">
-      <h3 class="text-2xl font-semibold text-slate-800 dark:text-slate-200">
-        HoverLink
-      </h3>
-      <p class="text-slate-600 dark:text-slate-400">
-        Link z underline hover efektem i smooth transitions
-      </p>
-      <Card>
-        <CardContent>
-          <ul class="list-none flex flex-col gap-5 text-muted-foreground">
-            <li>
-              <HoverLink to="/demo/buttons" aria-label="Buttons demo">
-                <span class="text-lg">Button Components Demo</span>
-              </HoverLink>
-            </li>
-            <li>
-              <HoverLink to="/demo/forms" aria-label="Forms demo">
-                <span class="text-lg">Form Components Demo</span>
-              </HoverLink>
-            </li>
-          </ul>
-        </CardContent>
-      </Card>
-    </div>
+    <!-- Installation -->
+    <ComponentSection
+      id="installation"
+      title="Installation"
+    >
+      <div class="bg-slate-900 dark:bg-slate-950 rounded-lg border border-slate-700/60 p-4">
+        <pre class="text-emerald-400 dark:text-emerald-300 text-sm font-mono">{{ installCode }}</pre>
+      </div>
+    </ComponentSection>
 
-    <!-- HoverLinkExternal Component -->
-    <div class="space-y-4 animate-slide-up">
-      <h3 class="text-2xl font-semibold text-slate-800 dark:text-slate-200">
-        HoverLinkExternal
-      </h3>
-      <p class="text-slate-600 dark:text-slate-400">
-        Link z external link icon i smooth transitions
-      </p>
-      <Card>
-        <CardContent>
-          <ul class="list-none flex flex-col gap-5 text-muted-foreground">
-            <li>
-              <HoverLinkExternal href="https://vuejs.org" target="_blank" aria-label="Vue.js">
-                <span class="text-lg">Vue.js Documentation</span>
-              </HoverLinkExternal>
-            </li>
-          </ul>
-        </CardContent>
-      </Card>
-    </div>
+    <!-- Examples -->
+    <ComponentSection
+      id="examples"
+      title="Examples"
+    >
+      <div class="space-y-8">
+        <!-- HoverLink -->
+        <div class="space-y-4">
+          <h3 class="text-lg font-medium">
+            HoverLink
+          </h3>
+          <p class="text-sm text-slate-600 dark:text-slate-400">
+            Internal router link with animated underline on hover.
+          </p>
+          <CodePreview :code="hoverLinkCode">
+            <template #preview>
+              <div class="flex flex-col gap-3">
+                <HoverLink to="/demo">
+                  Navigate to Demo
+                </HoverLink>
+                <HoverLink to="/demo/components">
+                  View Components
+                </HoverLink>
+              </div>
+            </template>
+          </CodePreview>
+        </div>
+
+        <!-- HoverLinkExternal -->
+        <div class="space-y-4">
+          <h3 class="text-lg font-medium">
+            HoverLinkExternal
+          </h3>
+          <p class="text-sm text-slate-600 dark:text-slate-400">
+            External link with icon and hover animation.
+          </p>
+          <CodePreview :code="hoverLinkExternalCode">
+            <template #preview>
+              <div class="flex flex-col gap-3">
+                <HoverLinkExternal href="https://vuejs.org" target="_blank">
+                  <span class="flex items-center gap-2">
+                    Vue.js Documentation
+                    <ExternalLink :size="16" />
+                  </span>
+                </HoverLinkExternal>
+                <HoverLinkExternal href="https://github.com" target="_blank">
+                  <span class="flex items-center gap-2">
+                    GitHub
+                    <ExternalLink :size="16" />
+                  </span>
+                </HoverLinkExternal>
+              </div>
+            </template>
+          </CodePreview>
+        </div>
+
+        <!-- ButtonLink -->
+        <div class="space-y-4">
+          <h3 class="text-lg font-medium">
+            ButtonLink
+          </h3>
+          <p class="text-sm text-slate-600 dark:text-slate-400">
+            Router link styled as a button. Combines Button component with RouterLink functionality.
+          </p>
+          <CodePreview :code="buttonLinkCode">
+            <template #preview>
+              <div class="flex flex-wrap gap-2">
+                <ButtonLink to="/demo" variant="primary">
+                  Primary Link
+                </ButtonLink>
+                <ButtonLink to="/demo" variant="outline">
+                  Outline Link
+                </ButtonLink>
+                <ButtonLink to="/demo" variant="secondary">
+                  Secondary Link
+                </ButtonLink>
+              </div>
+            </template>
+          </CodePreview>
+        </div>
+
+        <!-- ButtonLink with Vibes -->
+        <div class="space-y-4">
+          <h3 class="text-lg font-medium">
+            ButtonLink with Vibes ✨
+          </h3>
+          <p class="text-sm text-slate-600 dark:text-slate-400">
+            ButtonLink also supports unique "vibe" animations.
+          </p>
+          <CodePreview :code="buttonLinkVibesCode">
+            <template #preview>
+              <div class="flex flex-wrap gap-4">
+                <ButtonLink to="/demo" vibe="primary">
+                  Primary Vibe
+                </ButtonLink>
+                <ButtonLink to="/demo" vibe="outline">
+                  Outline Vibe
+                </ButtonLink>
+                <ButtonLink to="/demo" vibe="underline">
+                  Underline Vibe
+                </ButtonLink>
+              </div>
+            </template>
+          </CodePreview>
+        </div>
+      </div>
+    </ComponentSection>
   </div>
 </template>
