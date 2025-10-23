@@ -23,7 +23,7 @@ const showDocsLayout = computed(() => {
     <div class="fixed inset-0 -z-10 bg-gradient-to-br from-slate-50 via-white to-blue-50/30 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900" />
 
     <!-- Sticky Header -->
-    <MainLayoutHeaderNav />
+    <MainLayoutHeaderNav :show-sidebar-trigger="showDocsLayout" />
 
     <!-- Main Content -->
     <main class="flex-1">
