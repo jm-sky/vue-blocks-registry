@@ -22,7 +22,7 @@ const { t } = useI18n()
       {{ t('demo.hero.tech_stack') }}
     </p>
 
-    <div class="flex gap-6 justify-center pt-4">
+    <div class="flex flex-wrap gap-3 md:gap-6 justify-center pt-4">
       <ButtonLink
         :to="RoutePaths.DEMO_INTRODUCTION"
         vibe="primary"
