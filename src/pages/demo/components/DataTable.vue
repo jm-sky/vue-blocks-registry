@@ -2,22 +2,14 @@
 import DataTable from '@registry/components/data-table/DataTable.vue'
 import { columns } from '@registry/examples/data-table/columns-full'
 import { payments } from '@registry/examples/data-table/data'
+import DocsPageHeader from '../layouts/partials/DocsPageHeader.vue'
 
-const title = 'DataTable'
-const description = 'Advanced table with sorting, filtering, pagination, and row selection powered by TanStack Table'
 </script>
 
 <template>
   <div class="space-y-8">
     <!-- Page Header -->
-    <div class="animate-fade-in">
-      <h2 class="text-3xl font-bold tracking-tight text-slate-900 dark:text-slate-100 mb-2">
-        {{ title }}
-      </h2>
-      <p class="text-slate-600 dark:text-slate-300 leading-relaxed">
-        {{ description }}
-      </p>
-    </div>
+    <DocsPageHeader title="DataTable" description="Advanced table with sorting, filtering, pagination, and row selection powered by TanStack Table" />
 
     <!-- Full Featured DataTable -->
     <div class="space-y-4 animate-slide-up">

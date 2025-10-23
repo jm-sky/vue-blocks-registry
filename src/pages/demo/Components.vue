@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import ComponentCard from '@/components/demo/ComponentCard.vue'
 import { RoutePaths } from '@/router/route-names'
+import DocsPageHeader from './layouts/partials/DocsPageHeader.vue'
 
 const components = [
   {
@@ -28,14 +29,7 @@ const components = [
 
 <template>
   <div class="space-y-8">
-    <div>
-      <h1 class="text-3xl font-bold tracking-tight">
-        Components
-      </h1>
-      <p class="mt-2 text-muted-foreground">
-        Wybierz komponent z listy poniżej lub użyj sidebar nawigacji.
-      </p>
-    </div>
+    <DocsPageHeader title="Components" description="Wybierz komponent z listy poniżej lub użyj sidebar nawigacji." />
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
       <ComponentCard

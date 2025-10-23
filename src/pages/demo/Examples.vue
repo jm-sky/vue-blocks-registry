@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import ComponentCard from '@/components/demo/ComponentCard.vue'
 import { RoutePaths } from '@/router/route-names'
+import DocsPageHeader from './layouts/partials/DocsPageHeader.vue'
 
 const examples = [
   {
@@ -18,14 +19,7 @@ const examples = [
 
 <template>
   <div class="space-y-8">
-    <div>
-      <h1 class="text-3xl font-bold tracking-tight">
-        Examples
-      </h1>
-      <p class="mt-2 text-muted-foreground">
-        Przykłady użycia komponentów w rzeczywistych scenariuszach.
-      </p>
-    </div>
+    <DocsPageHeader title="Examples" description="Przykłady użycia komponentów w rzeczywistych scenariuszach." />
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
       <ComponentCard

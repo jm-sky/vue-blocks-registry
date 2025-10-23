@@ -4,19 +4,13 @@ import CardContent from '@registry/components/ui/card/CardContent.vue'
 import HoverLink from '@registry/components/ui/hover-link/HoverLink.vue'
 import HoverLinkExternal from '@registry/components/ui/hover-link/HoverLinkExternal.vue'
 import LinkExternal from '@registry/components/ui/link/LinkExternal.vue'
+import DocsPageHeader from '../layouts/partials/DocsPageHeader.vue'
 </script>
 
 <template>
   <div class="space-y-12">
+    <DocsPageHeader title="Links Components" description="Komponenty linków z hover efektem i smooth transitions" />
     <!-- Page Header -->
-    <div class="animate-fade-in">
-      <h2 class="text-3xl font-bold tracking-tight text-slate-900 dark:text-slate-100 mb-2">
-        Links Components
-      </h2>
-      <p class="text-slate-600 dark:text-slate-300 leading-relaxed">
-        Komponenty linków z hover efektem i smooth transitions
-      </p>
-    </div>
 
     <!-- LinkExternal Component -->
     <div class="space-y-4 animate-slide-up">

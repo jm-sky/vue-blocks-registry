@@ -16,7 +16,7 @@ const message: string | null = route.meta.message as string | null
     </template>
 
     <div class="max-w-md w-full space-y-8">
-      <div class="space-y-4 bg-white dark:bg-gray-800 py-8 px-6 shadow-lg rounded-lg">
+      <div class="space-y-4 bg-card/80 py-8 px-6 shadow-lg rounded-lg">
         <h2 class="text-center text-2xl font-bold text-gray-900 dark:text-white">
           Zaloguj się
         </h2>

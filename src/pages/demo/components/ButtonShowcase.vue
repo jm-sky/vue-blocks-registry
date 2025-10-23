@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import ButtonVariantGroup from './ButtonVariantGroup.vue'
+import ButtonVariantGroup from '@/components/demo/ButtonVariantGroup.vue'
+import DocsPageHeader from '../layouts/partials/DocsPageHeader.vue'
 import type { ButtonVariants } from '@registry/components/ui/button'
 
 interface Props {
@@ -28,14 +29,7 @@ const vibes: { name: string; value: ButtonVariants['vibe'] }[] = [
 <template>
   <div class="space-y-8">
     <!-- Page Header -->
-    <div class="animate-fade-in">
-      <h2 class="text-3xl font-bold tracking-tight text-slate-900 dark:text-slate-100 mb-2">
-        {{ title }}
-      </h2>
-      <p class="text-slate-600 dark:text-slate-300 leading-relaxed">
-        {{ description }}
-      </p>
-    </div>
+    <DocsPageHeader title="Button Components" description="Różnorodne style przycisków z wariantami i wibracjami do wykorzystania w Twoich projektach" />
 
     <!-- Variants Section -->
     <section class="space-y-6 animate-slide-up">

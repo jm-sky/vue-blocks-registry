@@ -29,7 +29,7 @@ onUnmounted(() => {
     v-show="isVisible"
     type="button"
     aria-label="Scroll to top"
-    class="fixed bottom-8 right-8 bg-primary hover:bg-primary/90 text-primary-foreground rounded-full p-3 shadow-lg transition-colors duration-300"
+    class="fixed bottom-8 right-8 bg-primary  cursor-pointer hover:bg-primary/90 text-primary-foreground rounded-full p-3 shadow-lg transition-colors duration-300"
     @click="scrollToTop"
   >
     <ArrowUp class="size-6" />

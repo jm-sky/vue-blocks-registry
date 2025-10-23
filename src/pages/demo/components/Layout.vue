@@ -1,11 +1,13 @@
 <script setup lang="ts">
-import LinkWithArrow from '@/components/demo/LinkWithArrow.vue'
 import PageCard from '@registry/components/layout/PageCard.vue'
 import PageListHeader from '@registry/components/layout/PageListHeader.vue'
 import PageListWrapper from '@registry/components/layout/PageListWrapper.vue'
 import Button from '@registry/components/ui/button/Button.vue'
 import Card from '@registry/components/ui/card/Card.vue'
 import CardContent from '@registry/components/ui/card/CardContent.vue'
+import HoverCard from '@registry/components/ui/hover-card/HoverCard.vue'
+import ScrollToTop from '@registry/components/ui/scroll-to-top/ScrollToTop.vue'
+import DocsPageHeader from '../layouts/partials/DocsPageHeader.vue'
 
 const layouts = [
   {
@@ -39,14 +41,7 @@ const layouts = [
 <template>
   <div class="space-y-12">
     <!-- Page Header -->
-    <div class="animate-fade-in">
-      <h2 class="text-3xl font-bold tracking-tight text-slate-900 dark:text-slate-100 mb-2">
-        Layout Components
-      </h2>
-      <p class="text-slate-600 dark:text-slate-300 leading-relaxed">
-        Komponenty układu, nawigacji i utility components do budowania profesjonalnych aplikacji
-      </p>
-    </div>
+    <DocsPageHeader title="Layout Components" description="Komponenty układu, nawigacji i utility components do budowania profesjonalnych aplikacji" />
 
     <!-- ScrollToTop Component -->
     <div class="space-y-4 animate-slide-up">
@@ -154,20 +149,17 @@ const layouts = [
         Vue Blocks Registry oferuje 5 gotowych layoutów
       </p>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <Card v-for="layout in layouts" :key="layout.title">
-          <CardContent>
-            <h4 class="text-lg font-semibold text-slate-800 dark:text-slate-200 mb-2">
-              {{ layout.title }}
-            </h4>
-            <p class="text-slate-600 dark:text-slate-400">
-              {{ layout.description }}
-            </p>
-            <p class="mt-4 text-sm">
-              <LinkWithArrow :link-to="layout.linkTo" label="Zobacz komponenty" />
-            </p>
-          </CardContent>
-        </Card>
+        <HoverCard
+          v-for="layout in layouts"
+          :key="layout.title"
+          :title="layout.title"
+          :description="layout.description"
+          :link-to="layout.linkTo"
+          link-label="Zobacz komponenty"
+        />
       </div>
     </div>
+
+    <ScrollToTop />
   </div>
 </template>

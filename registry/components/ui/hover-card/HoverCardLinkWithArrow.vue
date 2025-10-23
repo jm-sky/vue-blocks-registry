@@ -14,6 +14,7 @@ defineProps<{
   >
     {{ label }}
     <svg
+      aria-hidden="true"
       class="block size-4 ml-2 translate-x-0 group-hover:translate-x-2 transition-transform duration-500 ease-in-out"
       fill="none"
       stroke="currentColor"

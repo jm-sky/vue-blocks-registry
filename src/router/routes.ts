@@ -32,12 +32,12 @@ export const routes: RouteRecordRaw[] = [
       {
         path: 'components/buttons',
         name: RouteNames.DEMO_COMPONENTS_BUTTONS,
-        component: () => import('@/pages/demo/components/Buttons.vue'),
+        component: () => import('@/pages/demo/components/ButtonShowcase.vue'),
       },
       {
         path: 'components/links',
         name: RouteNames.DEMO_COMPONENTS_LINKS,
-        component: () => import('@/pages/demo/components/Links.vue'),
+        component: () => import('@/pages/demo/components/LinkShowcase.vue'),
       },
       {
         path: 'components/layout',

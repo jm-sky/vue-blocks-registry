@@ -1,13 +1,10 @@
+<script setup lang="ts">
+import DocsPageHeader from '../layouts/partials/DocsPageHeader.vue'
+</script>
+
 <template>
   <div class="space-y-8">
-    <div>
-      <h1 class="text-3xl font-bold tracking-tight">
-        Dashboard Example
-      </h1>
-      <p class="mt-2 text-muted-foreground">
-        Przykład dashboard aplikacji
-      </p>
-    </div>
+    <DocsPageHeader title="Dashboard Example" description="Przykładowy dashboard z komponentami nawigacji, widgetów i innymi elementami" />
 
     <div class="rounded-lg border border-border bg-card p-8">
       <p class="text-center text-muted-foreground">
