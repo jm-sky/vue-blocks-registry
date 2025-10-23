@@ -1,0 +1,22 @@
+{
+  "$schema": "../../../../registry-item-schema.json",
+  "name": "locale-toggle",
+  "type": "registry:ui",
+  "title": "Locale Toggle",
+  "description": "Animated toggle button for quick language switching with smooth transitions",
+  "categories": [
+    "ui",
+    "i18n"
+  ],
+  "files": [
+    {
+      "path": "shared/i18n/components/LocaleToggle.vue",
+      "type": "registry:ui"
+    }
+  ],
+  "dependencies": [],
+  "registryDependencies": [
+    "button",
+    "i18n-composables"
+  ]
+}
