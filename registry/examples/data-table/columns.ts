@@ -8,7 +8,7 @@ export const columns: ColumnDef<Payment>[] = [
     accessorKey: 'id',
     header: () => h('div', { class: 'text-left' }, 'ID'),
     cell: ({ row }) => {
-      const id = row.getValue('id')
+      const id = row.getValue('id') as string
       return h('div', { class: 'text-left font-medium' }, id)
     },
   },
@@ -16,7 +16,7 @@ export const columns: ColumnDef<Payment>[] = [
     accessorKey: 'status',
     header: () => h('div', { class: 'text-left' }, 'Status'),
     cell: ({ row }) => {
-      const status = row.getValue('status')
+      const status = row.getValue('status') as string
       return h('div', { class: 'text-left capitalize' }, status)
     },
   },
@@ -24,7 +24,7 @@ export const columns: ColumnDef<Payment>[] = [
     accessorKey: 'email',
     header: () => h('div', { class: 'text-left' }, 'Email'),
     cell: ({ row }) => {
-      const email = row.getValue('email')
+      const email = row.getValue('email') as string
       return h('div', { class: 'text-left' }, email)
     },
   },
