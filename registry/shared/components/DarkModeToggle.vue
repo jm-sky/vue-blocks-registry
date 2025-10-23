@@ -10,6 +10,7 @@ const { isDark, toggle } = useDarkMode()
   <Button
     variant="ghost"
     :aria-label="isDark ? 'Switch to light mode' : 'Switch to dark mode'"
+    class="min-w-10"
     @click="toggle"
   >
     <Transition
@@ -20,8 +21,8 @@ const { isDark, toggle } = useDarkMode()
       leave-active-class="absolute transition-all duration-200 ease-in-out"
       leave-to-class="opacity-0 translate-y-5"
     >
-      <Sun v-if="isDark" :key="'sun'" class="size-4" />
-      <Moon v-else :key="'moon'" class="size-4" />
+      <Sun v-if="isDark" key="sun" class="size-4" />
+      <Moon v-else key="moon" class="size-4" />
     </Transition>
   </Button>
 </template>

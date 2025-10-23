@@ -1,21 +1,20 @@
 // shared/composables/useDarkMode.ts
-import { onMounted, ref, watch } from 'vue'
-
-const DARK_MODE_KEY = 'vue-blocks:dark-mode'
+import { onBeforeMount, ref, watch } from 'vue'
+import { DARK_MODE_STORAGE_KEY } from '../config/config'
 
 // Shared state across all components
 const isDark = ref(false)
 
 export function useDarkMode() {
   // Initialize dark mode from localStorage or system preference
-  onMounted(() => {
-    const stored = localStorage.getItem(DARK_MODE_KEY)
+  onBeforeMount(() => {
+    const stored = localStorage.getItem(DARK_MODE_STORAGE_KEY)
 
     if (stored !== null) {
       isDark.value = stored === 'true'
     } else {
       // Check system preference
-      isDark.value = window.matchMedia('(prefers-color-scheme: dark)').matches
+      isDark.value = isPrefersDark()
     }
 
     // Apply initial state
@@ -25,10 +24,12 @@ export function useDarkMode() {
   // Watch for changes and update DOM
   watch(isDark, (newValue) => {
     updateDarkModeClass(newValue)
-    localStorage.setItem(DARK_MODE_KEY, String(newValue))
+    localStorage.setItem(DARK_MODE_STORAGE_KEY, String(newValue))
   })
 
-  function updateDarkModeClass(dark: boolean) {
+  const isPrefersDark = (): boolean => window.matchMedia('(prefers-color-scheme: dark)').matches
+
+  const updateDarkModeClass = (dark: boolean) => {
     if (dark) {
       document.documentElement.classList.add('dark')
     } else {
@@ -36,11 +37,11 @@ export function useDarkMode() {
     }
   }
 
-  function toggle() {
+  const toggle = () => {
     isDark.value = !isDark.value
   }
 
-  function setDark(value: boolean) {
+  const setDark = (value: boolean) => {
     isDark.value = value
   }
 

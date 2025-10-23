@@ -9,4 +9,5 @@ export const config = {
 }
 
 // osobna zmienna do użycia w localStorage / store
+export const DARK_MODE_STORAGE_KEY = `${config.app.id}:dark-mode`
 export const JWT_STORE_KEY = `${config.app.id}:token`
