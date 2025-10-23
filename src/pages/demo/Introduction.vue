@@ -8,7 +8,6 @@ import ButtonLink from '@registry/components/ui/button-link/ButtonLink.vue'
 import ButtonLinkExternal from '@registry/components/ui/button-link/ButtonLinkExternal.vue'
 import Card from '@registry/components/ui/card/Card.vue'
 import CardContent from '@registry/components/ui/card/CardContent.vue'
-import LinkExternal from '@registry/components/ui/link/LinkExternal.vue'
 import DocsPageHeader from './layouts/partials/DocsPageHeader.vue'
 
 // eslint-disable-next-line @typescript-eslint/unbound-method

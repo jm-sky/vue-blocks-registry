@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n'
 import GuestLayoutCentered from '@registry/app/layouts/GuestLayoutCentered.vue'
 import { Alert, AlertDescription } from '@registry/components/ui/alert'
 import { Button } from '@registry/components/ui/button'
@@ -12,6 +11,7 @@ import { toTypedSchema } from '@vee-validate/zod'
 import { CircleCheck } from 'lucide-vue-next'
 import { useForm } from 'vee-validate'
 import { ref } from 'vue'
+import { useI18n } from 'vue-i18n'
 import type { ForgotPasswordData } from '@registry/modules/auth/types/user'
 
 const { t } = useI18n()

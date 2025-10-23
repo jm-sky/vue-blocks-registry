@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n'
 import GuestLayoutCentered from '@registry/app/layouts/GuestLayoutCentered.vue'
 import Alert from '@registry/components/ui/alert/Alert.vue'
 import AlertDescription from '@registry/components/ui/alert/AlertDescription.vue'
 import LoginForm from '@registry/modules/auth/components/LoginForm.vue'
+import { useI18n } from 'vue-i18n'
 import { useRoute } from 'vue-router'
 
 const { t } = useI18n()

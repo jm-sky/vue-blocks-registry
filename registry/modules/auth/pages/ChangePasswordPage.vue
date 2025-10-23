@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n'
 import AuthenticatedLayout from '@registry/app/layouts/AuthenticatedLayout.vue'
 import { Button } from '@registry/components/ui/button'
 import { FormControl, FormField, FormItem, FormLabel, FormMessage } from '@registry/components/ui/form'
@@ -10,6 +9,7 @@ import { isValidationError } from '@registry/shared/utils/typeGuards'
 import { toTypedSchema } from '@vee-validate/zod'
 import { useForm } from 'vee-validate'
 import { ref } from 'vue'
+import { useI18n } from 'vue-i18n'
 import type { ChangePasswordData } from '@registry/modules/auth/types/user'
 
 const { t } = useI18n()

@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n'
 import { Button } from '@registry/components/ui/button'
 import { FormControl, FormField, FormItem, FormLabel, FormMessage } from '@registry/components/ui/form'
 import { Input } from '@registry/components/ui/input'
@@ -8,6 +7,7 @@ import { loginSchema } from '@registry/modules/auth/validation/login.schema'
 import { isValidationError } from '@registry/shared/utils/typeGuards'
 import { toTypedSchema } from '@vee-validate/zod'
 import { useForm } from 'vee-validate'
+import { useI18n } from 'vue-i18n'
 import { useRouter } from 'vue-router'
 import type { LoginCredentials } from '@registry/modules/auth/types/user'
 
