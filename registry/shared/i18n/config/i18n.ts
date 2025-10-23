@@ -17,16 +17,15 @@ export const LOCALE_LABELS: Record<SupportedLocale, string> = {
 
 /**
  * Detects preferred locale from browser settings
+ * @param browserLanguages - Array of browser language preferences
  * @returns Preferred locale if supported, otherwise undefined
  */
-export const getPreferredLocale = (): SupportedLocale | undefined => {
-  const browserLanguages = navigator.languages.length > 0 ? navigator.languages : [navigator.language]
-
+export const getPreferredLocale = (browserLanguages: readonly string[]): SupportedLocale | undefined => {
   for (const lang of browserLanguages) {
     // Extract language code (e.g., 'en' from 'en-US')
-    const languageCode = lang.split('-')[0].toLowerCase()
+    const languageCode = lang.split('-')[0]?.toLowerCase()
 
-    if (SUPPORTED_LOCALES.includes(languageCode as SupportedLocale)) {
+    if (languageCode && SUPPORTED_LOCALES.includes(languageCode as SupportedLocale)) {
       return languageCode as SupportedLocale
     }
   }
@@ -45,7 +44,8 @@ const getStoredLocale = (): SupportedLocale => {
   }
 
   // 2. Check browser preferred language
-  const preferred = getPreferredLocale()
+  const browserLanguages = navigator.languages.length > 0 ? navigator.languages : [navigator.language]
+  const preferred = getPreferredLocale(browserLanguages)
   if (preferred) {
     return preferred
   }
