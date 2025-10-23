@@ -100,7 +100,7 @@ const features = [
         Basic Usage
       </h3>
       <div class="bg-gray-900 dark:bg-gray-950 p-6 rounded-lg overflow-x-auto">
-        <pre class="text-sm text-gray-100"><code>&lt;script setup lang="ts"&gt;
+        <pre class="text-sm text-foreground"><code>&lt;script setup lang="ts"&gt;
 import DataTable from '@registry/components/data-table/DataTable.vue'
 import { columns } from './columns'
 import { data } from './data'

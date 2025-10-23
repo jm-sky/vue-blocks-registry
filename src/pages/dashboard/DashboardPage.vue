@@ -82,10 +82,10 @@ const quickActions = computed(() => [
           <CardContent class="p-6">
             <div class="flex items-center justify-between">
               <div class="flex-1">
-                <p class="text-sm font-medium text-gray-600 dark:text-gray-400">
+                <p class="text-sm font-medium text-muted-foreground">
                   {{ stat.name }}
                 </p>
-                <p class="mt-2 text-lg font-semibold text-gray-900 dark:text-white truncate">
+                <p class="mt-2 text-lg font-semibold text-card-foreground truncate">
                   {{ stat.value }}
                 </p>
               </div>
@@ -105,31 +105,31 @@ const quickActions = computed(() => [
         <CardContent>
           <dl class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-              <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">
+              <dt class="text-sm font-medium text-muted-foreground">
                 {{ t('dashboard.user_info.full_name') }}
               </dt>
-              <dd class="mt-1 text-sm text-gray-900 dark:text-white">
+              <dd class="mt-1 text-sm text-card-foreground">
                 {{ authStore.user?.name ?? t('dashboard.user_info.not_provided') }}
               </dd>
             </div>
             <div>
-              <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">
+              <dt class="text-sm font-medium text-muted-foreground">
                 {{ t('dashboard.user_info.email_address') }}
               </dt>
-              <dd class="mt-1 text-sm text-gray-900 dark:text-white">
+              <dd class="mt-1 text-sm text-card-foreground">
                 {{ authStore.user?.email }}
               </dd>
             </div>
             <div>
-              <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">
+              <dt class="text-sm font-medium text-muted-foreground">
                 {{ t('dashboard.user_info.user_id') }}
               </dt>
-              <dd class="mt-1 text-sm text-gray-900 dark:text-white font-mono">
+              <dd class="mt-1 text-sm text-card-foreground font-mono">
                 {{ authStore.user?.id }}
               </dd>
             </div>
             <div>
-              <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">
+              <dt class="text-sm font-medium text-muted-foreground">
                 {{ t('dashboard.user_info.auth_status') }}
               </dt>
               <dd class="mt-1">
@@ -141,13 +141,13 @@ const quickActions = computed(() => [
           </dl>
 
           <!-- Avatar Section -->
-          <div class="mt-6 pt-6 border-t border-gray-200 dark:border-gray-700">
+          <div class="mt-6 pt-6 border-t border-border">
             <div class="flex items-center gap-4">
               <img
                 v-if="authStore.user?.avatar"
                 :src="authStore.user.avatar"
                 :alt="authStore.user.name"
-                class="size-16 rounded-full ring-2 ring-gray-200 dark:ring-gray-700"
+                class="size-16 rounded-full ring-2 ring-border"
               >
               <div
                 v-else
@@ -156,10 +156,10 @@ const quickActions = computed(() => [
                 {{ authStore.user?.name?.charAt(0) ?? authStore.user?.email?.charAt(0) }}
               </div>
               <div>
-                <p class="text-sm font-medium text-gray-900 dark:text-white">
+                <p class="text-sm font-medium text-card-foreground">
                   {{ t('dashboard.user_info.profile_picture') }}
                 </p>
-                <p class="text-xs text-gray-500 dark:text-gray-400">
+                <p class="text-xs text-muted-foreground">
                   {{ t('dashboard.user_info.avatar_generated') }}
                 </p>
               </div>

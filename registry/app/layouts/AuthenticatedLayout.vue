@@ -23,14 +23,14 @@ const handleLogout = async () => {
 </script>
 
 <template>
-  <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
+  <div class="min-h-screen bg-muted">
     <!-- Top Bar -->
-    <nav class="bg-white dark:bg-gray-800 shadow-sm border-b dark:border-gray-700">
+    <nav class="bg-card shadow-sm border-b border-border">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
           <!-- Left: Logo -->
           <div class="flex items-center">
-            <RouterLink to="/dashboard" class="text-xl font-bold text-gray-900 dark:text-white hover:opacity-80 transition-opacity">
+            <RouterLink to="/dashboard" class="text-xl font-bold text-card-foreground hover:opacity-80 transition-opacity">
               <LogoText />
             </RouterLink>
           </div>
@@ -51,13 +51,13 @@ const handleLogout = async () => {
               <template #menu-items>
                 <RouterLink
                   to="/profile"
-                  class="flex items-center gap-3 px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                  class="flex items-center gap-3 px-4 py-2 text-sm text-card-foreground hover:bg-accent hover:text-accent-foreground transition-colors"
                 >
                   Profile
                 </RouterLink>
                 <RouterLink
                   to="/settings"
-                  class="flex items-center gap-3 px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                  class="flex items-center gap-3 px-4 py-2 text-sm text-card-foreground hover:bg-accent hover:text-accent-foreground transition-colors"
                 >
                   Settings
                 </RouterLink>

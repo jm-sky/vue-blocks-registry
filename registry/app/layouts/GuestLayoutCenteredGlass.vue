@@ -48,7 +48,7 @@ const layoutActionsComponent = route.meta.layoutActionsComponent
     <!-- Footer -->
     <footer class="relative z-0">
       <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-        <p class="text-center text-sm text-gray-500 dark:text-gray-400">
+        <p class="text-center text-sm text-muted-foreground">
           &copy; 2025 Vue Blocks Registry. Demo application.
         </p>
       </div>

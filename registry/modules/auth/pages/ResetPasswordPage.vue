@@ -49,15 +49,15 @@ const onSubmit = handleSubmit(async (values: ResetPasswordData) => {
   <GuestLayoutCentered>
     <div class="max-w-md w-full space-y-8">
       <div>
-        <h2 class="text-center text-3xl font-extrabold text-gray-900 dark:text-white">
+        <h2 class="text-center text-3xl font-extrabold text-foreground">
           Set New Password
         </h2>
-        <p class="mt-2 text-center text-sm text-gray-600 dark:text-gray-400">
+        <p class="mt-2 text-center text-sm text-muted-foreground">
           Enter your new password below
         </p>
       </div>
 
-      <div class="bg-white dark:bg-gray-800 py-8 px-6 shadow-lg rounded-lg space-y-4">
+      <div class="bg-card py-8 px-6 shadow-lg rounded-lg space-y-4">
         <div v-if="successMessage" class="bg-green-50 border border-green-200 text-green-700 px-4 py-3 rounded">
           {{ successMessage }}
         </div>

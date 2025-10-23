@@ -46,13 +46,13 @@ const handleLogout = () => {
     </button>
 
     <!-- Dropdown menu -->
-    <div class="absolute right-0 mt-2 w-64 bg-white dark:bg-gray-800 border dark:border-gray-700 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+    <div class="absolute right-0 mt-2 w-64 bg-card border border-border rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
       <!-- User info -->
-      <div class="px-4 py-3 border-b dark:border-gray-700">
-        <p v-if="userName" class="text-sm font-medium text-gray-900 dark:text-white">
+      <div class="px-4 py-3 border-b border-border">
+        <p v-if="userName" class="text-sm font-medium text-card-foreground">
           {{ userName }}
         </p>
-        <p class="text-xs text-gray-500 dark:text-gray-400 truncate">
+        <p class="text-xs text-muted-foreground truncate">
           {{ userEmail }}
         </p>
       </div>
@@ -63,7 +63,7 @@ const handleLogout = () => {
         <slot name="menu-items">
           <RouterLink
             to="/profile"
-            class="flex items-center gap-3 px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+            class="flex items-center gap-3 px-4 py-2 text-sm text-card-foreground hover:bg-accent hover:text-accent-foreground transition-colors"
           >
             <User class="size-4" />
             Profile
@@ -71,12 +71,12 @@ const handleLogout = () => {
         </slot>
 
         <!-- Separator -->
-        <div class="border-t dark:border-gray-700 my-2" />
+        <div class="border-t border-border my-2" />
 
         <!-- Logout -->
         <button
           type="button"
-          class="flex items-center gap-3 px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors w-full text-left"
+          class="flex items-center gap-3 px-4 py-2 text-sm text-card-foreground hover:bg-accent hover:text-accent-foreground transition-colors w-full text-left"
           @click="handleLogout"
         >
           <LogOut class="size-4" />

@@ -19,10 +19,10 @@ const message: string | null = route.meta.message as string | null
 
     <div class="max-w-md w-full space-y-8">
       <div class="space-y-4 bg-card/80 py-8 px-6 shadow-lg rounded-lg">
-        <h2 class="text-center text-2xl font-bold text-gray-900 dark:text-white">
+        <h2 class="text-center text-2xl font-bold text-card-foreground">
           {{ t('auth.sign_in_to_account') }}
         </h2>
-        <p class="mt-2 text-center text-sm text-gray-600 dark:text-gray-400">
+        <p class="mt-2 text-center text-sm text-muted-foreground">
           {{ t('auth.links.or_create_account') }}
           <RouterLink to="/auth/register" class="font-medium text-primary hover:underline">
             {{ t('auth.links.create_new_account') }}
@@ -32,7 +32,7 @@ const message: string | null = route.meta.message as string | null
       </div>
 
       <div class="text-center">
-        <RouterLink to="/auth/forgot-password" class="text-sm text-gray-600 dark:text-gray-400 hover:underline">
+        <RouterLink to="/auth/forgot-password" class="text-sm text-muted-foreground hover:underline">
           {{ t('auth.forgot_password') }}
         </RouterLink>
       </div>

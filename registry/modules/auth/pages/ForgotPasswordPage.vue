@@ -46,15 +46,15 @@ const onSubmit = handleSubmit(async (values: ForgotPasswordData) => {
   <GuestLayoutCentered>
     <div class="max-w-md w-full space-y-8">
       <div>
-        <h2 class="text-center text-3xl font-extrabold text-gray-900 dark:text-white">
+        <h2 class="text-center text-3xl font-extrabold text-foreground">
           {{ t('auth.forgot_password_page.title') }}
         </h2>
-        <p class="mt-2 text-center text-sm text-gray-600 dark:text-gray-400">
+        <p class="mt-2 text-center text-sm text-muted-foreground">
           {{ t('auth.forgot_password_page.subtitle') }}
         </p>
       </div>
 
-      <div class="bg-white dark:bg-gray-800 py-8 px-6 shadow-lg rounded-lg space-y-4">
+      <div class="bg-card py-8 px-6 shadow-lg rounded-lg space-y-4">
         <Alert v-if="successMessage" variant="default" class="bg-green-50 dark:bg-green-900/20 border-green-200 dark:border-green-800">
           <CircleCheck class="size-4 text-green-600 dark:text-green-400" />
           <AlertDescription class="text-green-700 dark:text-green-300">

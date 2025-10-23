@@ -6,12 +6,12 @@ import DarkModeToggle from '@registry/shared/components/DarkModeToggle.vue'
 </script>
 
 <template>
-  <div class="min-h-screen bg-gray-50 dark:bg-gray-900">
-    <nav class="bg-white dark:bg-gray-800 shadow-sm">
+  <div class="min-h-screen bg-background">
+    <nav class="bg-card shadow-sm">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
           <div class="flex items-center">
-            <RouterLink to="/" class="text-xl font-bold text-gray-900 dark:text-white">
+            <RouterLink to="/" class="text-xl font-bold text-card-foreground">
               <LogoText />
             </RouterLink>
           </div>
@@ -19,7 +19,7 @@ import DarkModeToggle from '@registry/shared/components/DarkModeToggle.vue'
           <div class="flex items-center space-x-4">
             <RouterLink
               to="/auth/login"
-              class="text-sm text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white"
+              class="text-sm text-foreground hover:text-primary"
             >
               Zaloguj się
             </RouterLink>
@@ -39,9 +39,9 @@ import DarkModeToggle from '@registry/shared/components/DarkModeToggle.vue'
       <slot />
     </main>
 
-    <footer class="bg-white dark:bg-gray-800 border-t dark:border-gray-700 mt-auto">
+    <footer class="bg-card border-t border-border mt-auto">
       <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-        <p class="text-center text-sm text-gray-500 dark:text-gray-400">
+        <p class="text-center text-sm text-muted-foreground">
           &copy; 2025 MyApp. All rights reserved.
         </p>
       </div>
