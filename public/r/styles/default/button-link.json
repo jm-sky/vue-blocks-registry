@@ -1,0 +1,28 @@
+{
+  "$schema": "../../../../registry-item-schema.json",
+  "name": "button-link",
+  "type": "registry:ui",
+  "title": "Button Link",
+  "description": "Button component that renders as a RouterLink with all Button variants and RouterLink props support",
+  "categories": [
+    "ui",
+    "navigation"
+  ],
+  "files": [
+    {
+      "path": "components/ui/button-link/ButtonLink.vue",
+      "type": "registry:ui"
+    },
+    {
+      "path": "components/ui/button-link/index.ts",
+      "type": "registry:ui"
+    }
+  ],
+  "dependencies": [
+    "vue-router"
+  ],
+  "registryDependencies": [
+    "button",
+    "utils"
+  ]
+}

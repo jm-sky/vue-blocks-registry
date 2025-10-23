@@ -1,0 +1,79 @@
+{
+  "$schema": "../../../../registry-item-schema.json",
+  "name": "dropdown-menu",
+  "type": "registry:ui",
+  "title": "Dropdown Menu",
+  "description": "Dropdown menu components from shadcn-vue for actions and options",
+  "categories": [
+    "ui",
+    "navigation"
+  ],
+  "files": [
+    {
+      "path": "components/ui/dropdown-menu/DropdownMenu.vue",
+      "type": "registry:ui"
+    },
+    {
+      "path": "components/ui/dropdown-menu/DropdownMenuCheckboxItem.vue",
+      "type": "registry:ui"
+    },
+    {
+      "path": "components/ui/dropdown-menu/DropdownMenuContent.vue",
+      "type": "registry:ui"
+    },
+    {
+      "path": "components/ui/dropdown-menu/DropdownMenuGroup.vue",
+      "type": "registry:ui"
+    },
+    {
+      "path": "components/ui/dropdown-menu/DropdownMenuItem.vue",
+      "type": "registry:ui"
+    },
+    {
+      "path": "components/ui/dropdown-menu/DropdownMenuLabel.vue",
+      "type": "registry:ui"
+    },
+    {
+      "path": "components/ui/dropdown-menu/DropdownMenuRadioGroup.vue",
+      "type": "registry:ui"
+    },
+    {
+      "path": "components/ui/dropdown-menu/DropdownMenuRadioItem.vue",
+      "type": "registry:ui"
+    },
+    {
+      "path": "components/ui/dropdown-menu/DropdownMenuSeparator.vue",
+      "type": "registry:ui"
+    },
+    {
+      "path": "components/ui/dropdown-menu/DropdownMenuShortcut.vue",
+      "type": "registry:ui"
+    },
+    {
+      "path": "components/ui/dropdown-menu/DropdownMenuSub.vue",
+      "type": "registry:ui"
+    },
+    {
+      "path": "components/ui/dropdown-menu/DropdownMenuSubContent.vue",
+      "type": "registry:ui"
+    },
+    {
+      "path": "components/ui/dropdown-menu/DropdownMenuSubTrigger.vue",
+      "type": "registry:ui"
+    },
+    {
+      "path": "components/ui/dropdown-menu/DropdownMenuTrigger.vue",
+      "type": "registry:ui"
+    },
+    {
+      "path": "components/ui/dropdown-menu/index.ts",
+      "type": "registry:ui"
+    }
+  ],
+  "dependencies": [
+    "reka-ui"
+  ],
+  "registryDependencies": [
+    "utils"
+  ]
+}

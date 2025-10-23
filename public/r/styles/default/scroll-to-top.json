@@ -1,0 +1,25 @@
+{
+  "$schema": "../../../../registry-item-schema.json",
+  "name": "scroll-to-top",
+  "type": "registry:ui",
+  "title": "Scroll To Top",
+  "description": "Fixed position button that appears after scrolling down, with smooth scroll to top behavior",
+  "categories": [
+    "ui",
+    "navigation"
+  ],
+  "files": [
+    {
+      "path": "components/ui/scroll-to-top/ScrollToTop.vue",
+      "type": "registry:ui"
+    },
+    {
+      "path": "components/ui/scroll-to-top/index.ts",
+      "type": "registry:ui"
+    }
+  ],
+  "dependencies": [
+    "lucide-vue-next"
+  ],
+  "registryDependencies": []
+}

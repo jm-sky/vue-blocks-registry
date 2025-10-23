@@ -1,0 +1,41 @@
+{
+  "$schema": "../../../../registry-item-schema.json",
+  "name": "data-table",
+  "type": "registry:ui",
+  "title": "DataTable",
+  "description": "Advanced DataTable with TanStack Table v8 - sorting, filtering, pagination, row selection, column visibility",
+  "categories": [
+    "ui",
+    "data"
+  ],
+  "files": [
+    {
+      "path": "components/data-table/DataTable.vue",
+      "type": "registry:ui"
+    },
+    {
+      "path": "examples/data-table/types.ts",
+      "type": "registry:example"
+    },
+    {
+      "path": "examples/data-table/data.ts",
+      "type": "registry:example"
+    },
+    {
+      "path": "examples/data-table/columns-full.ts",
+      "type": "registry:example"
+    }
+  ],
+  "dependencies": [
+    "@tanstack/vue-table",
+    "lucide-vue-next"
+  ],
+  "registryDependencies": [
+    "utils",
+    "table",
+    "checkbox",
+    "dropdown-menu",
+    "button",
+    "input"
+  ]
+}

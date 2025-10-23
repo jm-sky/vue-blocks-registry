@@ -1,0 +1,27 @@
+{
+  "$schema": "../../../../registry-item-schema.json",
+  "name": "checkbox",
+  "type": "registry:ui",
+  "title": "Checkbox",
+  "description": "Checkbox component from shadcn-vue for forms and row selection",
+  "categories": [
+    "ui",
+    "form"
+  ],
+  "files": [
+    {
+      "path": "components/ui/checkbox/Checkbox.vue",
+      "type": "registry:ui"
+    },
+    {
+      "path": "components/ui/checkbox/index.ts",
+      "type": "registry:ui"
+    }
+  ],
+  "dependencies": [
+    "reka-ui"
+  ],
+  "registryDependencies": [
+    "utils"
+  ]
+}

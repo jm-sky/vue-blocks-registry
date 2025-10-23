@@ -1,0 +1,23 @@
+{
+  "$schema": "../../../../registry-item-schema.json",
+  "name": "hover-link",
+  "type": "registry:ui",
+  "title": "Hover Link",
+  "description": "Link component with glass-morphism hover effect and smooth transitions",
+  "categories": [
+    "ui",
+    "navigation"
+  ],
+  "files": [
+    {
+      "path": "components/ui/hover-link/HoverLink.vue",
+      "type": "registry:ui"
+    },
+    {
+      "path": "components/ui/hover-link/index.ts",
+      "type": "registry:ui"
+    }
+  ],
+  "dependencies": [],
+  "registryDependencies": []
+}

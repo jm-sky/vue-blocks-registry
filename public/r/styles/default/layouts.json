@@ -3,7 +3,7 @@
   "name": "layouts",
   "type": "registry:layout",
   "title": "App Layouts",
-  "description": "Application layouts (AuthenticatedLayout for logged users, DefaultLayout for public pages)",
+  "description": "Application layouts (AuthenticatedLayout with MainNav/UserNav, PublicLayout for landing pages, GuestLayoutCentered/CenteredGlass/TwoColumns for auth pages)",
   "categories": [
     "layout"
   ],
@@ -13,15 +13,29 @@
       "type": "registry:layout"
     },
     {
-      "path": "app/layouts/DefaultLayout.vue",
+      "path": "app/layouts/PublicLayout.vue",
+      "type": "registry:layout"
+    },
+    {
+      "path": "app/layouts/GuestLayoutCentered.vue",
+      "type": "registry:layout"
+    },
+    {
+      "path": "app/layouts/GuestLayoutCenteredGlass.vue",
+      "type": "registry:layout"
+    },
+    {
+      "path": "app/layouts/GuestLayoutTwoColumns.vue",
       "type": "registry:layout"
     }
   ],
   "dependencies": [
-    "vue-router"
+    "vue-router",
+    "lucide-vue-next"
   ],
   "registryDependencies": [
     "auth-store",
-    "auth-forms"
+    "layout-components",
+    "dark-mode"
   ]
 }

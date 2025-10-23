@@ -1,0 +1,57 @@
+{
+  "$schema": "../../../../registry-item-schema.json",
+  "name": "table",
+  "type": "registry:ui",
+  "title": "Table",
+  "description": "Base table components from shadcn-vue (Table, TableHeader, TableBody, TableRow, TableHead, TableCell, TableEmpty, TableCaption, TableFooter)",
+  "categories": [
+    "ui",
+    "data"
+  ],
+  "files": [
+    {
+      "path": "components/ui/table/Table.vue",
+      "type": "registry:ui"
+    },
+    {
+      "path": "components/ui/table/TableHeader.vue",
+      "type": "registry:ui"
+    },
+    {
+      "path": "components/ui/table/TableBody.vue",
+      "type": "registry:ui"
+    },
+    {
+      "path": "components/ui/table/TableRow.vue",
+      "type": "registry:ui"
+    },
+    {
+      "path": "components/ui/table/TableHead.vue",
+      "type": "registry:ui"
+    },
+    {
+      "path": "components/ui/table/TableCell.vue",
+      "type": "registry:ui"
+    },
+    {
+      "path": "components/ui/table/TableEmpty.vue",
+      "type": "registry:ui"
+    },
+    {
+      "path": "components/ui/table/TableCaption.vue",
+      "type": "registry:ui"
+    },
+    {
+      "path": "components/ui/table/TableFooter.vue",
+      "type": "registry:ui"
+    },
+    {
+      "path": "components/ui/table/index.ts",
+      "type": "registry:ui"
+    }
+  ],
+  "dependencies": [],
+  "registryDependencies": [
+    "utils"
+  ]
+}

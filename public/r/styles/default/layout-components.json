@@ -1,0 +1,42 @@
+{
+  "$schema": "../../../../registry-item-schema.json",
+  "name": "layout-components",
+  "type": "registry:ui",
+  "title": "Layout Components",
+  "description": "Utility components for page layouts (MainNav, UserNav, PageCard, PageListHeader, PageListWrapper)",
+  "categories": [
+    "ui",
+    "layout"
+  ],
+  "files": [
+    {
+      "path": "components/layout/MainNav.vue",
+      "type": "registry:ui"
+    },
+    {
+      "path": "components/layout/UserNav.vue",
+      "type": "registry:ui"
+    },
+    {
+      "path": "components/layout/PageCard.vue",
+      "type": "registry:ui"
+    },
+    {
+      "path": "components/layout/PageListHeader.vue",
+      "type": "registry:ui"
+    },
+    {
+      "path": "components/layout/PageListWrapper.vue",
+      "type": "registry:ui"
+    },
+    {
+      "path": "components/layout/index.ts",
+      "type": "registry:ui"
+    }
+  ],
+  "dependencies": [
+    "lucide-vue-next",
+    "vue-router"
+  ],
+  "registryDependencies": []
+}
