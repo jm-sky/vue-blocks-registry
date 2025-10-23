@@ -204,3 +204,10 @@
     @apply bg-slate-400 dark:bg-slate-500;
   }
 }
+
+@layer base {
+  /* Border and outline */
+  * {
+    @apply border-border outline-ring/50;
+  }
+}

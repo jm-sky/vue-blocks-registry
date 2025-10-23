@@ -6,7 +6,6 @@ import PageListWrapper from '@registry/components/layout/PageListWrapper.vue'
 import Button from '@registry/components/ui/button/Button.vue'
 import Card from '@registry/components/ui/card/Card.vue'
 import CardContent from '@registry/components/ui/card/CardContent.vue'
-import HoverLink from '@registry/components/ui/hover-link/HoverLink.vue'
 
 const layouts = [
   {
@@ -47,37 +46,6 @@ const layouts = [
       <p class="text-slate-600 dark:text-slate-300 leading-relaxed">
         Komponenty układu, nawigacji i utility components do budowania profesjonalnych aplikacji
       </p>
-    </div>
-
-    <!-- HoverLink Component -->
-    <div class="space-y-4 animate-slide-up">
-      <h3 class="text-2xl font-semibold text-slate-800 dark:text-slate-200">
-        HoverLink
-      </h3>
-      <p class="text-slate-600 dark:text-slate-400">
-        Link z underline hover efektem i smooth transitions
-      </p>
-      <Card>
-        <CardContent>
-          <ul class="list-none flex flex-col gap-5 text-muted-foreground">
-            <li>
-              <HoverLink href="https://vuejs.org" target="_blank" aria-label="Vue.js">
-                <span class="text-lg">Vue.js Documentation</span>
-              </HoverLink>
-            </li>
-            <li>
-              <HoverLink href="/demo/buttons" aria-label="Buttons demo">
-                <span class="text-lg">Button Components Demo</span>
-              </HoverLink>
-            </li>
-            <li>
-              <HoverLink href="/demo/forms" aria-label="Forms demo">
-                <span class="text-lg">Form Components Demo</span>
-              </HoverLink>
-            </li>
-          </ul>
-        </CardContent>
-      </Card>
     </div>
 
     <!-- ScrollToTop Component -->

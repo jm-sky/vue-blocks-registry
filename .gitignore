@@ -31,4 +31,4 @@ coverage
 pnpm-workspace.yaml
 
 # Test project
-tmp-test-project
+tmp-test-*

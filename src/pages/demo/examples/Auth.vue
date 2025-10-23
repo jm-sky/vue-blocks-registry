@@ -1,3 +1,11 @@
+<script setup lang="ts">
+import DemoBadge from '@/components/ui/badge/DemoBadge.vue'
+import StatusBadge from '@/components/ui/badge/StatusBadge.vue'
+import StandoutCard from '@/components/ui/card/StandoutCard.vue'
+import StandoutCardContent from '@/components/ui/card/StandoutCardContent.vue'
+import StandoutCardHeader from '@/components/ui/card/StandoutCardHeader.vue'
+</script>
+
 <template>
   <div class="space-y-8">
     <div class="animate-fade-in">
@@ -245,11 +253,3 @@ await register({ email, password, passwordConfirmation })</code></pre>
     </div>
   </div>
 </template>
-
-<script setup lang="ts">
-import DemoBadge from '@/components/ui/badge/DemoBadge.vue'
-import StatusBadge from '@/components/ui/badge/StatusBadge.vue'
-import StandoutCard from '@/components/ui/card/StandoutCard.vue'
-import StandoutCardContent from '@/components/ui/card/StandoutCardContent.vue'
-import StandoutCardHeader from '@/components/ui/card/StandoutCardHeader.vue'
-</script>

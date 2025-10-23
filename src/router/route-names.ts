@@ -4,13 +4,18 @@
 export const RouteNames = {
   // Public routes
   HOME: 'Home',
+  // Main demo (v3)
   DEMO: 'Demo',
   DEMO_OVERVIEW: 'DemoOverview',
-  DEMO_BUTTONS: 'DemoButtons',
-  DEMO_FORMS: 'DemoForms',
-  DEMO_LAYOUT: 'DemoLayout',
-  DEMO_DATA_TABLE: 'DemoDataTable',
-  DEMO_AUTH: 'DemoAuth',
+  DEMO_INTRODUCTION: 'DemoIntroduction',
+  DEMO_COMPONENTS: 'DemoComponents',
+  DEMO_COMPONENTS_BUTTONS: 'DemoComponentsButtons',
+  DEMO_COMPONENTS_LINKS: 'DemoComponentsLinks',
+  DEMO_COMPONENTS_LAYOUT: 'DemoComponentsLayout',
+  DEMO_COMPONENTS_DATA_TABLE: 'DemoComponentsDataTable',
+  DEMO_EXAMPLES: 'DemoExamples',
+  DEMO_EXAMPLES_DASHBOARD: 'DemoExamplesDashboard',
+  DEMO_EXAMPLES_AUTH: 'DemoExamplesAuth',
 
   // Auth routes
   AUTH: 'Auth',
@@ -34,13 +39,18 @@ export type RouteName = (typeof RouteNames)[keyof typeof RouteNames]
 // Route paths (for direct path usage when needed)
 export const RoutePaths = {
   HOME: '/',
+  // Main demo (v3)
   DEMO: '/demo',
   DEMO_OVERVIEW: '/demo',
-  DEMO_BUTTONS: '/demo/buttons',
-  DEMO_FORMS: '/demo/forms',
-  DEMO_LAYOUT: '/demo/layout',
-  DEMO_DATA_TABLE: '/demo/data-table',
-  DEMO_AUTH: '/demo/auth',
+  DEMO_INTRODUCTION: '/demo/introduction',
+  DEMO_COMPONENTS: '/demo/components',
+  DEMO_COMPONENTS_BUTTONS: '/demo/components/buttons',
+  DEMO_COMPONENTS_LINKS: '/demo/components/links',
+  DEMO_COMPONENTS_LAYOUT: '/demo/components/layout',
+  DEMO_COMPONENTS_DATA_TABLE: '/demo/components/data-table',
+  DEMO_EXAMPLES: '/demo/examples',
+  DEMO_EXAMPLES_DASHBOARD: '/demo/examples/dashboard',
+  DEMO_EXAMPLES_AUTH: '/demo/examples/auth',
 
   AUTH: '/auth',
   AUTH_LOGIN: '/auth/login',

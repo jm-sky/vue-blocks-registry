@@ -8,10 +8,11 @@ export const routes: RouteRecordRaw[] = [
     name: RouteNames.HOME,
     redirect: RoutePaths.DEMO,
   },
+  // Main Demo (v3 - clean shadcn-vue inspired layout)
   {
     path: RoutePaths.DEMO,
     name: RouteNames.DEMO,
-    component: () => import('@/pages/DemoParent.vue'),
+    component: () => import('@/pages/demo/layouts/MainLayout.vue'),
     children: [
       {
         path: '',
@@ -19,29 +20,49 @@ export const routes: RouteRecordRaw[] = [
         component: () => import('@/pages/demo/Overview.vue'),
       },
       {
-        path: 'buttons',
-        name: RouteNames.DEMO_BUTTONS,
-        component: () => import('@/pages/demo/Buttons.vue'),
+        path: 'introduction',
+        name: RouteNames.DEMO_INTRODUCTION,
+        component: () => import('@/pages/demo/Introduction.vue'),
       },
       {
-        path: 'forms',
-        name: RouteNames.DEMO_FORMS,
-        component: () => import('@/pages/demo/Forms.vue'),
+        path: 'components',
+        name: RouteNames.DEMO_COMPONENTS,
+        component: () => import('@/pages/demo/Components.vue'),
       },
       {
-        path: 'layout',
-        name: RouteNames.DEMO_LAYOUT,
-        component: () => import('@/pages/demo/Layout.vue'),
+        path: 'components/buttons',
+        name: RouteNames.DEMO_COMPONENTS_BUTTONS,
+        component: () => import('@/pages/demo/components/Buttons.vue'),
       },
       {
-        path: 'data-table',
-        name: RouteNames.DEMO_DATA_TABLE,
-        component: () => import('@/pages/demo/DataTable.vue'),
+        path: 'components/links',
+        name: RouteNames.DEMO_COMPONENTS_LINKS,
+        component: () => import('@/pages/demo/components/Links.vue'),
       },
       {
-        path: 'auth',
-        name: RouteNames.DEMO_AUTH,
-        component: () => import('@/pages/demo/Auth.vue'),
+        path: 'components/layout',
+        name: RouteNames.DEMO_COMPONENTS_LAYOUT,
+        component: () => import('@/pages/demo/components/Layout.vue'),
+      },
+      {
+        path: 'components/data-table',
+        name: RouteNames.DEMO_COMPONENTS_DATA_TABLE,
+        component: () => import('@/pages/demo/components/DataTable.vue'),
+      },
+      {
+        path: 'examples',
+        name: RouteNames.DEMO_EXAMPLES,
+        component: () => import('@/pages/demo/Examples.vue'),
+      },
+      {
+        path: 'examples/dashboard',
+        name: RouteNames.DEMO_EXAMPLES_DASHBOARD,
+        component: () => import('@/pages/demo/examples/Dashboard.vue'),
+      },
+      {
+        path: 'examples/auth',
+        name: RouteNames.DEMO_EXAMPLES_AUTH,
+        component: () => import('@/pages/demo/examples/Auth.vue'),
       },
     ],
   },
