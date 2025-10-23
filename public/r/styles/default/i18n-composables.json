@@ -1,0 +1,25 @@
+{
+  "$schema": "../../../../registry-item-schema.json",
+  "name": "i18n-composables",
+  "type": "registry:lib",
+  "title": "i18n Composables",
+  "description": "Vue composable for locale management with localStorage persistence and locale switching",
+  "categories": [
+    "lib",
+    "i18n",
+    "composables"
+  ],
+  "files": [
+    {
+      "path": "shared/i18n/composables/useLocale.ts",
+      "type": "registry:lib"
+    }
+  ],
+  "dependencies": [
+    "vue-i18n"
+  ],
+  "registryDependencies": [
+    "i18n-config",
+    "config"
+  ]
+}

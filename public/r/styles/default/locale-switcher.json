@@ -1,0 +1,24 @@
+{
+  "$schema": "../../../../registry-item-schema.json",
+  "name": "locale-switcher",
+  "type": "registry:ui",
+  "title": "Locale Switcher",
+  "description": "Language switcher component with button toggle for PL/EN locales",
+  "categories": [
+    "ui",
+    "i18n"
+  ],
+  "files": [
+    {
+      "path": "shared/i18n/components/LocaleSwitcher.vue",
+      "type": "registry:ui"
+    }
+  ],
+  "dependencies": [
+    "lucide-vue-next"
+  ],
+  "registryDependencies": [
+    "button",
+    "i18n-composables"
+  ]
+}

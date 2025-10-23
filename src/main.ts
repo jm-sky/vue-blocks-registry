@@ -4,6 +4,7 @@ import { VueQueryPlugin } from '@tanstack/vue-query'
 import { createPinia } from 'pinia'
 import { createApp } from 'vue'
 import { createAuthQueryClient } from '@registry/modules/auth/config/queryClient'
+import { i18n } from '@registry/shared/i18n'
 import App from './App.vue'
 import router from './router'
 
@@ -22,5 +23,6 @@ const queryClient = createAuthQueryClient({
 app.use(createPinia())
 app.use(router)
 app.use(VueQueryPlugin, { queryClient })
+app.use(i18n)
 
 app.mount('#app')

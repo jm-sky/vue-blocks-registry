@@ -1,0 +1,96 @@
+{
+  "common": {
+    "app_name": "MyApp",
+    "welcome": "Welcome",
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "cancel": "Cancel",
+    "save": "Save",
+    "delete": "Delete",
+    "edit": "Edit",
+    "close": "Close",
+    "confirm": "Confirm",
+    "search": "Search",
+    "filter": "Filter",
+    "sort": "Sort",
+    "actions": "Actions",
+    "yes": "Yes",
+    "no": "No"
+  },
+  "auth": {
+    "login": "Login",
+    "logout": "Logout",
+    "register": "Register",
+    "email": "Email",
+    "password": "Password",
+    "password_confirm": "Confirm Password",
+    "forgot_password": "Forgot Password?",
+    "reset_password": "Reset Password",
+    "change_password": "Change Password",
+    "remember_me": "Remember me",
+    "login_success": "Logged in successfully",
+    "logout_success": "Logged out successfully",
+    "register_success": "Registration successful",
+    "invalid_credentials": "Invalid email or password",
+    "already_have_account": "Already have an account?",
+    "dont_have_account": "Don't have an account?",
+    "sign_in": "Sign in",
+    "sign_up": "Sign up",
+    "sign_in_to_account": "Sign in to your account",
+    "create_account": "Create a new account",
+    "current_password": "Current Password",
+    "new_password": "New Password",
+    "new_password_confirm": "Confirm New Password"
+  },
+  "navigation": {
+    "home": "Home",
+    "dashboard": "Dashboard",
+    "profile": "Profile",
+    "settings": "Settings",
+    "about": "About",
+    "contact": "Contact"
+  },
+  "validation": {
+    "required": "This field is required",
+    "email": "Please enter a valid email address",
+    "min_length": "Must be at least {min} characters",
+    "max_length": "Must be at most {max} characters",
+    "password_mismatch": "Passwords do not match",
+    "invalid_format": "Invalid format"
+  },
+  "errors": {
+    "generic": "Something went wrong",
+    "network": "Network error. Please check your connection",
+    "unauthorized": "You are not authorized to perform this action",
+    "not_found": "Resource not found",
+    "server_error": "Server error. Please try again later"
+  },
+  "demo": {
+    "hero": {
+      "welcome": "Welcome to",
+      "subtitle": "Discover our collection of ready-to-use UI components, designed for modern Vue.js applications",
+      "tech_stack": "Using Tailwind CSS, Shadcn Vue, Vee Validate, Zod...",
+      "get_started": "Get Started",
+      "view_components": "View Components"
+    },
+    "overview": {
+      "buttons": {
+        "title": "Buttons",
+        "description": "Various button styles with variants and vibrations"
+      },
+      "links": {
+        "title": "Links",
+        "description": "Link components with hover effects and smooth transitions"
+      },
+      "layout": {
+        "title": "Layout",
+        "description": "Layout and container components"
+      },
+      "dataTable": {
+        "title": "Data Table",
+        "description": "Advanced table with sorting and filtering"
+      }
+    }
+  }
+}

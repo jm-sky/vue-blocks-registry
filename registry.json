@@ -771,6 +771,132 @@
       "registryDependencies": []
     },
     {
+      "name": "i18n-config",
+      "type": "registry:lib",
+      "title": "i18n Configuration",
+      "description": "Vue i18n configuration with PL and EN locales, storage persistence, and createI18n helper",
+      "categories": ["lib", "i18n", "config"],
+      "files": [
+        {
+          "path": "shared/i18n/config/i18n.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "shared/i18n/locales/en.json",
+          "type": "registry:lib"
+        },
+        {
+          "path": "shared/i18n/locales/pl.json",
+          "type": "registry:lib"
+        },
+        {
+          "path": "shared/i18n/index.ts",
+          "type": "registry:lib"
+        }
+      ],
+      "dependencies": [
+        "vue-i18n"
+      ],
+      "registryDependencies": [
+        "config"
+      ]
+    },
+    {
+      "name": "i18n-composables",
+      "type": "registry:lib",
+      "title": "i18n Composables",
+      "description": "Vue composable for locale management with localStorage persistence and locale switching",
+      "categories": ["lib", "i18n", "composables"],
+      "files": [
+        {
+          "path": "shared/i18n/composables/useLocale.ts",
+          "type": "registry:lib"
+        }
+      ],
+      "dependencies": [
+        "vue-i18n"
+      ],
+      "registryDependencies": [
+        "i18n-config",
+        "config"
+      ]
+    },
+    {
+      "name": "locale-switcher",
+      "type": "registry:ui",
+      "title": "Locale Switcher",
+      "description": "Language switcher component with button toggle for PL/EN locales",
+      "categories": ["ui", "i18n"],
+      "files": [
+        {
+          "path": "shared/i18n/components/LocaleSwitcher.vue",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "lucide-vue-next"
+      ],
+      "registryDependencies": [
+        "button",
+        "i18n-composables"
+      ]
+    },
+    {
+      "name": "locale-dropdown",
+      "type": "registry:ui",
+      "title": "Locale Dropdown",
+      "description": "Dropdown menu for language selection with icon button",
+      "categories": ["ui", "i18n"],
+      "files": [
+        {
+          "path": "shared/i18n/components/LocaleDropdown.vue",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "lucide-vue-next"
+      ],
+      "registryDependencies": [
+        "button",
+        "dropdown-menu",
+        "i18n-composables"
+      ]
+    },
+    {
+      "name": "locale-toggle",
+      "type": "registry:ui",
+      "title": "Locale Toggle",
+      "description": "Animated toggle button for quick language switching with smooth transitions",
+      "categories": ["ui", "i18n"],
+      "files": [
+        {
+          "path": "shared/i18n/components/LocaleToggle.vue",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [],
+      "registryDependencies": [
+        "button",
+        "i18n-composables"
+      ]
+    },
+    {
+      "name": "i18n",
+      "type": "registry:feature",
+      "title": "Internationalization (i18n)",
+      "description": "Complete i18n setup with PL/EN translations, locale switcher components, and composables",
+      "categories": ["feature", "i18n"],
+      "files": [],
+      "dependencies": [],
+      "registryDependencies": [
+        "i18n-config",
+        "i18n-composables",
+        "locale-switcher",
+        "locale-dropdown",
+        "locale-toggle"
+      ]
+    },
+    {
       "name": "authFeat",
       "type": "registry:bundle",
       "title": "Authentication Feature Bundle",

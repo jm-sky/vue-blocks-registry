@@ -13,6 +13,11 @@ const examples = [
     title: 'Authentication',
     description: 'Kompletny system autentykacji',
     to: RoutePaths.DEMO_EXAMPLES_AUTH
+  },
+  {
+    title: 'Internationalization (i18n)',
+    description: 'Multi-language support with PL/EN translations',
+    to: RoutePaths.DEMO_EXAMPLES_I18N
   }
 ]
 </script>

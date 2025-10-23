@@ -1,0 +1,96 @@
+{
+  "common": {
+    "app_name": "MojaAplikacja",
+    "welcome": "Witaj",
+    "loading": "Ładowanie...",
+    "error": "Błąd",
+    "success": "Sukces",
+    "cancel": "Anuluj",
+    "save": "Zapisz",
+    "delete": "Usuń",
+    "edit": "Edytuj",
+    "close": "Zamknij",
+    "confirm": "Potwierdź",
+    "search": "Szukaj",
+    "filter": "Filtruj",
+    "sort": "Sortuj",
+    "actions": "Akcje",
+    "yes": "Tak",
+    "no": "Nie"
+  },
+  "auth": {
+    "login": "Zaloguj się",
+    "logout": "Wyloguj się",
+    "register": "Zarejestruj się",
+    "email": "Email",
+    "password": "Hasło",
+    "password_confirm": "Potwierdź hasło",
+    "forgot_password": "Zapomniałeś hasła?",
+    "reset_password": "Resetuj hasło",
+    "change_password": "Zmień hasło",
+    "remember_me": "Zapamiętaj mnie",
+    "login_success": "Zalogowano pomyślnie",
+    "logout_success": "Wylogowano pomyślnie",
+    "register_success": "Rejestracja zakończona sukcesem",
+    "invalid_credentials": "Nieprawidłowy email lub hasło",
+    "already_have_account": "Masz już konto?",
+    "dont_have_account": "Nie masz konta?",
+    "sign_in": "Zaloguj się",
+    "sign_up": "Zarejestruj się",
+    "sign_in_to_account": "Zaloguj się do swojego konta",
+    "create_account": "Utwórz nowe konto",
+    "current_password": "Obecne hasło",
+    "new_password": "Nowe hasło",
+    "new_password_confirm": "Potwierdź nowe hasło"
+  },
+  "navigation": {
+    "home": "Start",
+    "dashboard": "Panel",
+    "profile": "Profil",
+    "settings": "Ustawienia",
+    "about": "O nas",
+    "contact": "Kontakt"
+  },
+  "validation": {
+    "required": "To pole jest wymagane",
+    "email": "Proszę podać prawidłowy adres email",
+    "min_length": "Musi mieć co najmniej {min} znaków",
+    "max_length": "Może mieć maksymalnie {max} znaków",
+    "password_mismatch": "Hasła nie są takie same",
+    "invalid_format": "Nieprawidłowy format"
+  },
+  "errors": {
+    "generic": "Coś poszło nie tak",
+    "network": "Błąd sieci. Sprawdź swoje połączenie",
+    "unauthorized": "Nie masz uprawnień do wykonania tej akcji",
+    "not_found": "Zasób nie został znaleziony",
+    "server_error": "Błąd serwera. Spróbuj ponownie później"
+  },
+  "demo": {
+    "hero": {
+      "welcome": "Witaj w",
+      "subtitle": "Odkryj naszą kolekcję gotowych komponentów UI, zaprojektowanych z myślą o nowoczesnych aplikacjach Vue.js",
+      "tech_stack": "Używamy Tailwind CSS, Shadcn Vue, Vee Validate, Zod...",
+      "get_started": "Rozpocznij",
+      "view_components": "Zobacz Komponenty"
+    },
+    "overview": {
+      "buttons": {
+        "title": "Przyciski",
+        "description": "Różnorodne style przycisków z wariantami i wibracjami"
+      },
+      "links": {
+        "title": "Linki",
+        "description": "Komponenty linków z hover efektem i smooth transitions"
+      },
+      "layout": {
+        "title": "Układ",
+        "description": "Komponenty układu i kontenerów"
+      },
+      "dataTable": {
+        "title": "Tabela Danych",
+        "description": "Zaawansowana tabela z sortowaniem i filtrowaniem"
+      }
+    }
+  }
+}
