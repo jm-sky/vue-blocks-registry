@@ -91,6 +91,19 @@
         "title": "Tabela Danych",
         "description": "Zaawansowana tabela z sortowaniem i filtrowaniem"
       }
+    },
+    "sidebar": {
+      "getting_started": "Rozpocznij",
+      "overview": "Przegląd",
+      "introduction": "Wprowadzenie",
+      "components": "Komponenty",
+      "button": "Przycisk",
+      "links": "Linki",
+      "layout": "Układ",
+      "data_table": "Tabela Danych",
+      "examples": "Przykłady",
+      "dashboard": "Panel",
+      "authentication": "Uwierzytelnienie"
     }
   }
 }

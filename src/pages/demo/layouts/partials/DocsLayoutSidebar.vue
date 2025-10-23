@@ -1,36 +1,41 @@
 <script setup lang="ts">
 import { FileText, Home, LayoutDashboard, Link2, MousePointerClick, Table } from 'lucide-vue-next'
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
+import { useI18n } from 'vue-i18n'
+import LogoIcon from '@/components/brand/LogoIcon.vue'
+import LogoText from '@/components/brand/LogoText.vue'
 import { RoutePaths } from '@/router/route-names'
 
 // Mobile menu state
 const isMobileMenuOpen = ref(false)
 
-const sidebarNav = [
+const { t } = useI18n()
+
+const sidebarNav = computed(() => [
   {
-    title: 'Getting Started',
+    title: t('demo.sidebar.getting_started'),
     items: [
-      { title: 'Overview', href: RoutePaths.DEMO, icon: Home },
-      { title: 'Introduction', href: RoutePaths.DEMO_INTRODUCTION, icon: FileText },
+      { title: t('demo.sidebar.overview'), href: RoutePaths.DEMO, icon: Home },
+      { title: t('demo.sidebar.introduction'), href: RoutePaths.DEMO_INTRODUCTION, icon: FileText },
     ],
   },
   {
-    title: 'Components',
+    title: t('demo.sidebar.components'),
     items: [
-      { title: 'Button', href: RoutePaths.DEMO_COMPONENTS_BUTTON, icon: MousePointerClick },
-      { title: 'Links', href: RoutePaths.DEMO_COMPONENTS_LINKS, icon: Link2 },
-      { title: 'Layout', href: RoutePaths.DEMO_COMPONENTS_LAYOUT, icon: LayoutDashboard },
-      { title: 'Data Table', href: RoutePaths.DEMO_COMPONENTS_DATA_TABLE, icon: Table },
+      { title: t('demo.sidebar.button'), href: RoutePaths.DEMO_COMPONENTS_BUTTON, icon: MousePointerClick },
+      { title: t('demo.sidebar.links'), href: RoutePaths.DEMO_COMPONENTS_LINKS, icon: Link2 },
+      { title: t('demo.sidebar.layout'), href: RoutePaths.DEMO_COMPONENTS_LAYOUT, icon: LayoutDashboard },
+      { title: t('demo.sidebar.data_table'), href: RoutePaths.DEMO_COMPONENTS_DATA_TABLE, icon: Table },
     ],
   },
   {
-    title: 'Examples',
+    title: t('demo.sidebar.examples'),
     items: [
-      { title: 'Dashboard', href: RoutePaths.DEMO_EXAMPLES_DASHBOARD, icon: LayoutDashboard },
-      { title: 'Authentication', href: RoutePaths.DEMO_EXAMPLES_AUTH, icon: FileText },
+      { title: t('demo.sidebar.dashboard'), href: RoutePaths.DEMO_EXAMPLES_DASHBOARD, icon: LayoutDashboard },
+      { title: t('demo.sidebar.authentication'), href: RoutePaths.DEMO_EXAMPLES_AUTH, icon: FileText },
     ],
   },
-]
+])
 
 // Close mobile menu on route change
 const handleLinkClick = () => {
@@ -58,7 +63,7 @@ defineExpose({
           <div class="grid grid-flow-row auto-rows-max text-sm gap-2">
             <RouterLink
               v-for="item in group.items"
-              :key="item.title"
+              :key="item.href"
               :to="item.href"
               class="group flex w-full items-center rounded-md border border-transparent px-3 py-2 hover:bg-primary/5 transition-all duration-300"
               exact-active-class="bg-primary/10 !border-primary/30"
@@ -92,10 +97,19 @@ defineExpose({
 
     <!-- Sliding Sidebar -->
     <aside
-      class="fixed left-0 top-14 bottom-0 w-64 bg-background border-r overflow-auto z-50 md:hidden transition-transform duration-300 ease-out"
+      class="fixed left-0 top-0 bottom-0 w-64 bg-background border-r overflow-auto z-50 md:hidden transition-transform duration-300 ease-out"
       :class="isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'"
       @click.stop
     >
+      <!-- Logo Header -->
+      <div class="flex items-center gap-2 p-4 border-b">
+        <RouterLink :to="RoutePaths.DEMO" class="flex items-center gap-2" @click="handleLinkClick">
+          <LogoIcon class="size-6 shrink-0" />
+          <LogoText class="text-sm line-clamp-2" />
+        </RouterLink>
+      </div>
+
+      <!-- Navigation -->
       <div class="p-4">
         <nav>
           <div v-for="group in sidebarNav" :key="group.title" class="pb-4">
@@ -105,7 +119,7 @@ defineExpose({
             <div class="grid grid-flow-row auto-rows-max text-sm gap-2">
               <RouterLink
                 v-for="item in group.items"
-                :key="item.title"
+                :key="item.href"
                 :to="item.href"
                 class="group flex w-full items-center rounded-md border border-transparent px-3 py-2 hover:bg-primary/5 transition-all duration-300"
                 exact-active-class="bg-primary/10 !border-primary/30"

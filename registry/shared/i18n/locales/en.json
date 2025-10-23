@@ -91,6 +91,19 @@
         "title": "Data Table",
         "description": "Advanced table with sorting and filtering"
       }
+    },
+    "sidebar": {
+      "getting_started": "Getting Started",
+      "overview": "Overview",
+      "introduction": "Introduction",
+      "components": "Components",
+      "button": "Button",
+      "links": "Links",
+      "layout": "Layout",
+      "data_table": "Data Table",
+      "examples": "Examples",
+      "dashboard": "Dashboard",
+      "authentication": "Authentication"
     }
   }
 }
