@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import LogoText from '@/components/layout/LogoText.vue'
+import LogoText from '@/components/brand/LogoText.vue'
 import { RoutePaths } from '@/router/route-names'
 import ButtonLink from '@registry/components/ui/button-link/ButtonLink.vue'
 </script>
