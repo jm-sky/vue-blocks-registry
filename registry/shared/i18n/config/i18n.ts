@@ -15,12 +15,42 @@ export const LOCALE_LABELS: Record<SupportedLocale, string> = {
   pl: 'Polski',
 }
 
-// Get stored locale or use default from config
+/**
+ * Detects preferred locale from browser settings
+ * @returns Preferred locale if supported, otherwise undefined
+ */
+export const getPreferredLocale = (): SupportedLocale | undefined => {
+  const browserLanguages = navigator.languages.length > 0 ? navigator.languages : [navigator.language]
+
+  for (const lang of browserLanguages) {
+    // Extract language code (e.g., 'en' from 'en-US')
+    const languageCode = lang.split('-')[0].toLowerCase()
+
+    if (SUPPORTED_LOCALES.includes(languageCode as SupportedLocale)) {
+      return languageCode as SupportedLocale
+    }
+  }
+
+  return undefined
+}
+
+/**
+ * Get stored locale, browser preferred locale, or default from config
+ */
 const getStoredLocale = (): SupportedLocale => {
+  // 1. Check localStorage
   const stored = localStorage.getItem(LOCALE_STORAGE_KEY)
   if (stored && SUPPORTED_LOCALES.includes(stored as SupportedLocale)) {
     return stored as SupportedLocale
   }
+
+  // 2. Check browser preferred language
+  const preferred = getPreferredLocale()
+  if (preferred) {
+    return preferred
+  }
+
+  // 3. Use default from config
   return config.i18n.defaultLocale
 }
 

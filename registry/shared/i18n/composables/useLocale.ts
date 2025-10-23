@@ -4,7 +4,7 @@ import { LOCALE_STORAGE_KEY } from '@registry/shared/config/config'
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 import type { SupportedLocale } from '../config/i18n'
-import { LOCALE_LABELS, SUPPORTED_LOCALES } from '../config/i18n'
+import { getPreferredLocale, LOCALE_LABELS, SUPPORTED_LOCALES } from '../config/i18n'
 
 export interface ILocale {
   code: SupportedLocale
@@ -57,12 +57,27 @@ export function useLocale() {
     }
   }
 
+  /**
+   * Detects and sets the user's preferred locale from browser settings
+   * @returns The detected locale or undefined if none matched
+   */
+  const detectAndSetPreferredLocale = (): SupportedLocale | undefined => {
+    const preferred = getPreferredLocale()
+    if (preferred && !localStorage.getItem(LOCALE_STORAGE_KEY)) {
+      // Only set if user hasn't manually selected a locale before
+      currentLocale.value = preferred
+    }
+    return preferred
+  }
+
   return {
     currentLocale,
     availableLocales,
     nextLocale,
     setLocale,
     toggleLocale,
+    detectAndSetPreferredLocale,
+    getPreferredLocale,
     t,
   }
 }
