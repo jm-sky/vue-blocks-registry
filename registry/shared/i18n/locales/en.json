@@ -104,6 +104,56 @@
       "examples": "Examples",
       "dashboard": "Dashboard",
       "authentication": "Authentication"
+    },
+    "introduction": {
+      "title": "Introduction",
+      "description": "Get to know Vue Blocks Registry - a modular Vue 3 component system",
+      "intro_text": "Vue Blocks Registry is a modular Vue 3 component system with ready-made UI solutions, layouts, and functionalities.",
+      "what_is_title": "What is Vue Blocks Registry?",
+      "what_is_p1": "Vue Blocks Registry is <strong>not a component library</strong>. It's a collection of reusable components that you can copy and paste into your applications or add via CLI.",
+      "what_is_p2": "Similar to shadcn/ui, the code is yours. You can customize it to your needs.",
+      "features_title": "Main Features",
+      "features": {
+        "ui_components": {
+          "title": "UI Components",
+          "items": ["Buttons with variants", "Forms and inputs", "Cards and containers", "Tables and lists"]
+        },
+        "layouts": {
+          "title": "Layouts",
+          "items": ["PublicLayout", "AuthenticatedLayout", "GuestLayoutCentered", "GuestLayoutTwoColumns"]
+        },
+        "auth_modules": {
+          "title": "Auth Modules",
+          "items": ["Login/Register", "Password Reset", "Change Password", "Protected Routes"]
+        },
+        "data_table": {
+          "title": "Data Table",
+          "items": ["Sorting", "Filtering", "Pagination", "Responsive"]
+        }
+      },
+      "technologies_title": "Technologies",
+      "tech": {
+        "frontend": "Frontend",
+        "frontend_items": ["Vue 3", "TypeScript", "Tailwind CSS", "Reka UI"],
+        "tools": "Tools",
+        "tools_items": ["Vite", "Vue Router", "Pinia", "Vee Validate + Zod"]
+      },
+      "get_started_title": "Get Started",
+      "get_started_text": "Choose a component category from the sidebar on the left to see examples and code.",
+      "view_components": "View Components",
+      "github_repo": "GitHub Repository"
+    },
+    "components_page": {
+      "title": "Components",
+      "description": "Choose a component from the list below or use sidebar navigation."
+    },
+    "examples_page": {
+      "title": "Examples",
+      "description": "Examples of using components in real-world scenarios.",
+      "i18n_example": {
+        "title": "Internationalization (i18n)",
+        "description": "Multi-language support with PL/EN translations"
+      }
     }
   }
 }

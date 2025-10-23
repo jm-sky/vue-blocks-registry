@@ -1,30 +1,34 @@
 <script setup lang="ts">
+import { computed } from 'vue'
+import { useI18n } from 'vue-i18n'
 import ComponentCard from '@/components/demo/ComponentCard.vue'
 import { RoutePaths } from '@/router/route-names'
 import DocsPageHeader from './layouts/partials/DocsPageHeader.vue'
 
-const examples = [
+const { t } = useI18n()
+
+const examples = computed(() => [
   {
-    title: 'Dashboard',
-    description: 'Przykład dashboard z różnymi komponentami',
+    title: t('demo.sidebar.dashboard'),
+    description: t('demo.overview.dataTable.description'),
     to: RoutePaths.DEMO_EXAMPLES_DASHBOARD
   },
   {
-    title: 'Authentication',
-    description: 'Kompletny system autentykacji',
+    title: t('demo.sidebar.authentication'),
+    description: t('demo.overview.buttons.description'),
     to: RoutePaths.DEMO_EXAMPLES_AUTH
   },
   {
-    title: 'Internationalization (i18n)',
-    description: 'Multi-language support with PL/EN translations',
+    title: t('demo.examples_page.i18n_example.title'),
+    description: t('demo.examples_page.i18n_example.description'),
     to: RoutePaths.DEMO_EXAMPLES_I18N
   }
-]
+])
 </script>
 
 <template>
   <div class="space-y-8">
-    <DocsPageHeader title="Examples" description="Przykłady użycia komponentów w rzeczywistych scenariuszach." />
+    <DocsPageHeader :title="t('demo.examples_page.title')" :description="t('demo.examples_page.description')" />
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
       <ComponentCard

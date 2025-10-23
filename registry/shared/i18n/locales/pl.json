@@ -104,6 +104,56 @@
       "examples": "Przykłady",
       "dashboard": "Panel",
       "authentication": "Uwierzytelnienie"
+    },
+    "introduction": {
+      "title": "Wprowadzenie",
+      "description": "Poznaj Vue Blocks Registry - modularny system komponentów Vue 3",
+      "intro_text": "Vue Blocks Registry to modularny system komponentów Vue 3 z gotowymi rozwiązaniami UI, layoutami i funkcjonalnościami.",
+      "what_is_title": "Czym jest Vue Blocks Registry?",
+      "what_is_p1": "Vue Blocks Registry to <strong>nie jest biblioteką komponentów</strong>. To kolekcja wielokrotnego użytku komponentów, które możesz skopiować i wkleić do swoich aplikacji lub dodać za pomocą CLI.",
+      "what_is_p2": "Podobnie jak shadcn/ui, kod jest Twój. Możesz go dostosować do swoich potrzeb.",
+      "features_title": "Główne Funkcje",
+      "features": {
+        "ui_components": {
+          "title": "Komponenty UI",
+          "items": ["Przyciski z wariantami", "Formularze i pola input", "Karty i kontenery", "Tabele i listy"]
+        },
+        "layouts": {
+          "title": "Layouty",
+          "items": ["PublicLayout", "AuthenticatedLayout", "GuestLayoutCentered", "GuestLayoutTwoColumns"]
+        },
+        "auth_modules": {
+          "title": "Moduły Auth",
+          "items": ["Login/Register", "Password Reset", "Change Password", "Protected Routes"]
+        },
+        "data_table": {
+          "title": "Data Table",
+          "items": ["Sortowanie", "Filtrowanie", "Paginacja", "Responsive"]
+        }
+      },
+      "technologies_title": "Technologie",
+      "tech": {
+        "frontend": "Frontend",
+        "frontend_items": ["Vue 3", "TypeScript", "Tailwind CSS", "Reka UI"],
+        "tools": "Narzędzia",
+        "tools_items": ["Vite", "Vue Router", "Pinia", "Vee Validate + Zod"]
+      },
+      "get_started_title": "Rozpocznij",
+      "get_started_text": "Wybierz kategorię komponentów z sidebar po lewej stronie, aby zobaczyć przykłady i kod.",
+      "view_components": "Zobacz Komponenty",
+      "github_repo": "Repozytorium GitHub"
+    },
+    "components_page": {
+      "title": "Komponenty",
+      "description": "Wybierz komponent z listy poniżej lub użyj sidebar nawigacji."
+    },
+    "examples_page": {
+      "title": "Przykłady",
+      "description": "Przykłady użycia komponentów w rzeczywistych scenariuszach.",
+      "i18n_example": {
+        "title": "Internacjonalizacja (i18n)",
+        "description": "Wsparcie dla wielu języków z tłumaczeniami PL/EN"
+      }
     }
   }
 }
