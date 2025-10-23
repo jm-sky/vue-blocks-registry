@@ -5,7 +5,7 @@ import HoverCardLinkWithArrow from './HoverCardLinkWithArrow.vue'
 import type { Component } from 'vue'
 
 const { variant = 'default', class: className } = defineProps<{
-  title: string
+  title?: string
   description?: string
   class?: string
   items?: string[]
@@ -18,6 +18,7 @@ const { variant = 'default', class: className } = defineProps<{
   dense?: boolean
   variant?: 'default' | 'emerald' | 'blue'
   animate?: boolean
+  noHover?: boolean
 }>()
 
 const variantClasses = {
@@ -26,7 +27,7 @@ const variantClasses = {
   blue: 'bg-blue-50/90 dark:bg-blue-900/20 border-blue-200 dark:border-blue-700/60 hover:shadow-blue-200/60 dark:hover:shadow-blue-900/60 hover:border-blue-300/80 dark:hover:border-blue-600/80',
 }
 
-const hoverClass = ' hover:-translate-y-2 hover:scale-[1.02] hover:shadow-2xl '
+const hoverClass = 'hover:-translate-y-2 hover:scale-[1.02] hover:shadow-2xl'
 </script>
 
 <template>
@@ -34,7 +35,7 @@ const hoverClass = ' hover:-translate-y-2 hover:scale-[1.02] hover:shadow-2xl '
     class="group flex flex-col relative isolate transition-all duration-500"
     :class="cn(
       'bg-card rounded-xl border border-border',
-      hoverClass,
+      !noHover && hoverClass,
       dense ? 'p-6' : 'p-8',
       variantClasses[variant],
       animate && 'animate-slide-up',
@@ -44,11 +45,11 @@ const hoverClass = ' hover:-translate-y-2 hover:scale-[1.02] hover:shadow-2xl '
     <HoverCardGradientOverlay />
 
     <div class="flex flex-col gap-4 flex-1 items-start">
-      <div class="flex items-center gap-5">
+      <div v-if="title || iconComponent" class="flex items-center gap-5">
         <div v-if="iconComponent" :class="cn('p-3 rounded-2xl flex items-center justify-center aspect-square', iconBgClass)">
           <component :is="iconComponent" :class="iconClass" />
         </div>
-        <h3 :class="cn('text-xl font-semibold tracking-tight text-slate-900 dark:text-slate-100', titleClass)">
+        <h3 v-if="title" :class="cn('text-xl font-semibold tracking-tight text-slate-900 dark:text-slate-100', titleClass)">
           {{ title }}
         </h3>
       </div>

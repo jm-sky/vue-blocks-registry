@@ -9,7 +9,7 @@ const categories = [
   {
     title: 'Buttons',
     description: 'Różnorodne style przycisków z wariantami i wibracjami',
-    linkTo: RoutePaths.DEMO_COMPONENTS_BUTTONS,
+    linkTo: RoutePaths.DEMO_COMPONENTS_BUTTON,
     iconClass: 'size-7 text-blue-600',
     iconBgClass: 'bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-blue-800/20',
     iconComponent: MousePointerClick as Component

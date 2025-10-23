@@ -108,7 +108,7 @@ const features = [
 
     <div class="flex flex-wrap gap-4 not-prose my-6">
       <RouterLink
-        :to="RoutePaths.DEMO_COMPONENTS_BUTTONS"
+        :to="RoutePaths.DEMO_COMPONENTS_BUTTON"
         class="inline-flex items-center justify-center rounded-md bg-primary px-6 py-3 text-sm font-medium text-primary-foreground shadow hover:bg-primary/90 transition-colors duration-200"
       >
         View Components

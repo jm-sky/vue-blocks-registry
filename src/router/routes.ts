@@ -30,8 +30,8 @@ export const routes: RouteRecordRaw[] = [
         component: () => import('@/pages/demo/Components.vue'),
       },
       {
-        path: 'components/buttons',
-        name: RouteNames.DEMO_COMPONENTS_BUTTONS,
+        path: 'components/button',
+        name: RouteNames.DEMO_COMPONENTS_BUTTON,
         component: () => import('@/pages/demo/components/ButtonShowcase.vue'),
       },
       {

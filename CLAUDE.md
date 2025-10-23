@@ -193,6 +193,9 @@ node ../cli/dist/index.js add button
 4. **Use Zod schemas** for validation with VeeValidate integration
 5. **Type guards** for error handling (see `shared/utils/typeGuards.ts`)
 6. **Config-driven** - use `config.ts` for app settings, avoid hardcoding
+7. **Use Lucide icons instead of inline SVG** - Import icons from `lucide-vue-next` instead of hardcoding SVG markup
+   - ✅ CORRECT: `import { AlertCircle } from 'lucide-vue-next'` then `<AlertCircle :size="16" />`
+   - ❌ WRONG: `<svg xmlns="..." width="16" height="16">...</svg>`
 
 ## ESLint Import Validation
 

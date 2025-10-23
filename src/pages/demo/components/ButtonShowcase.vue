@@ -1,118 +1,208 @@
 <script setup lang="ts">
-import ButtonVariantGroup from '@/components/demo/ButtonVariantGroup.vue'
+import { ArrowRight } from 'lucide-vue-next'
+import CodePreview from '@/components/demo/CodePreview.vue'
+import ComponentSection from '@/components/demo/ComponentSection.vue'
+import { Button } from '@registry/components/ui/button'
 import DocsPageHeader from '../layouts/partials/DocsPageHeader.vue'
-import type { ButtonVariants } from '@registry/components/ui/button'
 
-interface Props {
-  title: string
-  description: string
-}
+const installCode = 'npx vue-blocks-registry add button'
 
-defineProps<Props>()
+const basicVibeUsageCode = `<script setup lang="ts">
+import { Button } from '@registry/components/ui/button'
+<\/script>
 
-const variants: { name: string; value: ButtonVariants['variant'] }[] = [
-  { name: 'Primary', value: 'primary' },
-  { name: 'Outline', value: 'outline' },
-  { name: 'Destructive', value: 'destructive' },
-  { name: 'Secondary', value: 'secondary' },
-  { name: 'Ghost', value: 'ghost' },
-  { name: 'Link', value: 'link' }
-]
+<template>
+  <Button vibe="primary">Click me</Button>
+</template>`
 
-const vibes: { name: string; value: ButtonVariants['vibe'] }[] = [
-  { name: 'Primary Vibe', value: 'primary' },
-  { name: 'Outline Vibe', value: 'outline' },
-  { name: 'Underline Vibe', value: 'underline' }
-]
+const variantsCode = `<script setup lang="ts">
+import { Button } from '@registry/components/ui/button'
+<\/script>
+
+<template>
+  <div class="flex flex-wrap gap-2">
+    <Button variant="primary">Primary</Button>
+    <Button variant="outline">Outline</Button>
+    <Button variant="destructive">Destructive</Button>
+    <Button variant="secondary">Secondary</Button>
+    <Button variant="ghost">Ghost</Button>
+    <Button variant="link">Link</Button>
+  </div>
+</template>`
+
+const vibesCode = `<script setup lang="ts">
+import { Button } from '@registry/components/ui/button'
+<\/script>
+
+<template>
+  <div class="flex flex-wrap gap-4">
+    <Button vibe="primary">Primary Vibe</Button>
+    <Button vibe="outline">Outline Vibe</Button>
+    <Button vibe="underline">Underline Vibe</Button>
+  </div>
+</template>`
+
+const sizesCode = `<script setup lang="ts">
+import { Button } from '@registry/components/ui/button'
+import { ArrowRight } from 'lucide-vue-next'
+<\/script>
+
+<template>
+  <div class="flex items-center gap-2">
+    <Button size="sm">Small</Button>
+    <Button size="default">Default</Button>
+    <Button size="lg">Large</Button>
+    <Button size="icon">
+      <ArrowRight :size="20" />
+    </Button>
+  </div>
+</template>`
+
+const statesCode = `<script setup lang="ts">
+import { Button } from '@registry/components/ui/button'
+<\/script>
+
+<template>
+  <div class="flex gap-2">
+    <Button>Normal</Button>
+    <Button disabled>Disabled</Button>
+  </div>
+</template>`
 </script>
 
 <template>
-  <div class="space-y-8">
+  <div class="space-y-12">
     <!-- Page Header -->
-    <DocsPageHeader title="Button Components" description="Różnorodne style przycisków z wariantami i wibracjami do wykorzystania w Twoich projektach" />
+    <DocsPageHeader
+      title="Button"
+      description="Displays a button or a component that looks like a button."
+    />
 
-    <!-- Variants Section -->
-    <section class="space-y-6 animate-slide-up">
-      <div>
-        <h3 class="text-xl font-semibold tracking-tight text-slate-900 dark:text-slate-100 mb-4">
-          Warianty
-        </h3>
-        <div class="bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm rounded-2xl border border-slate-200/60 dark:border-slate-700/60 shadow-lg p-6 hover:shadow-xl transition-all duration-300">
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <ButtonVariantGroup
-              v-for="variant in variants"
-              :key="variant.name"
-              :title="variant.name"
-              :variant="variant.value"
-            />
-          </div>
+    <!-- Preview -->
+    <ComponentSection title="Preview">
+      <CodePreview :code="basicVibeUsageCode">
+        <template #preview>
+          <Button vibe="primary">
+            Click me
+          </Button>
+        </template>
+      </CodePreview>
+    </ComponentSection>
+
+    <!-- Installation -->
+    <ComponentSection
+      id="installation"
+      title="Installation"
+    >
+      <div class="bg-slate-900 dark:bg-slate-950 rounded-lg border border-slate-700/60 p-4">
+        <pre class="text-emerald-400 dark:text-emerald-300 text-sm font-mono">{{ installCode }}</pre>
+      </div>
+    </ComponentSection>
+
+    <!-- Examples -->
+    <ComponentSection
+      id="examples"
+      title="Examples"
+    >
+      <div class="space-y-8">
+        <!-- Variants -->
+        <div class="space-y-4">
+          <h3 class="text-lg font-medium">
+            Variants
+          </h3>
+          <CodePreview :code="variantsCode">
+            <template #preview>
+              <div class="flex flex-wrap gap-2">
+                <Button variant="primary">
+                  Primary
+                </Button>
+                <Button variant="outline">
+                  Outline
+                </Button>
+                <Button variant="destructive">
+                  Destructive
+                </Button>
+                <Button variant="secondary">
+                  Secondary
+                </Button>
+                <Button variant="ghost">
+                  Ghost
+                </Button>
+                <Button variant="link">
+                  Link
+                </Button>
+              </div>
+            </template>
+          </CodePreview>
+        </div>
+
+        <!-- Vibes (Unique Feature) -->
+        <div class="space-y-4">
+          <h3 class="text-lg font-medium">
+            Vibes (Unique Feature ✨)
+          </h3>
+          <p class="text-sm text-slate-600 dark:text-slate-400">
+            Our Button component includes unique "vibe" animations that add extra visual appeal.
+          </p>
+          <CodePreview :code="vibesCode">
+            <template #preview>
+              <div class="flex flex-wrap gap-4">
+                <Button vibe="primary">
+                  Primary Vibe
+                </Button>
+                <Button vibe="outline">
+                  Outline Vibe
+                </Button>
+                <Button vibe="underline">
+                  Underline Vibe
+                </Button>
+              </div>
+            </template>
+          </CodePreview>
+        </div>
+
+        <!-- Sizes -->
+        <div class="space-y-4">
+          <h3 class="text-lg font-medium">
+            Sizes
+          </h3>
+          <CodePreview :code="sizesCode">
+            <template #preview>
+              <div class="flex items-center gap-2">
+                <Button size="sm">
+                  Small
+                </Button>
+                <Button size="default">
+                  Default
+                </Button>
+                <Button size="lg">
+                  Large
+                </Button>
+                <Button size="icon">
+                  <ArrowRight :size="20" />
+                </Button>
+              </div>
+            </template>
+          </CodePreview>
+        </div>
+
+        <!-- States -->
+        <div class="space-y-4">
+          <h3 class="text-lg font-medium">
+            States
+          </h3>
+          <CodePreview :code="statesCode">
+            <template #preview>
+              <div class="flex gap-2">
+                <Button>Normal</Button>
+                <Button disabled>
+                  Disabled
+                </Button>
+              </div>
+            </template>
+          </CodePreview>
         </div>
       </div>
-    </section>
-
-    <!-- Vibes Section -->
-    <section class="space-y-6 animate-slide-up">
-      <div>
-        <h3 class="text-xl font-semibold tracking-tight text-slate-900 dark:text-slate-100 mb-4">
-          Wibracje
-        </h3>
-        <div class="bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm rounded-2xl border border-slate-200/60 dark:border-slate-700/60 shadow-lg p-6 hover:shadow-xl transition-all duration-300">
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <ButtonVariantGroup
-              v-for="vibe in vibes"
-              :key="vibe.name"
-              :title="vibe.name"
-              :vibe="vibe.value"
-            />
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- States Section -->
-    <section class="space-y-6 animate-slide-up">
-      <div>
-        <h3 class="text-xl font-semibold tracking-tight text-slate-900 dark:text-slate-100 mb-4">
-          Stany
-        </h3>
-        <div class="bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm rounded-2xl border border-slate-200/60 dark:border-slate-700/60 shadow-lg p-6 hover:shadow-xl transition-all duration-300">
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <ButtonVariantGroup
-              title="Normalne"
-              variant="primary"
-              :sizes="['default']"
-            />
-            <ButtonVariantGroup
-              title="Disabled"
-              variant="primary"
-              :sizes="['default']"
-              :disabled="true"
-            />
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Code Example -->
-    <section class="space-y-6 animate-scale-in">
-      <div>
-        <h3 class="text-xl font-semibold tracking-tight text-slate-900 dark:text-slate-100 mb-4">
-          Przykład użycia
-        </h3>
-        <div class="bg-slate-900 dark:bg-slate-950 rounded-2xl border border-slate-700/60 p-6 shadow-lg">
-          <pre class="text-emerald-400 dark:text-emerald-300 text-sm overflow-x-auto font-mono"><code>&lt;script setup lang="ts"&gt;
-import { Button } from '@registry/components/ui/button'
-&lt;/script&gt;
-
-&lt;template&gt;
-  &lt;div class="space-x-2"&gt;
-    &lt;Button variant="primary"&gt;Primary&lt;/Button&gt;
-    &lt;Button variant="outline"&gt;Outline&lt;/Button&gt;
-    &lt;Button variant="destructive"&gt;Destructive&lt;/Button&gt;
-  &lt;/div&gt;
-&lt;/template&gt;</code></pre>
-        </div>
-      </div>
-    </section>
+    </ComponentSection>
   </div>
 </template>
