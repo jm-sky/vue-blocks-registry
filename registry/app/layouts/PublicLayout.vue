@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import LogoText from '@registry/components/ui/LogoText.vue'
 import DarkModeToggle from '@registry/shared/components/DarkModeToggle.vue'
+import LocaleToggle from '@registry/shared/i18n/components/LocaleToggle.vue'
 
 // Default layout for public pages (no authentication required)
 </script>
@@ -29,6 +30,7 @@ import DarkModeToggle from '@registry/shared/components/DarkModeToggle.vue'
             >
               Zarejestruj się
             </RouterLink>
+            <LocaleToggle />
             <DarkModeToggle />
           </div>
         </div>

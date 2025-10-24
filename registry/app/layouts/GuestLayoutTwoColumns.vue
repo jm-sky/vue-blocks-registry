@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import LogoText from '@registry/components/ui/LogoText.vue'
 import DarkModeToggle from '@registry/shared/components/DarkModeToggle.vue'
+import LocaleToggle from '@registry/shared/i18n/components/LocaleToggle.vue'
 import { Rocket } from 'lucide-vue-next'
 import { useRoute } from 'vue-router'
 
@@ -60,6 +61,7 @@ const layoutActionsComponent = route.meta.layoutActionsComponent
         <slot name="actions">
           <component :is="layoutActionsComponent" v-if="layoutActionsComponent" />
         </slot>
+        <LocaleToggle />
         <DarkModeToggle />
       </div>
 
