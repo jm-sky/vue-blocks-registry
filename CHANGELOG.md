@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.1] - 2025-10-24
+
+### Fixed
+- **CLI Path Resolution**: Fixed critical issue where auth module files were being placed under `src/components/auth/` instead of `src/modules/auth/`
+- **Import Transformation**: Fixed `@registry/modules/*` imports to correctly transform to `@/modules/*`
+- **Import Transformation**: Fixed `@registry/app/layouts/*` imports to correctly transform to `@/layouts/*`
+- **Import Transformation**: Fixed `@registry/shared/*` imports to correctly transform to `@/shared/*` (except utils which still maps to `@/lib`)
+
+### Changed
+- Enhanced CLI path resolution to preserve full directory structure for `modules/`, `app/`, and `shared/` directories
+- Updated import transformer to handle modular project structures correctly
+
 ## [0.2.0] - 2025-01-23
 
 ### Added
