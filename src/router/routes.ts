@@ -42,12 +42,12 @@ export const routes: RouteRecordRaw[] = [
       {
         path: 'components/layout',
         name: RouteNames.DEMO_COMPONENTS_LAYOUT,
-        component: () => import('@/pages/demo/components/Layout.vue'),
+        component: () => import('@/pages/demo/components/LayoutShowcase.vue'),
       },
       {
         path: 'components/data-table',
         name: RouteNames.DEMO_COMPONENTS_DATA_TABLE,
-        component: () => import('@/pages/demo/components/DataTable.vue'),
+        component: () => import('@/pages/demo/components/DataTableShowcase.vue'),
       },
       {
         path: 'examples',
