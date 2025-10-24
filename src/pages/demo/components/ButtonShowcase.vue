@@ -40,9 +40,9 @@ import { Button } from '@registry/components/ui/button'
 
 <template>
   <div class="flex flex-wrap gap-4">
-    <Button vibe="primary">Primary Vibe</Button>
-    <Button vibe="outline">Outline Vibe</Button>
-    <Button vibe="underline">Underline Vibe</Button>
+    <Button variant="primary" vibe="primary">Primary Vibe</Button>
+    <Button variant="outline" vibe="outline">Outline Vibe</Button>
+    <Button variant="ghost" vibe="underline">Underline Vibe</Button>
   </div>
 </template>`
 
@@ -69,6 +69,7 @@ import { Button } from '@registry/components/ui/button'
 <template>
   <div class="flex gap-2">
     <Button>Normal</Button>
+    <Button loading>Loading</Button>
     <Button disabled>Disabled</Button>
   </div>
 </template>`
@@ -152,10 +153,10 @@ import { Button } from '@registry/components/ui/button'
                 <Button vibe="primary">
                   {{ t('demo.showcase.button.vibes.primary') }}
                 </Button>
-                <Button vibe="outline">
+                <Button variant="outline" vibe="outline">
                   {{ t('demo.showcase.button.vibes.outline') }}
                 </Button>
-                <Button vibe="underline">
+                <Button variant="ghost" vibe="underline">
                   {{ t('demo.showcase.button.vibes.underline') }}
                 </Button>
               </div>
@@ -197,6 +198,9 @@ import { Button } from '@registry/components/ui/button'
             <template #preview>
               <div class="flex gap-2">
                 <Button>{{ t('demo.showcase.button.states.normal') }}</Button>
+                <Button loading>
+                  {{ t('demo.showcase.button.states.loading') }}
+                </Button>
                 <Button disabled>
                   {{ t('demo.showcase.button.states.disabled') }}
                 </Button>

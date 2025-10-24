@@ -270,6 +270,7 @@ export default {
         states: {
           title: 'States',
           normal: 'Normal',
+          loading: 'Loading',
           disabled: 'Disabled'
         }
       },
