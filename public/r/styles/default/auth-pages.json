@@ -40,6 +40,9 @@
     "auth-validation",
     "auth-service",
     "button",
+    "form",
+    "input",
+    "alert",
     "type-guards"
   ]
 }

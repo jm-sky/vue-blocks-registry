@@ -1,0 +1,19 @@
+{
+  "$schema": "../../../../registry-item-schema.json",
+  "name": "base-types",
+  "type": "registry:lib",
+  "title": "Base Types",
+  "description": "Base TypeScript types (TULID, etc.)",
+  "categories": [
+    "lib",
+    "types"
+  ],
+  "files": [
+    {
+      "path": "shared/types/base.type.ts",
+      "type": "registry:lib"
+    }
+  ],
+  "dependencies": [],
+  "registryDependencies": []
+}

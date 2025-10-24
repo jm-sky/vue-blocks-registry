@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { cn } from '@registry/lib/utils'
+import { config } from '@registry/shared/config/config'
 import type { PrimitiveProps } from 'reka-ui'
 import type { HTMLAttributes } from 'vue'
 
@@ -13,6 +14,6 @@ const props = withDefaults(defineProps<{
 
 <template>
   <component :is="props.as" :class="cn('text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary via-blue-500 to-violet-500', props.class)">
-    My SaaS App
+    {{ config.app.name }}
   </component>
 </template>

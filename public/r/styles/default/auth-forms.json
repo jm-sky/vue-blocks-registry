@@ -30,6 +30,8 @@
   ],
   "registryDependencies": [
     "button",
+    "form",
+    "input",
     "auth-validation",
     "auth-composables",
     "type-guards"

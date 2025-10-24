@@ -58,6 +58,12 @@ export const scaffold = new Command()
           templatePath: path.join(__dirname, '../../templates/eslint.config.ts.template'),
           targetPath: 'eslint.config.ts',
         },
+        {
+          name: '.env.example',
+          description: 'Environment variables template for app configuration',
+          templatePath: path.join(__dirname, '../../templates/.env.example.template'),
+          targetPath: '.env.example',
+        },
       ]
 
       let filesToGenerate: ScaffoldFile[] = []

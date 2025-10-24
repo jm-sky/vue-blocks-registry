@@ -72,6 +72,25 @@
       ]
     },
     {
+      "name": "logo-text",
+      "type": "registry:ui",
+      "title": "Logo Text",
+      "description": "Logo text component with gradient styling",
+      "categories": ["ui", "branding"],
+      "files": [
+        {
+          "path": "components/ui/LogoText.vue",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "reka-ui"
+      ],
+      "registryDependencies": [
+        "utils"
+      ]
+    },
+    {
       "name": "label",
       "type": "registry:ui",
       "title": "Label",
@@ -239,7 +258,9 @@
         }
       ],
       "dependencies": [],
-      "registryDependencies": []
+      "registryDependencies": [
+        "base-types"
+      ]
     },
     {
       "name": "auth-store",
@@ -314,6 +335,52 @@
       "registryDependencies": []
     },
     {
+      "name": "auth-config",
+      "type": "registry:lib",
+      "title": "Auth Config",
+      "description": "Authentication configuration files (auth.config, queryClient, routes, queryUtils)",
+      "categories": ["lib", "config", "auth"],
+      "files": [
+        {
+          "path": "modules/auth/config/auth.config.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "modules/auth/config/queryClient.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "modules/auth/config/routes.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "modules/auth/utils/queryUtils.ts",
+          "type": "registry:lib"
+        }
+      ],
+      "dependencies": [
+        "@tanstack/vue-query"
+      ],
+      "registryDependencies": [
+        "auth-types"
+      ]
+    },
+    {
+      "name": "base-types",
+      "type": "registry:lib",
+      "title": "Base Types",
+      "description": "Base TypeScript types (TULID, etc.)",
+      "categories": ["lib", "types"],
+      "files": [
+        {
+          "path": "shared/types/base.type.ts",
+          "type": "registry:lib"
+        }
+      ],
+      "dependencies": [],
+      "registryDependencies": []
+    },
+    {
       "name": "auth-composables",
       "type": "registry:lib",
       "title": "Auth Composables",
@@ -335,7 +402,8 @@
       "registryDependencies": [
         "auth-store",
         "auth-service",
-        "auth-types"
+        "auth-types",
+        "auth-config"
       ]
     },
     {
@@ -365,6 +433,8 @@
       ],
       "registryDependencies": [
         "button",
+        "form",
+        "input",
         "auth-validation",
         "auth-composables",
         "type-guards"
@@ -408,6 +478,9 @@
         "auth-validation",
         "auth-service",
         "button",
+        "form",
+        "input",
+        "alert",
         "type-guards"
       ]
     },
@@ -446,7 +519,8 @@
       "registryDependencies": [
         "auth-store",
         "layout-components",
-        "dark-mode"
+        "dark-mode",
+        "logo-text"
       ]
     },
     {

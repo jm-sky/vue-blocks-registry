@@ -7,6 +7,38 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.5] - 2025-10-24
+
+### Added
+- **LogoText Component**: Added `logo-text` UI component to registry for branding
+- **Auth Config Module**: Added `auth-config` registry item containing:
+  - auth.config.ts - Authentication configuration
+  - queryClient.ts - TanStack Query client setup
+  - routes.ts - Auth route definitions
+  - queryUtils.ts - Query utilities for auth
+- **Base Types**: Added `base-types` registry item with base.type.ts (TULID type)
+- **.env.example Template**: Added environment variables template to scaffold command
+  - Includes API base URL configuration
+  - App configuration variables (ID, name, description)
+  - Optional i18n locale settings
+
+### Changed
+- **Auth Service**: Removed mock service import from production authService.ts
+  - Mock service is no longer bundled with installed components
+  - Users get clean production-ready auth service
+- **Layouts Dependencies**: Added `logo-text` to layouts bundle registryDependencies
+- **Config Types**: Moved `SupportedLocale` type to config.ts to avoid cyclic dependencies
+  - Fixed `config.i18n.fallbackLocale` type errors
+  - Added LOCALE_STORAGE_KEY export to config
+
+### Fixed
+- **Auth Module Dependencies**: Fixed missing registry dependencies in authFull bundle
+  - auth-composables now depends on auth-config
+  - auth-types now depends on base-types
+  - auth-forms includes form and input dependencies
+  - auth-pages includes form, input, and alert dependencies
+- **Cyclic Dependency**: Resolved circular import between config and i18n modules
+
 ## [0.2.4] - 2025-10-24
 
 ### Added

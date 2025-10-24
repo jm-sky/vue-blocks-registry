@@ -25,6 +25,7 @@
   "registryDependencies": [
     "auth-store",
     "auth-service",
-    "auth-types"
+    "auth-types",
+    "auth-config"
   ]
 }

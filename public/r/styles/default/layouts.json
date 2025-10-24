@@ -36,6 +36,7 @@
   "registryDependencies": [
     "auth-store",
     "layout-components",
-    "dark-mode"
+    "dark-mode",
+    "logo-text"
   ]
 }

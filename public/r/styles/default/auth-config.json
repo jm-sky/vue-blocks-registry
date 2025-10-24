@@ -1,0 +1,36 @@
+{
+  "$schema": "../../../../registry-item-schema.json",
+  "name": "auth-config",
+  "type": "registry:lib",
+  "title": "Auth Config",
+  "description": "Authentication configuration files (auth.config, queryClient, routes, queryUtils)",
+  "categories": [
+    "lib",
+    "config",
+    "auth"
+  ],
+  "files": [
+    {
+      "path": "modules/auth/config/auth.config.ts",
+      "type": "registry:lib"
+    },
+    {
+      "path": "modules/auth/config/queryClient.ts",
+      "type": "registry:lib"
+    },
+    {
+      "path": "modules/auth/config/routes.ts",
+      "type": "registry:lib"
+    },
+    {
+      "path": "modules/auth/utils/queryUtils.ts",
+      "type": "registry:lib"
+    }
+  ],
+  "dependencies": [
+    "@tanstack/vue-query"
+  ],
+  "registryDependencies": [
+    "auth-types"
+  ]
+}
