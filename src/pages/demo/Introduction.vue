@@ -3,6 +3,7 @@ import { LayoutDashboard, Lock, Star, Table } from 'lucide-vue-next'
 import { type Component, computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 import FeatureCard from '@/components/demo/FeatureCard.vue'
+import InstallationCode from '@/components/demo/InstallationCode.vue'
 import { RoutePaths } from '@/router/route-names'
 import ButtonLink from '@registry/components/ui/button-link/ButtonLink.vue'
 import ButtonLinkExternal from '@registry/components/ui/button-link/ButtonLinkExternal.vue'
@@ -18,6 +19,34 @@ const toArray = (key: string): string[] => {
   const msg = tm(key)
   return Array.isArray(msg) ? msg : Object.values(msg)
 }
+
+// Installation code snippets
+const createProjectCode = 'pnpm create vite@latest my-vue-app --template vue-ts'
+const addTailwindCode = 'pnpm add tailwindcss @tailwindcss/vite'
+const tailwindCssCode = '@import "tailwindcss";'
+const tsconfigCode = `{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  }
+}`
+const viteConfigCode = `import path from 'node:path'
+import tailwindcss from '@tailwindcss/vite'
+import vue from '@vitejs/plugin-vue'
+import { defineConfig } from 'vite'
+
+export default defineConfig({
+  plugins: [vue(), tailwindcss()],
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, './src'),
+    },
+  },
+})`
+const runCliCode = 'pnpm dlx vue-blocks-registry init'
+const addComponentCode = 'pnpm dlx vue-blocks-registry add button'
 
 const features = computed(() => [
   {
@@ -72,6 +101,87 @@ const features = computed(() => [
       <p class="leading-7 text-muted-foreground">
         {{ t('demo.introduction.what_is_p2') }}
       </p>
+    </div>
+
+    <div class="space-y-6">
+      <h2 class="scroll-m-20 border-b pb-2 text-2xl md:text-3xl font-semibold tracking-tight">
+        {{ t('demo.introduction.installation_title') }}
+      </h2>
+
+      <div class="space-y-6">
+        <!-- Step 1: Create project -->
+        <div class="space-y-2">
+          <h3 class="text-xl font-semibold">
+            {{ t('demo.introduction.installation.step1.title') }}
+          </h3>
+          <p class="text-sm text-muted-foreground">
+            {{ t('demo.introduction.installation.step1.description') }}
+          </p>
+          <InstallationCode :code="createProjectCode" />
+        </div>
+
+        <!-- Step 2: Add Tailwind CSS -->
+        <div class="space-y-2">
+          <h3 class="text-xl font-semibold">
+            {{ t('demo.introduction.installation.step2.title') }}
+          </h3>
+          <InstallationCode :code="addTailwindCode" />
+          <p class="text-sm text-muted-foreground mt-2">
+            {{ t('demo.introduction.installation.step2.description', { file: 'src/style.css' }) }}
+          </p>
+          <InstallationCode :code="tailwindCssCode" language="css" />
+        </div>
+
+        <!-- Step 3: Edit tsconfig -->
+        <div class="space-y-2">
+          <h3 class="text-xl font-semibold">
+            {{ t('demo.introduction.installation.step3.title') }}
+          </h3>
+          <p class="text-sm text-muted-foreground">
+            {{ t('demo.introduction.installation.step3.description', {
+              baseUrl: 'baseUrl',
+              paths: 'paths',
+              compilerOptions: 'compilerOptions',
+              tsconfig: 'tsconfig.json',
+              tsconfigApp: 'tsconfig.app.json'
+            }) }}
+          </p>
+          <InstallationCode :code="tsconfigCode" language="json" />
+        </div>
+
+        <!-- Step 4: Update vite.config.ts -->
+        <div class="space-y-2">
+          <h3 class="text-xl font-semibold">
+            {{ t('demo.introduction.installation.step4.title') }}
+          </h3>
+          <p class="text-sm text-muted-foreground">
+            {{ t('demo.introduction.installation.step4.description', { file: 'vite.config.ts' }) }}
+          </p>
+          <InstallationCode :code="viteConfigCode" language="typescript" />
+        </div>
+
+        <!-- Step 5: Run CLI -->
+        <div class="space-y-2">
+          <h3 class="text-xl font-semibold">
+            {{ t('demo.introduction.installation.step5.title') }}
+          </h3>
+          <p class="text-sm text-muted-foreground">
+            {{ t('demo.introduction.installation.step5.description', { command: 'vue-blocks-registry init' }) }}
+          </p>
+          <InstallationCode :code="runCliCode" />
+        </div>
+
+        <!-- Step 6: Add components -->
+        <div class="space-y-2">
+          <h3 class="text-xl font-semibold">
+            {{ t('demo.introduction.installation.step6.title') }}
+          </h3>
+          <p class="text-sm text-muted-foreground">
+            {{ t('demo.introduction.installation.step6.description') }}
+          </p>
+          <InstallationCode :code="addComponentCode" />
+        </div>
+      </div>
     </div>
 
     <div class="space-y-4 animate-slide-up">

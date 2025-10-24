@@ -239,6 +239,33 @@
         "tools": "Tools",
         "tools_items": ["Vite", "Vue Router", "Pinia", "Vee Validate + Zod"]
       },
+      "installation_title": "Installation",
+      "installation": {
+        "step1": {
+          "title": "1. Create project",
+          "description": "Start by creating a new Vue project using Vite:"
+        },
+        "step2": {
+          "title": "2. Add Tailwind CSS",
+          "description": "Replace everything in {file} with:"
+        },
+        "step3": {
+          "title": "3. Edit tsconfig.json",
+          "description": "Add {baseUrl} and {paths} to the {compilerOptions} section in {tsconfig} and {tsconfigApp} files:"
+        },
+        "step4": {
+          "title": "4. Update vite.config.ts",
+          "description": "Add the following code to {file}:"
+        },
+        "step5": {
+          "title": "5. Run CLI",
+          "description": "Run the {command} command to configure your project:"
+        },
+        "step6": {
+          "title": "6. Add components",
+          "description": "You can now start adding components to your project:"
+        }
+      },
       "get_started_title": "Get Started",
       "get_started_text": "Choose a component category from the sidebar on the left to see examples and code.",
       "view_components": "View Components",
@@ -305,6 +332,17 @@
         "email": "Email:",
         "password": "Password:",
         "register_info": "You can also register a new account - it will be saved in browser memory (session only)"
+      },
+      "installation": {
+        "title": "Installation",
+        "full_module": {
+          "title": "Full module (with UI):",
+          "description": "Includes pages, forms, layouts, store, services and all dependencies"
+        },
+        "feature_only": {
+          "title": "Feature only (without UI):",
+          "description": "Includes only store, services, composables and validation - no UI components"
+        }
       },
       "production_config": {
         "title": "Production Configuration",

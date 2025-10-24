@@ -9,6 +9,9 @@ import DocsPageHeader from '../layouts/partials/DocsPageHeader.vue'
 
 const { t } = useI18n()
 
+const installCodeFull = 'npx vue-blocks-registry add authFull'
+const installCodeFeat = 'npx vue-blocks-registry add authFeat'
+
 const authUsageCode = `// Import composable
 import { useAuth } from '@registry/modules/auth/composables/useAuth'
 
@@ -117,6 +120,30 @@ const authEndpoints = [
           <StatusBadge status="mock-api" />
           {{ t('demo.auth_example.mock_api_info') }}
         </p>
+      </HoverCard>
+
+      <HoverCard animate :title="t('demo.auth_example.installation.title')" dense>
+        <div class="space-y-4">
+          <div class="space-y-2">
+            <p class="text-sm font-semibold text-slate-900 dark:text-slate-100">
+              {{ t('demo.auth_example.installation.full_module.title') }}
+            </p>
+            <InstallationCode :code="installCodeFull" />
+            <p class="text-xs text-slate-600 dark:text-slate-400">
+              {{ t('demo.auth_example.installation.full_module.description') }}
+            </p>
+          </div>
+
+          <div class="space-y-2">
+            <p class="text-sm font-semibold text-slate-900 dark:text-slate-100">
+              {{ t('demo.auth_example.installation.feature_only.title') }}
+            </p>
+            <InstallationCode :code="installCodeFeat" />
+            <p class="text-xs text-slate-600 dark:text-slate-400">
+              {{ t('demo.auth_example.installation.feature_only.description') }}
+            </p>
+          </div>
+        </div>
       </HoverCard>
 
       <HoverCard animate :title="t('demo.auth_example.features_title')" dense>

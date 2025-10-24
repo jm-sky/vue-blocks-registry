@@ -239,6 +239,33 @@
         "tools": "Narzędzia",
         "tools_items": ["Vite", "Vue Router", "Pinia", "Vee Validate + Zod"]
       },
+      "installation_title": "Instalacja",
+      "installation": {
+        "step1": {
+          "title": "1. Utwórz projekt",
+          "description": "Rozpocznij od utworzenia nowego projektu Vue używając Vite:"
+        },
+        "step2": {
+          "title": "2. Dodaj Tailwind CSS",
+          "description": "Zamień wszystko w {file} na:"
+        },
+        "step3": {
+          "title": "3. Edytuj tsconfig.json",
+          "description": "Dodaj {baseUrl} i {paths} do sekcji {compilerOptions} w plikach {tsconfig} i {tsconfigApp}:"
+        },
+        "step4": {
+          "title": "4. Zaktualizuj vite.config.ts",
+          "description": "Dodaj następujący kod do {file}:"
+        },
+        "step5": {
+          "title": "5. Uruchom CLI",
+          "description": "Uruchom polecenie {command} aby skonfigurować projekt:"
+        },
+        "step6": {
+          "title": "6. Dodaj komponenty",
+          "description": "Możesz teraz zacząć dodawać komponenty do swojego projektu:"
+        }
+      },
       "get_started_title": "Rozpocznij",
       "get_started_text": "Wybierz kategorię komponentów z sidebar po lewej stronie, aby zobaczyć przykłady i kod.",
       "view_components": "Zobacz Komponenty",
@@ -305,6 +332,17 @@
         "email": "Email:",
         "password": "Hasło:",
         "register_info": "Możesz też zarejestrować nowe konto - zostanie zapisane w pamięci przeglądarki (tylko na czas sesji)"
+      },
+      "installation": {
+        "title": "Instalacja",
+        "full_module": {
+          "title": "Pełny moduł (z UI):",
+          "description": "Zawiera strony, formularze, layouty, store, serwisy i wszystkie zależności"
+        },
+        "feature_only": {
+          "title": "Tylko funkcjonalność (bez UI):",
+          "description": "Zawiera tylko store, serwisy, composables i walidację - bez komponentów UI"
+        }
       },
       "production_config": {
         "title": "Konfiguracja dla produkcji",
