@@ -50,6 +50,12 @@ export const scaffold = new Command()
           templatePath: path.join(__dirname, '../../templates/App.vue.template'),
           targetPath: 'src/App.vue',
         },
+        {
+          name: 'eslint.config.ts',
+          description: 'ESLint flat config with Vue, TypeScript, and Perfectionist',
+          templatePath: path.join(__dirname, '../../templates/eslint.config.ts.template'),
+          targetPath: 'eslint.config.ts',
+        },
       ]
 
       let filesToGenerate: ScaffoldFile[] = []
@@ -137,13 +143,32 @@ export const scaffold = new Command()
       logger.info('\nNext steps:')
       logger.info('  1. Review the generated files')
       logger.info('  2. Install required dependencies if not already installed:')
-      logger.info('     - @tanstack/vue-query')
-      logger.info('     - floating-vue')
-      logger.info('     - pinia')
-      logger.info('     - vue-router')
-      logger.info('     - vue-sonner')
-      logger.info('  3. Make sure you have the sonner component installed:')
-      logger.info('     vue-blocks-registry add sonner')
+
+      // Check which files were generated to show relevant dependencies
+      const fileNames = filesToGenerate.map(f => f.name)
+
+      if (fileNames.includes('main.ts') || fileNames.includes('App.vue')) {
+        logger.info('     Runtime dependencies:')
+        logger.info('     - @tanstack/vue-query')
+        logger.info('     - floating-vue')
+        logger.info('     - pinia')
+        logger.info('     - vue-router')
+        logger.info('     - vue-sonner')
+        logger.info('     - vue-i18n')
+      }
+
+      if (fileNames.includes('eslint.config.ts')) {
+        logger.info('     Dev dependencies:')
+        logger.info('     - @vue/eslint-config-typescript')
+        logger.info('     - eslint')
+        logger.info('     - eslint-plugin-perfectionist')
+        logger.info('     - eslint-plugin-vue')
+      }
+
+      if (fileNames.includes('App.vue')) {
+        logger.info('  3. Install the sonner component:')
+        logger.info('     vue-blocks-registry add sonner')
+      }
     }
     catch (error) {
       logger.error('Error:', error instanceof Error ? error.message : 'Unknown error')

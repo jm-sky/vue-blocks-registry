@@ -7,6 +7,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.3] - 2025-10-24
+
+### Added
+- **ESLint Config Template**: Added `eslint.config.ts` template to scaffold command
+  - Flat config format with Vue, TypeScript, and Perfectionist plugins
+  - Pre-configured rules for clean and consistent code
+  - Includes sensible defaults for Vue 3 and TypeScript projects
+  - Can be generated via `vue-blocks-registry scaffold` command
+
+### Changed
+- Enhanced scaffold command to show relevant dependencies based on generated files
+  - Runtime dependencies shown only when main.ts or App.vue is generated
+  - Dev dependencies shown only when eslint.config.ts is generated
+
 ## [0.2.2] - 2025-10-24
 
 ### Added
