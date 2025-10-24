@@ -202,19 +202,27 @@ async function installFiles(
         const pathParts = file.path.split('/')
         const firstDir = pathParts[0]
 
-        let alias = config.aliases.components
-        if (firstDir === 'lib') {
-          alias = config.aliases.lib
+        // Handle special directories that should preserve full path structure
+        if (firstDir === 'modules' || firstDir === 'app' || firstDir === 'shared') {
+          // For modules, app, and shared directories, preserve the full path under src/
+          targetPath = path.join(cwd, 'src', file.path)
         }
-        else if (firstDir === 'composables') {
-          alias = config.aliases.composables
+        else {
+          // Use alias mapping for other paths
+          let alias = config.aliases.components
+          if (firstDir === 'lib') {
+            alias = config.aliases.lib
+          }
+          else if (firstDir === 'composables') {
+            alias = config.aliases.composables
+          }
+
+          // Replace @ with src
+          const basePath = alias.replace('@/', 'src/')
+          const relativePath = pathParts.slice(1).join('/')
+
+          targetPath = path.join(cwd, basePath, relativePath)
         }
-
-        // Replace @ with src
-        const basePath = alias.replace('@/', 'src/')
-        const relativePath = pathParts.slice(1).join('/')
-
-        targetPath = path.join(cwd, basePath, relativePath)
       }
 
       // Check if file exists

@@ -6,10 +6,24 @@ import type { Config } from './config.js'
  * Example transformations:
  * - @registry/components/ui/button -> @/components/ui/button
  * - @registry/lib/utils -> @/lib/utils
+ * - @registry/modules/auth/... -> @/modules/auth/...
+ * - @registry/app/layouts/... -> @/layouts/...
  * - @registry/shared/utils/typeGuards -> @/lib/typeGuards (or @/shared/utils/typeGuards)
  */
 export function transformImports(content: string, config: Config): string {
   let transformed = content
+
+  // Transform @registry/modules -> @/modules (preserve full module structure)
+  transformed = transformed.replace(
+    /@registry\/modules/g,
+    '@/modules'
+  )
+
+  // Transform @registry/app/layouts -> @/layouts
+  transformed = transformed.replace(
+    /@registry\/app\/layouts/g,
+    '@/layouts'
+  )
 
   // Transform @registry/components -> user's components alias
   if (config.aliases.components) {
@@ -29,25 +43,18 @@ export function transformImports(content: string, config: Config): string {
     )
   }
 
-  // Transform @registry/shared -> @/lib or custom shared alias
-  // By default, map shared utils to lib since most configs don't have a separate shared alias
-  const sharedAlias = config.aliases.lib || '@/lib'
+  // Transform @registry/shared paths
+  // Map shared utils to lib alias (e.g., @/lib/utils.ts)
   transformed = transformed.replace(
     /@registry\/shared\/utils/g,
-    sharedAlias
+    config.aliases.lib || '@/lib'
   )
 
-  // Transform remaining @registry/shared paths (composables, services, etc.)
-  // Map to composables or lib depending on the path
-  transformed = transformed.replace(
-    /@registry\/shared\/composables/g,
-    config.aliases.composables || '@/composables'
-  )
-
-  // For other shared paths (services, types, config), map to lib
+  // Transform remaining @registry/shared paths to @/shared (preserve structure)
+  // This includes: components, composables, services, config, i18n, etc.
   transformed = transformed.replace(
     /@registry\/shared/g,
-    sharedAlias
+    '@/shared'
   )
 
   return transformed
