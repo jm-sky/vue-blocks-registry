@@ -1,0 +1,33 @@
+import './css/style.css'
+
+import { VueQueryPlugin } from '@tanstack/vue-query'
+import { vTooltip } from 'floating-vue'
+import { createPinia } from 'pinia'
+import { createApp } from 'vue'
+import { QueryClient } from '@tanstack/vue-query'
+import { i18n } from '@/shared/i18n'
+import App from './App.vue'
+import router from './router'
+import 'floating-vue/dist/style.css'
+
+const app = createApp(App)
+
+// Create query client with default configuration
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 5 * 60 * 1000, // 5 minutes
+      gcTime: 10 * 60 * 1000, // 10 minutes (formerly cacheTime)
+      retry: 2,
+      refetchOnWindowFocus: false,
+    },
+  },
+})
+
+app.use(createPinia())
+app.use(router)
+app.use(VueQueryPlugin, { queryClient })
+app.use(i18n)
+app.directive('tooltip', vTooltip)
+
+app.mount('#app')

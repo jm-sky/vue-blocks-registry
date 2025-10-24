@@ -6,6 +6,7 @@ import { fileURLToPath } from 'url'
 import { add } from './commands/add.js'
 import { init } from './commands/init.js'
 import { list } from './commands/list.js'
+import { scaffold } from './commands/scaffold.js'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
@@ -23,5 +24,6 @@ program
 program.addCommand(add)
 program.addCommand(init)
 program.addCommand(list)
+program.addCommand(scaffold)
 
 program.parse()

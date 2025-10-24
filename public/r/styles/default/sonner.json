@@ -1,0 +1,25 @@
+{
+  "$schema": "../../../../registry-item-schema.json",
+  "name": "sonner",
+  "type": "registry:ui",
+  "title": "Sonner",
+  "description": "Toast notification component using vue-sonner",
+  "categories": [
+    "ui",
+    "notification"
+  ],
+  "files": [
+    {
+      "path": "components/ui/sonner/Sonner.vue",
+      "type": "registry:ui"
+    },
+    {
+      "path": "components/ui/sonner/index.ts",
+      "type": "registry:ui"
+    }
+  ],
+  "dependencies": [
+    "vue-sonner"
+  ],
+  "registryDependencies": []
+}
