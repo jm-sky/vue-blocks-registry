@@ -114,6 +114,11 @@ export const scaffold = new Command()
             process.exit(0)
           }
         }
+        else {
+          // If --yes flag is used but --overwrite is not, don't generate files
+          logger.error('Error: Files already exist. Use --overwrite flag to overwrite existing files.')
+          process.exit(1)
+        }
       }
 
       // Confirm generation
