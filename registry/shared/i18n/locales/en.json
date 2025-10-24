@@ -252,6 +252,62 @@
         "description": "Multi-language support with PL/EN translations"
       }
     },
+    "auth_example": {
+      "title": "Authentication Module",
+      "description": "Complete authorization module with login, registration and password management forms",
+      "available_components": "Available Components",
+      "components": {
+        "login_form": {
+          "title": "Login Form",
+          "description": "Login form with validation"
+        },
+        "register_form": {
+          "title": "Register Form",
+          "description": "Registration form with password confirmation"
+        },
+        "forgot_password": {
+          "title": "Forgot Password",
+          "description": "Password reset form"
+        },
+        "reset_password": {
+          "title": "Reset Password",
+          "description": "New password setup form"
+        },
+        "change_password": {
+          "title": "Change Password",
+          "description": "Password change form for logged-in users"
+        }
+      },
+      "mock_api_info": "App runs in demo mode with mock API (no real backend). You can test all auth features!",
+      "features_title": "Features",
+      "features": {
+        "pinia_store": "Pinia store for auth state management",
+        "composables": "Composables (useAuth, useLogout)",
+        "validation": "Form validation with Zod and VeeValidate",
+        "api_integration": "API integration (axios)",
+        "typescript": "TypeScript types for User and Credentials",
+        "persistence": "LocalStorage persistence for JWT token"
+      },
+      "demo_mode": {
+        "title": "Demo Mode - Mock API Active",
+        "description": "App runs in demo mode with mock API (no real backend). You can test all auth features!",
+        "test_accounts": "Test accounts:",
+        "email": "Email:",
+        "password": "Password:",
+        "register_info": "You can also register a new account - it will be saved in browser memory (session only)"
+      },
+      "production_config": {
+        "title": "Production Configuration",
+        "description": "To connect a real backend API, change in the",
+        "file": ".env",
+        "file_text": "file:",
+        "backend_endpoints": "Backend must provide endpoints:"
+      },
+      "how_to_use": {
+        "title": "How to Use",
+        "description": "Auth module is available in"
+      }
+    },
     "showcase": {
       "preview": "Preview",
       "installation": "Installation",

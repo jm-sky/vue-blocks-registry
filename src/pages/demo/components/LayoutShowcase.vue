@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { computed } from 'vue'
+import { useI18n } from 'vue-i18n'
 import PageCard from '@registry/components/layout/PageCard.vue'
 import PageListHeader from '@registry/components/layout/PageListHeader.vue'
 import PageListWrapper from '@registry/components/layout/PageListWrapper.vue'
@@ -9,52 +11,57 @@ import HoverCard from '@registry/components/ui/hover-card/HoverCard.vue'
 import ScrollToTop from '@registry/components/ui/scroll-to-top/ScrollToTop.vue'
 import DocsPageHeader from '../layouts/partials/DocsPageHeader.vue'
 
-const layouts = [
+const { t } = useI18n()
+
+const layouts = computed(() => [
   {
-    title: 'PublicLayout',
-    description: 'Prosty layout dla landing pages i public pages',
+    title: t('demo.showcase.layout.available_layouts.public_layout.title'),
+    description: t('demo.showcase.layout.available_layouts.public_layout.description'),
     linkTo: '/demo/public-layout',
   },
   {
-    title: 'AuthenticatedLayout',
-    description: 'Zaawansowany layout z MainNav, UserNav i dark mode toggle',
+    title: t('demo.showcase.layout.available_layouts.authenticated_layout.title'),
+    description: t('demo.showcase.layout.available_layouts.authenticated_layout.description'),
     linkTo: '/demo/authenticated-layout',
   },
   {
-    title: 'GuestLayoutCentered',
-    description: 'Centered layout z gradient background dla auth pages',
+    title: t('demo.showcase.layout.available_layouts.guest_centered.title'),
+    description: t('demo.showcase.layout.available_layouts.guest_centered.description'),
     linkTo: '/demo/guest-layout-centered',
   },
   {
-    title: 'GuestLayoutCenteredGlass',
-    description: 'Glass-morphism efekt + background image support',
+    title: t('demo.showcase.layout.available_layouts.guest_glass.title'),
+    description: t('demo.showcase.layout.available_layouts.guest_glass.description'),
     linkTo: '/demo/guest-layout-centered-glass',
   },
   {
-    title: 'GuestLayoutTwoColumns',
-    description: 'Split-screen design z branding panel po lewej stronie',
+    title: t('demo.showcase.layout.available_layouts.guest_two_columns.title'),
+    description: t('demo.showcase.layout.available_layouts.guest_two_columns.description'),
     linkTo: '/demo/guest-layout-two-columns',
   },
-]
+])
 </script>
 
 <template>
   <div class="space-y-12">
     <!-- Page Header -->
-    <DocsPageHeader title="Layout Components" description="Komponenty układu, nawigacji i utility components do budowania profesjonalnych aplikacji" />
+    <DocsPageHeader
+      :title="t('demo.showcase.layout.title')"
+      :description="t('demo.showcase.layout.description')"
+    />
 
     <!-- ScrollToTop Component -->
     <div class="space-y-4 animate-slide-up">
       <h3 class="text-2xl font-semibold text-slate-800 dark:text-slate-200">
-        ScrollToTop
+        {{ t('demo.showcase.layout.scroll_to_top.title') }}
       </h3>
       <p class="text-slate-600 dark:text-slate-400">
-        Fixed button pojawia się po scroll > 300px z smooth scroll behavior
+        {{ t('demo.showcase.layout.scroll_to_top.description') }}
       </p>
       <Card>
         <CardContent>
           <p class="text-sm text-slate-600 dark:text-slate-400">
-            Przewiń stronę w dół, aby zobaczyć przycisk ScrollToTop w prawym dolnym rogu
+            {{ t('demo.showcase.layout.scroll_to_top.scroll_info') }}
           </p>
         </CardContent>
       </Card>
@@ -63,17 +70,17 @@ const layouts = [
     <!-- PageCard Component -->
     <div class="space-y-4 animate-slide-up">
       <h3 class="text-2xl font-semibold text-slate-800 dark:text-slate-200">
-        PageCard
+        {{ t('demo.showcase.layout.page_card.title') }}
       </h3>
       <p class="text-slate-600 dark:text-slate-400">
-        Wrapper dla content z consistent padding i styling
+        {{ t('demo.showcase.layout.page_card.description') }}
       </p>
       <PageCard>
         <h4 class="text-lg font-semibold text-slate-800 dark:text-slate-200 mb-2">
-          Example Card Content
+          {{ t('demo.showcase.layout.page_card.example_title') }}
         </h4>
         <p class="text-slate-600 dark:text-slate-400">
-          To jest przykładowa zawartość PageCard. Możesz tu umieścić dowolną treść, tabele, formularze, etc.
+          {{ t('demo.showcase.layout.page_card.example_text') }}
         </p>
       </PageCard>
     </div>
@@ -81,25 +88,25 @@ const layouts = [
     <!-- PageListHeader Component -->
     <div class="space-y-4 animate-slide-up">
       <h3 class="text-2xl font-semibold text-slate-800 dark:text-slate-200">
-        PageListHeader
+        {{ t('demo.showcase.layout.page_list_header.title') }}
       </h3>
       <p class="text-slate-600 dark:text-slate-400">
-        Header dla list pages z title, count badge i actions slot
+        {{ t('demo.showcase.layout.page_list_header.description') }}
       </p>
       <div class="bg-white dark:bg-gray-800 p-6 rounded-lg border border-border dark:border-gray-700">
         <PageListHeader
-          title="Users"
+          :title="t('demo.showcase.layout.page_list_header.users')"
           :count="42"
-          description="Lista wszystkich użytkowników w systemie"
+          :description="t('demo.showcase.layout.page_list_header.users_description')"
         >
           <template #actions>
             <Button size="sm">
-              Add User
+              {{ t('demo.showcase.layout.page_list_header.add_user') }}
             </Button>
           </template>
         </PageListHeader>
         <p class="text-sm text-slate-600 dark:text-slate-400 mt-4">
-          (Przykładowa lista użytkowników...)
+          {{ t('demo.showcase.layout.page_list_header.example_list') }}
         </p>
       </div>
     </div>
@@ -107,34 +114,34 @@ const layouts = [
     <!-- PageListWrapper Component -->
     <div class="space-y-4 animate-slide-up">
       <h3 class="text-2xl font-semibold text-slate-800 dark:text-slate-200">
-        PageListWrapper
+        {{ t('demo.showcase.layout.page_list_wrapper.title') }}
       </h3>
       <p class="text-slate-600 dark:text-slate-400">
-        Kombinacja PageCard + PageListHeader w jednym komponencie
+        {{ t('demo.showcase.layout.page_list_wrapper.description') }}
       </p>
       <PageListWrapper
-        title="Projects"
+        :title="t('demo.showcase.layout.page_list_wrapper.projects')"
         :count="15"
-        description="Wszystkie aktywne projekty"
+        :description="t('demo.showcase.layout.page_list_wrapper.projects_description')"
       >
         <template #actions>
           <Button size="sm" variant="outline">
-            Filter
+            {{ t('demo.showcase.layout.page_list_wrapper.filter') }}
           </Button>
           <Button size="sm">
-            New Project
+            {{ t('demo.showcase.layout.page_list_wrapper.new_project') }}
           </Button>
         </template>
 
         <div class="space-y-2 mt-4">
           <div class="p-3 bg-gray-50 dark:bg-gray-900 rounded border border-border">
-            Project Alpha
+            {{ t('demo.showcase.layout.page_list_wrapper.project_alpha') }}
           </div>
           <div class="p-3 bg-gray-50 dark:bg-gray-900 rounded border border-border">
-            Project Beta
+            {{ t('demo.showcase.layout.page_list_wrapper.project_beta') }}
           </div>
           <div class="p-3 bg-gray-50 dark:bg-gray-900 rounded border border-border">
-            Project Gamma
+            {{ t('demo.showcase.layout.page_list_wrapper.project_gamma') }}
           </div>
         </div>
       </PageListWrapper>
@@ -143,10 +150,10 @@ const layouts = [
     <!-- Layout Variants Info -->
     <div class="space-y-4 animate-slide-up">
       <h3 class="text-2xl font-semibold text-slate-800 dark:text-slate-200">
-        Available Layouts
+        {{ t('demo.showcase.layout.available_layouts.title') }}
       </h3>
       <p class="text-slate-600 dark:text-slate-400">
-        Vue Blocks Registry oferuje 5 gotowych layoutów
+        {{ t('demo.showcase.layout.available_layouts.description') }}
       </p>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         <HoverCard
@@ -155,7 +162,7 @@ const layouts = [
           :title="layout.title"
           :description="layout.description"
           :link-to="layout.linkTo"
-          link-label="Zobacz komponenty"
+          :link-label="t('demo.showcase.layout.available_layouts.view_link')"
         />
       </div>
     </div>

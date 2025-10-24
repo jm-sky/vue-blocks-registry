@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { computed } from 'vue'
+import { useI18n } from 'vue-i18n'
 import InstallationCode from '@/components/demo/InstallationCode.vue'
 import DataTable from '@registry/components/data-table/DataTable.vue'
 import Card from '@registry/components/ui/card/Card.vue'
@@ -10,32 +12,34 @@ import { columns } from '@registry/examples/data-table/columns-full'
 import { payments } from '@registry/examples/data-table/data'
 import DocsPageHeader from '../layouts/partials/DocsPageHeader.vue'
 
-const features = [
+const { t } = useI18n()
+
+const features = computed(() => [
   {
-    title: 'Sorting',
-    description: 'Click column headers to sort ascending/descending',
+    title: t('demo.showcase.data_table.features.sorting.title'),
+    description: t('demo.showcase.data_table.features.sorting.description'),
   },
   {
-    title: 'Filtering',
-    description: 'Search/filter by column values (email in this example)',
+    title: t('demo.showcase.data_table.features.filtering.title'),
+    description: t('demo.showcase.data_table.features.filtering.description'),
   },
   {
-    title: 'Pagination',
-    description: 'Navigate through pages with Previous/Next buttons',
+    title: t('demo.showcase.data_table.features.pagination.title'),
+    description: t('demo.showcase.data_table.features.pagination.description'),
   },
   {
-    title: 'Row Selection',
-    description: 'Select rows with checkboxes (individual or select all)',
+    title: t('demo.showcase.data_table.features.row_selection.title'),
+    description: t('demo.showcase.data_table.features.row_selection.description'),
   },
   {
-    title: 'Column Visibility',
-    description: 'Toggle column visibility with "Columns" dropdown',
+    title: t('demo.showcase.data_table.features.column_visibility.title'),
+    description: t('demo.showcase.data_table.features.column_visibility.description'),
   },
   {
-    title: 'Action Menu',
-    description: 'Per-row actions with dropdown menu (3-dot icon)',
+    title: t('demo.showcase.data_table.features.action_menu.title'),
+    description: t('demo.showcase.data_table.features.action_menu.description'),
   },
-]
+])
 
 const basicUsageCode = `// Import components
 <script setup lang="ts">
@@ -57,29 +61,32 @@ import { data } from './data'
 <template>
   <div class="space-y-8">
     <!-- Page Header -->
-    <DocsPageHeader title="DataTable" description="Advanced table with sorting, filtering, pagination, and row selection powered by TanStack Table" />
+    <DocsPageHeader
+      :title="t('demo.showcase.data_table.title')"
+      :description="t('demo.showcase.data_table.description')"
+    />
 
     <!-- Full Featured DataTable -->
     <div class="space-y-4 animate-slide-up">
       <h3 class="text-2xl font-semibold text-slate-800 dark:text-slate-200">
-        Full Featured Table
+        {{ t('demo.showcase.data_table.full_featured.title') }}
       </h3>
       <p class="text-slate-600 dark:text-slate-400">
-        Table with sorting (click Email header), filtering, pagination, row selection, column visibility toggle, and action menu
+        {{ t('demo.showcase.data_table.full_featured.description') }}
       </p>
 
       <DataTable
         :columns="columns"
         :data="payments"
         filter-column="email"
-        filter-placeholder="Filter emails..."
+        :filter-placeholder="t('demo.showcase.data_table.filter_placeholder')"
       />
     </div>
 
     <!-- Features List -->
     <div class="space-y-4 animate-slide-up">
       <h3 class="text-2xl font-semibold text-slate-800 dark:text-slate-200">
-        Features Included
+        {{ t('demo.showcase.data_table.features.title') }}
       </h3>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         <Card v-for="feature in features" :key="feature.title" class="gap-3">
@@ -98,7 +105,7 @@ import { data } from './data'
     <!-- Tech Stack -->
     <div class="space-y-4 animate-slide-up">
       <h3 class="text-2xl font-semibold text-slate-800 dark:text-slate-200">
-        Technology Stack
+        {{ t('demo.showcase.data_table.tech_stack.title') }}
       </h3>
       <HoverCard variant="blue" dense no-hover>
         <ul class="space-y-2 text-slate-700 dark:text-slate-300">
@@ -114,7 +121,7 @@ import { data } from './data'
     <!-- Usage Example -->
     <div class="space-y-4 animate-slide-up">
       <h3 class="text-2xl font-semibold text-slate-800 dark:text-slate-200">
-        Basic Usage
+        {{ t('demo.showcase.data_table.usage.title') }}
       </h3>
       <InstallationCode :code="basicUsageCode" />
     </div>

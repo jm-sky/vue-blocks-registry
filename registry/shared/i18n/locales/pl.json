@@ -252,6 +252,62 @@
         "description": "Wsparcie dla wielu języków z tłumaczeniami PL/EN"
       }
     },
+    "auth_example": {
+      "title": "Moduł Autoryzacji",
+      "description": "Kompletny moduł autoryzacji z formularzami logowania, rejestracji i zarządzania hasłem",
+      "available_components": "Dostępne komponenty",
+      "components": {
+        "login_form": {
+          "title": "Login Form",
+          "description": "Formularz logowania z walidacją"
+        },
+        "register_form": {
+          "title": "Register Form",
+          "description": "Formularz rejestracji z potwierdzeniem hasła"
+        },
+        "forgot_password": {
+          "title": "Forgot Password",
+          "description": "Formularz resetowania hasła"
+        },
+        "reset_password": {
+          "title": "Reset Password",
+          "description": "Formularz ustawiania nowego hasła"
+        },
+        "change_password": {
+          "title": "Change Password",
+          "description": "Formularz zmiany hasła dla zalogowanych użytkowników"
+        }
+      },
+      "mock_api_info": "Aplikacja działa w trybie demo z mock API (bez prawdziwego backendu). Możesz przetestować wszystkie funkcje auth!",
+      "features_title": "Funkcjonalności",
+      "features": {
+        "pinia_store": "Pinia store dla zarządzania stanem autoryzacji",
+        "composables": "Composables (useAuth, useLogout)",
+        "validation": "Walidacja formularzy z Zod i VeeValidate",
+        "api_integration": "Integracja z API (axios)",
+        "typescript": "TypeScript types dla User i Credentials",
+        "persistence": "LocalStorage persistence dla JWT token"
+      },
+      "demo_mode": {
+        "title": "Demo Mode - Mock API Aktywne",
+        "description": "Aplikacja działa w trybie demo z mock API (bez prawdziwego backendu). Możesz przetestować wszystkie funkcje auth!",
+        "test_accounts": "Testowe konta:",
+        "email": "Email:",
+        "password": "Hasło:",
+        "register_info": "Możesz też zarejestrować nowe konto - zostanie zapisane w pamięci przeglądarki (tylko na czas sesji)"
+      },
+      "production_config": {
+        "title": "Konfiguracja dla produkcji",
+        "description": "Aby podłączyć prawdziwy backend API, zmień w pliku",
+        "file": ".env",
+        "file_text": ":",
+        "backend_endpoints": "Backend musi udostępniać endpointy:"
+      },
+      "how_to_use": {
+        "title": "Jak używać",
+        "description": "Moduł auth jest dostępny w"
+      }
+    },
     "showcase": {
       "preview": "Podgląd",
       "installation": "Instalacja",
