@@ -59,6 +59,14 @@ export const list = new Command()
       }
 
       logger.info(`Total: ${items.length} items`)
+
+      // Add scaffolding section
+      logger.break()
+      logger.info('📦 SCAFFOLDING')
+      logger.success('  • scaffold')
+      logger.info('    Generate foundational project files (main.ts, App.vue, eslint.config.ts)')
+      logger.info('    Usage: vue-blocks-registry scaffold [options]')
+      logger.info('    Options: --all, --overwrite, --yes')
     }
     catch (error) {
       logger.error('Error:', error instanceof Error ? error.message : 'Unknown error')

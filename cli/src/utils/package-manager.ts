@@ -57,6 +57,19 @@ export function detectPackageManager(cwd: string): PackageManagerInfo {
 /**
  * Gets the appropriate add command for installing dependencies
  */
-export function getAddCommand(packageManager: PackageManagerInfo, dependencies: string[]): string[] {
-  return [packageManager.command, ...packageManager.addCommand, ...dependencies]
+export function getAddCommand(packageManager: PackageManagerInfo, dependencies: string[], isDev = false): string[] {
+  const baseCommand = [packageManager.command, ...packageManager.addCommand]
+
+  if (isDev) {
+    // Add dev flag based on package manager
+    if (packageManager.name === 'npm') {
+      baseCommand.push('--save-dev')
+    }
+    else {
+      // pnpm and yarn use -D
+      baseCommand.push('-D')
+    }
+  }
+
+  return [...baseCommand, ...dependencies]
 }

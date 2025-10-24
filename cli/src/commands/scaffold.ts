@@ -1,4 +1,5 @@
 import { Command } from 'commander'
+import { execa } from 'execa'
 import fs from 'fs-extra'
 import ora from 'ora'
 import path from 'path'
@@ -6,6 +7,7 @@ import prompts from 'prompts'
 import { fileURLToPath } from 'url'
 import { getConfig } from '../utils/config.js'
 import { logger } from '../utils/logger.js'
+import { detectPackageManager, getAddCommand } from '../utils/package-manager.js'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
@@ -136,6 +138,9 @@ export const scaffold = new Command()
         }
       }
 
+      // Install dependencies first
+      await installDependencies(filesToGenerate, cwd)
+
       // Generate files
       for (const file of filesToGenerate) {
         await generateFile(file, cwd)
@@ -147,31 +152,12 @@ export const scaffold = new Command()
       // Show next steps
       logger.info('\nNext steps:')
       logger.info('  1. Review the generated files')
-      logger.info('  2. Install required dependencies if not already installed:')
 
-      // Check which files were generated to show relevant dependencies
+      // Check which files were generated to show relevant next steps
       const fileNames = filesToGenerate.map(f => f.name)
 
-      if (fileNames.includes('main.ts') || fileNames.includes('App.vue')) {
-        logger.info('     Runtime dependencies:')
-        logger.info('     - @tanstack/vue-query')
-        logger.info('     - floating-vue')
-        logger.info('     - pinia')
-        logger.info('     - vue-router')
-        logger.info('     - vue-sonner')
-        logger.info('     - vue-i18n')
-      }
-
-      if (fileNames.includes('eslint.config.ts')) {
-        logger.info('     Dev dependencies:')
-        logger.info('     - @vue/eslint-config-typescript')
-        logger.info('     - eslint')
-        logger.info('     - eslint-plugin-perfectionist')
-        logger.info('     - eslint-plugin-vue')
-      }
-
       if (fileNames.includes('App.vue')) {
-        logger.info('  3. Install the sonner component:')
+        logger.info('  2. Install the sonner component:')
         logger.info('     vue-blocks-registry add sonner')
       }
     }
@@ -180,6 +166,73 @@ export const scaffold = new Command()
       process.exit(1)
     }
   })
+
+async function installDependencies(
+  files: ScaffoldFile[],
+  cwd: string
+): Promise<void> {
+  const fileNames = files.map(f => f.name)
+  const runtimeDeps: string[] = []
+  const devDeps: string[] = []
+
+  // Determine which dependencies to install based on selected files
+  if (fileNames.includes('main.ts') || fileNames.includes('App.vue')) {
+    runtimeDeps.push(
+      '@tanstack/vue-query',
+      'floating-vue',
+      'pinia',
+      'vue-router',
+      'vue-sonner'
+    )
+  }
+
+  if (fileNames.includes('eslint.config.ts')) {
+    devDeps.push(
+      '@vue/eslint-config-typescript',
+      'eslint',
+      'eslint-plugin-perfectionist',
+      'eslint-plugin-vue'
+    )
+  }
+
+  // Install runtime dependencies
+  if (runtimeDeps.length > 0) {
+    const spinner = ora('Installing runtime dependencies...').start()
+    try {
+      const packageManager = detectPackageManager(cwd)
+      const addCommand = getAddCommand(packageManager, runtimeDeps)
+
+      await execa(addCommand[0], addCommand.slice(1), { cwd })
+      spinner.succeed('Runtime dependencies installed')
+    }
+    catch {
+      spinner.fail('Failed to install runtime dependencies')
+      logger.warn('You may need to install them manually:')
+      logger.info(`  ${runtimeDeps.join(' ')}`)
+    }
+  }
+
+  // Install dev dependencies
+  if (devDeps.length > 0) {
+    const spinner = ora('Installing dev dependencies...').start()
+    try {
+      const packageManager = detectPackageManager(cwd)
+      const addCommand = getAddCommand(packageManager, devDeps, true)
+
+      await execa(addCommand[0], addCommand.slice(1), { cwd })
+      spinner.succeed('Dev dependencies installed')
+    }
+    catch {
+      spinner.fail('Failed to install dev dependencies')
+      logger.warn('You may need to install them manually:')
+      logger.info(`  ${devDeps.join(' ')}`)
+    }
+  }
+
+  if (runtimeDeps.length === 0 && devDeps.length === 0) {
+    logger.info('No dependencies to install')
+  }
+}
 
 async function generateFile(
   file: ScaffoldFile,

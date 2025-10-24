@@ -7,6 +7,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.4] - 2025-10-24
+
+### Added
+- **SCAFFOLDING Category in List**: Added dedicated SCAFFOLDING section to `list` command showing scaffold options
+- **Automatic Dependency Installation**: Scaffold command now automatically installs required dependencies
+  - Runtime dependencies: @tanstack/vue-query, floating-vue, pinia, vue-router, vue-sonner
+  - Dev dependencies: @vue/eslint-config-typescript, eslint, eslint-plugin-perfectionist, eslint-plugin-vue
+  - Detects package manager (npm/pnpm/yarn) and uses appropriate commands
+  - Gracefully handles installation failures with manual instructions
+- **i18n Setup Instructions**: Added commented-out i18n setup in main.ts template for easy opt-in
+
+### Changed
+- Removed dependency installation instructions from scaffold output (now installed automatically)
+- Improved `Next steps` section to show only relevant actions
+
+### Fixed
+- Fixed scaffold command failing when files exist without --overwrite flag
+- Better error handling when using --yes flag without --overwrite on existing files
+
 ## [0.2.3] - 2025-10-24
 
 ### Added
