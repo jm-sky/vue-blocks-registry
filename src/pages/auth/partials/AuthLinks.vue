@@ -1,6 +1,9 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n'
 import { RoutePaths } from '@/router/route-names'
 import { ButtonLink } from '@registry/components/ui/button-link'
+
+const { t } = useI18n()
 </script>
 
 <template>
@@ -8,6 +11,6 @@ import { ButtonLink } from '@registry/components/ui/button-link'
     :to="RoutePaths.DEMO_EXAMPLES_AUTH"
     variant="ghost"
   >
-    Auth Docs
+    {{ t('auth.docs_link') }}
   </ButtonLink>
 </template>

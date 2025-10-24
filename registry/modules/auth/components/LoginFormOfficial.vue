@@ -11,9 +11,12 @@ import { loginSchema } from '@registry/modules/auth/validation/login.schema'
 import { isValidationError } from '@registry/shared/utils/typeGuards'
 import { toTypedSchema } from '@vee-validate/zod'
 import { useForm } from 'vee-validate'
+import { useI18n } from 'vue-i18n'
 import { useRoute, useRouter } from 'vue-router'
 import type { LoginCredentials } from '@registry/modules/auth/types/user'
 import type { HTMLAttributes } from 'vue'
+
+const { t } = useI18n()
 
 const router = useRouter()
 const route = useRoute()
@@ -53,9 +56,9 @@ const onSubmit = handleSubmit(async (values: LoginCredentials) => {
   <div :class="cn('flex flex-col gap-6', props.class)">
     <Card>
       <CardHeader>
-        <CardTitle>Login to your account</CardTitle>
+        <CardTitle>{{ t('auth.official_form.title') }}</CardTitle>
         <CardDescription>
-          Enter your email below to login to your account
+          {{ t('auth.official_form.description') }}
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -63,11 +66,11 @@ const onSubmit = handleSubmit(async (values: LoginCredentials) => {
           <div class="flex flex-col gap-6">
             <FormField v-slot="{ componentField }" name="email">
               <FormItem>
-                <FormLabel>Email</FormLabel>
+                <FormLabel>{{ t('auth.email') }}</FormLabel>
                 <FormControl>
                   <Input
                     type="email"
-                    placeholder="Enter your email"
+                    :placeholder="t('auth.form.email_placeholder')"
                     v-bind="componentField"
                     required
                   />
@@ -79,12 +82,12 @@ const onSubmit = handleSubmit(async (values: LoginCredentials) => {
             <FormField v-slot="{ componentField }" name="password">
               <FormItem>
                 <div class="flex items-center">
-                  <FormLabel>Password</FormLabel>
+                  <FormLabel>{{ t('auth.password') }}</FormLabel>
                   <RouterLink
                     to="/auth/forgot-password"
                     class="ml-auto inline-block text-sm underline-offset-4 hover:underline"
                   >
-                    Forgot your password?
+                    {{ t('auth.official_form.forgot_password_link') }}
                   </RouterLink>
                 </div>
                 <FormControl>
@@ -101,18 +104,18 @@ const onSubmit = handleSubmit(async (values: LoginCredentials) => {
                 :disabled="isSubmitting"
                 :loading="isSubmitting"
               >
-                {{ isSubmitting ? 'Logging in...' : 'Login' }}
+                {{ isSubmitting ? t('auth.official_form.logging_in') : t('auth.login') }}
               </Button>
               <Button variant="outline" class="w-full" :disabled="isSubmitting">
-                Login with Google
+                {{ t('auth.official_form.login_with_google') }}
               </Button>
             </div>
           </div>
 
           <div class="mt-4 text-center text-sm">
-            Don't have an account?
+            {{ t('auth.official_form.no_account') }}
             <RouterLink to="/auth/register" class="underline underline-offset-4 hover:text-primary">
-              Sign up
+              {{ t('auth.official_form.sign_up_link') }}
             </RouterLink>
           </div>
         </form>

@@ -1,11 +1,14 @@
 <script setup lang="ts">
 import { ExternalLink } from 'lucide-vue-next'
+import { useI18n } from 'vue-i18n'
 import CodePreview from '@/components/demo/CodePreview.vue'
 import ComponentSection from '@/components/demo/ComponentSection.vue'
 import ButtonLink from '@registry/components/ui/button-link/ButtonLink.vue'
 import HoverLink from '@registry/components/ui/hover-link/HoverLink.vue'
 import HoverLinkExternal from '@registry/components/ui/hover-link/HoverLinkExternal.vue'
 import DocsPageHeader from '../layouts/partials/DocsPageHeader.vue'
+
+const { t } = useI18n()
 
 const installCode = 'npx vue-blocks-registry add hover-link button-link'
 
@@ -73,12 +76,12 @@ import { ButtonLink } from '@registry/components/ui/button-link'
   <div class="space-y-12">
     <!-- Page Header -->
     <DocsPageHeader
-      title="Links"
-      description="Router links with hover effects and smooth transitions."
+      :title="t('demo.showcase.link.title')"
+      :description="t('demo.showcase.link.description')"
     />
 
     <!-- Preview -->
-    <ComponentSection title="Preview">
+    <ComponentSection :title="t('demo.showcase.preview')">
       <CodePreview :code="hoverLinkCode">
         <template #preview>
           <div class="flex flex-row gap-4">
@@ -97,7 +100,7 @@ import { ButtonLink } from '@registry/components/ui/button-link'
     <!-- Installation -->
     <ComponentSection
       id="installation"
-      title="Installation"
+      :title="t('demo.showcase.installation')"
     >
       <div class="bg-slate-900 dark:bg-slate-950 rounded-lg border border-slate-700/60 p-4">
         <pre class="text-emerald-400 dark:text-emerald-300 text-sm font-mono">{{ installCode }}</pre>
@@ -107,7 +110,7 @@ import { ButtonLink } from '@registry/components/ui/button-link'
     <!-- Examples -->
     <ComponentSection
       id="examples"
-      title="Examples"
+      :title="t('demo.showcase.examples')"
     >
       <div class="space-y-8">
         <!-- HoverLink -->

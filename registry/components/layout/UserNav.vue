@@ -49,11 +49,11 @@ const handleLogout = () => {
     <div class="absolute right-0 mt-2 w-64 bg-card border border-border rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
       <!-- User info -->
       <div class="px-4 py-3 border-b border-border">
-        <p v-if="userName" class="text-sm font-medium text-card-foreground">
-          {{ userName }}
+        <p class="text-sm font-medium text-card-foreground">
+          {{ userName ?? 'N/A' }}
         </p>
         <p class="text-xs text-muted-foreground truncate">
-          {{ userEmail }}
+          {{ userEmail ?? '-' }}
         </p>
       </div>
 

@@ -16,7 +16,12 @@
     "sort": "Sortuj",
     "actions": "Akcje",
     "yes": "Tak",
-    "no": "Nie"
+    "no": "Nie",
+    "copyToClipboard": {
+      "success": "Skopiowano do schowka",
+      "copied": "Skopiowano",
+      "copy": "Skopiuj"
+    }
   },
   "auth": {
     "login": "Zaloguj się",
@@ -70,7 +75,22 @@
       "create_new_account": "utwórz nowe konto",
       "or_sign_in": "Lub",
       "sign_in_existing": "zaloguj się do istniejącego konta"
-    }
+    },
+    "official_form": {
+      "title": "Zaloguj się do swojego konta",
+      "description": "Wprowadź swój email poniżej, aby zalogować się do swojego konta",
+      "forgot_password_link": "Zapomniałeś hasła?",
+      "logging_in": "Logowanie...",
+      "login_with_google": "Zaloguj się przez Google",
+      "no_account": "Nie masz konta?",
+      "sign_up_link": "Zarejestruj się"
+    },
+    "menu": {
+      "variants": "Warianty",
+      "login_standard": "Login Standardowy",
+      "login_official": "Login Oficjalny"
+    },
+    "docs_link": "Dokumentacja Auth"
   },
   "navigation": {
     "home": "Start",
@@ -78,7 +98,10 @@
     "profile": "Profil",
     "settings": "Ustawienia",
     "about": "O nas",
-    "contact": "Kontakt"
+    "contact": "Kontakt",
+    "docs": "Dokumentacja",
+    "components": "Komponenty",
+    "examples": "Przykłady"
   },
   "validation": {
     "required": "To pole jest wymagane",
@@ -227,6 +250,175 @@
       "i18n_example": {
         "title": "Internacjonalizacja (i18n)",
         "description": "Wsparcie dla wielu języków z tłumaczeniami PL/EN"
+      }
+    },
+    "showcase": {
+      "preview": "Podgląd",
+      "installation": "Instalacja",
+      "examples": "Przykłady",
+      "button": {
+        "title": "Przycisk",
+        "description": "Wyświetla przycisk lub komponent wyglądający jak przycisk.",
+        "click_me": "Kliknij mnie",
+        "variants": {
+          "title": "Warianty",
+          "primary": "Podstawowy",
+          "outline": "Kontur",
+          "destructive": "Destrukcyjny",
+          "secondary": "Drugorzędny",
+          "ghost": "Widmo",
+          "link": "Link"
+        },
+        "vibes": {
+          "title": "Vibes (Unikalna Funkcja ✨)",
+          "description": "Nasz komponent Button zawiera unikalne animacje \"vibe\", które dodają dodatkowego wizualnego uroku.",
+          "primary": "Primary Vibe",
+          "outline": "Outline Vibe",
+          "underline": "Underline Vibe"
+        },
+        "sizes": {
+          "title": "Rozmiary",
+          "small": "Mały",
+          "default": "Domyślny",
+          "large": "Duży"
+        },
+        "states": {
+          "title": "Stany",
+          "normal": "Normalny",
+          "disabled": "Wyłączony"
+        }
+      },
+      "link": {
+        "title": "Linki",
+        "description": "Linki routera z efektami hover i płynnymi przejściami.",
+        "navigate_demo": "Przejdź do Demo",
+        "external_link": "Link Zewnętrzny",
+        "hover_link": {
+          "title": "HoverLink",
+          "description": "Wewnętrzny link routera z animowanym podkreśleniem przy hover.",
+          "view_components": "Zobacz Komponenty"
+        },
+        "hover_link_external": {
+          "title": "HoverLinkExternal",
+          "description": "Link zewnętrzny z ikoną i animacją hover.",
+          "vue_docs": "Dokumentacja Vue.js",
+          "github": "GitHub"
+        },
+        "button_link": {
+          "title": "ButtonLink",
+          "description": "Link routera stylizowany jako przycisk. Łączy komponent Button z funkcjonalnością RouterLink.",
+          "primary": "Link Podstawowy",
+          "outline": "Link Kontur",
+          "secondary": "Link Drugorzędny"
+        },
+        "button_link_vibes": {
+          "title": "ButtonLink z Vibes ✨",
+          "description": "ButtonLink również wspiera unikalne animacje \"vibe\".",
+          "primary": "Primary Vibe",
+          "outline": "Outline Vibe",
+          "underline": "Underline Vibe"
+        }
+      },
+      "layout": {
+        "title": "Komponenty Layout",
+        "description": "Komponenty układu, nawigacji i utility do budowania profesjonalnych aplikacji",
+        "scroll_to_top": {
+          "title": "ScrollToTop",
+          "description": "Przycisk fixed pojawia się po scroll > 300px z płynnym przewijaniem",
+          "scroll_info": "Przewiń stronę w dół, aby zobaczyć przycisk ScrollToTop w prawym dolnym rogu"
+        },
+        "page_card": {
+          "title": "PageCard",
+          "description": "Wrapper dla contentu z spójnym paddingiem i stylem",
+          "example_title": "Przykładowa Zawartość Karty",
+          "example_text": "To jest przykładowa zawartość PageCard. Możesz tu umieścić dowolną treść, tabele, formularze, etc."
+        },
+        "page_list_header": {
+          "title": "PageListHeader",
+          "description": "Header dla list pages z tytułem, licznikiem i slotem akcji",
+          "users": "Użytkownicy",
+          "users_description": "Lista wszystkich użytkowników w systemie",
+          "add_user": "Dodaj Użytkownika",
+          "example_list": "(Przykładowa lista użytkowników...)"
+        },
+        "page_list_wrapper": {
+          "title": "PageListWrapper",
+          "description": "Kombinacja PageCard + PageListHeader w jednym komponencie",
+          "projects": "Projekty",
+          "projects_description": "Wszystkie aktywne projekty",
+          "filter": "Filtruj",
+          "new_project": "Nowy Projekt",
+          "project_alpha": "Projekt Alpha",
+          "project_beta": "Projekt Beta",
+          "project_gamma": "Projekt Gamma"
+        },
+        "available_layouts": {
+          "title": "Dostępne Layouty",
+          "description": "Vue Blocks Registry oferuje 5 gotowych layoutów",
+          "view_link": "Zobacz komponenty",
+          "public_layout": {
+            "title": "PublicLayout",
+            "description": "Prosty layout dla landing pages i stron publicznych"
+          },
+          "authenticated_layout": {
+            "title": "AuthenticatedLayout",
+            "description": "Zaawansowany layout z MainNav, UserNav i dark mode toggle"
+          },
+          "guest_centered": {
+            "title": "GuestLayoutCentered",
+            "description": "Wyśrodkowany layout z gradientowym tłem dla stron auth"
+          },
+          "guest_glass": {
+            "title": "GuestLayoutCenteredGlass",
+            "description": "Efekt glass-morphism + wsparcie dla obrazu tła"
+          },
+          "guest_two_columns": {
+            "title": "GuestLayoutTwoColumns",
+            "description": "Design split-screen z panelem brandingowym po lewej stronie"
+          }
+        }
+      },
+      "data_table": {
+        "title": "DataTable",
+        "description": "Zaawansowana tabela z sortowaniem, filtrowaniem, paginacją i wyborem wierszy opartą na TanStack Table",
+        "full_featured": {
+          "title": "Tabela z Pełnymi Funkcjami",
+          "description": "Tabela z sortowaniem (kliknij nagłówek Email), filtrowaniem, paginacją, wyborem wierszy, przełącznikiem widoczności kolumn i menu akcji"
+        },
+        "filter_placeholder": "Filtruj emaile...",
+        "features": {
+          "title": "Dołączone Funkcje",
+          "sorting": {
+            "title": "Sortowanie",
+            "description": "Kliknij nagłówki kolumn, aby sortować rosnąco/malejąco"
+          },
+          "filtering": {
+            "title": "Filtrowanie",
+            "description": "Szukaj/filtruj według wartości kolumn (email w tym przykładzie)"
+          },
+          "pagination": {
+            "title": "Paginacja",
+            "description": "Nawiguj przez strony przyciskami Poprzedni/Następny"
+          },
+          "row_selection": {
+            "title": "Wybór Wierszy",
+            "description": "Wybieraj wiersze checkboxami (pojedynczo lub wszystkie)"
+          },
+          "column_visibility": {
+            "title": "Widoczność Kolumn",
+            "description": "Przełączaj widoczność kolumn dropdownem \"Kolumny\""
+          },
+          "action_menu": {
+            "title": "Menu Akcji",
+            "description": "Akcje per-wiersz z menu dropdown (ikona 3 kropek)"
+          }
+        },
+        "tech_stack": {
+          "title": "Stack Technologiczny"
+        },
+        "usage": {
+          "title": "Podstawowe Użycie"
+        }
       }
     }
   }

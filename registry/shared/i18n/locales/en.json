@@ -16,7 +16,12 @@
     "sort": "Sort",
     "actions": "Actions",
     "yes": "Yes",
-    "no": "No"
+    "no": "No",
+    "copyToClipboard": {
+      "success": "Copied to clipboard",
+      "copied": "Copied",
+      "copy": "Copy"
+    }
   },
   "auth": {
     "login": "Login",
@@ -70,7 +75,22 @@
       "create_new_account": "create a new account",
       "or_sign_in": "Or",
       "sign_in_existing": "sign in to existing account"
-    }
+    },
+    "official_form": {
+      "title": "Login to your account",
+      "description": "Enter your email below to login to your account",
+      "forgot_password_link": "Forgot your password?",
+      "logging_in": "Logging in...",
+      "login_with_google": "Login with Google",
+      "no_account": "Don't have an account?",
+      "sign_up_link": "Sign up"
+    },
+    "menu": {
+      "variants": "Variants",
+      "login_standard": "Login Standard",
+      "login_official": "Login Official"
+    },
+    "docs_link": "Auth Docs"
   },
   "navigation": {
     "home": "Home",
@@ -78,7 +98,10 @@
     "profile": "Profile",
     "settings": "Settings",
     "about": "About",
-    "contact": "Contact"
+    "contact": "Contact",
+    "docs": "Docs",
+    "components": "Components",
+    "examples": "Examples"
   },
   "validation": {
     "required": "This field is required",
@@ -227,6 +250,175 @@
       "i18n_example": {
         "title": "Internationalization (i18n)",
         "description": "Multi-language support with PL/EN translations"
+      }
+    },
+    "showcase": {
+      "preview": "Preview",
+      "installation": "Installation",
+      "examples": "Examples",
+      "button": {
+        "title": "Button",
+        "description": "Displays a button or a component that looks like a button.",
+        "click_me": "Click me",
+        "variants": {
+          "title": "Variants",
+          "primary": "Primary",
+          "outline": "Outline",
+          "destructive": "Destructive",
+          "secondary": "Secondary",
+          "ghost": "Ghost",
+          "link": "Link"
+        },
+        "vibes": {
+          "title": "Vibes (Unique Feature ✨)",
+          "description": "Our Button component includes unique \"vibe\" animations that add extra visual appeal.",
+          "primary": "Primary Vibe",
+          "outline": "Outline Vibe",
+          "underline": "Underline Vibe"
+        },
+        "sizes": {
+          "title": "Sizes",
+          "small": "Small",
+          "default": "Default",
+          "large": "Large"
+        },
+        "states": {
+          "title": "States",
+          "normal": "Normal",
+          "disabled": "Disabled"
+        }
+      },
+      "link": {
+        "title": "Links",
+        "description": "Router links with hover effects and smooth transitions.",
+        "navigate_demo": "Navigate to Demo",
+        "external_link": "External Link",
+        "hover_link": {
+          "title": "HoverLink",
+          "description": "Internal router link with animated underline on hover.",
+          "view_components": "View Components"
+        },
+        "hover_link_external": {
+          "title": "HoverLinkExternal",
+          "description": "External link with icon and hover animation.",
+          "vue_docs": "Vue.js Documentation",
+          "github": "GitHub"
+        },
+        "button_link": {
+          "title": "ButtonLink",
+          "description": "Router link styled as a button. Combines Button component with RouterLink functionality.",
+          "primary": "Primary Link",
+          "outline": "Outline Link",
+          "secondary": "Secondary Link"
+        },
+        "button_link_vibes": {
+          "title": "ButtonLink with Vibes ✨",
+          "description": "ButtonLink also supports unique \"vibe\" animations.",
+          "primary": "Primary Vibe",
+          "outline": "Outline Vibe",
+          "underline": "Underline Vibe"
+        }
+      },
+      "layout": {
+        "title": "Layout Components",
+        "description": "Layout, navigation and utility components for building professional applications",
+        "scroll_to_top": {
+          "title": "ScrollToTop",
+          "description": "Fixed button appears after scroll > 300px with smooth scroll behavior",
+          "scroll_info": "Scroll down the page to see the ScrollToTop button in the bottom right corner"
+        },
+        "page_card": {
+          "title": "PageCard",
+          "description": "Wrapper for content with consistent padding and styling",
+          "example_title": "Example Card Content",
+          "example_text": "This is example PageCard content. You can place any content here, tables, forms, etc."
+        },
+        "page_list_header": {
+          "title": "PageListHeader",
+          "description": "Header for list pages with title, count badge and actions slot",
+          "users": "Users",
+          "users_description": "List of all users in the system",
+          "add_user": "Add User",
+          "example_list": "(Example user list...)"
+        },
+        "page_list_wrapper": {
+          "title": "PageListWrapper",
+          "description": "Combination of PageCard + PageListHeader in one component",
+          "projects": "Projects",
+          "projects_description": "All active projects",
+          "filter": "Filter",
+          "new_project": "New Project",
+          "project_alpha": "Project Alpha",
+          "project_beta": "Project Beta",
+          "project_gamma": "Project Gamma"
+        },
+        "available_layouts": {
+          "title": "Available Layouts",
+          "description": "Vue Blocks Registry offers 5 ready-to-use layouts",
+          "view_link": "View components",
+          "public_layout": {
+            "title": "PublicLayout",
+            "description": "Simple layout for landing pages and public pages"
+          },
+          "authenticated_layout": {
+            "title": "AuthenticatedLayout",
+            "description": "Advanced layout with MainNav, UserNav and dark mode toggle"
+          },
+          "guest_centered": {
+            "title": "GuestLayoutCentered",
+            "description": "Centered layout with gradient background for auth pages"
+          },
+          "guest_glass": {
+            "title": "GuestLayoutCenteredGlass",
+            "description": "Glass-morphism effect + background image support"
+          },
+          "guest_two_columns": {
+            "title": "GuestLayoutTwoColumns",
+            "description": "Split-screen design with branding panel on the left"
+          }
+        }
+      },
+      "data_table": {
+        "title": "DataTable",
+        "description": "Advanced table with sorting, filtering, pagination, and row selection powered by TanStack Table",
+        "full_featured": {
+          "title": "Full Featured Table",
+          "description": "Table with sorting (click Email header), filtering, pagination, row selection, column visibility toggle, and action menu"
+        },
+        "filter_placeholder": "Filter emails...",
+        "features": {
+          "title": "Features Included",
+          "sorting": {
+            "title": "Sorting",
+            "description": "Click column headers to sort ascending/descending"
+          },
+          "filtering": {
+            "title": "Filtering",
+            "description": "Search/filter by column values (email in this example)"
+          },
+          "pagination": {
+            "title": "Pagination",
+            "description": "Navigate through pages with Previous/Next buttons"
+          },
+          "row_selection": {
+            "title": "Row Selection",
+            "description": "Select rows with checkboxes (individual or select all)"
+          },
+          "column_visibility": {
+            "title": "Column Visibility",
+            "description": "Toggle column visibility with \"Columns\" dropdown"
+          },
+          "action_menu": {
+            "title": "Action Menu",
+            "description": "Per-row actions with dropdown menu (3-dot icon)"
+          }
+        },
+        "tech_stack": {
+          "title": "Technology Stack"
+        },
+        "usage": {
+          "title": "Basic Usage"
+        }
       }
     }
   }

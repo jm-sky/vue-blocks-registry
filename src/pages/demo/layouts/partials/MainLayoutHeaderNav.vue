@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import { Menu } from 'lucide-vue-next'
+import { computed } from 'vue'
+import { useI18n } from 'vue-i18n'
 import LogoIcon from '@/components/brand/LogoIcon.vue'
 import LogoText from '@/components/brand/LogoText.vue'
 import GithubIcon from '@/components/icons/GithubIcon.vue'
@@ -9,6 +11,8 @@ import HoverLink from '@registry/components/ui/hover-link/HoverLink.vue'
 import DarkModeToggle from '@registry/shared/components/DarkModeToggle.vue'
 import LocaleToggle from '@registry/shared/i18n/components/LocaleToggle.vue'
 
+const { t } = useI18n()
+
 defineProps<{
   showSidebarTrigger?: boolean
 }>()
@@ -17,20 +21,20 @@ const emit = defineEmits<{
   toggleSidebar: []
 }>()
 
-const links = [
+const links = computed(() => [
   {
     to: RoutePaths.DEMO_INTRODUCTION,
-    label: 'Docs'
+    label: t('navigation.docs')
   },
   {
     to: RoutePaths.DEMO_COMPONENTS,
-    label: 'Components'
+    label: t('navigation.components')
   },
   {
     to: RoutePaths.DEMO_EXAMPLES,
-    label: 'Examples'
+    label: t('navigation.examples')
   }
-]
+])
 </script>
 
 <template>
