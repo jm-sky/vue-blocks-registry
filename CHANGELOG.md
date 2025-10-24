@@ -7,6 +7,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.2] - 2025-10-24
+
+### Added
+- **Scaffold Command**: New `scaffold` CLI command to generate foundational project files
+  - `src/main.ts` template with Pinia, Router, Vue Query, i18n, and vTooltip setup
+  - `src/App.vue` template with RouterView and Toaster component
+  - Interactive file selection or `--all` flag to generate all files
+  - `--overwrite` flag to force overwrite existing files
+  - `--yes` flag to skip confirmation prompts
+- **Sonner Component**: Added toast notification component to registry
+  - Sonner.vue wrapper for vue-sonner library
+  - Export file for easy imports
+
+### Changed
+- Removed unused parameters in scaffold command for cleaner code
+
 ## [0.2.1] - 2025-10-24
 
 ### Fixed
