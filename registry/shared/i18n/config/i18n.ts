@@ -1,12 +1,10 @@
 // shared/i18n/config/i18n.ts
 
-import { config, LOCALE_STORAGE_KEY } from '@registry/shared/config/config'
+import { config, LOCALE_STORAGE_KEY, type SupportedLocale } from '@registry/shared/config/config'
 import { createI18n } from 'vue-i18n'
-import en from '../locales/en.json'
-import pl from '../locales/pl.json'
+import en from '../locales/en'
+import pl from '../locales/pl'
 import type { I18n, I18nOptions } from 'vue-i18n'
-
-export type SupportedLocale = 'en' | 'pl'
 
 export const SUPPORTED_LOCALES: SupportedLocale[] = ['en', 'pl']
 

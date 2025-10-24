@@ -1,9 +1,8 @@
 // shared/i18n/composables/useLocale.ts
 
-import { LOCALE_STORAGE_KEY } from '@registry/shared/config/config'
+import { LOCALE_STORAGE_KEY, type SupportedLocale } from '@registry/shared/config/config'
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
-import type { SupportedLocale } from '../config/i18n'
 import { LOCALE_LABELS, SUPPORTED_LOCALES } from '../config/i18n'
 
 export interface ILocale {

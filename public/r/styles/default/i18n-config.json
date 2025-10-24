@@ -3,7 +3,7 @@
   "name": "i18n-config",
   "type": "registry:lib",
   "title": "i18n Configuration",
-  "description": "Vue i18n configuration with PL and EN locales, storage persistence, and createI18n helper",
+  "description": "Type-safe Vue i18n configuration with PL and EN locales (TypeScript), storage persistence, and createI18n helper",
   "categories": [
     "lib",
     "i18n",
@@ -15,11 +15,11 @@
       "type": "registry:lib"
     },
     {
-      "path": "shared/i18n/locales/en.json",
+      "path": "shared/i18n/locales/en.ts",
       "type": "registry:lib"
     },
     {
-      "path": "shared/i18n/locales/pl.json",
+      "path": "shared/i18n/locales/pl.ts",
       "type": "registry:lib"
     },
     {
