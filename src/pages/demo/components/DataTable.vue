@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import InstallationCode from '@/components/demo/InstallationCode.vue'
 import DataTable from '@registry/components/data-table/DataTable.vue'
 import Card from '@registry/components/ui/card/Card.vue'
 import CardContent from '@registry/components/ui/card/CardContent.vue'
@@ -35,6 +36,22 @@ const features = [
     description: 'Per-row actions with dropdown menu (3-dot icon)',
   },
 ]
+
+const basicUsageCode = `// Import components
+<script setup lang="ts">
+import DataTable from '@registry/components/data-table/DataTable.vue'
+import { columns } from './columns'
+import { data } from './data'
+<\/script>
+
+<template>
+  <DataTable
+    :columns="columns"
+    :data="data"
+    filter-column="email"
+    filter-placeholder="Filter emails..."
+  />
+</template>`
 </script>
 
 <template>
@@ -99,22 +116,7 @@ const features = [
       <h3 class="text-2xl font-semibold text-slate-800 dark:text-slate-200">
         Basic Usage
       </h3>
-      <div class="bg-gray-900 dark:bg-gray-950 p-6 rounded-lg overflow-x-auto">
-        <pre class="text-sm text-foreground"><code>&lt;script setup lang="ts"&gt;
-import DataTable from '@registry/components/data-table/DataTable.vue'
-import { columns } from './columns'
-import { data } from './data'
-&lt;/script&gt;
-
-&lt;template&gt;
-  &lt;DataTable
-    :columns="columns"
-    :data="data"
-    filter-column="email"
-    filter-placeholder="Filter emails..."
-  /&gt;
-&lt;/template&gt;</code></pre>
-      </div>
+      <InstallationCode :code="basicUsageCode" />
     </div>
   </div>
 </template>

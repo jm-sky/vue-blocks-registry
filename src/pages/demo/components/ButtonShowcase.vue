@@ -1,9 +1,13 @@
 <script setup lang="ts">
 import { ArrowRight } from 'lucide-vue-next'
+import { useI18n } from 'vue-i18n'
 import CodePreview from '@/components/demo/CodePreview.vue'
 import ComponentSection from '@/components/demo/ComponentSection.vue'
+import InstallationCode from '@/components/demo/InstallationCode.vue'
 import { Button } from '@registry/components/ui/button'
 import DocsPageHeader from '../layouts/partials/DocsPageHeader.vue'
+
+const { t } = useI18n()
 
 const installCode = 'npx vue-blocks-registry add button'
 
@@ -74,16 +78,16 @@ import { Button } from '@registry/components/ui/button'
   <div class="space-y-12">
     <!-- Page Header -->
     <DocsPageHeader
-      title="Button"
-      description="Displays a button or a component that looks like a button."
+      :title="t('demo.showcase.button.title')"
+      :description="t('demo.showcase.button.description')"
     />
 
     <!-- Preview -->
-    <ComponentSection title="Preview">
+    <ComponentSection :title="t('demo.showcase.preview')">
       <CodePreview :code="basicVibeUsageCode">
         <template #preview>
           <Button vibe="primary">
-            Click me
+            {{ t('demo.showcase.button.click_me') }}
           </Button>
         </template>
       </CodePreview>
@@ -92,44 +96,42 @@ import { Button } from '@registry/components/ui/button'
     <!-- Installation -->
     <ComponentSection
       id="installation"
-      title="Installation"
+      :title="t('demo.showcase.installation')"
     >
-      <div class="bg-slate-900 dark:bg-slate-950 rounded-lg border border-slate-700/60 p-4">
-        <pre class="text-emerald-400 dark:text-emerald-300 text-sm font-mono">{{ installCode }}</pre>
-      </div>
+      <InstallationCode :code="installCode" />
     </ComponentSection>
 
     <!-- Examples -->
     <ComponentSection
       id="examples"
-      title="Examples"
+      :title="t('demo.showcase.examples')"
     >
       <div class="space-y-8">
         <!-- Variants -->
         <div class="space-y-4">
           <h3 class="text-lg font-medium">
-            Variants
+            {{ t('demo.showcase.button.variants.title') }}
           </h3>
           <CodePreview :code="variantsCode">
             <template #preview>
               <div class="flex flex-wrap gap-2">
                 <Button variant="primary">
-                  Primary
+                  {{ t('demo.showcase.button.variants.primary') }}
                 </Button>
                 <Button variant="outline">
-                  Outline
+                  {{ t('demo.showcase.button.variants.outline') }}
                 </Button>
                 <Button variant="destructive">
-                  Destructive
+                  {{ t('demo.showcase.button.variants.destructive') }}
                 </Button>
                 <Button variant="secondary">
-                  Secondary
+                  {{ t('demo.showcase.button.variants.secondary') }}
                 </Button>
                 <Button variant="ghost">
-                  Ghost
+                  {{ t('demo.showcase.button.variants.ghost') }}
                 </Button>
                 <Button variant="link">
-                  Link
+                  {{ t('demo.showcase.button.variants.link') }}
                 </Button>
               </div>
             </template>
@@ -139,22 +141,22 @@ import { Button } from '@registry/components/ui/button'
         <!-- Vibes (Unique Feature) -->
         <div class="space-y-4">
           <h3 class="text-lg font-medium">
-            Vibes (Unique Feature ✨)
+            {{ t('demo.showcase.button.vibes.title') }}
           </h3>
           <p class="text-sm text-slate-600 dark:text-slate-400">
-            Our Button component includes unique "vibe" animations that add extra visual appeal.
+            {{ t('demo.showcase.button.vibes.description') }}
           </p>
           <CodePreview :code="vibesCode">
             <template #preview>
               <div class="flex flex-wrap gap-4">
                 <Button vibe="primary">
-                  Primary Vibe
+                  {{ t('demo.showcase.button.vibes.primary') }}
                 </Button>
                 <Button vibe="outline">
-                  Outline Vibe
+                  {{ t('demo.showcase.button.vibes.outline') }}
                 </Button>
                 <Button vibe="underline">
-                  Underline Vibe
+                  {{ t('demo.showcase.button.vibes.underline') }}
                 </Button>
               </div>
             </template>
@@ -164,19 +166,19 @@ import { Button } from '@registry/components/ui/button'
         <!-- Sizes -->
         <div class="space-y-4">
           <h3 class="text-lg font-medium">
-            Sizes
+            {{ t('demo.showcase.button.sizes.title') }}
           </h3>
           <CodePreview :code="sizesCode">
             <template #preview>
               <div class="flex items-center gap-2">
                 <Button size="sm">
-                  Small
+                  {{ t('demo.showcase.button.sizes.small') }}
                 </Button>
                 <Button size="default">
-                  Default
+                  {{ t('demo.showcase.button.sizes.default') }}
                 </Button>
                 <Button size="lg">
-                  Large
+                  {{ t('demo.showcase.button.sizes.large') }}
                 </Button>
                 <Button size="icon">
                   <ArrowRight :size="20" />
@@ -189,14 +191,14 @@ import { Button } from '@registry/components/ui/button'
         <!-- States -->
         <div class="space-y-4">
           <h3 class="text-lg font-medium">
-            States
+            {{ t('demo.showcase.button.states.title') }}
           </h3>
           <CodePreview :code="statesCode">
             <template #preview>
               <div class="flex gap-2">
-                <Button>Normal</Button>
+                <Button>{{ t('demo.showcase.button.states.normal') }}</Button>
                 <Button disabled>
-                  Disabled
+                  {{ t('demo.showcase.button.states.disabled') }}
                 </Button>
               </div>
             </template>

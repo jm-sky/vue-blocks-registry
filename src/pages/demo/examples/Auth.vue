@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { BookIcon, CheckCircleIcon, SettingsIcon } from 'lucide-vue-next'
+import InstallationCode from '@/components/demo/InstallationCode.vue'
 import DemoBadge from '@/components/ui/badge/DemoBadge.vue'
 import StatusBadge from '@/components/ui/badge/StatusBadge.vue'
 import HoverCard from '@registry/components/ui/hover-card/HoverCard.vue'
@@ -16,6 +17,19 @@ await login({ email, password })
 
 // Rejestracja
 await register({ email, password, passwordConfirmation })`
+
+const authEnvCode = `VITE_USE_MOCK_AUTH=false
+VITE_API_BASE_URL=https://your-api.com/api`
+
+const authEndpoints = [
+  'POST /auth/login',
+  'POST /auth/register',
+  'POST /auth/logout',
+  'GET /auth/me',
+  'POST /auth/forgot-password',
+  'POST /auth/reset-password',
+  'POST /auth/change-password',
+]
 </script>
 
 <template>
@@ -170,49 +184,19 @@ await register({ email, password, passwordConfirmation })`
         :icon-component="SettingsIcon"
         icon-class="size-5"
         icon-bg-class="p-0"
+        :items="authEndpoints"
         variant="blue"
         animate
         title="Konfiguracja dla produkcji"
         dense
       >
-        <p class="text-sm text-blue-800 dark:text-blue-200">
+        <p>
           Aby podłączyć prawdziwy backend API, zmień w pliku <code class="bg-blue-200 dark:bg-blue-800 px-2 py-1 rounded text-xs font-mono">.env</code>:
         </p>
-        <pre class="bg-slate-900 dark:bg-slate-950 text-blue-100 dark:text-blue-200 p-3 rounded-lg text-xs overflow-x-auto font-mono">VITE_USE_MOCK_AUTH=false
-VITE_API_BASE_URL=https://your-api.com/api</pre>
-        <p class="text-sm text-blue-800 dark:text-blue-200">
+        <InstallationCode :code="authEnvCode" />
+        <p>
           Backend musi udostępniać endpointy:
         </p>
-        <div class="space-y-1 text-xs text-blue-800 dark:text-blue-200">
-          <div class="flex items-center gap-2">
-            <span>•</span>
-            <code class="bg-blue-200 dark:bg-blue-800 px-2 py-1 rounded font-mono">POST /auth/login</code>
-          </div>
-          <div class="flex items-center gap-2">
-            <span>•</span>
-            <code class="bg-blue-200 dark:bg-blue-800 px-2 py-1 rounded font-mono">POST /auth/register</code>
-          </div>
-          <div class="flex items-center gap-2">
-            <span>•</span>
-            <code class="bg-blue-200 dark:bg-blue-800 px-2 py-1 rounded font-mono">POST /auth/logout</code>
-          </div>
-          <div class="flex items-center gap-2">
-            <span>•</span>
-            <code class="bg-blue-200 dark:bg-blue-800 px-2 py-1 rounded font-mono">GET /auth/me</code>
-          </div>
-          <div class="flex items-center gap-2">
-            <span>•</span>
-            <code class="bg-blue-200 dark:bg-blue-800 px-2 py-1 rounded font-mono">POST /auth/forgot-password</code>
-          </div>
-          <div class="flex items-center gap-2">
-            <span>•</span>
-            <code class="bg-blue-200 dark:bg-blue-800 px-2 py-1 rounded font-mono">POST /auth/reset-password</code>
-          </div>
-          <div class="flex items-center gap-2">
-            <span>•</span>
-            <code class="bg-blue-200 dark:bg-blue-800 px-2 py-1 rounded font-mono">POST /auth/change-password</code>
-          </div>
-        </div>
       </HoverCard>
 
       <HoverCard
@@ -224,11 +208,11 @@ VITE_API_BASE_URL=https://your-api.com/api</pre>
         title="Jak używać"
         dense
       >
-        <p class="text-sm text-blue-800 dark:text-blue-200">
+        <p>
           Moduł auth jest dostępny w <code class="bg-blue-200 dark:bg-blue-800 px-2 py-1 rounded text-xs font-mono">registry/modules/auth/</code>
         </p>
         <!-- eslint-disable-next-line vue/no-v-html -->
-        <pre class="bg-slate-900 dark:bg-slate-950 text-blue-100 dark:text-blue-200 p-4 rounded-lg text-xs overflow-x-auto font-mono"><code v-html="authUsageCode" /></pre>
+        <InstallationCode :code="authUsageCode" />
       </HoverCard>
     </div>
   </div>

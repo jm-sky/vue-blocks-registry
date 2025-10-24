@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { cn } from '@registry/lib/utils'
+import { type Component, computed } from 'vue'
 import HoverCardGradientOverlay from './HoverCardGradientOverlay.vue'
 import HoverCardLinkWithArrow from './HoverCardLinkWithArrow.vue'
-import type { Component } from 'vue'
 
-const { variant = 'default', class: className } = defineProps<{
+const { variant = 'default', class: className, contentClass } = defineProps<{
   title?: string
   description?: string
   class?: string
@@ -12,6 +12,7 @@ const { variant = 'default', class: className } = defineProps<{
   iconComponent?: Component
   iconClass?: string
   iconBgClass?: string
+  contentClass?: string
   titleClass?: string
   linkTo?: string
   linkLabel?: string
@@ -27,7 +28,17 @@ const variantClasses = {
   blue: 'bg-blue-50/90 dark:bg-blue-900/20 border-blue-200 dark:border-blue-700/60 hover:shadow-blue-200/60 dark:hover:shadow-blue-900/60 hover:border-blue-300/80 dark:hover:border-blue-600/80',
 }
 
+const variantContentClasses = {
+  default: 'text-slate-800 dark:text-slate-200',
+  emerald: 'text-emerald-800 dark:text-emerald-200',
+  blue: 'text-blue-800 dark:text-blue-200',
+}
+
 const hoverClass = 'hover:-translate-y-2 hover:scale-[1.02] hover:shadow-2xl'
+
+const contentClassComputed = computed<string>(() => {
+  return cn(variantContentClasses[variant], contentClass)
+})
 </script>
 
 <template>
@@ -54,8 +65,8 @@ const hoverClass = 'hover:-translate-y-2 hover:scale-[1.02] hover:shadow-2xl'
         </h3>
       </div>
 
-      <div class="flex flex-col gap-4 flex-1 w-full">
-        <p v-if="description" class="text-slate-600 dark:text-slate-300 leading-relaxed">
+      <div :class="cn('flex flex-col gap-4 flex-1 w-full text-sm', contentClassComputed)">
+        <p v-if="description" class="leading-relaxed">
           {{ description }}
         </p>
 
@@ -63,7 +74,7 @@ const hoverClass = 'hover:-translate-y-2 hover:scale-[1.02] hover:shadow-2xl'
           <slot />
         </div>
 
-        <ul v-if="items" class="relative space-y-1.5 text-sm text-muted-foreground">
+        <ul v-if="items" class="relative space-y-1.5">
           <li v-for="(item, index) in items" :key="index" class="flex items-start">
             <span class="mr-2">•</span>
             <span>{{ item }}</span>

@@ -61,6 +61,7 @@
     "clsx": "^2.1.1",
     "commander": "^14.0.1",
     "execa": "^9.6.0",
+    "floating-vue": "^5.2.2",
     "fs-extra": "^11.3.2",
     "lucide-vue-next": "^0.546.0",
     "ora": "^9.0.0",
@@ -73,6 +74,7 @@
     "vue": "^3.5.22",
     "vue-i18n": "^11.1.12",
     "vue-router": "^4.5.1",
+    "vue-sonner": "^2.0.9",
     "zod": "^3.25.76"
   },
   "devDependencies": {

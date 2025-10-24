@@ -3,6 +3,7 @@ import { ExternalLink } from 'lucide-vue-next'
 import { useI18n } from 'vue-i18n'
 import CodePreview from '@/components/demo/CodePreview.vue'
 import ComponentSection from '@/components/demo/ComponentSection.vue'
+import InstallationCode from '@/components/demo/InstallationCode.vue'
 import ButtonLink from '@registry/components/ui/button-link/ButtonLink.vue'
 import HoverLink from '@registry/components/ui/hover-link/HoverLink.vue'
 import HoverLinkExternal from '@registry/components/ui/hover-link/HoverLinkExternal.vue'
@@ -102,9 +103,7 @@ import { ButtonLink } from '@registry/components/ui/button-link'
       id="installation"
       :title="t('demo.showcase.installation')"
     >
-      <div class="bg-slate-900 dark:bg-slate-950 rounded-lg border border-slate-700/60 p-4">
-        <pre class="text-emerald-400 dark:text-emerald-300 text-sm font-mono">{{ installCode }}</pre>
-      </div>
+      <InstallationCode :code="installCode" />
     </ComponentSection>
 
     <!-- Examples -->
