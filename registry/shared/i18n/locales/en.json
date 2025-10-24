@@ -17,6 +17,10 @@
     "actions": "Actions",
     "yes": "Yes",
     "no": "No",
+    "previous": "Previous",
+    "next": "Next",
+    "columns": "Columns",
+    "open_menu": "Open menu",
     "copyToClipboard": {
       "success": "Copied to clipboard",
       "copied": "Copied",
@@ -251,6 +255,12 @@
         "title": "Internationalization (i18n)",
         "description": "Multi-language support with PL/EN translations"
       }
+    },
+    "dashboard_example": {
+      "title": "Dashboard Example",
+      "description": "Example dashboard with navigation components, widgets and other elements",
+      "coming_soon": "Coming soon... Dashboard example will be available here.",
+      "view_existing": "View Existing Dashboard"
     },
     "auth_example": {
       "title": "Authentication Module",

@@ -17,6 +17,10 @@
     "actions": "Akcje",
     "yes": "Tak",
     "no": "Nie",
+    "previous": "Poprzedni",
+    "next": "Następny",
+    "columns": "Kolumny",
+    "open_menu": "Otwórz menu",
     "copyToClipboard": {
       "success": "Skopiowano do schowka",
       "copied": "Skopiowano",
@@ -174,11 +178,11 @@
     "overview": {
       "buttons": {
         "title": "Przyciski",
-        "description": "Różnorodne style przycisków z wariantami i wibracjami"
+        "description": "Różnorodne style przycisków z wieloma wariantami i odmianami"
       },
       "links": {
         "title": "Linki",
-        "description": "Komponenty linków z hover efektem i smooth transitions"
+        "description": "Komponenty linków z efektami najechania i płynnymi przejściami"
       },
       "layout": {
         "title": "Układ",
@@ -207,7 +211,7 @@
       "description": "Poznaj Vue Blocks Registry - modularny system komponentów Vue 3",
       "intro_text": "Vue Blocks Registry to modularny system komponentów Vue 3 z gotowymi rozwiązaniami UI, layoutami i funkcjonalnościami.",
       "what_is_title": "Czym jest Vue Blocks Registry?",
-      "what_is_p1": "Vue Blocks Registry to <strong>nie jest biblioteką komponentów</strong>. To kolekcja wielokrotnego użytku komponentów, które możesz skopiować i wkleić do swoich aplikacji lub dodać za pomocą CLI.",
+      "what_is_p1": "Vue Blocks Registry to <strong>nie jest biblioteką komponentów</strong>. To kolekcja komponentów wielokrotnego użytku, które możesz skopiować i wkleić do swoich aplikacji lub dodać za pomocą CLI.",
       "what_is_p2": "Podobnie jak shadcn/ui, kod jest Twój. Możesz go dostosować do swoich potrzeb.",
       "features_title": "Główne Funkcje",
       "features": {
@@ -220,12 +224,12 @@
           "items": ["PublicLayout", "AuthenticatedLayout", "GuestLayoutCentered", "GuestLayoutTwoColumns"]
         },
         "auth_modules": {
-          "title": "Moduły Auth",
-          "items": ["Login/Register", "Password Reset", "Change Password", "Protected Routes"]
+          "title": "Moduły Uwierzytelniania",
+          "items": ["Logowanie/Rejestracja", "Resetowanie hasła", "Zmiana hasła", "Chronione ścieżki"]
         },
         "data_table": {
-          "title": "Data Table",
-          "items": ["Sortowanie", "Filtrowanie", "Paginacja", "Responsive"]
+          "title": "Tabela Danych",
+          "items": ["Sortowanie", "Filtrowanie", "Paginacja", "Responsywność"]
         }
       },
       "technologies_title": "Technologie",
@@ -252,44 +256,50 @@
         "description": "Wsparcie dla wielu języków z tłumaczeniami PL/EN"
       }
     },
+    "dashboard_example": {
+      "title": "Przykładowy Panel",
+      "description": "Przykładowy dashboard z komponentami nawigacji, widżetów i innymi elementami",
+      "coming_soon": "Wkrótce... Przykład panelu będzie dostępny tutaj.",
+      "view_existing": "Zobacz istniejący Panel"
+    },
     "auth_example": {
-      "title": "Moduł Autoryzacji",
-      "description": "Kompletny moduł autoryzacji z formularzami logowania, rejestracji i zarządzania hasłem",
+      "title": "Moduł Uwierzytelniania",
+      "description": "Kompletny moduł uwierzytelniania z formularzami logowania, rejestracji i zarządzania hasłem",
       "available_components": "Dostępne komponenty",
       "components": {
         "login_form": {
-          "title": "Login Form",
+          "title": "Formularz logowania",
           "description": "Formularz logowania z walidacją"
         },
         "register_form": {
-          "title": "Register Form",
+          "title": "Formularz rejestracji",
           "description": "Formularz rejestracji z potwierdzeniem hasła"
         },
         "forgot_password": {
-          "title": "Forgot Password",
+          "title": "Zapomniane hasło",
           "description": "Formularz resetowania hasła"
         },
         "reset_password": {
-          "title": "Reset Password",
+          "title": "Resetowanie hasła",
           "description": "Formularz ustawiania nowego hasła"
         },
         "change_password": {
-          "title": "Change Password",
+          "title": "Zmiana hasła",
           "description": "Formularz zmiany hasła dla zalogowanych użytkowników"
         }
       },
       "mock_api_info": "Aplikacja działa w trybie demo z mock API (bez prawdziwego backendu). Możesz przetestować wszystkie funkcje auth!",
       "features_title": "Funkcjonalności",
       "features": {
-        "pinia_store": "Pinia store dla zarządzania stanem autoryzacji",
+        "pinia_store": "Pinia store dla zarządzania stanem uwierzytelniania",
         "composables": "Composables (useAuth, useLogout)",
         "validation": "Walidacja formularzy z Zod i VeeValidate",
         "api_integration": "Integracja z API (axios)",
         "typescript": "TypeScript types dla User i Credentials",
-        "persistence": "LocalStorage persistence dla JWT token"
+        "persistence": "Trwałość w LocalStorage dla tokenu JWT"
       },
       "demo_mode": {
-        "title": "Demo Mode - Mock API Aktywne",
+        "title": "Tryb Demo - API Symulowane Aktywne",
         "description": "Aplikacja działa w trybie demo z mock API (bez prawdziwego backendu). Możesz przetestować wszystkie funkcje auth!",
         "test_accounts": "Testowe konta:",
         "email": "Email:",
@@ -346,17 +356,17 @@
       },
       "link": {
         "title": "Linki",
-        "description": "Linki routera z efektami hover i płynnymi przejściami.",
+        "description": "Linki routera z efektami najechania i płynnymi przejściami.",
         "navigate_demo": "Przejdź do Demo",
         "external_link": "Link Zewnętrzny",
         "hover_link": {
           "title": "HoverLink",
-          "description": "Wewnętrzny link routera z animowanym podkreśleniem przy hover.",
+          "description": "Wewnętrzny link routera z animowanym podkreśleniem przy najechaniu.",
           "view_components": "Zobacz Komponenty"
         },
         "hover_link_external": {
           "title": "HoverLinkExternal",
-          "description": "Link zewnętrzny z ikoną i animacją hover.",
+          "description": "Link zewnętrzny z ikoną i animacją najechania.",
           "vue_docs": "Dokumentacja Vue.js",
           "github": "GitHub"
         },

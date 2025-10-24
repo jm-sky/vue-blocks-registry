@@ -26,12 +26,15 @@ import {
 } from '@tanstack/vue-table'
 import { ChevronDown } from 'lucide-vue-next'
 import { ref } from 'vue'
+import { useI18n } from 'vue-i18n'
 import type {
   ColumnDef,
   ColumnFiltersState,
   SortingState,
   VisibilityState,
 } from '@tanstack/vue-table'
+
+const { t } = useI18n()
 
 interface DataTableProps {
   columns: ColumnDef<TData>[]
@@ -104,7 +107,7 @@ const table = useVueTable({
       <DropdownMenu v-if="showColumnVisibility">
         <DropdownMenuTrigger as-child>
           <Button variant="outline" class="ml-auto">
-            Columns
+            {{ t('common.columns') }}
             <ChevronDown class="ml-2 h-4 w-4" />
           </Button>
         </DropdownMenuTrigger>
@@ -180,7 +183,7 @@ const table = useVueTable({
           :disabled="!table.getCanPreviousPage()"
           @click="table.previousPage()"
         >
-          Previous
+          {{ t('common.previous') }}
         </Button>
         <Button
           variant="outline"
@@ -188,7 +191,7 @@ const table = useVueTable({
           :disabled="!table.getCanNextPage()"
           @click="table.nextPage()"
         >
-          Next
+          {{ t('common.next') }}
         </Button>
       </div>
     </div>
