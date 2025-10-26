@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { DataTable } from '@registry/components/data-table'
 import { Button } from '@registry/components/ui/button'
+import { FileText, Plus } from 'lucide-vue-next'
 import { ref } from 'vue'
 import { columnsSortable } from './columns-sortable'
 import { data } from './data'
@@ -83,19 +84,7 @@ const tableData = data
         <template #empty>
           <div class="flex flex-col items-center justify-center py-12">
             <div class="w-16 h-16 mb-4 rounded-full bg-muted flex items-center justify-center">
-              <svg
-                class="w-8 h-8 text-muted-foreground"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-                />
-              </svg>
+              <FileText class="w-8 h-8 text-muted-foreground" />
             </div>
             <h3 class="text-lg font-semibold mb-2">
               No data available
@@ -104,6 +93,7 @@ const tableData = data
               There are no records to display. Try adjusting your filters or add some data.
             </p>
             <Button>
+              <Plus class="w-4 h-4 mr-2" />
               Add New Record
             </Button>
           </div>

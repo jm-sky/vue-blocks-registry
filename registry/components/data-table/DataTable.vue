@@ -1,12 +1,4 @@
 <script setup lang="ts" generic="TData, TValue">
-import { Button } from '@registry/components/ui/button'
-import {
-  DropdownMenu,
-  DropdownMenuCheckboxItem,
-  DropdownMenuContent,
-  DropdownMenuTrigger,
-} from '@registry/components/ui/dropdown-menu'
-import { Input } from '@registry/components/ui/input'
 import {
   Table,
   TableBody,
@@ -24,8 +16,9 @@ import {
   getSortedRowModel,
   useVueTable,
 } from '@tanstack/vue-table'
-import { ChevronDown } from 'lucide-vue-next'
 import { computed, ref } from 'vue'
+import DataTableEmpty from './DataTableEmpty.vue'
+import DataTableToolbar from './DataTableToolbar.vue'
 import Pagination from './Pagination.vue'
 import type {
   ColumnDef,
@@ -80,6 +73,7 @@ const emit = defineEmits<{
   'update:columnVisibility': [visibility: VisibilityState]
   'update:page': [page: number]
   'update:pageSize': [pageSize: number]
+  'empty-action': []
 }>()
 
 // State
@@ -210,36 +204,16 @@ const handlePageSizeChange = (newPageSize: number) => {
       :global-filter="globalFilter"
       :column-visibility="columnVisibility"
     >
-      <div v-if="enableFiltering || enableColumnVisibility" class="flex items-center justify-between py-4">
-        <!-- Global Filter Input -->
-        <Input
-          v-if="enableFiltering"
-          v-model="globalFilter"
-          :placeholder="searchPlaceholder"
-          class="max-w-sm"
-        />
-
-        <!-- Column Visibility Toggle -->
-        <DropdownMenu v-if="enableColumnVisibility">
-          <DropdownMenuTrigger as-child>
-            <Button variant="outline" class="ml-auto">
-              Columns
-              <ChevronDown class="ml-2 h-4 w-4" />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            <DropdownMenuCheckboxItem
-              v-for="column in table.getAllColumns().filter((column) => column.getCanHide())"
-              :key="column.id"
-              class="capitalize"
-              :checked="column.getIsVisible()"
-              @update:checked="(value: boolean) => column.toggleVisibility(!!value)"
-            >
-              {{ column.id }}
-            </DropdownMenuCheckboxItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
-      </div>
+      <DataTableToolbar
+        :table="table"
+        :global-filter="globalFilter"
+        :column-visibility="columnVisibility"
+        :search-placeholder="searchPlaceholder"
+        :enable-filtering="enableFiltering"
+        :enable-column-visibility="enableColumnVisibility"
+        @update:global-filter="(value) => globalFilter = value"
+        @update:column-visibility="(value) => columnVisibility = value"
+      />
     </slot>
 
     <!-- Table -->
@@ -272,18 +246,14 @@ const handlePageSizeChange = (newPageSize: number) => {
             </TableRow>
           </template>
           <template v-else>
-            <TableRow>
-              <TableCell :colspan="columns.length" class="h-24 text-center">
-                <!-- Empty State Slot -->
-                <slot name="empty" :table="table" :columns="columns">
-                  <div class="flex flex-col items-center justify-center py-8">
-                    <div class="text-muted-foreground text-sm">
-                      No results found.
-                    </div>
-                  </div>
-                </slot>
-              </TableCell>
-            </TableRow>
+            <!-- Empty State Slot -->
+            <slot name="empty" :table="table" :columns="columns">
+              <DataTableEmpty
+                :table="table"
+                :columns="columns"
+                @action="$emit('empty-action')"
+              />
+            </slot>
           </template>
         </TableBody>
       </Table>
