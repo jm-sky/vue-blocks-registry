@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { ref } from 'vue'
 import { DataTable } from '@registry/components/data-table'
+import { ref } from 'vue'
 import { columnsSortable } from './columns-sortable'
 import { columnsWithSelection } from './columns-with-selection'
 import { data } from './data'
@@ -47,16 +47,20 @@ const minimalColumns = [
     accessorKey: 'amount',
     header: 'Amount',
   },
-] as const
+]
 </script>
 
 <template>
   <div class="space-y-8 p-6">
-    <h1 class="text-3xl font-bold">DataTable Examples</h1>
+    <h1 class="text-3xl font-bold">
+      DataTable Examples
+    </h1>
 
     <!-- Example 1: Basic DataTable with all features -->
     <section>
-      <h2 class="text-2xl font-semibold mb-4">1. Basic DataTable (All Features)</h2>
+      <h2 class="text-2xl font-semibold mb-4">
+        1. Basic DataTable (All Features)
+      </h2>
       <p class="text-muted-foreground mb-4">
         Sorting, filtering, pagination, and column visibility enabled by default.
       </p>
@@ -69,7 +73,9 @@ const minimalColumns = [
 
     <!-- Example 2: DataTable with row selection -->
     <section>
-      <h2 class="text-2xl font-semibold mb-4">2. DataTable with Row Selection</h2>
+      <h2 class="text-2xl font-semibold mb-4">
+        2. DataTable with Row Selection
+      </h2>
       <p class="text-muted-foreground mb-4">
         Enable row selection with checkboxes. Selected rows: {{ Object.keys(rowSelection).length }}
       </p>
@@ -84,13 +90,15 @@ const minimalColumns = [
 
     <!-- Example 3: Server-side pagination -->
     <section>
-      <h2 class="text-2xl font-semibold mb-4">3. Server-side Pagination</h2>
+      <h2 class="text-2xl font-semibold mb-4">
+        3. Server-side Pagination
+      </h2>
       <p class="text-muted-foreground mb-4">
         Pagination controlled by server. Current page: {{ serverPage }}, Page size: {{ serverPageSize }}
       </p>
       <DataTable
         :columns="basicColumns"
-        :data="basicData.slice(0, serverPageSize)" // Simulate server data
+        :data="basicData.slice(0, serverPageSize)"
         :total="serverTotal"
         :page="serverPage"
         :page-size="serverPageSize"
@@ -104,7 +112,9 @@ const minimalColumns = [
 
     <!-- Example 4: Minimal DataTable -->
     <section>
-      <h2 class="text-2xl font-semibold mb-4">4. Minimal DataTable</h2>
+      <h2 class="text-2xl font-semibold mb-4">
+        4. Minimal DataTable
+      </h2>
       <p class="text-muted-foreground mb-4">
         Only basic table functionality, no additional features.
       </p>
@@ -120,7 +130,9 @@ const minimalColumns = [
 
     <!-- Example 5: Custom configuration -->
     <section>
-      <h2 class="text-2xl font-semibold mb-4">5. Custom Configuration</h2>
+      <h2 class="text-2xl font-semibold mb-4">
+        5. Custom Configuration
+      </h2>
       <p class="text-muted-foreground mb-4">
         Custom page size options and disabled column visibility.
       </p>

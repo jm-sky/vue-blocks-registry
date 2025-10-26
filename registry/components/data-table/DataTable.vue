@@ -46,6 +46,7 @@ interface DataTableProps<TData, TValue> {
   enableColumnVisibility?: boolean
   // Filtering
   searchPlaceholder?: string
+  globalFilterFn?: (row: TData, filterValue: string) => boolean
   // Pagination
   initialPageSize?: number
   pageSizeOptions?: number[]
@@ -99,6 +100,7 @@ const table = useVueTable({
   getSortedRowModel: props.enableSorting ? getSortedRowModel() : undefined,
   getFilteredRowModel: props.enableFiltering ? getFilteredRowModel() : undefined,
   getPaginationRowModel: props.enablePagination ? getPaginationRowModel() : undefined,
+  globalFilterFn: props.globalFilterFn ? (row, columnId, filterValue) => props.globalFilterFn(row.original, filterValue) : 'includesString',
   onSortingChange: props.enableSorting 
     ? (updaterOrValue) => { valueUpdater(updaterOrValue, sorting) }
     : undefined,
