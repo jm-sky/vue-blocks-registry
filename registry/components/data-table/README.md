@@ -134,6 +134,16 @@ interface DataTableProps<TData, TValue> {
   search-placeholder="Search..."
 />
 
+<!-- With v-model for reactive state -->
+<DataTable
+  :columns="columns"
+  :data="data"
+  v-model:page="currentPage"
+  v-model:page-size="pageSize"
+  v-model:row-selection="selection"
+  :enable-row-selection="true"
+/>
+
 <!-- With custom global filter -->
 <DataTable
   :columns="columns"
@@ -144,23 +154,44 @@ interface DataTableProps<TData, TValue> {
   }"
 />
 
-<!-- With row selection -->
+<!-- With custom slots -->
 <DataTable
-  :columns="columnsWithSelection"
+  :columns="columns"
   :data="data"
   :enable-row-selection="true"
-  @update:row-selection="handleSelection"
-/>
+>
+  <template #toolbar="{ table, globalFilter }">
+    <div class="flex items-center justify-between py-4">
+      <div class="flex items-center space-x-4">
+        <Button>Export</Button>
+        <Button>Import</Button>
+      </div>
+      <input v-model="globalFilter" placeholder="Search..." />
+    </div>
+  </template>
+  
+  <template #empty>
+    <div class="text-center py-8">
+      <h3>No data available</h3>
+      <Button>Add New Record</Button>
+    </div>
+  </template>
+  
+  <template #selection-info="{ selectedCount, totalCount }">
+    <div class="bg-muted p-4 rounded">
+      {{ selectedCount }} of {{ totalCount }} selected
+      <Button size="sm">Delete Selected</Button>
+    </div>
+  </template>
+</DataTable>
 
 <!-- Server-side pagination -->
 <DataTable
   :columns="columns"
   :data="serverData"
   :total="totalRecords"
-  :page="currentPage"
-  :page-size="pageSize"
-  @update:page="handlePageChange"
-  @update:page-size="handlePageSizeChange"
+  v-model:page="currentPage"
+  v-model:page-size="pageSize"
 />
 
 <!-- Minimal table (no features) -->
@@ -173,6 +204,13 @@ interface DataTableProps<TData, TValue> {
   :enable-column-visibility="false"
 />
 ```
+
+### **Available Slots:**
+
+- **`toolbar`** - Custom toolbar with table, globalFilter, and columnVisibility props
+- **`empty`** - Custom empty state when no data is available
+- **`pagination`** - Custom pagination controls with table, page, pageSize, total, and handler props
+- **`selection-info`** - Custom selection info display with selectedCount and totalCount props
 
 ---
 

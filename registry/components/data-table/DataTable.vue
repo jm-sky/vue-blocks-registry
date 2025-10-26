@@ -52,8 +52,6 @@ interface DataTableProps<TData, TValue> {
   pageSizeOptions?: number[]
   // Server-side pagination
   total?: number
-  page?: number
-  pageSize?: number
   // Events
   onPageChange?: (page: number) => void
   onPageSizeChange?: (pageSize: number) => void
@@ -70,23 +68,47 @@ const props = withDefaults(defineProps<DataTableProps<TData, TValue>>(), {
   pageSizeOptions: () => [10, 20, 30, 40, 50, 100, 500],
 })
 
-// Emits
+// v-model support using defineModel
+const page = defineModel<number>('page', { default: 1 })
+const pageSize = defineModel<number>('pageSize', { default: 10 })
+const rowSelection = defineModel<RowSelectionState>('rowSelection', { default: {} })
+
+// Emits for non-v-model events
 const emit = defineEmits<{
+  'update:sorting': [sorting: SortingState]
+  'update:globalFilter': [filter: string]
+  'update:columnVisibility': [visibility: VisibilityState]
   'update:page': [page: number]
   'update:pageSize': [pageSize: number]
-  'update:rowSelection': [selection: RowSelectionState]
 }>()
 
 // State
 const sorting = ref<SortingState>([])
 const globalFilter = ref('')
 const columnVisibility = ref<VisibilityState>({})
-const rowSelection = ref<RowSelectionState>({})
 
 // Pagination state (client-side or server-side)
 const isServerSide = computed(() => props.total !== undefined)
-const currentPage = ref(props.page ?? 1)
-const currentPageSize = ref(props.pageSize ?? props.initialPageSize)
+const currentPage = computed({
+  get: () => isServerSide.value ? page.value : page.value,
+  set: (value) => {
+    page.value = value
+    if (isServerSide.value) {
+      emit('update:page', value)
+      props.onPageChange?.(value)
+    }
+  }
+})
+const currentPageSize = computed({
+  get: () => isServerSide.value ? pageSize.value : pageSize.value,
+  set: (value) => {
+    pageSize.value = value
+    if (isServerSide.value) {
+      emit('update:pageSize', value)
+      props.onPageSizeChange?.(value)
+    }
+  }
+})
 
 // Table instance
 const table = useVueTable({
@@ -100,20 +122,30 @@ const table = useVueTable({
   getSortedRowModel: props.enableSorting ? getSortedRowModel() : undefined,
   getFilteredRowModel: props.enableFiltering ? getFilteredRowModel() : undefined,
   getPaginationRowModel: props.enablePagination ? getPaginationRowModel() : undefined,
-  globalFilterFn: props.globalFilterFn ? (row, columnId, filterValue) => props.globalFilterFn(row.original, filterValue) : 'includesString',
+  globalFilterFn: props.globalFilterFn ? (row, columnId, filterValue) => {
+    return props.globalFilterFn ? props.globalFilterFn(row.original, filterValue) : false
+  } : 'includesString',
   onSortingChange: props.enableSorting 
-    ? (updaterOrValue) => { valueUpdater(updaterOrValue, sorting) }
+    ? (updaterOrValue) => { 
+        valueUpdater(updaterOrValue, sorting)
+        emit('update:sorting', sorting.value)
+      }
     : undefined,
   onGlobalFilterChange: props.enableFiltering 
-    ? (value) => { globalFilter.value = value }
+    ? (value) => { 
+        globalFilter.value = value
+        emit('update:globalFilter', value)
+      }
     : undefined,
   onColumnVisibilityChange: props.enableColumnVisibility
-    ? (updaterOrValue) => { valueUpdater(updaterOrValue, columnVisibility) }
+    ? (updaterOrValue) => { 
+        valueUpdater(updaterOrValue, columnVisibility)
+        emit('update:columnVisibility', columnVisibility.value)
+      }
     : undefined,
   onRowSelectionChange: props.enableRowSelection
     ? (updaterOrValue) => {
         valueUpdater(updaterOrValue, rowSelection)
-        emit('update:rowSelection', rowSelection.value)
       }
     : undefined,
   onPaginationChange: props.enablePagination && !isServerSide.value
@@ -148,25 +180,21 @@ const table = useVueTable({
 
 // Computed values
 const totalRows = computed(() => isServerSide.value ? (props.total ?? 0) : props.data.length)
+const isEmpty = computed(() => table.getRowModel().rows.length === 0)
+const selectedRowsCount = computed(() => Object.keys(rowSelection.value).length)
 
 // Event handlers
-const handlePageChange = (page: number) => {
-  if (isServerSide.value) {
-    emit('update:page', page)
-    props.onPageChange?.(page)
-  } else {
-    currentPage.value = page
-    table.setPageIndex(page - 1)
+const handlePageChange = (newPage: number) => {
+  currentPage.value = newPage
+  if (!isServerSide.value) {
+    table.setPageIndex(newPage - 1)
   }
 }
 
-const handlePageSizeChange = (pageSize: number) => {
-  if (isServerSide.value) {
-    emit('update:pageSize', pageSize)
-    props.onPageSizeChange?.(pageSize)
-  } else {
-    currentPageSize.value = pageSize
-    table.setPageSize(pageSize)
+const handlePageSizeChange = (newPageSize: number) => {
+  currentPageSize.value = newPageSize
+  if (!isServerSide.value) {
+    table.setPageSize(newPageSize)
     currentPage.value = 1
     table.setPageIndex(0)
   }
@@ -175,37 +203,44 @@ const handlePageSizeChange = (pageSize: number) => {
 
 <template>
   <div class="space-y-4">
-    <!-- Toolbar -->
-    <div v-if="enableFiltering || enableColumnVisibility" class="flex items-center justify-between py-4">
-      <!-- Global Filter Input -->
-      <Input
-        v-if="enableFiltering"
-        v-model="globalFilter"
-        :placeholder="searchPlaceholder"
-        class="max-w-sm"
-      />
+    <!-- Toolbar Slot -->
+    <slot
+      name="toolbar"
+      :table="table"
+      :global-filter="globalFilter"
+      :column-visibility="columnVisibility"
+    >
+      <div v-if="enableFiltering || enableColumnVisibility" class="flex items-center justify-between py-4">
+        <!-- Global Filter Input -->
+        <Input
+          v-if="enableFiltering"
+          v-model="globalFilter"
+          :placeholder="searchPlaceholder"
+          class="max-w-sm"
+        />
 
-      <!-- Column Visibility Toggle -->
-      <DropdownMenu v-if="enableColumnVisibility">
-        <DropdownMenuTrigger as-child>
-          <Button variant="outline" class="ml-auto">
-            Columns
-            <ChevronDown class="ml-2 h-4 w-4" />
-          </Button>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent align="end">
-          <DropdownMenuCheckboxItem
-            v-for="column in table.getAllColumns().filter((column) => column.getCanHide())"
-            :key="column.id"
-            class="capitalize"
-            :checked="column.getIsVisible()"
-            @update:checked="(value: boolean) => column.toggleVisibility(!!value)"
-          >
-            {{ column.id }}
-          </DropdownMenuCheckboxItem>
-        </DropdownMenuContent>
-      </DropdownMenu>
-    </div>
+        <!-- Column Visibility Toggle -->
+        <DropdownMenu v-if="enableColumnVisibility">
+          <DropdownMenuTrigger as-child>
+            <Button variant="outline" class="ml-auto">
+              Columns
+              <ChevronDown class="ml-2 h-4 w-4" />
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="end">
+            <DropdownMenuCheckboxItem
+              v-for="column in table.getAllColumns().filter((column) => column.getCanHide())"
+              :key="column.id"
+              class="capitalize"
+              :checked="column.getIsVisible()"
+              @update:checked="(value: boolean) => column.toggleVisibility(!!value)"
+            >
+              {{ column.id }}
+            </DropdownMenuCheckboxItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+      </div>
+    </slot>
 
     <!-- Table -->
     <div class="border rounded-md">
@@ -222,7 +257,7 @@ const handlePageSizeChange = (pageSize: number) => {
           </TableRow>
         </TableHeader>
         <TableBody>
-          <template v-if="table.getRowModel().rows?.length">
+          <template v-if="!isEmpty">
             <TableRow
               v-for="row in table.getRowModel().rows"
               :key="row.id"
@@ -239,7 +274,14 @@ const handlePageSizeChange = (pageSize: number) => {
           <template v-else>
             <TableRow>
               <TableCell :colspan="columns.length" class="h-24 text-center">
-                No results.
+                <!-- Empty State Slot -->
+                <slot name="empty" :table="table" :columns="columns">
+                  <div class="flex flex-col items-center justify-center py-8">
+                    <div class="text-muted-foreground text-sm">
+                      No results found.
+                    </div>
+                  </div>
+                </slot>
               </TableCell>
             </TableRow>
           </template>
@@ -247,20 +289,37 @@ const handlePageSizeChange = (pageSize: number) => {
       </Table>
     </div>
 
-    <!-- Pagination -->
-    <Pagination
-      v-if="enablePagination"
-      :page="currentPage"
-      :page-size="currentPageSize"
+    <!-- Pagination Slot -->
+    <slot 
+      name="pagination" 
+      :table="table" 
+      :page="currentPage" 
+      :page-size="currentPageSize" 
       :total="totalRows"
-      :page-size-options="pageSizeOptions"
-      @update:page="handlePageChange"
-      @update:page-size="handlePageSizeChange"
-    />
+      :handle-page-change="handlePageChange"
+      :handle-page-size-change="handlePageSizeChange"
+    >
+      <Pagination
+        v-if="enablePagination"
+        :page="currentPage"
+        :page-size="currentPageSize"
+        :total="totalRows"
+        :page-size-options="pageSizeOptions"
+        @update:page="handlePageChange"
+        @update:page-size="handlePageSizeChange"
+      />
+    </slot>
 
-    <!-- Row Selection Info -->
-    <div v-if="enableRowSelection && Object.keys(rowSelection).length > 0" class="flex-1 text-sm text-muted-foreground">
-      {{ Object.keys(rowSelection).length }} of {{ table.getFilteredRowModel().rows.length }} row(s) selected.
-    </div>
+    <!-- Row Selection Info Slot -->
+    <slot 
+      name="selection-info" 
+      :table="table" 
+      :selected-count="selectedRowsCount" 
+      :total-count="table.getFilteredRowModel().rows.length"
+    >
+      <div v-if="enableRowSelection && selectedRowsCount > 0" class="flex-1 text-sm text-muted-foreground">
+        {{ selectedRowsCount }} of {{ table.getFilteredRowModel().rows.length }} row(s) selected.
+      </div>
+    </slot>
   </div>
 </template>
