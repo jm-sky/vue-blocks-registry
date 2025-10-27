@@ -63,3 +63,6 @@ export const payments: Payment[] = [
     email: 'hunter.kohler@gmail.com',
   },
 ]
+
+// Export as 'data' for easier importing
+export const data = payments
