@@ -50,6 +50,11 @@ export const routes: RouteRecordRaw[] = [
         component: () => import('@/pages/demo/components/DataTableShowcase.vue'),
       },
       {
+        path: 'components/code-block',
+        name: RouteNames.DEMO_COMPONENTS_CODE_BLOCK,
+        component: () => import('@/pages/demo/components/CodeBlockShowcase.vue'),
+      },
+      {
         path: 'examples',
         name: RouteNames.DEMO_EXAMPLES,
         component: () => import('@/pages/demo/Examples.vue'),

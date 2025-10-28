@@ -1,15 +1,25 @@
 <script setup lang="ts">
+import { CheckIcon, CopyIcon } from 'lucide-vue-next'
 import { ref } from 'vue'
 import { Button } from '@/components/ui/button'
+import { CodeBlock } from '@/components/ui/code-block'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { useCopyToClipboard } from '@/composables/useClipboard'
+import type { BundledLanguage, BundledTheme } from 'shiki'
 
 interface Props {
   code: string
   title?: string
+  language?: BundledLanguage
+  theme?: BundledTheme
+  showLineNumbers?: boolean
 }
 
-const props = defineProps<Props>()
+const props = withDefaults(defineProps<Props>(), {
+  language: 'vue',
+  theme: 'github-dark',
+  showLineNumbers: false,
+})
 
 const { copy, copied } = useCopyToClipboard()
 const activeTab = ref('preview')
@@ -40,42 +50,8 @@ const handleCopy = async () => {
           class="gap-2"
           @click="handleCopy"
         >
-          <svg
-            v-if="!copied"
-            xmlns="http://www.w3.org/2000/svg"
-            width="16"
-            height="16"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <rect
-              width="14"
-              height="14"
-              x="8"
-              y="8"
-              rx="2"
-              ry="2"
-            />
-            <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" />
-          </svg>
-          <svg
-            v-else
-            xmlns="http://www.w3.org/2000/svg"
-            width="16"
-            height="16"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <polyline points="20 6 9 17 4 12" />
-          </svg>
+          <CopyIcon v-if="!copied" class="size-4" />
+          <CheckIcon v-else class="size-4" />
           {{ copied ? 'Copied!' : 'Copy' }}
         </Button>
       </div>
@@ -89,8 +65,14 @@ const handleCopy = async () => {
 
       <!-- Code Tab -->
       <TabsContent value="code" class="mt-0">
-        <div class="bg-slate-900 dark:bg-slate-950 rounded-2xl border border-slate-700/60 p-6 shadow-lg overflow-x-auto">
-          <pre class="text-sm font-mono text-slate-100"><code>{{ code }}</code></pre>
+        <div class="rounded-2xl shadow-lg overflow-hidden">
+          <CodeBlock
+            :code="code"
+            :language="language"
+            :theme="theme"
+            :show-line-numbers="showLineNumbers"
+            :copyable="false"
+          />
         </div>
       </TabsContent>
     </Tabs>

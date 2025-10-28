@@ -12,6 +12,7 @@ const props = defineProps<{
   text?: string
   class?: HTMLAttributes['class']
   copiedClass?: HTMLAttributes['class']
+  withLabel?: boolean
 }>()
 
 const copied = refAutoReset(false, 1000)
@@ -30,15 +31,21 @@ const copyToClipboard = async () => {
     v-tooltip="copied ? t('common.copyToClipboard.copied') : t('common.copyToClipboard.copy')"
     type="button"
     :class="cn(
-      'cursor-pointer opacity-50 hover:opacity-100 text-muted-foreground hover:text-primary',
+      'cursor-pointer flex items-center gap-1 opacity-50 hover:opacity-100 text-muted-foreground hover:text-primary',
       props.class,
       copied && props.copiedClass,
     )"
     @click="copyToClipboard"
   >
     <slot>
+      <slot name="before" />
       <ClipboardIcon v-if="!copied" />
       <CheckIcon v-else />
+      <slot name="after">
+        <span v-if="withLabel">
+          {{ copied ? t('common.copyToClipboard.copied') : t('common.copyToClipboard.copy') }}
+        </span>
+      </slot>
     </slot>
   </button>
 </template>

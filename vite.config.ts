@@ -17,4 +17,16 @@ export default defineConfig({
       '@registry': fileURLToPath(new URL('./registry', import.meta.url))
     },
   },
+  optimizeDeps: {
+    exclude: [
+      '@tailwindcss/oxide',
+      'lightningcss',
+    ],
+    esbuildOptions: {
+      target: 'esnext',
+    },
+  },
+  build: {
+    target: 'esnext',
+  },
 })

@@ -4,6 +4,7 @@ import { type Component, computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 import FeatureCard from '@/components/demo/FeatureCard.vue'
 import InstallationCode from '@/components/demo/InstallationCode.vue'
+import CodeBlock from '@/components/ui/code-block/CodeBlock.vue'
 import { RoutePaths } from '@/router/route-names'
 import ButtonLink from '@registry/components/ui/button-link/ButtonLink.vue'
 import ButtonLinkExternal from '@registry/components/ui/button-link/ButtonLinkExternal.vue'
@@ -129,7 +130,7 @@ const features = computed(() => [
           <p class="text-sm text-muted-foreground mt-2">
             {{ t('demo.introduction.installation.step2.description', { file: 'src/style.css' }) }}
           </p>
-          <InstallationCode :code="tailwindCssCode" language="css" />
+          <CodeBlock :code="tailwindCssCode" language="css" filename="src/style.css" />
         </div>
 
         <!-- Step 3: Edit tsconfig -->
@@ -146,7 +147,12 @@ const features = computed(() => [
               tsconfigApp: 'tsconfig.app.json'
             }) }}
           </p>
-          <InstallationCode :code="tsconfigCode" language="json" />
+          <CodeBlock
+            :code="tsconfigCode"
+            language="json"
+            filename="tsconfig.json"
+            show-line-numbers
+          />
         </div>
 
         <!-- Step 4: Update vite.config.ts -->
@@ -157,7 +163,12 @@ const features = computed(() => [
           <p class="text-sm text-muted-foreground">
             {{ t('demo.introduction.installation.step4.description', { file: 'vite.config.ts' }) }}
           </p>
-          <InstallationCode :code="viteConfigCode" language="typescript" />
+          <CodeBlock
+            :code="viteConfigCode"
+            language="typescript"
+            filename="vite.config.ts"
+            show-line-numbers
+          />
         </div>
 
         <!-- Step 5: Run CLI -->

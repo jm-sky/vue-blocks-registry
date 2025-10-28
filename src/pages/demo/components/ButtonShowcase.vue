@@ -85,7 +85,7 @@ import { Button } from '@registry/components/ui/button'
 
     <!-- Preview -->
     <ComponentSection :title="t('demo.showcase.preview')">
-      <CodePreview :code="basicVibeUsageCode">
+      <CodePreview :code="basicVibeUsageCode" language="vue">
         <template #preview>
           <Button vibe="primary">
             {{ t('demo.showcase.button.click_me') }}
