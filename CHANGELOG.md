@@ -7,6 +7,29 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.6] - 2025-10-28
+
+### Fixed
+- **DataTable Row Selection**: Fixed "Select All" checkbox not working
+  - Updated checkbox implementation from `checked` to `modelValue` (Reka-UI breaking change)
+  - Updated event handler from `onUpdate:checked` to `onUpdate:model-value`
+  - All rows now properly select/deselect when clicking header checkbox
+- **DataTable Column Visibility**: Fixed column visibility toggle not working
+  - Added `column.toggleVisibility()` call in `DataTableToolbar.vue`
+  - Columns now properly hide/show when toggled via dropdown menu
+- **DataTable Configuration**: Fixed missing `enableRowSelection` in TanStack Table config
+  - Added `enableRowSelection` and `enableMultiRowSelection` properties
+  - Row selection state now properly synchronized with table instance
+
+### Changed
+- **DataTableShowcase**: Updated to use correct props
+  - Changed `filter-column` to `search-placeholder`
+  - Added `enable-row-selection` boolean prop
+  - Updated example code to reflect correct API usage
+- **DataTable Toolbar**: Improved reactivity with `v-model` bindings
+  - Changed from event-based to `v-model` for `global-filter` and `column-visibility`
+- **Pagination Options**: Reduced default page size options from `[10, 20, 30, 40, 50, 100, 500]` to `[10, 20, 50, 100, 500]`
+
 ## [0.2.5] - 2025-10-24
 
 ### Added
