@@ -11,6 +11,6 @@ const { t } = useI18n()
     :to="RoutePaths.DEMO_EXAMPLES_AUTH"
     variant="ghost"
   >
-    {{ t('auth.docs_link') }}
+    {{ t('demo.auth.docs_link') }}
   </ButtonLink>
 </template>

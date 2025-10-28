@@ -9,9 +9,11 @@ import { isValidationError } from '@registry/shared/utils/typeGuards'
 import { toTypedSchema } from '@vee-validate/zod'
 import { useForm } from 'vee-validate'
 import { ref } from 'vue'
+import { useI18n } from 'vue-i18n'
 import { useRoute, useRouter } from 'vue-router'
 import type { ResetPasswordData } from '@registry/modules/auth/types/user'
 
+const { t } = useI18n()
 const route = useRoute()
 const router = useRouter()
 const { resetPassword, isResetPasswordLoading } = useAuth()
@@ -50,10 +52,10 @@ const onSubmit = handleSubmit(async (values: ResetPasswordData) => {
     <div class="max-w-md w-full space-y-8">
       <div>
         <h2 class="text-center text-3xl font-extrabold text-foreground">
-          Set New Password
+          {{ t('auth.reset_password_page.title') }}
         </h2>
         <p class="mt-2 text-center text-sm text-muted-foreground">
-          Enter your new password below
+          {{ t('auth.reset_password_page.subtitle') }}
         </p>
       </div>
 
@@ -73,9 +75,11 @@ const onSubmit = handleSubmit(async (values: ResetPasswordData) => {
 
           <FormField v-slot="{ componentField }" name="email">
             <FormItem>
-              <FormLabel>Email</FormLabel>
+              <FormLabel required>
+                {{ t('auth.email') }}
+              </FormLabel>
               <FormControl>
-                <Input type="email" placeholder="Enter your email" v-bind="componentField" />
+                <Input type="email" :placeholder="t('auth.form.email_placeholder')" v-bind="componentField" />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -83,9 +87,11 @@ const onSubmit = handleSubmit(async (values: ResetPasswordData) => {
 
           <FormField v-slot="{ componentField }" name="password">
             <FormItem>
-              <FormLabel>New Password</FormLabel>
+              <FormLabel required>
+                {{ t('auth.new_password') }}
+              </FormLabel>
               <FormControl>
-                <Input type="password" placeholder="Enter new password" v-bind="componentField" />
+                <Input type="password" :placeholder="t('auth.form.new_password_placeholder')" v-bind="componentField" />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -93,23 +99,25 @@ const onSubmit = handleSubmit(async (values: ResetPasswordData) => {
 
           <FormField v-slot="{ componentField }" name="passwordConfirmation">
             <FormItem>
-              <FormLabel>Confirm Password</FormLabel>
+              <FormLabel required>
+                {{ t('auth.password_confirm') }}
+              </FormLabel>
               <FormControl>
-                <Input type="password" placeholder="Confirm password" v-bind="componentField" />
+                <Input type="password" :placeholder="t('auth.form.password_confirm_placeholder')" v-bind="componentField" />
               </FormControl>
               <FormMessage />
             </FormItem>
           </FormField>
 
           <Button type="submit" class="w-full" :loading="isResetPasswordLoading">
-            Reset Password
+            {{ t('auth.form.submit_reset_password') }}
           </Button>
         </form>
       </div>
 
       <div class="text-center">
         <RouterLink to="/auth/login" class="text-sm text-primary hover:underline">
-          Back to Login
+          {{ t('auth.reset_password_page.back_to_login') }}
         </RouterLink>
       </div>
     </div>

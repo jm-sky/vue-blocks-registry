@@ -64,7 +64,9 @@ const onSubmit = handleSubmit(async (values: ChangePasswordData) => {
           <form class="space-y-4" @submit="onSubmit">
             <FormField v-slot="{ componentField }" name="currentPassword">
               <FormItem>
-                <FormLabel>{{ t('auth.current_password') }}</FormLabel>
+                <FormLabel required>
+                  {{ t('auth.current_password') }}
+                </FormLabel>
                 <FormControl>
                   <Input type="password" :placeholder="t('auth.form.current_password_placeholder')" v-bind="componentField" />
                 </FormControl>
@@ -74,7 +76,9 @@ const onSubmit = handleSubmit(async (values: ChangePasswordData) => {
 
             <FormField v-slot="{ componentField }" name="password">
               <FormItem>
-                <FormLabel>{{ t('auth.new_password') }}</FormLabel>
+                <FormLabel required>
+                  {{ t('auth.new_password') }}
+                </FormLabel>
                 <FormControl>
                   <Input type="password" :placeholder="t('auth.form.new_password_placeholder')" v-bind="componentField" />
                 </FormControl>
@@ -84,7 +88,9 @@ const onSubmit = handleSubmit(async (values: ChangePasswordData) => {
 
             <FormField v-slot="{ componentField }" name="passwordConfirmation">
               <FormItem>
-                <FormLabel>{{ t('auth.new_password_confirm') }}</FormLabel>
+                <FormLabel required>
+                  {{ t('auth.new_password_confirm') }}
+                </FormLabel>
                 <FormControl>
                   <Input type="password" :placeholder="t('auth.form.new_password_confirm_placeholder')" v-bind="componentField" />
                 </FormControl>

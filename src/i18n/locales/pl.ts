@@ -49,6 +49,14 @@ export default {
     },
   },
   demo: {
+    auth: {
+      menu: {
+        variants: 'Warianty',
+        login_standard: 'Logowanie standardowe',
+        login_official: 'Logowanie oficjalne',
+      },
+      docs_link: 'Dok. Auth',
+    },
     hero: {
       welcome: 'Witaj w',
       subtitle: 'Odkryj naszą kolekcję gotowych komponentów UI, zaprojektowanych z myślą o nowoczesnych aplikacjach Vue.js',

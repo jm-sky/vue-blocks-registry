@@ -45,7 +45,7 @@ const onSubmit = handleSubmit(async (values: RegisterCredentials) => {
   <form class="space-y-4" @submit="onSubmit">
     <FormField v-slot="{ componentField }" name="name">
       <FormItem>
-        <FormLabel>{{ t('auth.form.name') }} (optional)</FormLabel>
+        <FormLabel>{{ t('auth.form.name') }}</FormLabel>
         <FormControl>
           <Input type="text" :placeholder="t('auth.form.name_placeholder')" v-bind="componentField" />
         </FormControl>
@@ -55,7 +55,9 @@ const onSubmit = handleSubmit(async (values: RegisterCredentials) => {
 
     <FormField v-slot="{ componentField }" name="email">
       <FormItem>
-        <FormLabel>{{ t('auth.email') }}</FormLabel>
+        <FormLabel required>
+          {{ t('auth.email') }}
+        </FormLabel>
         <FormControl>
           <Input type="email" :placeholder="t('auth.form.email_placeholder')" v-bind="componentField" />
         </FormControl>
@@ -65,7 +67,9 @@ const onSubmit = handleSubmit(async (values: RegisterCredentials) => {
 
     <FormField v-slot="{ componentField }" name="password">
       <FormItem>
-        <FormLabel>{{ t('auth.password') }}</FormLabel>
+        <FormLabel required>
+          {{ t('auth.password') }}
+        </FormLabel>
         <FormControl>
           <Input type="password" :placeholder="t('auth.form.password_placeholder')" v-bind="componentField" />
         </FormControl>
@@ -75,7 +79,9 @@ const onSubmit = handleSubmit(async (values: RegisterCredentials) => {
 
     <FormField v-slot="{ componentField }" name="passwordConfirmation">
       <FormItem>
-        <FormLabel>{{ t('auth.password_confirm') }}</FormLabel>
+        <FormLabel required>
+          {{ t('auth.password_confirm') }}
+        </FormLabel>
         <FormControl>
           <Input type="password" :placeholder="t('auth.form.password_confirm_placeholder')" v-bind="componentField" />
         </FormControl>

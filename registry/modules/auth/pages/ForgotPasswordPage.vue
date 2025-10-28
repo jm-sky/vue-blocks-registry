@@ -65,7 +65,9 @@ const onSubmit = handleSubmit(async (values: ForgotPasswordData) => {
         <form class="space-y-4" @submit="onSubmit">
           <FormField v-slot="{ componentField }" name="email">
             <FormItem>
-              <FormLabel>{{ t('auth.email') }}</FormLabel>
+              <FormLabel required>
+                {{ t('auth.email') }}
+              </FormLabel>
               <FormControl>
                 <Input type="email" :placeholder="t('auth.form.email_placeholder')" v-bind="componentField" />
               </FormControl>
