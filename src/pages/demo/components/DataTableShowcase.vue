@@ -52,8 +52,8 @@ import { data } from './data'
   <DataTable
     :columns="columns"
     :data="data"
-    filter-column="email"
-    filter-placeholder="Filter emails..."
+    search-placeholder="Filter emails..."
+    enable-row-selection
   />
 </template>`
 </script>
@@ -78,8 +78,8 @@ import { data } from './data'
       <DataTable
         :columns="columns"
         :data="payments"
-        filter-column="email"
-        :filter-placeholder="t('demo.showcase.data_table.filter_placeholder')"
+        :search-placeholder="t('demo.showcase.data_table.filter_placeholder')"
+        enable-row-selection
       />
     </div>
 

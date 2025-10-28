@@ -12,8 +12,6 @@ import type { Table } from '@tanstack/vue-table'
 
 interface Props {
   table: Table<TData>
-  globalFilter: string
-  columnVisibility: Record<string, boolean>
   searchPlaceholder?: string
   enableFiltering?: boolean
   enableColumnVisibility?: boolean
@@ -25,18 +23,23 @@ const props = withDefaults(defineProps<Props>(), {
   enableColumnVisibility: true,
 })
 
-const emit = defineEmits<{
-  'update:globalFilter': [value: string]
-  'update:columnVisibility': [value: Record<string, boolean>]
-}>()
+const globalFilter = defineModel<string>('globalFilter', { default: '' })
+const columnVisibility = defineModel<Record<string, boolean>>('columnVisibility', { default: {} })
 
 const handleGlobalFilterChange = (value: string) => {
-  emit('update:globalFilter', value)
+  globalFilter.value = value
 }
 
 const handleColumnVisibilityChange = (columnId: string, visible: boolean) => {
-  const newVisibility = { ...props.columnVisibility, [columnId]: visible }
-  emit('update:columnVisibility', newVisibility)
+  // Toggle column visibility in table
+  const column = props.table.getColumn(columnId)
+  if (column) {
+    column.toggleVisibility(visible)
+  }
+
+  // Update parent state
+  const newVisibility = { ...columnVisibility.value, [columnId]: visible }
+  columnVisibility.value = newVisibility
 }
 </script>
 
@@ -65,7 +68,7 @@ const handleColumnVisibilityChange = (columnId: string, visible: boolean) => {
           :key="column.id"
           class="capitalize"
           :checked="column.getIsVisible()"
-          @update:checked="(value: boolean) => handleColumnVisibilityChange(column.id, value)"
+          @update:model-value="(value: boolean) => handleColumnVisibilityChange(column.id, value)"
         >
           {{ column.id }}
         </DropdownMenuCheckboxItem>

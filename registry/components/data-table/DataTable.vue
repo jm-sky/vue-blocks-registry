@@ -58,7 +58,7 @@ const props = withDefaults(defineProps<DataTableProps<TData, TValue>>(), {
   enableColumnVisibility: true,
   searchPlaceholder: 'Filter...',
   initialPageSize: 10,
-  pageSizeOptions: () => [10, 20, 30, 40, 50, 100, 500],
+  pageSizeOptions: () => [10, 20, 50, 100, 500],
 })
 
 // v-model support using defineModel
@@ -113,26 +113,28 @@ const table = useVueTable({
     return props.columns
   },
   getCoreRowModel: getCoreRowModel(),
+  enableRowSelection: props.enableRowSelection,
+  enableMultiRowSelection: props.enableRowSelection,
   getSortedRowModel: props.enableSorting ? getSortedRowModel() : undefined,
   getFilteredRowModel: props.enableFiltering ? getFilteredRowModel() : undefined,
   getPaginationRowModel: props.enablePagination ? getPaginationRowModel() : undefined,
   globalFilterFn: props.globalFilterFn ? (row, columnId, filterValue) => {
     return props.globalFilterFn ? props.globalFilterFn(row.original, filterValue) : false
   } : 'includesString',
-  onSortingChange: props.enableSorting 
-    ? (updaterOrValue) => { 
+  onSortingChange: props.enableSorting
+    ? (updaterOrValue) => {
         valueUpdater(updaterOrValue, sorting)
         emit('update:sorting', sorting.value)
       }
     : undefined,
-  onGlobalFilterChange: props.enableFiltering 
-    ? (value) => { 
+  onGlobalFilterChange: props.enableFiltering
+    ? (value) => {
         globalFilter.value = value
         emit('update:globalFilter', value)
       }
     : undefined,
   onColumnVisibilityChange: props.enableColumnVisibility
-    ? (updaterOrValue) => { 
+    ? (updaterOrValue) => {
         valueUpdater(updaterOrValue, columnVisibility)
         emit('update:columnVisibility', columnVisibility.value)
       }
@@ -144,10 +146,10 @@ const table = useVueTable({
     : undefined,
   onPaginationChange: props.enablePagination && !isServerSide.value
     ? (updater) => {
-        const newPagination = typeof updater === 'function' 
+        const newPagination = typeof updater === 'function'
           ? updater({ pageIndex: currentPage.value - 1, pageSize: currentPageSize.value })
           : updater
-        
+
         currentPage.value = newPagination.pageIndex + 1
         currentPageSize.value = newPagination.pageSize
       }
@@ -205,14 +207,12 @@ const handlePageSizeChange = (newPageSize: number) => {
       :column-visibility="columnVisibility"
     >
       <DataTableToolbar
+        v-model:global-filter="globalFilter"
+        v-model:column-visibility="columnVisibility"
         :table="table"
-        :global-filter="globalFilter"
-        :column-visibility="columnVisibility"
         :search-placeholder="searchPlaceholder"
         :enable-filtering="enableFiltering"
         :enable-column-visibility="enableColumnVisibility"
-        @update:global-filter="(value) => globalFilter = value"
-        @update:column-visibility="(value) => columnVisibility = value"
       />
     </slot>
 
@@ -260,11 +260,11 @@ const handlePageSizeChange = (newPageSize: number) => {
     </div>
 
     <!-- Pagination Slot -->
-    <slot 
-      name="pagination" 
-      :table="table" 
-      :page="currentPage" 
-      :page-size="currentPageSize" 
+    <slot
+      name="pagination"
+      :table="table"
+      :page="currentPage"
+      :page-size="currentPageSize"
       :total="totalRows"
       :handle-page-change="handlePageChange"
       :handle-page-size-change="handlePageSizeChange"
@@ -281,10 +281,10 @@ const handlePageSizeChange = (newPageSize: number) => {
     </slot>
 
     <!-- Row Selection Info Slot -->
-    <slot 
-      name="selection-info" 
-      :table="table" 
-      :selected-count="selectedRowsCount" 
+    <slot
+      name="selection-info"
+      :table="table"
+      :selected-count="selectedRowsCount"
       :total-count="table.getFilteredRowModel().rows.length"
     >
       <div v-if="enableRowSelection && selectedRowsCount > 0" class="flex-1 text-sm text-muted-foreground">

@@ -18,16 +18,15 @@ export const columns: ColumnDef<Payment>[] = [
     id: 'select',
     header: ({ table }) =>
       h(Checkbox, {
-        checked:
-          table.getIsAllPageRowsSelected()
-          || (table.getIsSomePageRowsSelected() && 'indeterminate'),
-        'onUpdate:checked': (value: boolean) => { table.toggleAllPageRowsSelected(value) },
+        modelValue: table.getIsAllPageRowsSelected() || (table.getIsSomePageRowsSelected() && 'indeterminate'),
+        'onUpdate:model-value': (value: boolean) => { table.toggleAllPageRowsSelected(value) },
         ariaLabel: 'Select all',
       }),
     cell: ({ row }) =>
       h(Checkbox, {
-        checked: row.getIsSelected(),
-        'onUpdate:checked': (value: boolean) => { row.toggleSelected(value) },
+        key: `checkbox-${row.id}`,
+        modelValue: row.getIsSelected(),
+        'onUpdate:model-value': (value: boolean) => { row.toggleSelected(value) },
         ariaLabel: 'Select row',
       }),
     enableSorting: false,
