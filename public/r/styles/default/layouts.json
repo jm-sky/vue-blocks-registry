@@ -38,6 +38,7 @@
     "layout-components",
     "dark-mode",
     "logo-text",
-    "locale-toggle"
+    "locale-toggle",
+    "hover-link"
   ]
 }

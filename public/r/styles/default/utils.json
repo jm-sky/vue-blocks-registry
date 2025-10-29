@@ -16,7 +16,8 @@
   ],
   "dependencies": [
     "clsx",
-    "tailwind-merge"
+    "tailwind-merge",
+    "@tanstack/vue-table"
   ],
   "registryDependencies": []
 }

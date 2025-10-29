@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.4.2] - 2025-10-29
+
+### Fixed
+- **Dependencies**: Added missing dependencies for complete installation
+  - Added `hover-link` to layouts registryDependencies (AuthenticatedLayout uses HoverLink)
+  - Added `@tanstack/vue-table` to utils npm dependencies (utils.ts uses Updater type)
+  - Ensures all required components and packages are installed automatically
+
 ## [0.4.1] - 2025-10-29
 
 ### Note

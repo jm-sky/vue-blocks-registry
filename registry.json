@@ -19,7 +19,8 @@
       ],
       "dependencies": [
         "clsx",
-        "tailwind-merge"
+        "tailwind-merge",
+        "@tanstack/vue-table"
       ],
       "registryDependencies": []
     },
@@ -521,7 +522,8 @@
         "layout-components",
         "dark-mode",
         "logo-text",
-        "locale-toggle"
+        "locale-toggle",
+        "hover-link"
       ]
     },
     {
