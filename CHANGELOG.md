@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.4.3] - 2025-10-29
+
+### Fixed
+- **hover-link Index**: Fixed incorrect export in hover-link/index.ts
+  - Changed from exporting HoverLinkExternal as HoverLink
+  - Now correctly exports both HoverLink and HoverLinkExternal
+  - Resolves "Cannot find module './HoverLinkExternal.vue'" error
+
 ## [0.4.2] - 2025-10-29
 
 ### Fixed
