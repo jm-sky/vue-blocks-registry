@@ -520,7 +520,8 @@
         "auth-store",
         "layout-components",
         "dark-mode",
-        "logo-text"
+        "logo-text",
+        "locale-toggle"
       ]
     },
     {

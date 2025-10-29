@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.3.2] - 2025-10-29
+
+### Fixed
+- **Layouts Dependencies**: Added missing `locale-toggle` to layouts registryDependencies
+  - GuestLayoutCentered and other layout components use LocaleToggle component
+  - LocaleToggle now properly installs when layouts are installed
+  - Fixed incomplete layout installation missing locale switcher functionality
+
 ## [0.3.1] - 2025-10-29
 
 ### Fixed
