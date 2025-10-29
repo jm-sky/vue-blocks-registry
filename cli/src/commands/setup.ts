@@ -158,7 +158,7 @@ export const setup = new Command()
         })
         shadcnSpinner.succeed('shadcn-vue initialized')
       }
-      catch (error) {
+      catch {
         shadcnSpinner.fail('Failed to initialize shadcn-vue')
         logger.warn('You may need to run it manually: pnpm dlx shadcn-vue@latest init')
       }
