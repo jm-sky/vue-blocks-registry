@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.4.11] - 2025-10-29
+
+### Fixed
+- **Environment Variables**: Updated .env.example template with all missing variables
+  - Added VITE_DEFAULT_USER_EMAIL and VITE_DEFAULT_USER_PASSWORD for dev defaults
+  - Added all auth route path variables (VITE_AUTH_*_PATH)
+  - Uncommented i18n locale variables (now required by default)
+  - Added clear comments about usage and security
+
 ## [0.4.10] - 2025-10-29
 
 ### Changed
