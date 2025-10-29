@@ -18,6 +18,12 @@ export const add = new Command()
   .argument('[components...]', 'Name of the components to add')
   .option('-o, --overwrite', 'Overwrite existing files', false)
   .option('-y, --yes', 'Skip confirmation prompt', false)
+  .addHelpText('after', `
+Examples:
+  $ pnpm dlx vue-blocks-registry add button
+  $ pnpm dlx vue-blocks-registry add button input form
+  $ pnpm dlx vue-blocks-registry add --yes --overwrite authFull
+  $ pnpm dlx vue-blocks-registry add dark-mode layouts`)
   .action(async (components: string[], options) => {
     try {
       const cwd = process.cwd()

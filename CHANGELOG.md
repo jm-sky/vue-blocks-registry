@@ -7,6 +7,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.3.4] - 2025-10-29
+
+### Added
+- **CLI Help Examples**: Added usage examples to all command help texts
+  - `setup --help` now shows 3 example usage patterns
+  - `add --help` shows examples for single and multiple components
+  - `scaffold --help` demonstrates different flag combinations
+  - `init --help` shows basic and non-interactive usage
+  - Improves CLI usability and discoverability
+
+### Fixed
+- **Setup Scaffold**: Added `--overwrite` flag when running scaffold from setup command
+  - Prevents "Files already exist" error when using `setup --scaffold`
+  - Scaffold now properly overwrites default Vue files with custom templates
+
 ## [0.3.3] - 2025-10-29
 
 ### Changed

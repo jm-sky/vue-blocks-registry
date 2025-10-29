@@ -13,6 +13,11 @@ export const setup = new Command()
   .argument('[project-name]', 'Name of the project directory')
   .option('-y, --yes', 'Use default configuration', false)
   .option('-s, --scaffold', 'Run scaffold after setup to generate foundational files', false)
+  .addHelpText('after', `
+Examples:
+  $ pnpm dlx vue-blocks-registry setup my-app
+  $ pnpm dlx vue-blocks-registry setup --yes --scaffold frontend
+  $ pnpm dlx vue-blocks-registry setup -ys my-project`)
   .action(async (projectName: string | undefined, options: { yes: boolean; scaffold: boolean }) => {
     try {
       let targetDir: string = projectName ?? ''
@@ -215,6 +220,7 @@ export const setup = new Command()
             'vue-blocks-registry',
             'scaffold',
             '--all',
+            '--overwrite',
             '--yes',
           ], {
             cwd: projectPath,

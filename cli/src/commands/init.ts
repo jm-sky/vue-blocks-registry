@@ -9,6 +9,10 @@ export const init = new Command()
   .name('init')
   .description('Initialize your project for vue-blocks-registry')
   .option('-y, --yes', 'Use default configuration', false)
+  .addHelpText('after', `
+Examples:
+  $ pnpm dlx vue-blocks-registry init
+  $ pnpm dlx vue-blocks-registry init --yes`)
   .action(async (options) => {
     try {
       const cwd = process.cwd()

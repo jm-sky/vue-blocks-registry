@@ -28,6 +28,11 @@ export const scaffold = new Command()
   .option('-a, --all', 'Generate all foundational files', false)
   .option('-o, --overwrite', 'Overwrite existing files', false)
   .option('-y, --yes', 'Skip confirmation prompt', false)
+  .addHelpText('after', `
+Examples:
+  $ pnpm dlx vue-blocks-registry scaffold
+  $ pnpm dlx vue-blocks-registry scaffold --all
+  $ pnpm dlx vue-blocks-registry scaffold --all --overwrite --yes`)
   .action(async (options) => {
     try {
       const cwd = process.cwd()
