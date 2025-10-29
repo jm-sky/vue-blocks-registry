@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.4.5] - 2025-10-29
+
+### Fixed
+- **Setup Command Dependencies**: Added tw-animate-css npm package installation
+  - tw-animate-css is now installed automatically during setup
+  - CSS file includes `@import "tw-animate-css";` directive
+  - Provides animation utilities used by registry components
+- **CSS Template Formatting**: Fixed doubled newlines in generated style.css file
+  - Removed extra trailing newline from CSS template
+  - Cleaner generated CSS file output
+
 ## [0.4.4] - 2025-10-29
 
 ### Fixed

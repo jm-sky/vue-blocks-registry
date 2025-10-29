@@ -82,6 +82,7 @@ Examples:
           'add',
           'tailwindcss@next',
           '@tailwindcss/vite@next',
+          'tw-animate-css',
         ], {
           cwd: projectPath,
           stdio: 'pipe',
@@ -129,9 +130,9 @@ Examples:
 
         await fs.ensureDir(cssDir)
         await fs.writeFile(cssPath, `@import "tailwindcss";
+@import "tw-animate-css";
 
-/* Your custom styles here */
-`, 'utf-8')
+/* Your custom styles here */`, 'utf-8')
 
         // Update main.ts to import the CSS file
         const mainTsPath = path.join(projectPath, 'src/main.ts')
