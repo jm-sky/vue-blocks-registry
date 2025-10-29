@@ -4,7 +4,7 @@ import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import AuthenticatedLayout from '@registry/app/layouts/AuthenticatedLayout.vue'
+import AuthenticatedLayout from '@registry/layouts/AuthenticatedLayout.vue'
 import { useAuthStore } from '@registry/modules/auth/store/useAuthStore'
 
 const authStore = useAuthStore()

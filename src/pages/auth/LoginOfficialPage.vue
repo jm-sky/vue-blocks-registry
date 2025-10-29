@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import GuestLayoutCentered from '@registry/app/layouts/GuestLayoutCentered.vue'
+import GuestLayoutCentered from '@registry/layouts/GuestLayoutCentered.vue'
 import LoginFormOfficial from '@registry/modules/auth/components/LoginFormOfficial.vue'
 </script>
 

@@ -492,23 +492,23 @@
       "categories": ["layout"],
       "files": [
         {
-          "path": "app/layouts/AuthenticatedLayout.vue",
+          "path": "layouts/AuthenticatedLayout.vue",
           "type": "registry:layout"
         },
         {
-          "path": "app/layouts/PublicLayout.vue",
+          "path": "layouts/PublicLayout.vue",
           "type": "registry:layout"
         },
         {
-          "path": "app/layouts/GuestLayoutCentered.vue",
+          "path": "layouts/GuestLayoutCentered.vue",
           "type": "registry:layout"
         },
         {
-          "path": "app/layouts/GuestLayoutCenteredGlass.vue",
+          "path": "layouts/GuestLayoutCenteredGlass.vue",
           "type": "registry:layout"
         },
         {
-          "path": "app/layouts/GuestLayoutTwoColumns.vue",
+          "path": "layouts/GuestLayoutTwoColumns.vue",
           "type": "registry:layout"
         }
       ],

@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import AuthenticatedLayout from '@registry/app/layouts/AuthenticatedLayout.vue'
 import { Button } from '@registry/components/ui/button'
 import { FormControl, FormField, FormItem, FormLabel, FormMessage } from '@registry/components/ui/form'
 import { Input } from '@registry/components/ui/input'
+import AuthenticatedLayout from '@registry/layouts/AuthenticatedLayout.vue'
 import { useAuth } from '@registry/modules/auth/composables/useAuth'
 import { changePasswordSchema } from '@registry/modules/auth/validation/changePassword.schema'
 import { isValidationError } from '@registry/shared/utils/typeGuards'

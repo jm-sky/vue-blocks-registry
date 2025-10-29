@@ -7,7 +7,7 @@ import type { Config } from './config.js'
  * - @registry/components/ui/button -> @/components/ui/button
  * - @registry/lib/utils -> @/lib/utils
  * - @registry/modules/auth/... -> @/modules/auth/...
- * - @registry/app/layouts/... -> @/layouts/...
+ * - @registry/layouts/... -> @/layouts/...
  * - @registry/shared/utils/typeGuards -> @/lib/typeGuards (or @/shared/utils/typeGuards)
  */
 export function transformImports(content: string, config: Config): string {
@@ -19,9 +19,9 @@ export function transformImports(content: string, config: Config): string {
     '@/modules'
   )
 
-  // Transform @registry/app/layouts -> @/layouts
+  // Transform @registry/layouts -> @/layouts
   transformed = transformed.replace(
-    /@registry\/app\/layouts/g,
+    /@registry\/layouts/g,
     '@/layouts'
   )
 

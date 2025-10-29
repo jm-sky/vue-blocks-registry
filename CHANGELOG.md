@@ -7,6 +7,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.4.0] - 2025-10-29
+
+### Changed
+- **BREAKING: Layouts Directory Structure**: Simplified layouts installation path
+  - Moved from `src/app/layouts/` to `src/layouts/` for conventional Vue project structure
+  - Registry paths changed from `app/layouts/*` to `layouts/*`
+  - Import paths changed from `@registry/app/layouts` to `@registry/layouts`
+  - User imports now use `@/layouts/` instead of `@/app/layouts/`
+  - Removed unnecessary `app/` folder layer
+  - More intuitive and aligns with standard Vue project conventions
+
+### Migration Guide (for v0.3.x users)
+If you previously installed layouts, you'll need to:
+1. Move layouts from `src/app/layouts/` to `src/layouts/`
+2. Update imports from `@/app/layouts/` to `@/layouts/`
+3. Remove empty `src/app/` directory if no other files remain
+
 ## [0.3.6] - 2025-10-29
 
 ### Fixed

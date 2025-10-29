@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import GuestLayoutCentered from '@registry/app/layouts/GuestLayoutCentered.vue'
+import GuestLayoutCentered from '@registry/layouts/GuestLayoutCentered.vue'
 import RegisterForm from '@registry/modules/auth/components/RegisterForm.vue'
 import { useI18n } from 'vue-i18n'
 

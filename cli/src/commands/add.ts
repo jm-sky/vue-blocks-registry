@@ -242,8 +242,8 @@ async function installFiles(
         const firstDir = pathParts[0]
 
         // Handle special directories that should preserve full path structure
-        if (firstDir === 'modules' || firstDir === 'app' || firstDir === 'shared') {
-          // For modules, app, and shared directories, preserve the full path under src/
+        if (firstDir === 'modules' || firstDir === 'layouts' || firstDir === 'shared') {
+          // For modules, layouts, and shared directories, preserve the full path under src/
           targetPath = path.join(cwd, 'src', file.path)
         }
         else {

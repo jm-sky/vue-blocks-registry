@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import GuestLayoutCentered from '@registry/app/layouts/GuestLayoutCentered.vue'
 import { Button } from '@registry/components/ui/button'
 import { FormControl, FormField, FormItem, FormLabel, FormMessage } from '@registry/components/ui/form'
 import { Input } from '@registry/components/ui/input'
+import GuestLayoutCentered from '@registry/layouts/GuestLayoutCentered.vue'
 import { useAuth } from '@registry/modules/auth/composables/useAuth'
 import { resetPasswordSchema } from '@registry/modules/auth/validation/resetPassword.schema'
 import { isValidationError } from '@registry/shared/utils/typeGuards'
