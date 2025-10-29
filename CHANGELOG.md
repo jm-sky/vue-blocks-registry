@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.4.7] - 2025-10-29
+
+### Changed
+- **Setup Command Dependencies**: Added vue-i18n npm package installation by default
+  - vue-i18n is now installed automatically during setup
+  - main.ts template includes commented import with clear instructions
+  - Users can uncomment when adding i18n module
+
 ## [0.4.6] - 2025-10-29
 
 ### Fixed

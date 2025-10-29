@@ -26,7 +26,7 @@ const queryClient = new QueryClient({
 app.use(createPinia())
 app.use(router)
 app.use(VueQueryPlugin, { queryClient })
-// Uncomment if you want to use i18n:
+// Uncomment when you add the i18n module (pnpm dlx vue-blocks-registry add i18n):
 // import { i18n } from '@/shared/i18n'
 // app.use(i18n)
 app.directive('tooltip', vTooltip)

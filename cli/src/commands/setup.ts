@@ -97,6 +97,23 @@ Examples:
         throw error
       }
 
+      // Step 2a: Install vue-i18n
+      const i18nSpinner = ora('Installing vue-i18n...').start()
+      try {
+        await execa('pnpm', [
+          'add',
+          'vue-i18n',
+        ], {
+          cwd: projectPath,
+          stdio: 'pipe',
+        })
+        i18nSpinner.succeed('vue-i18n installed')
+      }
+      catch (error) {
+        i18nSpinner.fail('Failed to install vue-i18n')
+        throw error
+      }
+
       // Step 3: Configure Tailwind in vite.config.ts
       const viteConfigSpinner = ora('Configuring Tailwind in Vite...').start()
       try {
