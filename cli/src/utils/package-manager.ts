@@ -1,5 +1,7 @@
+import { execa } from 'execa'
 import { existsSync } from 'fs'
 import { join } from 'path'
+import type { Options as ExecaOptions } from 'execa'
 
 export type PackageManager = 'npm' | 'pnpm' | 'yarn'
 
@@ -45,11 +47,11 @@ export function detectPackageManager(cwd: string): PackageManagerInfo {
     }
   }
 
-  // Default to npm if no lock file is found
+  // Default to pnpm if no lock file is found
   return {
-    name: 'npm',
-    command: 'npm',
-    addCommand: ['install'],
+    name: 'pnpm',
+    command: 'pnpm',
+    addCommand: ['add'],
     installCommand: ['install']
   }
 }
@@ -72,4 +74,26 @@ export function getAddCommand(packageManager: PackageManagerInfo, dependencies: 
   }
 
   return [...baseCommand, ...dependencies]
+}
+
+/**
+ * Executes a package using dlx (or npx for npm)
+ * This handles the difference between package managers:
+ * - pnpm uses 'pnpm dlx'
+ * - yarn uses 'yarn dlx'
+ * - npm uses 'npx'
+ */
+export async function executeDlx(
+  packageManager: PackageManagerInfo,
+  packageName: string,
+  args: string[] = [],
+  options?: ExecaOptions
+) {
+  if (packageManager.name === 'npm') {
+    // npm uses npx instead of npm dlx
+    return execa('npx', [packageName, ...args], options)
+  }
+
+  // pnpm and yarn use dlx
+  return execa(packageManager.command, ['dlx', packageName, ...args], options)
 }

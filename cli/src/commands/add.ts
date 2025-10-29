@@ -8,7 +8,7 @@ import type { RegistryItem } from '../types/registry.js'
 import type { Config } from '../utils/config.js'
 import { getConfig } from '../utils/config.js'
 import { logger } from '../utils/logger.js'
-import { detectPackageManager, getAddCommand } from '../utils/package-manager.js'
+import { detectPackageManager, executeDlx, getAddCommand } from '../utils/package-manager.js'
 import { fetchFileContent, fetchRegistryItem } from '../utils/registry.js'
 import { transformImports, validateTransformation } from '../utils/transformers.js'
 
@@ -85,32 +85,26 @@ async function installComponent(
 
     try {
       const packageManager = detectPackageManager(cwd)
-      const shadcnCommand = packageManager.name === 'pnpm'
-        ? ['dlx', 'shadcn-vue@latest', 'add', name]
-        : packageManager.name === 'yarn'
-        ? ['dlx', 'shadcn-vue@latest', 'add', name]
-        : ['npx', 'shadcn-vue@latest', 'add', name]
-
       const fallbackSpinner = ora(`Installing ${name} from shadcn-vue...`).start()
 
-      if (packageManager.name === 'npm') {
-        await execa(shadcnCommand[0], shadcnCommand.slice(1), {
+      await executeDlx(
+        packageManager,
+        'shadcn-vue@latest',
+        ['add', name],
+        {
           cwd,
           stdio: 'inherit',
-        })
-      } else {
-        await execa(packageManager.name, shadcnCommand.slice(1), {
-          cwd,
-          stdio: 'inherit',
-        })
-      }
+        }
+      )
 
       fallbackSpinner.succeed(`Installed ${name} from shadcn-vue`)
       return
     }
     catch {
       logger.error(`Failed to install ${name} from shadcn-vue`)
-      logger.info(`You can try manually: pnpm dlx shadcn-vue@latest add ${name}`)
+      const packageManager = detectPackageManager(cwd)
+      const dlxCmd = packageManager.name === 'npm' ? 'npx' : `${packageManager.name} dlx`
+      logger.info(`You can try manually: ${dlxCmd} shadcn-vue@latest add ${name}`)
       return
     }
   }
@@ -292,7 +286,8 @@ async function installFiles(
     spinner.succeed(`Installed ${item.name}`)
   }
   catch (error) {
-    spinner.fail(`Failed to install ${item.name}`)
+    const message = error instanceof Error ? error.message : 'Unknown error'
+    spinner.fail(`Failed to install ${item.name}: ${message}`)
     throw error
   }
 }

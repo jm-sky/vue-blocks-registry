@@ -45,6 +45,11 @@ Examples:
         process.exit(1)
       }
 
+      logger.info('\n🏗️ Scaffolding your project...\n')
+      logger.info(`- ${options.all ? 'All' : 'Selected'} files will be generated...\n`)
+      logger.info(`- ${options.overwrite ? 'Existing files will be overwritten' : 'Only new files will be created'}...\n`)
+      logger.info(`- ${options.yes ? 'No confirmation prompt will be shown' : 'Confirmation prompt will be shown'}...\n`)
+
       // Define available scaffold files
       const scaffoldFiles: ScaffoldFile[] = [
         {

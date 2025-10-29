@@ -5,7 +5,7 @@ import ora from 'ora'
 import path from 'path'
 import prompts from 'prompts'
 import { logger } from '../utils/logger.js'
-import { detectPackageManager } from '../utils/package-manager.js'
+import { detectPackageManager, executeDlx } from '../utils/package-manager.js'
 
 export const setup = new Command()
   .name('setup')
@@ -190,22 +190,22 @@ Examples:
       // Step 6: Initialize shadcn-vue with defaults (New York, Zinc, CSS variables)
       const shadcnSpinner = ora('Initializing shadcn-vue...').start()
       try {
-        // Run shadcn-vue init with defaults flag for non-interactive setup
-        await execa('pnpm', [
-          'dlx',
+        // Detect package manager and run shadcn-vue init
+        const packageManager = detectPackageManager(projectPath)
+        await executeDlx(
+          packageManager,
           'shadcn-vue@latest',
-          'init',
-          '-d',
-          '-y',
-        ], {
-          cwd: projectPath,
-          stdio: 'pipe',
-        })
+          ['init', '-d', '-y'],
+          {
+            cwd: projectPath,
+            stdio: 'pipe',
+          }
+        )
         shadcnSpinner.succeed('shadcn-vue initialized')
       }
       catch (error) {
         shadcnSpinner.fail('Failed to initialize shadcn-vue')
-        logger.error('Make sure pnpm is installed and working correctly')
+        logger.error('Make sure your package manager is installed and working correctly')
         throw error
       }
 
@@ -215,24 +215,21 @@ Examples:
         logger.info('Running scaffold to generate foundational files...\n')
 
         try {
-          // Detect package manager in the new project
           const packageManager = detectPackageManager(projectPath)
-
-          // Run scaffold using the same package manager
-          await execa(packageManager.name, [
-            'dlx',
+          await executeDlx(
+            packageManager,
             'vue-blocks-registry',
-            'scaffold',
-            '--all',
-            '--overwrite',
-            '--yes',
-          ], {
-            cwd: projectPath,
-            stdio: 'inherit',
-          })
+            ['scaffold', '--all', '--overwrite', '--yes'],
+            {
+              cwd: projectPath,
+              stdio: 'inherit',
+            }
+          )
         }
         catch {
-          logger.warn('Scaffold failed. You can run it manually later: pnpm dlx vue-blocks-registry scaffold')
+          const packageManager = detectPackageManager(projectPath)
+          const dlxCmd = packageManager.name === 'npm' ? 'npx' : `${packageManager.name} dlx`
+          logger.warn(`Scaffold failed. You can run it manually later: ${dlxCmd} vue-blocks-registry scaffold`)
         }
       }
 

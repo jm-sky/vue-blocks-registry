@@ -5,7 +5,7 @@ import path from 'path'
 import type { RegistryItem } from '../types/registry.js'
 import type { Config } from '../utils/config.js'
 import { logger } from '../utils/logger.js'
-import { detectPackageManager, getAddCommand } from '../utils/package-manager.js'
+import { detectPackageManager, executeDlx } from '../utils/package-manager.js'
 import { fetchRegistryItem } from '../utils/registry.js'
 import { transformImports } from '../utils/transformers.js'
 
@@ -61,7 +61,38 @@ export async function installComponentFiles(
     const transformedContent = transformImports(content, config)
 
     // Determine target path
-    const targetPath = path.join(cwd, file.target ?? '')
+    let targetPath: string
+    if (file.target) {
+      // Use explicit target (for registry:page and registry:file)
+      targetPath = path.join(cwd, file.target.replace(/^~\//, ''))
+    }
+    else {
+      // Use aliases from config
+      const pathParts = file.path.split('/')
+      const firstDir = pathParts[0]
+
+      // Handle special directories that should preserve full path structure
+      if (firstDir === 'modules' || firstDir === 'layouts' || firstDir === 'shared') {
+        // For modules, layouts, and shared directories, preserve the full path under src/
+        targetPath = path.join(cwd, 'src', file.path)
+      }
+      else {
+        // Use alias mapping for other paths
+        let alias = config.aliases.components
+        if (firstDir === 'lib') {
+          alias = config.aliases.lib
+        }
+        else if (firstDir === 'composables') {
+          alias = config.aliases.composables
+        }
+
+        // Replace @ with src
+        const basePath = alias.replace('@/', 'src/')
+        const relativePath = pathParts.slice(1).join('/')
+
+        targetPath = path.join(cwd, basePath, relativePath)
+      }
+    }
 
     // Ensure directory exists
     await fs.ensureDir(path.dirname(targetPath))
@@ -97,16 +128,15 @@ export async function installRegistryComponent(
 
         // Fall back to shadcn-vue
         const packageManager = detectPackageManager(cwd)
-        await execa(packageManager.name, [
-          'dlx',
+        await executeDlx(
+          packageManager,
           'shadcn-vue@latest',
-          'add',
-          componentName,
-          '-y',
-        ], {
-          cwd,
-          stdio: 'pipe',
-        })
+          ['add', componentName, '-y'],
+          {
+            cwd,
+            stdio: 'pipe',
+          }
+        )
 
         spinner?.succeed(`${componentName} installed from shadcn-vue`)
         return true
@@ -132,8 +162,10 @@ export async function installRegistryComponent(
 
     if (allNpmDeps.size > 0) {
       const packageManager = detectPackageManager(cwd)
-      const addCommand = getAddCommand(packageManager, Array.from(allNpmDeps))
-      await execa(addCommand[0], addCommand.slice(1), { cwd, stdio: 'pipe' })
+      await execa(packageManager.command, [...packageManager.addCommand, ...Array.from(allNpmDeps)], {
+        cwd,
+        stdio: 'pipe'
+      })
     }
 
     // Install component files
@@ -144,9 +176,12 @@ export async function installRegistryComponent(
     spinner?.succeed(`${componentName} installed`)
     return true
   }
-  catch {
-    spinner?.fail(`Failed to install ${componentName}`)
-    logger.warn(`Please install manually: pnpm dlx vue-blocks-registry add ${componentName}`)
+  catch (error: unknown) {
+    const message = error instanceof Error ? error.message : 'Unknown error'
+    spinner?.fail(`Failed to install ${componentName}: ${message}`)
+    const packageManager = detectPackageManager(cwd)
+    const dlxCmd = packageManager.name === 'npm' ? 'npx' : `${packageManager.name} dlx`
+    logger.warn(`Please install manually: ${dlxCmd} vue-blocks-registry add ${componentName}`)
     return false
   }
 }
