@@ -109,6 +109,7 @@ export default {
     password_mismatch: 'Hasła nie są identyczne',
     password_too_short: 'Hasło musi mieć co najmniej {min} znaków',
     invalid_token: 'Nieprawidłowy lub wygasły token',
+    invalid_credentials: 'Nieprawidłowy email lub hasło',
   },
   errors: {
     generic: 'Wystąpił błąd. Spróbuj ponownie',

@@ -31,6 +31,10 @@ const onSubmit = handleSubmit(async (values: LoginCredentials) => {
     if (isValidationError(err)) {
       setErrors(err.response.data.errors)
     } else {
+      setErrors({
+        email: t('errors.invalid_credentials'),
+        password: t('errors.invalid_credentials'),
+      })
       // TODO: add toast/sonner notification from shadcn-vue
       // toast.error('Unexpected error occurred in login process')
       console.error('Login error:', err)

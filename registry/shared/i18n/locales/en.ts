@@ -109,6 +109,7 @@ export default {
     password_mismatch: 'Passwords do not match',
     password_too_short: 'Password must be at least {min} characters',
     invalid_token: 'Invalid or expired token',
+    invalid_credentials: 'Invalid email or password',
   },
   errors: {
     generic: 'An error occurred. Please try again',
