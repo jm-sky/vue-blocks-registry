@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.3.3] - 2025-10-29
+
+### Changed
+- **CLI Help**: Enhanced main help text to indicate that users can run `<command> --help` for command-specific options
+  - Added helpful hint: "Run 'vue-blocks-registry <command> --help' for more information on a specific command."
+  - Improves discoverability of command options and arguments
+
 ## [0.3.2] - 2025-10-29
 
 ### Fixed

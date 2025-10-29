@@ -20,6 +20,7 @@ program
   .name('vue-blocks-registry')
   .description('CLI tool for installing Vue components, features, and bundles from vue-blocks-registry')
   .version(packageJson.version)
+  .addHelpText('after', '\nRun \'vue-blocks-registry <command> --help\' for more information on a specific command.')
 
 // Add commands
 program.addCommand(setup)
