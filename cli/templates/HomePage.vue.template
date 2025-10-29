@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import GuestLayoutCentered from '@/layouts/GuestLayoutCentered.vue'
+import GuestLayoutCentered from '@/app/layouts/GuestLayoutCentered.vue'
 </script>
 
 <template>

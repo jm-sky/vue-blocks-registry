@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.3.6] - 2025-10-29
+
+### Fixed
+- **HomePage Template**: Fixed incorrect layout import path
+  - Changed from `@/layouts/GuestLayoutCentered.vue` to `@/app/layouts/GuestLayoutCentered.vue`
+  - Resolves TypeScript error "Cannot find module '@/layouts/GuestLayoutCentered.vue'"
+  - Matches actual installation path of layout components
+
 ## [0.3.5] - 2025-10-29
 
 ### Fixed
