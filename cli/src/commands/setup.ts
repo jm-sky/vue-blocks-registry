@@ -49,6 +49,10 @@ Examples:
 
       logger.info('\n🚀 Setting up a new Vue 3 project with vue-blocks-registry...\n')
 
+      if (options.scaffold) {
+        logger.info('🏗️  Will scaffold to generate foundational files after setup...\n')
+      }
+
       // Step 1: Create Vue project
       const vueSpinner = ora('Creating Vue 3 project...').start()
       try {

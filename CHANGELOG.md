@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.3.5] - 2025-10-29
+
+### Fixed
+- **Setup Command**: Restored missing scaffold notification message
+  - "🏗️ Will scaffold to generate foundational files after setup..." message now displays when using `--scaffold` flag
+  - Improves user feedback about what the command will do
+
 ## [0.3.4] - 2025-10-29
 
 ### Added
