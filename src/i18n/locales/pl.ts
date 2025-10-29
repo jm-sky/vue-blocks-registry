@@ -139,8 +139,11 @@ export default {
           description: 'Zamień wszystko w {file} na:'
         },
         step3: {
-          title: '3. Edytuj tsconfig.json',
-          description: 'Dodaj {baseUrl} i {paths} do sekcji {compilerOptions} w plikach {tsconfig} i {tsconfigApp}:'
+          title: '3. Edytuj tsconfig.json i tsconfig.app.json',
+          sections: {
+            tsconfig: 'Dodaj {baseUrl} i {paths} do sekcji {compilerOptions} w pliku {tsconfig}:',
+            tsconfigApp: 'Dodaj następujący kod do pliku {tsconfigApp} aby rozwiązać ścieżki, dla swojego IDE:',
+          }
         },
         step4: {
           title: '4. Zaktualizuj vite.config.ts',

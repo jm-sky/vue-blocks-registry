@@ -26,11 +26,30 @@ const createProjectCode = 'pnpm create vite@latest my-vue-app --template vue-ts'
 const addTailwindCode = 'pnpm add tailwindcss @tailwindcss/vite'
 const tailwindCssCode = '@import "tailwindcss";'
 const tsconfigCode = `{
+  "files": [],
+  "references": [
+    {
+      "path": "./tsconfig.app.json"
+    },
+    {
+      "path": "./tsconfig.node.json"
+    }
+  ],
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"]
     }
+  }
+}`
+const tsconfigAppCode = `{
+  "compilerOptions": {
+    // ...
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+    // ...
   }
 }`
 const viteConfigCode = `import path from 'node:path'
@@ -39,7 +58,10 @@ import vue from '@vitejs/plugin-vue'
 import { defineConfig } from 'vite'
 
 export default defineConfig({
-  plugins: [vue(), tailwindcss()],
+  plugins: [
+    vue(),
+    tailwindcss(),
+  ],
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
@@ -118,7 +140,7 @@ const features = computed(() => [
           <p class="text-sm text-muted-foreground">
             {{ t('demo.introduction.installation.step1.description') }}
           </p>
-          <InstallationCode :code="createProjectCode" />
+          <InstallationCode :code="createProjectCode" class="max-w-3xl" />
         </div>
 
         <!-- Step 2: Add Tailwind CSS -->
@@ -126,20 +148,25 @@ const features = computed(() => [
           <h3 class="text-xl font-semibold">
             {{ t('demo.introduction.installation.step2.title') }}
           </h3>
-          <InstallationCode :code="addTailwindCode" />
+          <InstallationCode :code="addTailwindCode" class="max-w-3xl" />
           <p class="text-sm text-muted-foreground mt-2">
             {{ t('demo.introduction.installation.step2.description', { file: 'src/style.css' }) }}
           </p>
-          <CodeBlock :code="tailwindCssCode" language="css" filename="src/style.css" />
+          <CodeBlock
+            :code="tailwindCssCode"
+            language="css"
+            filename="src/style.css"
+            class="max-w-3xl"
+          />
         </div>
 
-        <!-- Step 3: Edit tsconfig -->
+        <!-- Step 3: Edit tsconfig.json -->
         <div class="space-y-2">
           <h3 class="text-xl font-semibold">
             {{ t('demo.introduction.installation.step3.title') }}
           </h3>
           <p class="text-sm text-muted-foreground">
-            {{ t('demo.introduction.installation.step3.description', {
+            {{ t('demo.introduction.installation.step3.sections.tsconfig', {
               baseUrl: 'baseUrl',
               paths: 'paths',
               compilerOptions: 'compilerOptions',
@@ -151,6 +178,22 @@ const features = computed(() => [
             :code="tsconfigCode"
             language="json"
             filename="tsconfig.json"
+            class="max-w-3xl"
+            :highlight-lines="[11, 12, 13, 14, 15]"
+            show-line-numbers
+          />
+          <p class="text-sm text-muted-foreground">
+            {{ t('demo.introduction.installation.step3.sections.tsconfigApp', {
+              baseUrl: 'baseUrl',
+              tsconfigApp: 'tsconfig.app.json'
+            }) }}
+          </p>
+          <CodeBlock
+            :code="tsconfigAppCode"
+            language="json"
+            filename="tsconfig.app.json"
+            class="max-w-3xl"
+            :highlight-lines="[4, 5, 6, 7]"
             show-line-numbers
           />
         </div>
@@ -167,6 +210,8 @@ const features = computed(() => [
             :code="viteConfigCode"
             language="typescript"
             filename="vite.config.ts"
+            class="max-w-3xl"
+            :highlight-lines="[2, 9]"
             show-line-numbers
           />
         </div>
@@ -179,7 +224,7 @@ const features = computed(() => [
           <p class="text-sm text-muted-foreground">
             {{ t('demo.introduction.installation.step5.description', { command: 'vue-blocks-registry init' }) }}
           </p>
-          <InstallationCode :code="runCliCode" />
+          <InstallationCode :code="runCliCode" class="max-w-3xl" />
         </div>
 
         <!-- Step 6: Add components -->
@@ -190,7 +235,7 @@ const features = computed(() => [
           <p class="text-sm text-muted-foreground">
             {{ t('demo.introduction.installation.step6.description') }}
           </p>
-          <InstallationCode :code="addComponentCode" />
+          <InstallationCode :code="addComponentCode" class="max-w-3xl" />
         </div>
       </div>
     </div>

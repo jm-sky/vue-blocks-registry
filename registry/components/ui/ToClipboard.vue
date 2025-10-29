@@ -12,6 +12,7 @@ const props = defineProps<{
   text?: string
   class?: HTMLAttributes['class']
   copiedClass?: HTMLAttributes['class']
+  iconClass?: HTMLAttributes['class']
   withLabel?: boolean
 }>()
 
@@ -39,8 +40,8 @@ const copyToClipboard = async () => {
   >
     <slot>
       <slot name="before" />
-      <ClipboardIcon v-if="!copied" />
-      <CheckIcon v-else />
+      <ClipboardIcon v-if="!copied" :class="props.iconClass" />
+      <CheckIcon v-else :class="props.iconClass" />
       <slot name="after">
         <span v-if="withLabel">
           {{ copied ? t('common.copyToClipboard.copied') : t('common.copyToClipboard.copy') }}

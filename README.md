@@ -11,6 +11,20 @@ You can use it to quickly assemble new projects or standardize architecture acro
 
 ---
 
+### ⚡ Prerequisites
+
+Before using `vue-blocks-registry`, you need to set up a Vue 3 project with shadcn-vue:
+
+1. **Create a Vue 3 project:**
+   ```bash
+   pnpm create vue@latest
+   ```
+
+2. **Configure shadcn-vue:**
+   Follow the [shadcn-vue installation guide](https://www.shadcn-vue.com/docs/installation/vite.html) to set up Tailwind CSS and shadcn-vue components.
+
+---
+
 ### 🚀 Quick Start
 
 ```bash
