@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.4.6] - 2025-10-29
+
+### Fixed
+- **Tailwind CSS Version Alignment**: Fixed "Cannot convert undefined or null to object" error
+  - Pinned tailwindcss and @tailwindcss/vite to same version (4.1.16) in setup command
+  - Prevents version mismatch issues that cause Vite build errors
+  - Resolves errors when importing CSS from node_modules (floating-vue, vue-sonner)
+  - Updated registry dependencies to tailwindcss@4.1.16 and @tailwindcss/vite@4.1.16
+
 ## [0.4.5] - 2025-10-29
 
 ### Fixed

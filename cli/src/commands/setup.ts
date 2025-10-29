@@ -78,10 +78,13 @@ Examples:
       // Step 2: Install Tailwind CSS v4
       const tailwindSpinner = ora('Installing Tailwind CSS v4...').start()
       try {
+        // Use explicit version to ensure @tailwindcss/vite and tailwindcss match
+        // This prevents "Cannot convert undefined or null to object" errors
+        const tailwindVersion = '4.1.16'
         await execa('pnpm', [
           'add',
-          'tailwindcss@next',
-          '@tailwindcss/vite@next',
+          `tailwindcss@${tailwindVersion}`,
+          `@tailwindcss/vite@${tailwindVersion}`,
           'tw-animate-css',
         ], {
           cwd: projectPath,
