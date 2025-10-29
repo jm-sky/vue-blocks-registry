@@ -1,6 +1,6 @@
 {
   "name": "vue-blocks-registry",
-  "version": "0.2.6",
+  "version": "0.2.7",
   "type": "module",
   "description": "A modular system for Vue 3 projects with reusable UI components, features, and bundles",
   "author": "Jan madeyski <jan.madeyski@gmail.com>",
@@ -39,6 +39,7 @@
   },
   "files": [
     "cli/dist/**/*",
+    "cli/templates/**/*",
     "registry/**/*",
     "public/r/**/*",
     "registry.json",

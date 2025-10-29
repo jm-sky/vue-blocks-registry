@@ -11,9 +11,29 @@ You can use it to quickly assemble new projects or standardize architecture acro
 
 ---
 
-### ⚡ Prerequisites
+### 🚀 Quick Start
 
-Before using `vue-blocks-registry`, you need to set up a Vue 3 project with shadcn-vue:
+**Option 1: Automated Setup (Recommended)**
+
+Create a new project with everything configured automatically:
+
+```bash
+# Create a new Vue 3 project with shadcn-vue and vue-blocks-registry
+npx vue-blocks-registry setup my-app
+
+# Navigate to your project
+cd my-app
+
+# Install dependencies
+pnpm install
+
+# Start development server
+pnpm dev
+```
+
+**Option 2: Manual Setup**
+
+If you already have a Vue 3 project, or prefer manual setup:
 
 1. **Create a Vue 3 project:**
    ```bash
@@ -23,14 +43,16 @@ Before using `vue-blocks-registry`, you need to set up a Vue 3 project with shad
 2. **Configure shadcn-vue:**
    Follow the [shadcn-vue installation guide](https://www.shadcn-vue.com/docs/installation/vite.html) to set up Tailwind CSS and shadcn-vue components.
 
+3. **Initialize vue-blocks-registry:**
+   ```bash
+   npx vue-blocks-registry init
+   ```
+
 ---
 
-### 🚀 Quick Start
+### 💡 Usage Examples
 
 ```bash
-# Initialize your project
-npx vue-blocks-registry init
-
 # Add a component
 npx vue-blocks-registry add button
 
@@ -39,24 +61,12 @@ npx vue-blocks-registry add authFeat
 
 # Add a full ready-to-use auth module (pages + routes + logic)
 npx vue-blocks-registry add authFull
+
+# Generate foundational files (main.ts, App.vue, etc.)
+npx vue-blocks-registry scaffold
 ```
 
 **📦 Available on npm:** [vue-blocks-registry](https://www.npmjs.com/package/vue-blocks-registry)
-
----
-
-### 💡 Example
-
-```bash
-# Add a component
-npx vue-blocks-registry add button
-
-# Add an authentication feature (store, service, composables)
-npx vue-blocks-registry add authFeat
-
-# Add a full ready-to-use auth module (pages + routes + logic)
-npx vue-blocks-registry add authFull
-```
 
 ---
 
@@ -89,11 +99,17 @@ npx vue-blocks-registry init
 ### 📋 CLI Commands
 
 ```bash
-# Initialize project configuration
+# Create a new project with everything configured
+vue-blocks-registry setup <project-name>
+
+# Initialize existing project configuration
 vue-blocks-registry init
 
 # Add components/features/bundles
 vue-blocks-registry add <name>
+
+# Generate foundational files (main.ts, App.vue, etc.)
+vue-blocks-registry scaffold
 
 # List available items
 vue-blocks-registry list

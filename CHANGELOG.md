@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.7] - 2025-10-29
+
+### Fixed
+- **Scaffold Command**: Fixed missing template files in published package
+  - Added `cli/templates/**/*` to package.json `files` field
+  - Template files (main.ts, App.vue, eslint.config.ts, .env.example) are now properly included when installed via npm/pnpm
+  - Resolves "ENOENT: no such file or directory" error when running `scaffold` command
+
 ## [0.2.6] - 2025-10-28
 
 ### Fixed

@@ -7,6 +7,7 @@ import { add } from './commands/add.js'
 import { init } from './commands/init.js'
 import { list } from './commands/list.js'
 import { scaffold } from './commands/scaffold.js'
+import { setup } from './commands/setup.js'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
@@ -21,6 +22,7 @@ program
   .version(packageJson.version)
 
 // Add commands
+program.addCommand(setup)
 program.addCommand(add)
 program.addCommand(init)
 program.addCommand(list)
