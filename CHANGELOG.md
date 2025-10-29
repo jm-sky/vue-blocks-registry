@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.4.12] - 2025-10-29
+
+### Fixed
+- **Auth Translations**: Fixed invalid credentials error message localization
+  - Updated login error handling to use i18n for error messages
+  - Added proper localization for "Invalid credentials" error
+  - Improved user experience with translated auth error messages
+
 ## [0.4.11] - 2025-10-29
 
 ### Fixed
