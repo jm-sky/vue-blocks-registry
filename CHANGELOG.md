@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.4.4] - 2025-10-29
+
+### Fixed
+- **hover-link Files**: Added missing HoverLinkExternal.vue to hover-link registry files
+  - HoverLinkExternal.vue now properly installs alongside HoverLink.vue
+  - Resolves "Cannot find module './HoverLinkExternal.vue'" error
+  - Both components now available after installation
+
 ## [0.4.3] - 2025-10-29
 
 ### Fixed
