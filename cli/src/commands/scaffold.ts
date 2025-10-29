@@ -183,9 +183,9 @@ export const scaffold = new Command()
         await installRegistryComponent('sonner', cwd, config)
       }
 
-      // Install GuestLayoutCentered if HomePage.vue was generated
+      // Install layouts if HomePage.vue was generated
       if (fileNames.includes('pages/HomePage.vue')) {
-        await installRegistryComponent('layout-guest-centered', cwd, config)
+        await installRegistryComponent('layouts', cwd, config, { fallbackToShadcn: false })
       }
 
       logger.break()

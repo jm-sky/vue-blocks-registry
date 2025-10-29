@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.3.1] - 2025-10-29
+
+### Fixed
+- **Scaffold Command**: Fixed layout installation using correct registry name
+  - Changed from `layout-guest-centered` to `layouts` registry item
+  - GuestLayoutCentered now properly installs when HomePage.vue is generated
+
 ## [0.3.0] - 2025-10-29
 
 ### Added
