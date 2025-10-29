@@ -8,7 +8,8 @@ import type { Config } from './config.js'
  * - @registry/lib/utils -> @/lib/utils
  * - @registry/modules/auth/... -> @/modules/auth/...
  * - @registry/layouts/... -> @/layouts/...
- * - @registry/shared/utils/typeGuards -> @/lib/typeGuards (or @/shared/utils/typeGuards)
+ * - @registry/shared/utils/typeGuards -> @/shared/utils/typeGuards
+ * - @registry/shared/i18n/... -> @/shared/i18n/...
  */
 export function transformImports(content: string, config: Config): string {
   let transformed = content
@@ -43,15 +44,8 @@ export function transformImports(content: string, config: Config): string {
     )
   }
 
-  // Transform @registry/shared paths
-  // Map shared utils to lib alias (e.g., @/lib/utils.ts)
-  transformed = transformed.replace(
-    /@registry\/shared\/utils/g,
-    config.aliases.lib || '@/lib'
-  )
-
-  // Transform remaining @registry/shared paths to @/shared (preserve structure)
-  // This includes: components, composables, services, config, i18n, etc.
+  // Transform @registry/shared paths to @/shared (preserve structure)
+  // This includes: utils, components, composables, services, config, i18n, etc.
   transformed = transformed.replace(
     /@registry\/shared/g,
     '@/shared'

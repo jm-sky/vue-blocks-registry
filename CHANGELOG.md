@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.4.9] - 2025-10-29
+
+### Fixed
+- **Import Transformation**: Fixed incorrect transformation of @registry/shared/utils imports
+  - Now correctly transforms to @/shared/utils instead of @/lib
+  - Fixes "Cannot find module '@/lib/typeGuards'" error in LoginForm.vue
+  - All @registry/shared/* imports now preserve the shared/ directory structure
+
 ## [0.4.8] - 2025-10-29
 
 ### Fixed
