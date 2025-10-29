@@ -143,10 +143,6 @@
       "categories": ["ui", "form"],
       "files": [
         {
-          "path": "components/ui/form/Form.vue",
-          "type": "registry:ui"
-        },
-        {
           "path": "components/ui/form/FormControl.vue",
           "type": "registry:ui"
         },
