@@ -7,6 +7,40 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.3.0] - 2025-10-29
+
+### Added
+- **Setup Command**: New automated project setup command
+  - Creates Vue 3 project with TypeScript, Router, Pinia
+  - Installs and configures Tailwind CSS v4
+  - Configures TypeScript path aliases (`@/*`, `baseUrl`)
+  - Runs shadcn-vue init with defaults (New York, Zinc, CSS variables)
+  - `--scaffold` flag to optionally run scaffold after setup
+  - Runs linter to format generated code
+  - Usage: `npx vue-blocks-registry setup my-app --scaffold`
+- **Enhanced Scaffold Command**: Now generates complete project structure
+  - `src/pages/HomePage.vue` - Home page with GuestLayoutCentered layout
+  - `src/router/index.ts` - Vue Router configuration
+  - `src/router/routes.ts` - Application routes definition with home route
+  - Automatically cleans up default Vue boilerplate files (views, counter store, HelloWorld, etc.)
+  - Auto-installs required components (sonner, GuestLayoutCentered)
+- **Shadcn-vue Fallback**: Component installation now automatically falls back to shadcn-vue
+  - If a component is not found in vue-blocks-registry, it tries to install from shadcn-vue
+  - Seamless experience for users - no need to know where each component comes from
+- **Helper Modules**: Extracted reusable logic to `cli/src/helpers/`
+  - `component-installer.ts` - Component installation with dependency resolution
+  - `project-cleanup.ts` - Project cleanup utilities
+
+### Changed
+- **README**: Updated with automated setup as recommended approach
+  - Added Option 1 (Automated Setup) with setup command
+  - Moved manual setup to Option 2
+  - Updated CLI commands documentation
+- **Code Architecture**: Refactored scaffold command for better maintainability
+  - Reduced `scaffold.ts` from 498 to 303 lines (39% reduction)
+  - Eliminated code duplication across commands
+  - Improved testability with modular helpers
+
 ## [0.2.7] - 2025-10-29
 
 ### Fixed

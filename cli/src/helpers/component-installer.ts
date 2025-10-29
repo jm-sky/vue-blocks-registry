@@ -1,0 +1,152 @@
+import { execa } from 'execa'
+import fs from 'fs-extra'
+import ora from 'ora'
+import path from 'path'
+import type { RegistryItem } from '../types/registry.js'
+import type { Config } from '../utils/config.js'
+import { logger } from '../utils/logger.js'
+import { detectPackageManager, getAddCommand } from '../utils/package-manager.js'
+import { fetchRegistryItem } from '../utils/registry.js'
+import { transformImports } from '../utils/transformers.js'
+
+/**
+ * Resolves all registry dependencies recursively
+ */
+export async function resolveDependencies(
+  item: RegistryItem,
+  resolved: RegistryItem[] = []
+): Promise<RegistryItem[]> {
+  // Check if already resolved
+  if (resolved.some(r => r.name === item.name)) {
+    return resolved
+  }
+
+  // Fetch and resolve registry dependencies first
+  if (item.registryDependencies && item.registryDependencies.length > 0) {
+    for (const depName of item.registryDependencies) {
+      const depItem = await fetchRegistryItem(depName)
+      if (depItem) {
+        resolved = await resolveDependencies(depItem, resolved)
+      }
+    }
+  }
+
+  // Add current item
+  resolved.push(item)
+
+  return resolved
+}
+
+/**
+ * Installs component files from a registry item
+ */
+export async function installComponentFiles(
+  item: RegistryItem,
+  cwd: string,
+  config: Config
+): Promise<void> {
+  if (item.files.length === 0) {
+    return
+  }
+
+  for (const file of item.files) {
+    const { fetchFileContent } = await import('../utils/registry.js')
+    const content = await fetchFileContent(file.path)
+
+    if (!content) {
+      continue
+    }
+
+    // Transform imports to match user's config
+    const transformedContent = transformImports(content, config)
+
+    // Determine target path
+    const targetPath = path.join(cwd, file.target ?? '')
+
+    // Ensure directory exists
+    await fs.ensureDir(path.dirname(targetPath))
+
+    // Write file
+    await fs.writeFile(targetPath, transformedContent, 'utf-8')
+  }
+}
+
+/**
+ * Installs a component from the registry or falls back to shadcn-vue
+ */
+export async function installRegistryComponent(
+  componentName: string,
+  cwd: string,
+  config: Config,
+  options?: { showSpinner?: boolean; fallbackToShadcn?: boolean }
+): Promise<boolean> {
+  const {
+    showSpinner = true,
+    fallbackToShadcn = true,
+  } = options ?? {}
+
+  const spinner = showSpinner ? ora(`Installing ${componentName}...`).start() : null
+
+  try {
+    // Fetch component from registry
+    const item = await fetchRegistryItem(componentName)
+
+    if (!item) {
+      if (fallbackToShadcn) {
+        spinner?.info(`${componentName} not found in vue-blocks-registry, using shadcn-vue...`)
+
+        // Fall back to shadcn-vue
+        const packageManager = detectPackageManager(cwd)
+        await execa(packageManager.name, [
+          'dlx',
+          'shadcn-vue@latest',
+          'add',
+          componentName,
+          '-y',
+        ], {
+          cwd,
+          stdio: 'pipe',
+        })
+
+        spinner?.succeed(`${componentName} installed from shadcn-vue`)
+        return true
+      }
+      else {
+        spinner?.warn(`${componentName} not found in registry`)
+        return false
+      }
+    }
+
+    // Resolve all dependencies
+    const allDeps = await resolveDependencies(item, [])
+
+    // Install npm dependencies
+    const allNpmDeps = new Set<string>()
+    for (const dep of allDeps) {
+      if (dep.dependencies) {
+        for (const npmDep of dep.dependencies) {
+          allNpmDeps.add(npmDep)
+        }
+      }
+    }
+
+    if (allNpmDeps.size > 0) {
+      const packageManager = detectPackageManager(cwd)
+      const addCommand = getAddCommand(packageManager, Array.from(allNpmDeps))
+      await execa(addCommand[0], addCommand.slice(1), { cwd, stdio: 'pipe' })
+    }
+
+    // Install component files
+    for (const dep of allDeps) {
+      await installComponentFiles(dep, cwd, config)
+    }
+
+    spinner?.succeed(`${componentName} installed`)
+    return true
+  }
+  catch {
+    spinner?.fail(`Failed to install ${componentName}`)
+    logger.warn(`Please install manually: pnpm dlx vue-blocks-registry add ${componentName}`)
+    return false
+  }
+}

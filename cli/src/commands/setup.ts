@@ -4,15 +4,16 @@ import fs from 'fs-extra'
 import ora from 'ora'
 import path from 'path'
 import prompts from 'prompts'
-import { DEFAULT_CONFIG, saveConfig } from '../utils/config.js'
 import { logger } from '../utils/logger.js'
+import { detectPackageManager } from '../utils/package-manager.js'
 
 export const setup = new Command()
   .name('setup')
   .description('Create a new Vue 3 project with shadcn-vue and vue-blocks-registry')
   .argument('[project-name]', 'Name of the project directory')
   .option('-y, --yes', 'Use default configuration', false)
-  .action(async (projectName: string | undefined, options) => {
+  .option('-s, --scaffold', 'Run scaffold after setup to generate foundational files', false)
+  .action(async (projectName: string | undefined, options: { yes: boolean; scaffold: boolean }) => {
     try {
       let targetDir: string = projectName ?? ''
 
@@ -50,7 +51,6 @@ export const setup = new Command()
           'create',
           'vue@latest',
           targetDir,
-          '--',
           '--typescript',
           '--router',
           '--pinia',
@@ -143,14 +143,50 @@ export const setup = new Command()
         throw error
       }
 
-      // Step 5: Initialize shadcn-vue
+      // Step 5: Configure TypeScript path alias
+      const tsconfigSpinner = ora('Configuring TypeScript path alias...').start()
+      try {
+        const tsconfigPath = path.join(projectPath, 'tsconfig.json')
+        const tsconfigAppPath = path.join(projectPath, 'tsconfig.app.json')
+
+        // Read tsconfig.json (main config that shadcn-vue checks)
+        const tsconfig = JSON.parse(await fs.readFile(tsconfigPath, 'utf-8'))
+
+        // Add baseUrl and path alias if not present
+        tsconfig.compilerOptions ??= {}
+        tsconfig.compilerOptions.baseUrl ??= '.'
+        tsconfig.compilerOptions.paths ??= {}
+        tsconfig.compilerOptions.paths['@/*'] ??= ['./src/*']
+
+        // Write back
+        await fs.writeFile(tsconfigPath, JSON.stringify(tsconfig, null, 2), 'utf-8')
+
+        // Also update tsconfig.app.json for consistency
+        const tsconfigApp = JSON.parse(await fs.readFile(tsconfigAppPath, 'utf-8'))
+
+        tsconfigApp.compilerOptions ??= {}
+        tsconfigApp.compilerOptions.baseUrl ??= '.'
+        tsconfigApp.compilerOptions.paths ??= {}
+        tsconfigApp.compilerOptions.paths['@/*'] ??= ['./src/*']
+
+        await fs.writeFile(tsconfigAppPath, JSON.stringify(tsconfigApp, null, 2), 'utf-8')
+
+        tsconfigSpinner.succeed('TypeScript path alias configured')
+      }
+      catch (error) {
+        tsconfigSpinner.fail('Failed to configure TypeScript path alias')
+        throw error
+      }
+
+      // Step 6: Initialize shadcn-vue with defaults (New York, Zinc, CSS variables)
       const shadcnSpinner = ora('Initializing shadcn-vue...').start()
       try {
-        // Run shadcn-vue init with automatic yes to all prompts
+        // Run shadcn-vue init with defaults flag for non-interactive setup
         await execa('pnpm', [
           'dlx',
           'shadcn-vue@latest',
           'init',
+          '-d',
           '-y',
         ], {
           cwd: projectPath,
@@ -158,64 +194,49 @@ export const setup = new Command()
         })
         shadcnSpinner.succeed('shadcn-vue initialized')
       }
-      catch {
-        shadcnSpinner.fail('Failed to initialize shadcn-vue')
-        logger.warn('You may need to run it manually: pnpm dlx shadcn-vue@latest init')
-      }
-
-      // Step 6: Initialize vue-blocks-registry
-      const registrySpinner = ora('Initializing vue-blocks-registry...').start()
-      try {
-        const config = { ...DEFAULT_CONFIG }
-
-        if (!options.yes) {
-          // Prompt for configuration
-          const answers = await prompts([
-            {
-              type: 'select',
-              name: 'style',
-              message: 'Which style would you like to use?',
-              choices: [
-                { title: 'New York', value: 'new-york' },
-                { title: 'Default', value: 'default' },
-              ],
-              initial: 0,
-            },
-            {
-              type: 'select',
-              name: 'baseColor',
-              message: 'Which color would you like to use as base color?',
-              choices: [
-                { title: 'Neutral', value: 'neutral' },
-                { title: 'Gray', value: 'gray' },
-                { title: 'Zinc', value: 'zinc' },
-                { title: 'Stone', value: 'stone' },
-                { title: 'Slate', value: 'slate' },
-              ],
-              initial: 0,
-            },
-            {
-              type: 'confirm',
-              name: 'cssVariables',
-              message: 'Would you like to use CSS variables for theming?',
-              initial: true,
-            },
-          ])
-
-          if (answers.style) {
-            config.style = answers.style
-            config.tailwind.baseColor = answers.baseColor
-            config.tailwind.cssVariables = answers.cssVariables
-          }
-        }
-
-        // Save config
-        await saveConfig(projectPath, config)
-        registrySpinner.succeed('vue-blocks-registry initialized')
-      }
       catch (error) {
-        registrySpinner.fail('Failed to initialize vue-blocks-registry')
+        shadcnSpinner.fail('Failed to initialize shadcn-vue')
+        logger.error('Make sure pnpm is installed and working correctly')
         throw error
+      }
+
+      // Step 7: Run scaffold if requested
+      if (options.scaffold) {
+        logger.break()
+        logger.info('Running scaffold to generate foundational files...\n')
+
+        try {
+          // Detect package manager in the new project
+          const packageManager = detectPackageManager(projectPath)
+
+          // Run scaffold using the same package manager
+          await execa(packageManager.name, [
+            'dlx',
+            'vue-blocks-registry',
+            'scaffold',
+            '--all',
+            '--yes',
+          ], {
+            cwd: projectPath,
+            stdio: 'inherit',
+          })
+        }
+        catch {
+          logger.warn('Scaffold failed. You can run it manually later: pnpm dlx vue-blocks-registry scaffold')
+        }
+      }
+
+      // Step 8: Run linter to format the modified files
+      const lintSpinner = ora('Running linter to format code...').start()
+      try {
+        await execa('pnpm', ['lint'], {
+          cwd: projectPath,
+          stdio: 'pipe',
+        })
+        lintSpinner.succeed('Code formatted')
+      }
+      catch {
+        lintSpinner.warn('Linting skipped (run "pnpm lint" manually if needed)')
       }
 
       logger.break()
@@ -228,8 +249,11 @@ export const setup = new Command()
       logger.info('\nAdd components:')
       logger.info('  pnpm dlx vue-blocks-registry add button')
       logger.info('  pnpm dlx vue-blocks-registry add authFull')
-      logger.info('\nGenerate foundational files:')
-      logger.info('  pnpm dlx vue-blocks-registry scaffold')
+
+      if (!options.scaffold) {
+        logger.info('\nGenerate foundational files:')
+        logger.info('  pnpm dlx vue-blocks-registry scaffold')
+      }
     }
     catch (error) {
       logger.error('Error:', error instanceof Error ? error.message : 'Unknown error')

@@ -5,6 +5,8 @@ import ora from 'ora'
 import path from 'path'
 import prompts from 'prompts'
 import { fileURLToPath } from 'url'
+import { installRegistryComponent } from '../helpers/component-installer.js'
+import { cleanupDefaultVueFiles } from '../helpers/project-cleanup.js'
 import { getConfig } from '../utils/config.js'
 import { logger } from '../utils/logger.js'
 import { detectPackageManager, getAddCommand } from '../utils/package-manager.js'
@@ -51,6 +53,24 @@ export const scaffold = new Command()
           description: 'Root App component with RouterView and Toaster',
           templatePath: path.join(__dirname, '../../templates/App.vue.template'),
           targetPath: 'src/App.vue',
+        },
+        {
+          name: 'router/index.ts',
+          description: 'Vue Router configuration',
+          templatePath: path.join(__dirname, '../../templates/router-index.ts.template'),
+          targetPath: 'src/router/index.ts',
+        },
+        {
+          name: 'router/routes.ts',
+          description: 'Application routes definition',
+          templatePath: path.join(__dirname, '../../templates/routes.ts.template'),
+          targetPath: 'src/router/routes.ts',
+        },
+        {
+          name: 'pages/HomePage.vue',
+          description: 'Home page with GuestLayoutCentered',
+          templatePath: path.join(__dirname, '../../templates/HomePage.vue.template'),
+          targetPath: 'src/pages/HomePage.vue',
         },
         {
           name: 'eslint.config.ts',
@@ -147,9 +167,25 @@ export const scaffold = new Command()
       // Install dependencies first
       await installDependencies(filesToGenerate, cwd)
 
+      // Clean up default Vue files if we're scaffolding structure files
+      const fileNames = filesToGenerate.map(f => f.name)
+      if (fileNames.some(name => ['App.vue', 'pages/HomePage.vue', 'router/index.ts'].includes(name))) {
+        await cleanupDefaultVueFiles(cwd)
+      }
+
       // Generate files
       for (const file of filesToGenerate) {
         await generateFile(file, cwd)
+      }
+
+      // Install sonner component if App.vue was generated
+      if (fileNames.includes('App.vue')) {
+        await installRegistryComponent('sonner', cwd, config)
+      }
+
+      // Install GuestLayoutCentered if HomePage.vue was generated
+      if (fileNames.includes('pages/HomePage.vue')) {
+        await installRegistryComponent('layout-guest-centered', cwd, config)
       }
 
       logger.break()
@@ -158,14 +194,7 @@ export const scaffold = new Command()
       // Show next steps
       logger.info('\nNext steps:')
       logger.info('  1. Review the generated files')
-
-      // Check which files were generated to show relevant next steps
-      const fileNames = filesToGenerate.map(f => f.name)
-
-      if (fileNames.includes('App.vue')) {
-        logger.info('  2. Install the sonner component:')
-        logger.info('     vue-blocks-registry add sonner')
-      }
+      logger.info('  2. Start development: pnpm dev')
     }
     catch (error) {
       logger.error('Error:', error instanceof Error ? error.message : 'Unknown error')

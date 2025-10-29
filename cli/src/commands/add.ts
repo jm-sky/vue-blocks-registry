@@ -72,8 +72,41 @@ async function installComponent(
   const item = await fetchRegistryItem(name)
 
   if (!item) {
-    spinner.fail(`Component "${name}" not found in registry.`)
-    return
+    spinner.info(`Component "${name}" not found in vue-blocks-registry.`)
+
+    // Try to fall back to shadcn-vue
+    logger.info('Attempting to install from shadcn-vue...')
+
+    try {
+      const packageManager = detectPackageManager(cwd)
+      const shadcnCommand = packageManager.name === 'pnpm'
+        ? ['dlx', 'shadcn-vue@latest', 'add', name]
+        : packageManager.name === 'yarn'
+        ? ['dlx', 'shadcn-vue@latest', 'add', name]
+        : ['npx', 'shadcn-vue@latest', 'add', name]
+
+      const fallbackSpinner = ora(`Installing ${name} from shadcn-vue...`).start()
+
+      if (packageManager.name === 'npm') {
+        await execa(shadcnCommand[0], shadcnCommand.slice(1), {
+          cwd,
+          stdio: 'inherit',
+        })
+      } else {
+        await execa(packageManager.name, shadcnCommand.slice(1), {
+          cwd,
+          stdio: 'inherit',
+        })
+      }
+
+      fallbackSpinner.succeed(`Installed ${name} from shadcn-vue`)
+      return
+    }
+    catch {
+      logger.error(`Failed to install ${name} from shadcn-vue`)
+      logger.info(`You can try manually: pnpm dlx shadcn-vue@latest add ${name}`)
+      return
+    }
   }
 
   spinner.succeed(`Found ${item.title ?? name}`)

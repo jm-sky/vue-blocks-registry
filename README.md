@@ -21,6 +21,9 @@ Create a new project with everything configured automatically:
 # Create a new Vue 3 project with shadcn-vue and vue-blocks-registry
 npx vue-blocks-registry setup my-app
 
+# Or include foundational files (main.ts, App.vue, etc.)
+npx vue-blocks-registry setup my-app --scaffold
+
 # Navigate to your project
 cd my-app
 
