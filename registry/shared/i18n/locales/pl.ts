@@ -65,11 +65,21 @@ export default {
     password_requirements: 'Hasło musi mieć co najmniej 8 znaków',
     token_placeholder: 'Wprowadź token z emaila',
     enter_new_password: 'Wprowadź nowe hasło',
+    login_with_google: 'Kontynuuj z Google',
     links: {
       or_create_account: 'Lub utwórz nowe konto',
       create_new_account: 'Utwórz nowe konto',
       or_sign_in: 'Masz już konto?',
       sign_in_existing: 'Zaloguj się do istniejącego konta',
+    },
+    official_form: {
+      title: 'Zaloguj się',
+      description: 'Wpisz email i hasło, aby uzyskać dostęp do konta',
+      forgot_password_link: 'Zapomniałeś hasła?',
+      logging_in: 'Logowanie...',
+      login_with_google: 'Kontynuuj z Google',
+      no_account: 'Nie masz konta?',
+      sign_up_link: 'Zarejestruj się',
     },
     form: {
       name: 'Imię i nazwisko',

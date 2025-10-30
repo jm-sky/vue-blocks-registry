@@ -65,11 +65,21 @@ export default {
     password_requirements: 'Password must be at least 8 characters long',
     token_placeholder: 'Enter the token from your email',
     enter_new_password: 'Enter your new password',
+    login_with_google: 'Continue with Google',
     links: {
       or_create_account: 'Or create a new account',
       create_new_account: 'Create new account',
       or_sign_in: 'Already have an account?',
       sign_in_existing: 'Sign in to existing account',
+    },
+    official_form: {
+      title: 'Sign in',
+      description: 'Enter your email and password to access your account',
+      forgot_password_link: 'Forgot password?',
+      logging_in: 'Signing in...',
+      login_with_google: 'Continue with Google',
+      no_account: "Don't have an account?",
+      sign_up_link: 'Sign up',
     },
     form: {
       name: 'Full Name',

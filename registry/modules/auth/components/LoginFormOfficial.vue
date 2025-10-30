@@ -56,7 +56,7 @@ const onSubmit = handleSubmit(async (values: LoginCredentials) => {
   <div :class="cn('flex flex-col gap-6', props.class)">
     <Card>
       <CardHeader>
-        <CardTitle>{{ t('auth.official_form.title') }}</CardTitle>
+        <CardTitle>{{ t('auth.sign_in_to_account') }}</CardTitle>
         <CardDescription>
           {{ t('auth.official_form.description') }}
         </CardDescription>
@@ -87,11 +87,16 @@ const onSubmit = handleSubmit(async (values: LoginCredentials) => {
                     to="/auth/forgot-password"
                     class="ml-auto inline-block text-sm underline-offset-4 hover:underline"
                   >
-                    {{ t('auth.official_form.forgot_password_link') }}
+                    {{ t('auth.forgot_password') }}
                   </RouterLink>
                 </div>
                 <FormControl>
-                  <Input type="password" v-bind="componentField" required />
+                  <Input
+                    type="password"
+                    :placeholder="t('auth.form.password_placeholder')"
+                    v-bind="componentField"
+                    required
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -104,18 +109,18 @@ const onSubmit = handleSubmit(async (values: LoginCredentials) => {
                 :disabled="isSubmitting"
                 :loading="isSubmitting"
               >
-                {{ isSubmitting ? t('auth.official_form.logging_in') : t('auth.login') }}
+                {{ isSubmitting ? t('common.loading') : t('auth.form.submit_login') }}
               </Button>
               <Button variant="outline" class="w-full" :disabled="isSubmitting">
-                {{ t('auth.official_form.login_with_google') }}
+                {{ t('auth.login_with_google') }}
               </Button>
             </div>
           </div>
 
           <div class="mt-4 text-center text-sm">
-            {{ t('auth.official_form.no_account') }}
+            {{ t('auth.dont_have_account') }}
             <RouterLink to="/auth/register" class="underline underline-offset-4 hover:text-primary">
-              {{ t('auth.official_form.sign_up_link') }}
+              {{ t('auth.sign_up') }}
             </RouterLink>
           </div>
         </form>
