@@ -13,3 +13,4 @@ import LogsTable from '@registry/modules/logs/components/LogsTable.vue'
 
 
 
+
