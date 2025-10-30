@@ -1,6 +1,7 @@
 import type { RouteRecordRaw } from 'vue-router'
 
-// @vbr-insert-routes:imports (Do not remove) – place module route imports below
+// @vbr-insert-routes:imports
+// (Do not remove) – place module route imports below
 // Example:
 // import { authRoutes } from '@/modules/auth/routes'
 // import { userRoutes } from '@/modules/user/routes'
@@ -15,7 +16,8 @@ export const routes: RouteRecordRaw[] = [
     // meta: { requiresGuest: false }
   },
 
-  // @vbr-insert-routes:spread (Do not remove) – place module routes spread below
+  // @vbr-insert-routes:spread
+  // (Do not remove) – place module routes spread below
   // Example:
   // ...authRoutes,
   // ...userRoutes,
