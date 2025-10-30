@@ -7,6 +7,7 @@ import prompts from 'prompts'
 import { fileURLToPath } from 'url'
 import { installRegistryComponent } from '../helpers/component-installer.js'
 import { cleanupDefaultVueFiles } from '../helpers/project-cleanup.js'
+import { injectRoutesAndGuards } from '../helpers/router-injector.js'
 import { getConfig } from '../utils/config.js'
 import { logger } from '../utils/logger.js'
 import { detectPackageManager, getAddCommand } from '../utils/package-manager.js'
@@ -196,6 +197,19 @@ Examples:
       // Install layouts if HomePage.vue was generated
       if (fileNames.includes('pages/HomePage.vue')) {
         await installRegistryComponent('layouts', cwd, config, { fallbackToShadcn: false })
+      }
+
+      // After files exist, inject default guards placeholder if anchors present
+      try {
+        await injectRoutesAndGuards({
+          projectRoot: cwd,
+          importLines: [],
+          spreadLines: [],
+          guardBlock: '// Default guards placeholder. Configure auth store before enabling.\n// See @registry/modules/auth for recommended integration.',
+        })
+      }
+      catch {
+        // best-effort; non-blocking
       }
 
       logger.break()

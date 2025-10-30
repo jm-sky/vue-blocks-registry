@@ -1,0 +1,18 @@
+{
+  "$schema": "../../../../registry-item-schema.json",
+  "name": "userFull",
+  "type": "registry:bundle",
+  "title": "Complete User Module",
+  "description": "User module with profile pages and routes",
+  "categories": [
+    "bundle",
+    "user"
+  ],
+  "files": [],
+  "dependencies": [],
+  "registryDependencies": [
+    "user-pages",
+    "user-routes",
+    "layouts"
+  ]
+}

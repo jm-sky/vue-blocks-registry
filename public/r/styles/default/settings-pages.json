@@ -1,0 +1,19 @@
+{
+  "$schema": "../../../../registry-item-schema.json",
+  "name": "settings-pages",
+  "type": "registry:page",
+  "title": "Settings Page",
+  "description": "Application settings page",
+  "categories": [
+    "page",
+    "settings"
+  ],
+  "files": [
+    {
+      "path": "modules/settings/pages/SettingsPage.vue",
+      "type": "registry:page"
+    }
+  ],
+  "dependencies": [],
+  "registryDependencies": []
+}

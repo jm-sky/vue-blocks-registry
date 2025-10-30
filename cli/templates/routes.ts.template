@@ -1,9 +1,24 @@
 import type { RouteRecordRaw } from 'vue-router'
 
+// @vbr-insert-routes:imports (Do not remove) – place module route imports below
+// Example:
+// import { authRoutes } from '@/modules/auth/routes'
+// import { userRoutes } from '@/modules/user/routes'
+// import { settingsRoutes } from '@/modules/settings/routes'
+// import { logsRoutes } from '@/modules/logs/routes'
+
 export const routes: RouteRecordRaw[] = [
   {
     path: '/',
     name: 'home',
     component: () => import('@/pages/HomePage.vue'),
+    // meta: { requiresGuest: false }
   },
+
+  // @vbr-insert-routes:spread (Do not remove) – place module routes spread below
+  // Example:
+  // ...authRoutes,
+  // ...userRoutes,
+  // ...settingsRoutes,
+  // ...logsRoutes,
 ]

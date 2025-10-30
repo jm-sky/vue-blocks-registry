@@ -1028,5 +1028,175 @@
         "layouts"
       ]
     }
+    ,
+    {
+      "name": "user-pages",
+      "type": "registry:page",
+      "title": "User Pages",
+      "description": "User profile pages (view and edit)",
+      "categories": ["page", "user"],
+      "files": [
+        { "path": "modules/user/pages/ProfileView.vue", "type": "registry:page" },
+        { "path": "modules/user/pages/ProfileEdit.vue", "type": "registry:page" }
+      ],
+      "dependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "user-routes",
+      "type": "registry:lib",
+      "title": "User Routes",
+      "description": "Route definitions for user module",
+      "categories": ["lib", "user"],
+      "files": [
+        { "path": "modules/user/routes.ts", "type": "registry:lib" }
+      ],
+      "dependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "userFull",
+      "type": "registry:bundle",
+      "title": "Complete User Module",
+      "description": "User module with profile pages and routes",
+      "categories": ["bundle", "user"],
+      "files": [],
+      "dependencies": [],
+      "registryDependencies": [
+        "user-pages",
+        "user-routes",
+        "layouts"
+      ]
+    },
+    {
+      "name": "settings-pages",
+      "type": "registry:page",
+      "title": "Settings Page",
+      "description": "Application settings page",
+      "categories": ["page", "settings"],
+      "files": [
+        { "path": "modules/settings/pages/SettingsPage.vue", "type": "registry:page" }
+      ],
+      "dependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "settings-routes",
+      "type": "registry:lib",
+      "title": "Settings Routes",
+      "description": "Route definitions for settings module",
+      "categories": ["lib", "settings"],
+      "files": [
+        { "path": "modules/settings/routes.ts", "type": "registry:lib" }
+      ],
+      "dependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "settingsFull",
+      "type": "registry:bundle",
+      "title": "Complete Settings Module",
+      "description": "Settings module with page and routes",
+      "categories": ["bundle", "settings"],
+      "files": [],
+      "dependencies": [],
+      "registryDependencies": [
+        "settings-pages",
+        "settings-routes",
+        "layouts"
+      ]
+    },
+    {
+      "name": "logs-components",
+      "type": "registry:ui",
+      "title": "Logs Components",
+      "description": "Logs table component",
+      "categories": ["ui", "logs"],
+      "files": [
+        { "path": "modules/logs/components/LogsTable.vue", "type": "registry:ui" }
+      ],
+      "dependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "logs-pages",
+      "type": "registry:page",
+      "title": "Logs Page",
+      "description": "Logs browser page",
+      "categories": ["page", "logs"],
+      "files": [
+        { "path": "modules/logs/pages/LogsBrowserPage.vue", "type": "registry:page" }
+      ],
+      "dependencies": [],
+      "registryDependencies": [
+        "logs-components"
+      ]
+    },
+    {
+      "name": "logs-routes",
+      "type": "registry:lib",
+      "title": "Logs Routes",
+      "description": "Route definitions for logs module",
+      "categories": ["lib", "logs"],
+      "files": [
+        { "path": "modules/logs/routes.ts", "type": "registry:lib" }
+      ],
+      "dependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "logsFull",
+      "type": "registry:bundle",
+      "title": "Complete Logs Module",
+      "description": "Logs module with page, components and routes",
+      "categories": ["bundle", "logs"],
+      "files": [],
+      "dependencies": [],
+      "registryDependencies": [
+        "logs-components",
+        "logs-pages",
+        "logs-routes",
+        "layouts"
+      ]
+    }
+    ,
+    {
+      "name": "dashboard-pages",
+      "type": "registry:page",
+      "title": "Dashboard Page",
+      "description": "Welcome dashboard page",
+      "categories": ["page", "dashboard"],
+      "files": [
+        { "path": "modules/dashboard/pages/DashboardPage.vue", "type": "registry:page" }
+      ],
+      "dependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "dashboard-routes",
+      "type": "registry:lib",
+      "title": "Dashboard Routes",
+      "description": "Route definitions for dashboard module",
+      "categories": ["lib", "dashboard"],
+      "files": [
+        { "path": "modules/dashboard/routes.ts", "type": "registry:lib" }
+      ],
+      "dependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "dashboardFull",
+      "type": "registry:bundle",
+      "title": "Complete Dashboard Module",
+      "description": "Dashboard module with page and routes",
+      "categories": ["bundle", "dashboard"],
+      "files": [],
+      "dependencies": [],
+      "registryDependencies": [
+        "dashboard-pages",
+        "dashboard-routes",
+        "layouts"
+      ]
+    }
   ]
 }

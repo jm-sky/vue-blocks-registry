@@ -111,7 +111,7 @@ cli/                          # CLI tool source
 registry/                    # Registry components source
 ├── components/ui/           # UI components (button, input, form, etc.)
 ├── modules/auth/            # Auth module (store, services, pages, etc.)
-├── app/layouts/             # Layout components
+├── layouts/                 # Layout components
 └── shared/                  # Shared utilities (config, services, composables)
 
 src/                         # Demo app for testing registry components
@@ -169,6 +169,29 @@ vue-blocks-registry list
 
 When testing the CLI locally before publishing:
 
+### Option 1: Using test script (recommended)
+
+```bash
+# Test any command with automatic local CLI detection
+pnpm run test:cli <command> [args]
+
+# Quick test for setup --all
+pnpm run test:setup-all
+
+# Examples
+pnpm run test:cli list
+pnpm run test:cli add button
+pnpm run test:cli setup --all my-test-app
+```
+
+**How it works:**
+- The test script sets environment variables:
+  - `VUE_BLOCKS_LOCAL_CLI`: Makes nested CLI calls use local CLI instead of `pnpm dlx`
+  - `VUE_BLOCKS_LOCAL_REGISTRY`: Makes CLI read from local files instead of GitHub
+- This allows testing unreleased features and components (e.g., `--routes`, `--guards`, new bundles)
+
+### Option 2: Direct execution
+
 ```bash
 # Build CLI
 pnpm run build:cli
@@ -182,6 +205,8 @@ cd tmp-test-project
 node ../cli/dist/index.js init
 node ../cli/dist/index.js add button
 ```
+
+**Note:** Direct execution won't use local CLI for nested calls (like in `setup` command).
 
 ## Registry Development Guidelines
 

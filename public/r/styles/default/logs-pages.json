@@ -1,0 +1,21 @@
+{
+  "$schema": "../../../../registry-item-schema.json",
+  "name": "logs-pages",
+  "type": "registry:page",
+  "title": "Logs Page",
+  "description": "Logs browser page",
+  "categories": [
+    "page",
+    "logs"
+  ],
+  "files": [
+    {
+      "path": "modules/logs/pages/LogsBrowserPage.vue",
+      "type": "registry:page"
+    }
+  ],
+  "dependencies": [],
+  "registryDependencies": [
+    "logs-components"
+  ]
+}

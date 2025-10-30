@@ -1,0 +1,19 @@
+{
+  "$schema": "../../../../registry-item-schema.json",
+  "name": "logsFull",
+  "type": "registry:bundle",
+  "title": "Complete Logs Module",
+  "description": "Logs module with page, components and routes",
+  "categories": [
+    "bundle",
+    "logs"
+  ],
+  "files": [],
+  "dependencies": [],
+  "registryDependencies": [
+    "logs-components",
+    "logs-pages",
+    "logs-routes",
+    "layouts"
+  ]
+}

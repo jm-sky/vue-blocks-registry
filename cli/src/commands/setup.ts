@@ -13,12 +13,20 @@ export const setup = new Command()
   .argument('[project-name]', 'Name of the project directory')
   .option('-y, --yes', 'Use default configuration', false)
   .option('-s, --scaffold', 'Run scaffold after setup to generate foundational files', false)
+  .option('--auth-full', 'Install and wire up full auth module (authFull)', false)
+  .option('--all', 'Full bootstrap: scaffold + init + authFull + layouts', false)
   .addHelpText('after', `
 Examples:
   $ pnpm dlx vue-blocks-registry setup my-app
-  $ pnpm dlx vue-blocks-registry setup --yes --scaffold frontend
-  $ pnpm dlx vue-blocks-registry setup -ys my-project`)
-  .action(async (projectName: string | undefined, options: { yes: boolean; scaffold: boolean }) => {
+  $ pnpm dlx vue-blocks-registry setup --yes my-project
+  $ pnpm dlx vue-blocks-registry setup --scaffold frontend
+  $ pnpm dlx vue-blocks-registry setup -ys my-project
+  $ pnpm dlx vue-blocks-registry setup --all my-full-app
+  $ pnpm dlx vue-blocks-registry setup --auth-full --scaffold backend-app`)
+  .action(async (
+    projectName: string | undefined,
+    options: { yes: boolean; scaffold: boolean; authFull: boolean; all: boolean }
+  ) => {
     try {
       let targetDir: string = projectName ?? ''
 
@@ -48,6 +56,12 @@ Examples:
       }
 
       logger.info('\n🚀 Setting up a new Vue 3 project with vue-blocks-registry...\n')
+
+      // Normalize flags: --all implies --scaffold and --auth-full
+      if (options.all) {
+        options.scaffold = true
+        options.authFull = true
+      }
 
       if (options.scaffold) {
         logger.info('🏗️  Will scaffold to generate foundational files after setup...\n')
@@ -230,7 +244,7 @@ Examples:
         throw error
       }
 
-      // Step 7: Run scaffold if requested
+      // Step 7: Run scaffold if requested (or implied by --all)
       if (options.scaffold) {
         logger.break()
         logger.info('Running scaffold to generate foundational files...\n')
@@ -254,7 +268,78 @@ Examples:
         }
       }
 
-      // Step 8: Run linter to format the modified files
+      // Step 8: Ensure components.json exists (for add command); run init if missing
+      try {
+        const configPath = path.join(projectPath, 'components.json')
+        const exists = await fs.pathExists(configPath)
+        if (!exists) {
+          const packageManager = detectPackageManager(projectPath)
+          await executeDlx(
+            packageManager,
+            'vue-blocks-registry',
+            ['init', '--yes'],
+            { cwd: projectPath, stdio: 'inherit' }
+          )
+        }
+      }
+      catch {
+        logger.warn('components.json missing and automatic init failed. Run "vue-blocks-registry init" manually if needed.')
+      }
+
+      // Step 9: Install authFull and layouts if requested (or implied by --all)
+      if (options.authFull) {
+        logger.break()
+        logger.info('Installing layouts and feature bundles...\n')
+        try {
+          const packageManager = detectPackageManager(projectPath)
+          // Ensure shared layouts
+          await executeDlx(
+            packageManager,
+            'vue-blocks-registry',
+            ['add', '--yes', '--overwrite', 'layouts'],
+            { cwd: projectPath, stdio: 'inherit' }
+          )
+          // Install authFull with routes and guards
+          await executeDlx(
+            packageManager,
+            'vue-blocks-registry',
+            ['add', '--yes', '--overwrite', '--routes', '--guards', 'authFull'],
+            { cwd: projectPath, stdio: 'inherit' }
+          )
+          // Optionally install dashboard/user/settings/logs bundles with routes
+          await executeDlx(
+            packageManager,
+            'vue-blocks-registry',
+            ['add', '--yes', '--overwrite', '--routes', 'dashboardFull'],
+            { cwd: projectPath, stdio: 'inherit' }
+          )
+          await executeDlx(
+            packageManager,
+            'vue-blocks-registry',
+            ['add', '--yes', '--overwrite', '--routes', 'userFull'],
+            { cwd: projectPath, stdio: 'inherit' }
+          )
+          await executeDlx(
+            packageManager,
+            'vue-blocks-registry',
+            ['add', '--yes', '--overwrite', '--routes', 'settingsFull'],
+            { cwd: projectPath, stdio: 'inherit' }
+          )
+          await executeDlx(
+            packageManager,
+            'vue-blocks-registry',
+            ['add', '--yes', '--overwrite', '--routes', 'logsFull'],
+            { cwd: projectPath, stdio: 'inherit' }
+          )
+        }
+        catch {
+          const packageManager = detectPackageManager(projectPath)
+          const dlxCmd = packageManager.name === 'npm' ? 'npx' : `${packageManager.name} dlx`
+          logger.warn(`Installing layouts/authFull/dashboardFull/userFull/settingsFull/logsFull failed. Try manually: ${dlxCmd} vue-blocks-registry add layouts && ${dlxCmd} vue-blocks-registry add --routes --guards authFull && ${dlxCmd} vue-blocks-registry add --routes dashboardFull userFull settingsFull logsFull`)
+        }
+      }
+
+      // Step 10: Run linter to format the modified files
       const lintSpinner = ora('Running linter to format code...').start()
       try {
         await execa('pnpm', ['lint'], {
@@ -281,6 +366,11 @@ Examples:
       if (!options.scaffold) {
         logger.info('\nGenerate foundational files:')
         logger.info('  pnpm dlx vue-blocks-registry scaffold')
+      }
+
+      if (!options.authFull) {
+        logger.info('\nInstall authentication module:')
+        logger.info('  pnpm dlx vue-blocks-registry add authFull')
       }
     }
     catch (error) {

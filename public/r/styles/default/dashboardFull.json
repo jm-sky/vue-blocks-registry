@@ -1,0 +1,18 @@
+{
+  "$schema": "../../../../registry-item-schema.json",
+  "name": "dashboardFull",
+  "type": "registry:bundle",
+  "title": "Complete Dashboard Module",
+  "description": "Dashboard module with page and routes",
+  "categories": [
+    "bundle",
+    "dashboard"
+  ],
+  "files": [],
+  "dependencies": [],
+  "registryDependencies": [
+    "dashboard-pages",
+    "dashboard-routes",
+    "layouts"
+  ]
+}

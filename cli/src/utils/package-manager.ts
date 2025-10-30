@@ -82,6 +82,9 @@ export function getAddCommand(packageManager: PackageManagerInfo, dependencies: 
  * - pnpm uses 'pnpm dlx'
  * - yarn uses 'yarn dlx'
  * - npm uses 'npx'
+ *
+ * When VUE_BLOCKS_LOCAL_CLI is set, it uses the local CLI instead of dlx.
+ * This is useful for testing unreleased features.
  */
 export async function executeDlx(
   packageManager: PackageManagerInfo,
@@ -89,6 +92,14 @@ export async function executeDlx(
   args: string[] = [],
   options?: ExecaOptions
 ) {
+  // Check if we should use local CLI for testing
+  const localCliPath = process.env.VUE_BLOCKS_LOCAL_CLI
+
+  if (localCliPath && packageName === 'vue-blocks-registry') {
+    // Use local CLI instead of dlx
+    return execa('node', [localCliPath, ...args], options)
+  }
+
   if (packageManager.name === 'npm') {
     // npm uses npx instead of npm dlx
     return execa('npx', [packageName, ...args], options)

@@ -1,0 +1,19 @@
+{
+  "$schema": "../../../../registry-item-schema.json",
+  "name": "user-routes",
+  "type": "registry:lib",
+  "title": "User Routes",
+  "description": "Route definitions for user module",
+  "categories": [
+    "lib",
+    "user"
+  ],
+  "files": [
+    {
+      "path": "modules/user/routes.ts",
+      "type": "registry:lib"
+    }
+  ],
+  "dependencies": [],
+  "registryDependencies": []
+}

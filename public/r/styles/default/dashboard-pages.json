@@ -1,0 +1,19 @@
+{
+  "$schema": "../../../../registry-item-schema.json",
+  "name": "dashboard-pages",
+  "type": "registry:page",
+  "title": "Dashboard Page",
+  "description": "Welcome dashboard page",
+  "categories": [
+    "page",
+    "dashboard"
+  ],
+  "files": [
+    {
+      "path": "modules/dashboard/pages/DashboardPage.vue",
+      "type": "registry:page"
+    }
+  ],
+  "dependencies": [],
+  "registryDependencies": []
+}

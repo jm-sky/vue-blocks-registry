@@ -1,0 +1,19 @@
+{
+  "$schema": "../../../../registry-item-schema.json",
+  "name": "settings-routes",
+  "type": "registry:lib",
+  "title": "Settings Routes",
+  "description": "Route definitions for settings module",
+  "categories": [
+    "lib",
+    "settings"
+  ],
+  "files": [
+    {
+      "path": "modules/settings/routes.ts",
+      "type": "registry:lib"
+    }
+  ],
+  "dependencies": [],
+  "registryDependencies": []
+}

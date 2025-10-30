@@ -1,0 +1,19 @@
+{
+  "$schema": "../../../../registry-item-schema.json",
+  "name": "logs-components",
+  "type": "registry:ui",
+  "title": "Logs Components",
+  "description": "Logs table component",
+  "categories": [
+    "ui",
+    "logs"
+  ],
+  "files": [
+    {
+      "path": "modules/logs/components/LogsTable.vue",
+      "type": "registry:ui"
+    }
+  ],
+  "dependencies": [],
+  "registryDependencies": []
+}

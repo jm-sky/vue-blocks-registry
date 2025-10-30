@@ -1,0 +1,18 @@
+{
+  "$schema": "../../../../registry-item-schema.json",
+  "name": "settingsFull",
+  "type": "registry:bundle",
+  "title": "Complete Settings Module",
+  "description": "Settings module with page and routes",
+  "categories": [
+    "bundle",
+    "settings"
+  ],
+  "files": [],
+  "dependencies": [],
+  "registryDependencies": [
+    "settings-pages",
+    "settings-routes",
+    "layouts"
+  ]
+}

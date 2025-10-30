@@ -1,0 +1,19 @@
+{
+  "$schema": "../../../../registry-item-schema.json",
+  "name": "logs-routes",
+  "type": "registry:lib",
+  "title": "Logs Routes",
+  "description": "Route definitions for logs module",
+  "categories": [
+    "lib",
+    "logs"
+  ],
+  "files": [
+    {
+      "path": "modules/logs/routes.ts",
+      "type": "registry:lib"
+    }
+  ],
+  "dependencies": [],
+  "registryDependencies": []
+}

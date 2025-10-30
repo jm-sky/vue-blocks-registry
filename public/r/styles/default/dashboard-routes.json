@@ -1,0 +1,19 @@
+{
+  "$schema": "../../../../registry-item-schema.json",
+  "name": "dashboard-routes",
+  "type": "registry:lib",
+  "title": "Dashboard Routes",
+  "description": "Route definitions for dashboard module",
+  "categories": [
+    "lib",
+    "dashboard"
+  ],
+  "files": [
+    {
+      "path": "modules/dashboard/routes.ts",
+      "type": "registry:lib"
+    }
+  ],
+  "dependencies": [],
+  "registryDependencies": []
+}

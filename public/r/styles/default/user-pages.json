@@ -1,0 +1,23 @@
+{
+  "$schema": "../../../../registry-item-schema.json",
+  "name": "user-pages",
+  "type": "registry:page",
+  "title": "User Pages",
+  "description": "User profile pages (view and edit)",
+  "categories": [
+    "page",
+    "user"
+  ],
+  "files": [
+    {
+      "path": "modules/user/pages/ProfileView.vue",
+      "type": "registry:page"
+    },
+    {
+      "path": "modules/user/pages/ProfileEdit.vue",
+      "type": "registry:page"
+    }
+  ],
+  "dependencies": [],
+  "registryDependencies": []
+}
