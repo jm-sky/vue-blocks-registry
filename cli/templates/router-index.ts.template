@@ -6,7 +6,8 @@ const router = createRouter({
   routes,
 })
 
-// @vbr-insert-guards (Do not remove) – global guards can be injected here by CLI
+// @vbr-insert-guards
+// (Do not remove) – global guards can be injected here by CLI
 // Example:
 // router.beforeEach((to, _from, next) => {
 //   const requiresAuth = to.matched.some(r => r.meta?.requiresAuth)

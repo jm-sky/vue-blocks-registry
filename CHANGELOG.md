@@ -7,6 +7,26 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.5.1] - 2025-10-30
+
+### Fixed
+- **Logs Module**: Added missing logs module files that were ignored by .gitignore
+  - Fixed .gitignore pattern that was unintentionally ignoring `registry/modules/logs/` directory
+  - Added LogsTable.vue, LogsBrowserPage.vue, and routes.ts for logs module
+  - logsFull bundle now installs correctly
+
+- **Router Templates**: Fixed template injection markers causing syntax errors
+  - Separated anchor markers from inline comments in router-index.ts template
+  - Guards now inject cleanly without appending comments to code
+
+- **Auth Routes Import**: Fixed incorrect import path for authRoutes
+  - Changed from `@/modules/auth/routes` to `@/modules/auth/config/routes`
+  - Ensures proper route injection when using `--routes` flag
+
+- **Auth Routes Paths**: Fixed incorrect component import paths in auth routes
+  - Changed LoginPage import from `@/pages/auth/` to `@registry/modules/auth/pages/`
+  - All auth page imports now use consistent `@registry` prefix
+
 ## [0.5.0] - 2025-10-30
 
 ### Added

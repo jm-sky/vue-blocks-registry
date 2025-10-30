@@ -315,7 +315,7 @@ async function tryInjectForBundle(
 
   if (opts.routes) {
     if (lower.includes('auth')) {
-      importLines.push('import { authRoutes } from \'@/modules/auth/routes\'')
+      importLines.push('import { authRoutes } from \'@/modules/auth/config/routes\'')
       spreadLines.push('...authRoutes,')
     }
     if (lower.includes('dashboard')) {
