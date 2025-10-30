@@ -1,5 +1,5 @@
-# Logs
-logs
+# Logs (but not registry/modules/logs)
+/*.log
 *.log
 npm-debug.log*
 yarn-debug.log*

@@ -1,0 +1,15 @@
+<script setup lang="ts">
+import LogsTable from '@registry/modules/logs/components/LogsTable.vue'
+</script>
+
+<template>
+  <div class="p-6 space-y-4">
+    <h1 class="text-2xl font-semibold">
+      Logs
+    </h1>
+    <LogsTable />
+  </div>
+</template>
+
+
+
