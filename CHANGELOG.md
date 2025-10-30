@@ -7,6 +7,38 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.5.0] - 2025-10-30
+
+### Added
+- **Setup Command Enhancement**: New `--all` flag for full application bootstrap
+  - Creates complete Vue 3 app with auth, layouts, and feature modules in one command
+  - New `--auth-full` flag: Install complete auth module with layouts
+  - New `--scaffold` flag: Generate foundational files after setup
+  - Automatic installation of dashboardFull, userFull, settingsFull, logsFull bundles
+
+- **Router Integration**: Automatic route and guard injection
+  - New `--routes` flag for `add` command: Auto-inject module routes into router
+  - New `--guards` flag for `add` command: Auto-inject auth guards into router
+  - New router-injector helper for deterministic route/guard injection
+  - Updated router templates with injection markers
+
+- **New Registry Bundles**: Complete feature modules ready to use
+  - `dashboardFull`: Dashboard module with page and routes
+  - `userFull`: User profile module (view/edit pages + routes)
+  - `settingsFull`: Settings module (page + routes)
+  - `logsFull`: Logs browser module (components + pages + routes)
+
+- **Local Testing Infrastructure**: Test unreleased features before publishing
+  - `VUE_BLOCKS_LOCAL_CLI` env var: Use local CLI instead of npm
+  - `VUE_BLOCKS_LOCAL_REGISTRY` env var: Read from local files instead of GitHub
+  - New `test-cli.sh` script: Automated build + link + test + unlink workflow
+  - npm scripts: `test:cli` and `test:setup-all` for quick testing
+
+### Fixed
+- **Route Template**: Fixed route injection anchor causing syntax errors
+  - Separated anchor marker from inline comment to prevent malformed code
+  - Imports and route spreads now inject cleanly without appending comments
+
 ## [0.4.12] - 2025-10-29
 
 ### Fixed
