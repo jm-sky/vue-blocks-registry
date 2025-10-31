@@ -6,4 +6,3 @@ export const logsRoutes = [
     component: () => import('@registry/modules/logs/pages/LogsBrowserPage.vue'),
   },
 ]
-

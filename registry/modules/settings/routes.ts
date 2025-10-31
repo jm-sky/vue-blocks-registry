@@ -6,4 +6,3 @@ export const settingsRoutes = [
     component: () => import('@registry/modules/settings/pages/SettingsPage.vue'),
   },
 ]
-

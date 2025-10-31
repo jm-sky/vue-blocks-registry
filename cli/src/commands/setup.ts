@@ -4,6 +4,7 @@ import fs from 'fs-extra'
 import ora from 'ora'
 import path from 'path'
 import prompts from 'prompts'
+import { addProxyToViteConfig, addTailwindToViteConfig } from '../helpers/vite-config.js'
 import { logger } from '../utils/logger.js'
 import { detectPackageManager, executeDlx } from '../utils/package-manager.js'
 
@@ -15,6 +16,7 @@ export const setup = new Command()
   .option('-s, --scaffold', 'Run scaffold after setup to generate foundational files', false)
   .option('--auth-full', 'Install and wire up full auth module (authFull)', false)
   .option('--all', 'Full bootstrap: scaffold + init + authFull + layouts', false)
+  .option('--dont-lint', 'Skip running linter at the end', false)
   .addHelpText('after', `
 Examples:
   $ pnpm dlx vue-blocks-registry setup my-app
@@ -22,10 +24,11 @@ Examples:
   $ pnpm dlx vue-blocks-registry setup --scaffold frontend
   $ pnpm dlx vue-blocks-registry setup -ys my-project
   $ pnpm dlx vue-blocks-registry setup --all my-full-app
+  $ pnpm dlx vue-blocks-registry setup --all --dont-lint my-debug-app
   $ pnpm dlx vue-blocks-registry setup --auth-full --scaffold backend-app`)
   .action(async (
     projectName: string | undefined,
-    options: { yes: boolean; scaffold: boolean; authFull: boolean; all: boolean }
+    options: { yes: boolean; scaffold: boolean; authFull: boolean; all: boolean; dontLint: boolean }
   ) => {
     try {
       let targetDir: string = projectName ?? ''
@@ -128,31 +131,15 @@ Examples:
         throw error
       }
 
-      // Step 3: Configure Tailwind in vite.config.ts
-      const viteConfigSpinner = ora('Configuring Tailwind in Vite...').start()
+      // Step 3: Configure Tailwind and proxy in vite.config.ts
+      const viteConfigSpinner = ora('Configuring Tailwind and proxy in Vite...').start()
       try {
-        const viteConfigPath = path.join(projectPath, 'vite.config.ts')
-        let viteConfig = await fs.readFile(viteConfigPath, 'utf-8')
-
-        // Add tailwindcss import
-        if (!viteConfig.includes('@tailwindcss/vite')) {
-          viteConfig = viteConfig.replace(
-            /import vue from '@vitejs\/plugin-vue'/,
-            'import vue from \'@vitejs/plugin-vue\'\nimport tailwindcss from \'@tailwindcss/vite\''
-          )
-
-          // Add to plugins array
-          viteConfig = viteConfig.replace(
-            /plugins:\s*\[/,
-            'plugins: [\n    tailwindcss(),'
-          )
-
-          await fs.writeFile(viteConfigPath, viteConfig, 'utf-8')
-        }
-        viteConfigSpinner.succeed('Tailwind configured in Vite')
+        await addTailwindToViteConfig(projectPath)
+        await addProxyToViteConfig(projectPath)
+        viteConfigSpinner.succeed('Tailwind and proxy configured in Vite')
       }
       catch (error) {
-        viteConfigSpinner.fail('Failed to configure Tailwind in Vite')
+        viteConfigSpinner.fail('Failed to configure Tailwind and proxy in Vite')
         throw error
       }
 
@@ -339,17 +326,19 @@ Examples:
         }
       }
 
-      // Step 10: Run linter to format the modified files
-      const lintSpinner = ora('Running linter to format code...').start()
-      try {
-        await execa('pnpm', ['lint'], {
-          cwd: projectPath,
-          stdio: 'pipe',
-        })
-        lintSpinner.succeed('Code formatted')
-      }
-      catch {
-        lintSpinner.warn('Linting skipped (run "pnpm lint" manually if needed)')
+      // Step 10: Run linter to format the modified files (only if not disabled)
+      if (!options.dontLint) {
+        const lintSpinner = ora('Running linter to format code...').start()
+        try {
+          await execa('pnpm', ['lint'], {
+            cwd: projectPath,
+            stdio: 'pipe',
+          })
+          lintSpinner.succeed('Code formatted')
+        }
+        catch {
+          lintSpinner.warn('Linting skipped (run "pnpm lint" manually if needed)')
+        }
       }
 
       logger.break()

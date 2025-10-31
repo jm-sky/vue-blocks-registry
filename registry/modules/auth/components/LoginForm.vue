@@ -6,9 +6,11 @@ import { useAuth } from '@registry/modules/auth/composables/useAuth'
 import { loginSchema } from '@registry/modules/auth/validation/login.schema'
 import { isValidationError } from '@registry/shared/utils/typeGuards'
 import { toTypedSchema } from '@vee-validate/zod'
+import { isAxiosError } from 'axios'
 import { useForm } from 'vee-validate'
 import { useI18n } from 'vue-i18n'
 import { useRouter } from 'vue-router'
+import { toast } from 'vue-sonner'
 import type { LoginCredentials } from '@registry/modules/auth/types/user.type'
 
 const { t } = useI18n()
@@ -35,10 +37,9 @@ const onSubmit = handleSubmit(async (values: LoginCredentials) => {
         email: t('auth.invalid_credentials'),
         password: t('auth.invalid_credentials'),
       })
-      // TODO: add toast/sonner notification from shadcn-vue
-      // toast.error('Unexpected error occurred in login process')
-      console.error('Login error:', err)
     }
+    toast.error(isAxiosError(err) ? err.response?.data.detail : t('errors.generic'))
+    console.error('Login error:', err)
   }
 })
 </script>
