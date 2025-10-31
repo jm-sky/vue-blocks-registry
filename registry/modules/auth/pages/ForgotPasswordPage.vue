@@ -12,7 +12,7 @@ import { CircleCheck } from 'lucide-vue-next'
 import { useForm } from 'vee-validate'
 import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
-import type { ForgotPasswordData } from '@registry/modules/auth/types/user'
+import type { ForgotPasswordData } from '@registry/modules/auth/types/user.type'
 
 const { t } = useI18n()
 const { forgotPassword, isForgotPasswordLoading } = useAuth()

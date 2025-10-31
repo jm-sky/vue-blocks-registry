@@ -4,16 +4,13 @@ export const userRoutes = [
     path: '/profile',
     name: 'profile',
     meta: { requiresAuth: true },
-    component: () => import('@registry/modules/user/pages/ProfileView.vue'),
+    component: () => import('@registry/modules/user/pages/ProfileViewPage.vue'),
   },
   {
     path: '/profile/edit',
     name: 'profileEdit',
     meta: { requiresAuth: true },
-    component: () => import('@registry/modules/user/pages/ProfileEdit.vue'),
+    component: () => import('@registry/modules/user/pages/ProfileEditPage.vue'),
   },
 ]
-
-
-
 

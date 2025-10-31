@@ -23,6 +23,22 @@ const examples = computed(() => [
     description: t('demo.examples_page.i18n_example.description'),
     to: RoutePaths.DEMO_EXAMPLES_I18N
   }
+  ,
+  {
+    title: t('demo.examples_page.settings_example.title'),
+    description: t('demo.examples_page.settings_example.description'),
+    to: RoutePaths.DEMO_EXAMPLES_SETTINGS
+  },
+  {
+    title: t('demo.examples_page.user_example.title'),
+    description: t('demo.examples_page.user_example.description'),
+    to: RoutePaths.DEMO_EXAMPLES_USER
+  },
+  {
+    title: t('demo.examples_page.logs_example.title'),
+    description: t('demo.examples_page.logs_example.description'),
+    to: RoutePaths.DEMO_EXAMPLES_LOGS
+  }
 ])
 </script>
 

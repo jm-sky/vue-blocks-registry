@@ -173,6 +173,18 @@ export default {
       i18n_example: {
         title: 'Internacjonalizacja (i18n)',
         description: 'Wsparcie dla wielu języków z tłumaczeniami PL/EN'
+      },
+      settings_example: {
+        title: 'Ustawienia',
+        description: 'Przykładowa integracja ustawień'
+      },
+      user_example: {
+        title: 'Użytkownik',
+        description: 'Strony profilu i edycji profilu'
+      },
+      logs_example: {
+        title: 'Logi',
+        description: 'Przeglądarka logów z DataTable'
       }
     },
     dashboard_example: {

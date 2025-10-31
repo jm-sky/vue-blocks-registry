@@ -9,7 +9,7 @@ import { toTypedSchema } from '@vee-validate/zod'
 import { useForm } from 'vee-validate'
 import { useI18n } from 'vue-i18n'
 import { useRouter } from 'vue-router'
-import type { LoginCredentials } from '@registry/modules/auth/types/user'
+import type { LoginCredentials } from '@registry/modules/auth/types/user.type'
 
 const { t } = useI18n()
 const router = useRouter()

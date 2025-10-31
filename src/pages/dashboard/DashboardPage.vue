@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import { Clock, Mail, Shield, User } from 'lucide-vue-next'
-import { computed } from 'vue'
+import { computed, onBeforeMount } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { useAutoLogin } from '@/composables/useAutoLogin'
 import AuthenticatedLayout from '@registry/layouts/AuthenticatedLayout.vue'
 import { useAuthStore } from '@registry/modules/auth/store/useAuthStore'
 
@@ -55,19 +56,44 @@ const quickActions = computed(() => [
     color: 'bg-green-600 hover:bg-green-700',
   },
   {
+    title: 'Settings',
+    description: 'Open settings page',
+    href: '/demo/examples/settings',
+    color: 'bg-amber-600 hover:bg-amber-700',
+  },
+  {
+    title: 'User',
+    description: 'Open user profile pages',
+    href: '/demo/examples/user',
+    color: 'bg-sky-600 hover:bg-sky-700',
+  },
+  {
+    title: 'Logs',
+    description: 'Open logs browser',
+    href: '/demo/examples/logs',
+    color: 'bg-stone-700 hover:bg-stone-800',
+  },
+  {
     title: t('dashboard.quick_actions.auth_components.title'),
     description: t('dashboard.quick_actions.auth_components.description'),
     href: '/demo/auth',
     color: 'bg-purple-600 hover:bg-purple-700',
   },
 ])
+
+onBeforeMount(async () => {
+  if (!authStore.isAuthenticated) {
+    const { login } = useAutoLogin()
+    await login()
+  }
+})
 </script>
 
 <template>
   <AuthenticatedLayout>
     <div class="space-y-8">
       <!-- Welcome Section -->
-      <div class="bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg shadow-lg p-8 text-white">
+      <div class="bg-linear-to-r from-blue-600 to-purple-600 rounded-lg shadow-lg p-8 text-white">
         <h1 class="text-3xl font-bold mb-2">
           {{ t('dashboard.welcome', { name: authStore.user?.name || 'User' }) }} 👋
         </h1>

@@ -173,6 +173,18 @@ export default {
       i18n_example: {
         title: 'Internationalization (i18n)',
         description: 'Multi-language support with PL/EN translations'
+      },
+      settings_example: {
+        title: 'Settings',
+        description: 'Demo settings integration'
+      },
+      user_example: {
+        title: 'User',
+        description: 'Profile and profile edit pages'
+      },
+      logs_example: {
+        title: 'Logs',
+        description: 'Logs browser with DataTable'
       }
     },
     dashboard_example: {
