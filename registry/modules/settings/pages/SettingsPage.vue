@@ -51,72 +51,95 @@ const onSubmit = handleSubmit(async (values) => {
 
 <template>
   <div class="space-y-6">
-    <h1 class="text-2xl font-semibold">
-      {{ t('settings.page.title') }}
-    </h1>
-
-    <div v-if="isLoading" class="text-muted-foreground">
-      {{ t('settings.page.loading') }}
+    <div class="space-y-1">
+      <h1 class="text-3xl font-bold tracking-tight">
+        {{ t('settings.page.title') }}
+      </h1>
+      <p class="text-sm text-muted-foreground">
+        {{ t('settings.page.subtitle') }}
+      </p>
     </div>
-    <div v-else-if="isError" class="text-destructive">
+
+    <div v-if="isLoading" class="bg-card border rounded-lg p-6">
+      <div class="h-6 w-40 bg-muted rounded animate-pulse" />
+      <div class="mt-6 grid gap-6 md:grid-cols-2">
+        <div class="h-24 bg-muted/60 rounded animate-pulse" />
+        <div class="h-24 bg-muted/60 rounded animate-pulse" />
+      </div>
+    </div>
+
+    <div v-else-if="isError" class="bg-destructive/10 border border-destructive/20 text-destructive rounded-lg p-4">
       {{ t('settings.page.error_prefix') }}
     </div>
-    <form v-else class="bg-card border rounded-lg p-6 space-y-6" @submit="onSubmit">
-      <!-- Dark mode toggle -->
-      <FormField v-slot="{ componentField }" name="darkMode">
-        <FormItem>
-          <FormLabel required>
-            Dark mode
-          </FormLabel>
-          <FormControl>
-            <Select v-bind="componentField">
-              <SelectTrigger>
-                <SelectValue placeholder="Select a theme" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectGroup>
-                  <SelectLabel>Themes</SelectLabel>
-                  <SelectItem value="light">
-                    Light
-                  </SelectItem>
-                  <SelectItem value="dark">
-                    Dark
-                  </SelectItem>
-                </SelectGroup>
-              </SelectContent>
-            </Select>
-          </FormControl>
-          <FormMessage />
-        </FormItem>
-      </FormField>
 
-      <!-- Locale select -->
-      <FormField v-slot="{ componentField }" name="locale">
-        <FormItem>
-          <FormLabel required>
-            Locale
-          </FormLabel>
-          <FormControl>
-            <Select v-bind="componentField">
-              <SelectTrigger>
-                <SelectValue placeholder="Select a locale" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectGroup>
-                  <SelectLabel>Locales</SelectLabel>
-                  <SelectItem value="en">
-                    English
-                  </SelectItem>
-                  <SelectItem value="pl">
-                    Polski
-                  </SelectItem>
-                </SelectGroup>
-              </SelectContent>
-            </Select>
-          </FormControl>
-          <FormMessage />
-        </FormItem>
-      </FormField>
+    <form v-else class="max-w-2xl mx-auto bg-card border rounded-lg p-6 space-y-8" @submit="onSubmit">
+      <div class="grid gap-8 md:grid-cols-2">
+        <!-- Theme -->
+        <div class="space-y-3">
+          <FormField v-slot="{ componentField }" name="darkMode">
+            <FormItem>
+              <FormLabel required>
+                {{ t('settings.page.sections.theme.label') }}
+              </FormLabel>
+              <p class="text-sm text-muted-foreground">
+                {{ t('settings.page.sections.theme.subtitle') }}
+              </p>
+              <FormControl>
+                <Select v-bind="componentField">
+                  <SelectTrigger>
+                    <SelectValue :placeholder="t('settings.page.sections.theme.placeholder')" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectGroup>
+                      <SelectLabel>{{ t('settings.page.sections.theme.group_label') }}</SelectLabel>
+                      <SelectItem value="light">
+                        {{ t('settings.page.sections.theme.options.light') }}
+                      </SelectItem>
+                      <SelectItem value="dark">
+                        {{ t('settings.page.sections.theme.options.dark') }}
+                      </SelectItem>
+                    </SelectGroup>
+                  </SelectContent>
+                </Select>
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          </FormField>
+        </div>
+
+        <!-- Locale -->
+        <div class="space-y-3">
+          <FormField v-slot="{ componentField }" name="locale">
+            <FormItem>
+              <FormLabel required>
+                {{ t('settings.page.sections.locale.label') }}
+              </FormLabel>
+              <p class="text-sm text-muted-foreground">
+                {{ t('settings.page.sections.locale.subtitle') }}
+              </p>
+              <FormControl>
+                <Select v-bind="componentField">
+                  <SelectTrigger>
+                    <SelectValue :placeholder="t('settings.page.sections.locale.placeholder')" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectGroup>
+                      <SelectLabel>{{ t('settings.page.sections.locale.group_label') }}</SelectLabel>
+                      <SelectItem value="en">
+                        {{ t('settings.page.sections.locale.options.en') }}
+                      </SelectItem>
+                      <SelectItem value="pl">
+                        {{ t('settings.page.sections.locale.options.pl') }}
+                      </SelectItem>
+                    </SelectGroup>
+                  </SelectContent>
+                </Select>
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          </FormField>
+        </div>
+      </div>
 
       <div class="flex justify-end">
         <Button type="submit" :loading="isUpdating">

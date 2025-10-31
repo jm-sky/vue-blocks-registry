@@ -125,11 +125,6 @@ export const routes: RouteRecordRaw[] = [
         name: RouteNames.AUTH_RESET_PASSWORD,
         component: () => import('@registry/modules/auth/pages/ResetPasswordPage.vue'),
       },
-      {
-        path: RoutePaths.AUTH_CHANGE_PASSWORD,
-        name: RouteNames.AUTH_CHANGE_PASSWORD,
-        component: () => import('@registry/modules/auth/pages/ChangePasswordPage.vue'),
-      },
     ],
   },
   {
@@ -146,6 +141,11 @@ export const routes: RouteRecordRaw[] = [
     path: RoutePaths.USER_PROFILE_EDIT,
     name: RouteNames.USER_PROFILE_EDIT,
     component: () => import('@/pages/user/UserProfileEditPage.vue'),
+  },
+  {
+    path: RoutePaths.AUTH_CHANGE_PASSWORD,
+    name: RouteNames.AUTH_CHANGE_PASSWORD,
+    component: () => import('@/pages/user/UserChangePasswordPage.vue'),
   },
   {
     path: RoutePaths.SETTINGS,

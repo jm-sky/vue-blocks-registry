@@ -9,6 +9,7 @@ import {
 // modules/auth/composables/useAuth.ts
 import { useMutation, useQuery, useQueryClient } from '@tanstack/vue-query'
 import { computed } from 'vue'
+import type { IAuthService } from '@registry/modules/auth/types/auth.type'
 import type {
   ChangePasswordData,
   ForgotPasswordData,
@@ -23,13 +24,13 @@ import type { AuthResponse } from '@registry/modules/auth/types/user.type'
  * Hook for fetching current user data
  * Automatically refetches when token changes
  */
-export function useCurrentUser() {
+export function useCurrentUser(service?: IAuthService) {
   const authStore = useAuthStore()
   const config = getAuthConfig()
 
   return useQuery({
     queryKey: authQueryKeys.me(),
-    queryFn: () => authService.getCurrentUser(),
+    queryFn: () => (service ?? authService).getCurrentUser(),
     enabled: !!authStore.token, // Only fetch if user is authenticated
     staleTime: config.query.staleTime,
     retry: authRetryFunction,
@@ -39,13 +40,13 @@ export function useCurrentUser() {
 /**
  * Hook for user login with automatic user data fetching
  */
-export function useLogin() {
+export function useLogin(service?: IAuthService) {
   const authStore = useAuthStore()
   const queryClient = useQueryClient()
 
   return useMutation({
     mutationFn: async (credentials: LoginCredentials) => {
-      const response = await authService.login(credentials)
+      const response = await (service ?? authService).login(credentials)
       authStore.setToken(response.token)
       return response
     },
@@ -67,13 +68,13 @@ export function useLogin() {
 /**
  * Hook for user registration with automatic user data fetching
  */
-export function useRegister() {
+export function useRegister(service?: IAuthService) {
   const authStore = useAuthStore()
   const queryClient = useQueryClient()
 
   return useMutation({
     mutationFn: async (credentials: RegisterCredentials) => {
-      const response = await authService.register(credentials)
+      const response = await (service ?? authService).register(credentials)
       authStore.setToken(response.token)
       return response
     },
@@ -95,12 +96,12 @@ export function useRegister() {
 /**
  * Hook for user logout with cache cleanup
  */
-export function useLogout() {
+export function useLogout(service?: IAuthService) {
   const authStore = useAuthStore()
   const queryClient = useQueryClient()
 
   return useMutation({
-    mutationFn: () => authService.logout(),
+    mutationFn: () => (service ?? authService).logout(),
     onSuccess: () => {
       // Clear all auth-related cache
       queryClient.removeQueries({ queryKey: authQueryKeys.all })
@@ -120,9 +121,9 @@ export function useLogout() {
 /**
  * Hook for forgot password
  */
-export function useForgotPassword() {
+export function useForgotPassword(service?: IAuthService) {
   return useMutation({
-    mutationFn: (data: ForgotPasswordData) => authService.forgotPassword(data),
+    mutationFn: (data: ForgotPasswordData) => (service ?? authService).forgotPassword(data),
     retry: authMutationRetryFunction,
   })
 }
@@ -130,9 +131,9 @@ export function useForgotPassword() {
 /**
  * Hook for reset password
  */
-export function useResetPassword() {
+export function useResetPassword(service?: IAuthService) {
   return useMutation({
-    mutationFn: (data: ResetPasswordData) => authService.resetPassword(data),
+    mutationFn: (data: ResetPasswordData) => (service ?? authService).resetPassword(data),
     retry: authMutationRetryFunction,
   })
 }
@@ -140,9 +141,9 @@ export function useResetPassword() {
 /**
  * Hook for change password
  */
-export function useChangePassword() {
+export function useChangePassword(service?: IAuthService) {
   return useMutation({
-    mutationFn: (data: ChangePasswordData) => authService.changePassword(data),
+    mutationFn: (data: ChangePasswordData) => (service ?? authService).changePassword(data),
     retry: authMutationRetryFunction,
   })
 }
@@ -150,20 +151,20 @@ export function useChangePassword() {
 /**
  * Main auth composable with TanStack Query integration
  */
-export function useAuth() {
+export function useAuth(service?: IAuthService) {
   const authStore = useAuthStore()
   const queryClient = useQueryClient()
 
   // Queries
-  const currentUserQuery = useCurrentUser()
+  const currentUserQuery = useCurrentUser(service)
 
   // Mutations
-  const loginMutation = useLogin()
-  const registerMutation = useRegister()
-  const logoutMutation = useLogout()
-  const forgotPasswordMutation = useForgotPassword()
-  const resetPasswordMutation = useResetPassword()
-  const changePasswordMutation = useChangePassword()
+  const loginMutation = useLogin(service)
+  const registerMutation = useRegister(service)
+  const logoutMutation = useLogout(service)
+  const forgotPasswordMutation = useForgotPassword(service)
+  const resetPasswordMutation = useResetPassword(service)
+  const changePasswordMutation = useChangePassword(service)
 
   // Computed values (keep refs reactive)
   const user = computed<User | null>(() => currentUserQuery.data.value ?? authStore.user)
