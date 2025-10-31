@@ -18,6 +18,9 @@ export const RouteNames = {
   DEMO_EXAMPLES_DASHBOARD: 'DemoExamplesDashboard',
   DEMO_EXAMPLES_AUTH: 'DemoExamplesAuth',
   DEMO_EXAMPLES_I18N: 'DemoExamplesI18n',
+  DEMO_EXAMPLES_SETTINGS: 'DemoExamplesSettings',
+  DEMO_EXAMPLES_USER: 'DemoExamplesUser',
+  DEMO_EXAMPLES_LOGS: 'DemoExamplesLogs',
 
   // Auth routes
   AUTH: 'Auth',
@@ -30,6 +33,9 @@ export const RouteNames = {
 
   // Protected routes
   DASHBOARD: 'Dashboard',
+  USER_PROFILE: 'UserProfile',
+  USER_PROFILE_EDIT: 'UserProfileEdit',
+  SETTINGS: 'Settings',
 
   // Error routes
   NOT_FOUND: 'NotFound',
@@ -55,6 +61,9 @@ export const RoutePaths = {
   DEMO_EXAMPLES_DASHBOARD: '/demo/examples/dashboard',
   DEMO_EXAMPLES_AUTH: '/demo/examples/auth',
   DEMO_EXAMPLES_I18N: '/demo/examples/i18n',
+  DEMO_EXAMPLES_SETTINGS: '/demo/examples/settings',
+  DEMO_EXAMPLES_USER: '/demo/examples/user',
+  DEMO_EXAMPLES_LOGS: '/demo/examples/logs',
 
   AUTH: '/auth',
   AUTH_LOGIN: '/auth/login',
@@ -65,4 +74,7 @@ export const RoutePaths = {
   AUTH_CHANGE_PASSWORD: '/auth/change-password',
 
   DASHBOARD: '/dashboard',
+  USER_PROFILE: '/profile',
+  USER_PROFILE_EDIT: '/profile/edit',
+  SETTINGS: '/settings',
 } as const

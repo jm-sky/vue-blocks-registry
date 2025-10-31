@@ -1,5 +1,6 @@
 // Mock auth service for demo purposes (no real backend needed)
 import { HttpStatusCode } from 'axios'
+import type { IAuthService } from '@registry/modules/auth/types/auth.type'
 import type {
   AuthResponse,
   ChangePasswordData,
@@ -8,10 +9,10 @@ import type {
   RegisterCredentials,
   ResetPasswordData,
   User,
-} from '@registry/modules/auth/types/user'
+} from '@registry/modules/auth/types/user.type'
 
 // Mock user database (in-memory)
-const mockUsers = new Map<string, { email: string; password: string; name?: string }>([
+const mockUsers = new Map<string, { email: string; password: string; name: string }>([
   ['demo@example.com', { email: 'demo@example.com', password: 'password123', name: 'Demo User' }],
   ['test@test.com', { email: 'test@test.com', password: 'test1234', name: 'Test User' }],
 ])
@@ -27,12 +28,12 @@ function generateMockToken(email: string): string {
 }
 
 // Helper to create User object
-function createUserObject(email: string, name?: string): User {
+function createUserObject(email: string, name: string): User {
   return {
     id: `usr_${email.split('@')[0]}`,
+    name,
     email,
-    name: name ?? email.split('@')[0],
-    avatar: `https://ui-avatars.com/api/?name=${encodeURIComponent(name ?? email)}&background=random`,
+    avatar: `https://ui-avatars.com/api/?name=${encodeURIComponent(name)}&background=random`,
   }
 }
 
@@ -54,7 +55,7 @@ function delay(ms = 500): Promise<void> {
   return new Promise(resolve => setTimeout(resolve, ms))
 }
 
-export const mockAuthService = {
+class MockAuthService implements IAuthService {
   async login(credentials: LoginCredentials): Promise<AuthResponse> {
     await delay()
 
@@ -72,7 +73,7 @@ export const mockAuthService = {
       user: createUserObject(user.email, user.name),
       token,
     }
-  },
+  }
 
   async register(credentials: RegisterCredentials): Promise<AuthResponse> {
     await delay()
@@ -95,13 +96,13 @@ export const mockAuthService = {
       user: createUserObject(credentials.email, credentials.name),
       token,
     }
-  },
+  }
 
   async logout(): Promise<void> {
     await delay(200)
     // In mock, we just simulate success
     console.log('[Mock] User logged out')
-  },
+  }
 
   async forgotPassword(data: ForgotPasswordData): Promise<{ message: string }> {
     await delay()
@@ -113,7 +114,7 @@ export const mockAuthService = {
     return {
       message: `Password reset link has been sent to ${data.email} (mock - check console)`,
     }
-  },
+  }
 
   async resetPassword(data: ResetPasswordData): Promise<{ message: string }> {
     await delay()
@@ -130,7 +131,7 @@ export const mockAuthService = {
     return {
       message: 'Password has been reset successfully',
     }
-  },
+  }
 
   async changePassword(_data: ChangePasswordData): Promise<{ message: string }> {
     await delay()
@@ -141,7 +142,7 @@ export const mockAuthService = {
     return {
       message: 'Password has been changed successfully',
     }
-  },
+  }
 
   async getCurrentUser(): Promise<User> {
     await delay(200)
@@ -151,5 +152,7 @@ export const mockAuthService = {
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     const demoUser = mockUsers.get('demo@example.com')!
     return createUserObject(demoUser.email, demoUser.name)
-  },
+  }
 }
+
+export const mockAuthService = new MockAuthService()

@@ -11,7 +11,7 @@ import { useForm } from 'vee-validate'
 import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRoute, useRouter } from 'vue-router'
-import type { ResetPasswordData } from '@registry/modules/auth/types/user'
+import type { ResetPasswordData } from '@registry/modules/auth/types/user.type'
 
 const { t } = useI18n()
 const route = useRoute()

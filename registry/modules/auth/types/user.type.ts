@@ -3,8 +3,8 @@ import type { TULID } from '@registry/shared/types/base.type'
 
 export interface User {
   id: TULID
+  name: string
   email: string
-  name?: string
   avatar?: string
 }
 
@@ -14,10 +14,10 @@ export interface LoginCredentials {
 }
 
 export interface RegisterCredentials {
+  name: string
   email: string
   password: string
   passwordConfirmation: string
-  name?: string
 }
 
 export interface ForgotPasswordData {

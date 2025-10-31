@@ -16,6 +16,8 @@ const { t } = useI18n()
 // Navigation links - can be customized via props in the future
 const navLinks = computed(() => [
   { to: '/dashboard', label: t('navigation.dashboard') },
+  { to: '/profile', label: t('navigation.profile') },
+  { to: '/settings', label: t('navigation.settings') },
 ])
 
 const handleLogout = async () => {

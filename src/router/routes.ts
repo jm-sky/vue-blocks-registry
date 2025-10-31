@@ -60,19 +60,34 @@ export const routes: RouteRecordRaw[] = [
         component: () => import('@/pages/demo/Examples.vue'),
       },
       {
-        path: 'examples/dashboard',
+        path: RoutePaths.DEMO_EXAMPLES_DASHBOARD,
         name: RouteNames.DEMO_EXAMPLES_DASHBOARD,
         component: () => import('@/pages/demo/examples/Dashboard.vue'),
       },
       {
-        path: 'examples/auth',
+        path: RoutePaths.DEMO_EXAMPLES_AUTH,
         name: RouteNames.DEMO_EXAMPLES_AUTH,
         component: () => import('@/pages/demo/examples/Auth.vue'),
       },
       {
-        path: 'examples/i18n',
+        path: RoutePaths.DEMO_EXAMPLES_I18N,
         name: RouteNames.DEMO_EXAMPLES_I18N,
         component: () => import('@/pages/demo/I18nDemo.vue'),
+      },
+      {
+        path: RoutePaths.DEMO_EXAMPLES_SETTINGS,
+        name: RouteNames.DEMO_EXAMPLES_SETTINGS,
+        component: () => import('@/pages/demo/examples/Settings.vue'),
+      },
+      {
+        path: RoutePaths.DEMO_EXAMPLES_USER,
+        name: RouteNames.DEMO_EXAMPLES_USER,
+        component: () => import('@/pages/demo/examples/User.vue'),
+      },
+      {
+        path: RoutePaths.DEMO_EXAMPLES_LOGS,
+        name: RouteNames.DEMO_EXAMPLES_LOGS,
+        component: () => import('@/pages/demo/examples/Logs.vue'),
       },
     ],
   },
@@ -121,6 +136,21 @@ export const routes: RouteRecordRaw[] = [
     path: RoutePaths.DASHBOARD,
     name: RouteNames.DASHBOARD,
     component: () => import('@/pages/dashboard/DashboardPage.vue'),
+  },
+  {
+    path: RoutePaths.USER_PROFILE,
+    name: RouteNames.USER_PROFILE,
+    component: () => import('@/pages/user/UserProfilePage.vue'),
+  },
+  {
+    path: RoutePaths.USER_PROFILE_EDIT,
+    name: RouteNames.USER_PROFILE_EDIT,
+    component: () => import('@/pages/user/UserProfileEditPage.vue'),
+  },
+  {
+    path: RoutePaths.SETTINGS,
+    name: RouteNames.SETTINGS,
+    component: () => import('@/pages/settings/SettingsPage.vue'),
   },
   {
     path: '/:pathMatch(.*)*',

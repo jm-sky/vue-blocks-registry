@@ -10,7 +10,7 @@ import { toTypedSchema } from '@vee-validate/zod'
 import { useForm } from 'vee-validate'
 import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
-import type { ChangePasswordData } from '@registry/modules/auth/types/user'
+import type { ChangePasswordData } from '@registry/modules/auth/types/user.type'
 
 const { t } = useI18n()
 const { changePassword, isChangePasswordLoading } = useAuth()

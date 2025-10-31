@@ -9,7 +9,7 @@ import { toTypedSchema } from '@vee-validate/zod'
 import { useForm } from 'vee-validate'
 import { useI18n } from 'vue-i18n'
 import { useRouter } from 'vue-router'
-import type { RegisterCredentials } from '@registry/modules/auth/types/user'
+import type { RegisterCredentials } from '@registry/modules/auth/types/user.type'
 
 const { t } = useI18n()
 const router = useRouter()
@@ -45,7 +45,9 @@ const onSubmit = handleSubmit(async (values: RegisterCredentials) => {
   <form class="space-y-4" @submit="onSubmit">
     <FormField v-slot="{ componentField }" name="name">
       <FormItem>
-        <FormLabel>{{ t('auth.form.name') }}</FormLabel>
+        <FormLabel required>
+          {{ t('auth.form.name') }}
+        </FormLabel>
         <FormControl>
           <Input type="text" :placeholder="t('auth.form.name_placeholder')" v-bind="componentField" />
         </FormControl>

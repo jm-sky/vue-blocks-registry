@@ -2,9 +2,13 @@
 // This file contains only messages for registry components (auth, common, validation, errors)
 // Demo-specific messages should be in src/i18n/locales/
 
+import { authPl } from '@registry/modules/auth/i18n/index'
+import { logsPl } from '@registry/modules/logs/i18n'
+import { settingsPl } from '@registry/modules/settings/i18n'
+import { userPl } from '@registry/modules/user/i18n'
+
 export default {
   common: {
-    app_name: 'MojaAplikacja',
     welcome: 'Witaj',
     loading: 'Ładowanie...',
     error: 'Błąd',
@@ -31,86 +35,6 @@ export default {
       copy: 'Skopiuj',
     },
   },
-  auth: {
-    login: 'Zaloguj się',
-    logout: 'Wyloguj się',
-    register: 'Zarejestruj się',
-    email: 'Email',
-    password: 'Hasło',
-    password_confirm: 'Potwierdź hasło',
-    forgot_password: 'Zapomniałeś hasła?',
-    reset_password: 'Resetuj hasło',
-    change_password: 'Zmień hasło',
-    remember_me: 'Zapamiętaj mnie',
-    login_success: 'Zalogowano pomyślnie',
-    logout_success: 'Wylogowano pomyślnie',
-    register_success: 'Rejestracja zakończona sukcesem',
-    invalid_credentials: 'Nieprawidłowy email lub hasło',
-    already_have_account: 'Masz już konto?',
-    dont_have_account: 'Nie masz konta?',
-    sign_in: 'Zaloguj się',
-    sign_up: 'Zarejestruj się',
-    sign_in_to_account: 'Zaloguj się do swojego konta',
-    create_account: 'Utwórz nowe konto',
-    current_password: 'Obecne hasło',
-    new_password: 'Nowe hasło',
-    new_password_confirm: 'Potwierdź nowe hasło',
-    password_changed: 'Hasło zostało zmienione',
-    reset_link_sent: 'Link do resetowania hasła został wysłany na Twój email',
-    send_reset_link: 'Wyślij link',
-    back_to_login: 'Powrót do logowania',
-    reset_token: 'Token resetowania',
-    reset_code: 'Kod resetowania',
-    email_placeholder: 'twoj.email@example.com',
-    password_requirements: 'Hasło musi mieć co najmniej 8 znaków',
-    token_placeholder: 'Wprowadź token z emaila',
-    enter_new_password: 'Wprowadź nowe hasło',
-    login_with_google: 'Kontynuuj z Google',
-    links: {
-      or_create_account: 'Lub utwórz nowe konto',
-      create_new_account: 'Utwórz nowe konto',
-      or_sign_in: 'Masz już konto?',
-      sign_in_existing: 'Zaloguj się do istniejącego konta',
-    },
-    official_form: {
-      title: 'Zaloguj się',
-      description: 'Wpisz email i hasło, aby uzyskać dostęp do konta',
-      forgot_password_link: 'Zapomniałeś hasła?',
-      logging_in: 'Logowanie...',
-      login_with_google: 'Kontynuuj z Google',
-      no_account: 'Nie masz konta?',
-      sign_up_link: 'Zarejestruj się',
-    },
-    form: {
-      name: 'Imię i nazwisko',
-      name_placeholder: 'Wprowadź swoje imię i nazwisko',
-      email_placeholder: 'Wprowadź swój email',
-      password_placeholder: 'Wprowadź swoje hasło',
-      password_confirm_placeholder: 'Potwierdź swoje hasło',
-      current_password_placeholder: 'Wprowadź obecne hasło',
-      new_password_placeholder: 'Wprowadź nowe hasło',
-      new_password_confirm_placeholder: 'Potwierdź nowe hasło',
-      submit_login: 'Zaloguj się',
-      submit_register: 'Utwórz konto',
-      submit_reset: 'Wyślij link resetujący',
-      submit_reset_password: 'Resetuj hasło',
-      submit_change_password: 'Zmień hasło',
-    },
-    forgot_password_page: {
-      title: 'Zapomniałeś hasła?',
-      subtitle: 'Wprowadź swój adres email, a wyślemy Ci link do zresetowania hasła.',
-      back_to_login: 'Powrót do logowania',
-    },
-    reset_password_page: {
-      title: 'Ustaw nowe hasło',
-      subtitle: 'Wprowadź nowe hasło poniżej',
-      back_to_login: 'Powrót do logowania',
-    },
-    change_password_page: {
-      title: 'Zmień hasło',
-      subtitle: 'Zaktualizuj hasło do swojego konta',
-    },
-  },
   validation: {
     required: 'To pole jest wymagane',
     email: 'Nieprawidłowy adres email',
@@ -127,4 +51,9 @@ export default {
     not_found: 'Zasób nie został znaleziony',
     server_error: 'Błąd serwera. Spróbuj ponownie później',
   },
+  // Module locales (merged)
+  ...authPl,
+  ...userPl,
+  ...settingsPl,
+  ...logsPl,
 }

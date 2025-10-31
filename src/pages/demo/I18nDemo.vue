@@ -54,14 +54,6 @@ const { currentLocale } = useLocale()
       <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
         <div class="p-4 bg-accent/10 rounded">
           <p class="text-sm text-muted-foreground">
-            App Name
-          </p>
-          <p class="font-medium">
-            {{ t('common.app_name') }}
-          </p>
-        </div>
-        <div class="p-4 bg-accent/10 rounded">
-          <p class="text-sm text-muted-foreground">
             Loading
           </p>
           <p class="font-medium">

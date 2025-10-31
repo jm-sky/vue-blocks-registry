@@ -2,9 +2,13 @@
 // This file contains only messages for registry components (auth, common, validation, errors)
 // Demo-specific messages should be in src/i18n/locales/
 
+import { authEn } from '@registry/modules/auth/i18n/index'
+import { logsEn } from '@registry/modules/logs/i18n'
+import { settingsEn } from '@registry/modules/settings/i18n'
+import { userEn } from '@registry/modules/user/i18n'
+
 export default {
   common: {
-    app_name: 'MyApp',
     welcome: 'Welcome',
     loading: 'Loading...',
     error: 'Error',
@@ -31,86 +35,6 @@ export default {
       copy: 'Copy',
     },
   },
-  auth: {
-    login: 'Login',
-    logout: 'Logout',
-    register: 'Register',
-    email: 'Email',
-    password: 'Password',
-    password_confirm: 'Confirm Password',
-    forgot_password: 'Forgot Password?',
-    reset_password: 'Reset Password',
-    change_password: 'Change Password',
-    remember_me: 'Remember me',
-    login_success: 'Logged in successfully',
-    logout_success: 'Logged out successfully',
-    register_success: 'Registration successful',
-    invalid_credentials: 'Invalid email or password',
-    already_have_account: 'Already have an account?',
-    dont_have_account: 'Don\'t have an account?',
-    sign_in: 'Sign in',
-    sign_up: 'Sign up',
-    sign_in_to_account: 'Sign in to your account',
-    create_account: 'Create a new account',
-    current_password: 'Current Password',
-    new_password: 'New Password',
-    new_password_confirm: 'Confirm New Password',
-    password_changed: 'Password changed successfully',
-    reset_link_sent: 'Password reset link has been sent to your email',
-    send_reset_link: 'Send Reset Link',
-    back_to_login: 'Back to Login',
-    reset_token: 'Reset Token',
-    reset_code: 'Reset Code',
-    email_placeholder: 'your.email@example.com',
-    password_requirements: 'Password must be at least 8 characters long',
-    token_placeholder: 'Enter the token from your email',
-    enter_new_password: 'Enter your new password',
-    login_with_google: 'Continue with Google',
-    links: {
-      or_create_account: 'Or create a new account',
-      create_new_account: 'Create new account',
-      or_sign_in: 'Already have an account?',
-      sign_in_existing: 'Sign in to existing account',
-    },
-    official_form: {
-      title: 'Sign in',
-      description: 'Enter your email and password to access your account',
-      forgot_password_link: 'Forgot password?',
-      logging_in: 'Signing in...',
-      login_with_google: 'Continue with Google',
-      no_account: "Don't have an account?",
-      sign_up_link: 'Sign up',
-    },
-    form: {
-      name: 'Full Name',
-      name_placeholder: 'Enter your full name',
-      email_placeholder: 'Enter your email',
-      password_placeholder: 'Enter your password',
-      password_confirm_placeholder: 'Confirm your password',
-      current_password_placeholder: 'Enter your current password',
-      new_password_placeholder: 'Enter your new password',
-      new_password_confirm_placeholder: 'Confirm your new password',
-      submit_login: 'Sign in',
-      submit_register: 'Create account',
-      submit_reset: 'Send reset link',
-      submit_reset_password: 'Reset Password',
-      submit_change_password: 'Change Password',
-    },
-    forgot_password_page: {
-      title: 'Forgot your password?',
-      subtitle: 'Enter your email address and we will send you a link to reset your password.',
-      back_to_login: 'Back to login',
-    },
-    reset_password_page: {
-      title: 'Set New Password',
-      subtitle: 'Enter your new password below',
-      back_to_login: 'Back to Login',
-    },
-    change_password_page: {
-      title: 'Change Password',
-      subtitle: 'Update your account password',
-    },
-  },
   validation: {
     required: 'This field is required',
     email: 'Invalid email address',
@@ -127,4 +51,9 @@ export default {
     not_found: 'Resource not found',
     server_error: 'Server error. Please try again later',
   },
+  // Module locales (merged)
+  ...authEn,
+  ...userEn,
+  ...settingsEn,
+  ...logsEn,
 }

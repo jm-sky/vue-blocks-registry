@@ -7,6 +7,3 @@ export const settingsRoutes = [
   },
 ]
 
-
-
-

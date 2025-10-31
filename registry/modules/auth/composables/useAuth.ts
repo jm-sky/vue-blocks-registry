@@ -8,6 +8,7 @@ import {
 } from '@registry/modules/auth/utils/queryUtils'
 // modules/auth/composables/useAuth.ts
 import { useMutation, useQuery, useQueryClient } from '@tanstack/vue-query'
+import { computed } from 'vue'
 import type {
   ChangePasswordData,
   ForgotPasswordData,
@@ -15,8 +16,8 @@ import type {
   RegisterCredentials,
   ResetPasswordData,
   User
-} from '@registry/modules/auth/types/user'
-import type { AuthResponse } from '@registry/modules/auth/types/user'
+} from '@registry/modules/auth/types/user.type'
+import type { AuthResponse } from '@registry/modules/auth/types/user.type'
 
 /**
  * Hook for fetching current user data
@@ -164,11 +165,11 @@ export function useAuth() {
   const resetPasswordMutation = useResetPassword()
   const changePasswordMutation = useChangePassword()
 
-  // Computed values
-  const user = currentUserQuery.data.value ?? authStore.user
-  const isAuthenticated = !!authStore.token && !!user
-  const isLoading = currentUserQuery.isLoading.value
-  const isError = currentUserQuery.isError.value
+  // Computed values (keep refs reactive)
+  const user = computed<User | null>(() => currentUserQuery.data.value ?? authStore.user)
+  const isAuthenticated = computed<boolean>(() => !!authStore.token && !!user.value)
+  const isLoading = currentUserQuery.isLoading
+  const isError = currentUserQuery.isError
 
   // Helper function to refresh user data
   const fetchUser = () => {

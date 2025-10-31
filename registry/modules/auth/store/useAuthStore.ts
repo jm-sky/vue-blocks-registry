@@ -2,7 +2,7 @@ import { JWT_STORE_KEY } from '@registry/shared/config/config'
 // modules/auth/store/useAuthStore.ts
 import { defineStore } from 'pinia'
 import { computed, ref } from 'vue'
-import type { User } from '@registry/modules/auth/types/user'
+import type { User } from '@registry/modules/auth/types/user.type'
 
 export const useAuthStore = defineStore('auth', () => {
   const user = ref<User | null>(null)

@@ -55,6 +55,24 @@ const quickActions = computed(() => [
     color: 'bg-green-600 hover:bg-green-700',
   },
   {
+    title: 'Settings',
+    description: 'Open settings page',
+    href: '/demo/examples/settings',
+    color: 'bg-amber-600 hover:bg-amber-700',
+  },
+  {
+    title: 'User',
+    description: 'Open user profile pages',
+    href: '/demo/examples/user',
+    color: 'bg-sky-600 hover:bg-sky-700',
+  },
+  {
+    title: 'Logs',
+    description: 'Open logs browser',
+    href: '/demo/examples/logs',
+    color: 'bg-stone-700 hover:bg-stone-800',
+  },
+  {
     title: t('dashboard.quick_actions.auth_components.title'),
     description: t('dashboard.quick_actions.auth_components.description'),
     href: '/demo/auth',
