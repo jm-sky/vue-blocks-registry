@@ -7,6 +7,51 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.6.0] - 2025-10-31
+
+### Added
+- **Select Component Suite**: Complete dropdown component collection
+  - Select, SelectContent, SelectTrigger, SelectValue components
+  - SelectGroup, SelectLabel, SelectSeparator for organization
+  - SelectItem, SelectItemText for menu items
+  - SelectScrollUpButton, SelectScrollDownButton for navigation
+  - Full keyboard navigation and accessibility support
+
+- **Setup Command Enhancement**: Automatic Tailwind and proxy configuration
+  - New `--dont-lint` flag to skip linter execution after setup
+  - Automatic addition of Tailwind CSS configuration in vite.config.ts
+  - Automatic addition of server proxy configuration in vite.config.ts
+  - Updated .env.example template with API proxy URL
+
+- **Localization Support**: Expanded i18n coverage
+  - Added authentication localization strings for English and Polish
+  - Added user profile localization strings in English and Polish
+  - Added settings localization strings in English and Polish
+  - Improved internationalization across auth and user modules
+
+- **Enhanced User Profile Features**: 
+  - Profile view page with improved UI and information display
+  - Profile edit page with enhanced form elements
+  - Additional user information and settings management
+
+### Changed
+- **useAuth Composable**: Enhanced flexibility with service parameter
+  - Composable now accepts a service parameter for improved customization
+  - Better separation of concerns and testability
+
+- **Authentication Flow**: Auto-login feature for smoother dashboard experience
+  - Improved user experience with automatic login capabilities
+  - Better integration with dashboard and user flows
+
+- **Settings Page**: Enhanced UI elements and information displays
+  - Improved layout and visual hierarchy
+  - Additional settings management features
+
+### Fixed
+- **Router Injector**: Cleaned up unnecessary code
+- **Auth Forms**: Improved form validation and user feedback
+- **Layout Consistency**: Fixed AuthenticatedLayout display issues
+
 ## [0.5.1] - 2025-10-30
 
 ### Fixed
