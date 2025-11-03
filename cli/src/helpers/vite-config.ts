@@ -2,6 +2,14 @@ import fs from 'fs-extra'
 import path from 'path'
 
 /**
+ * Cleans up double commas in vite config
+ */
+function cleanupDoubleCommas(content: string): string {
+  // Replace double commas with single comma (handles both ',,' and ',\n,' cases)
+  return content.replace(/,\s*,/g, ',')
+}
+
+/**
  * Adds Tailwind CSS plugin to vite.config.ts
  */
 export async function addTailwindToViteConfig(projectPath: string): Promise<void> {
@@ -21,6 +29,9 @@ export async function addTailwindToViteConfig(projectPath: string): Promise<void
       'plugins: [\n    tailwindcss(),'
     )
 
+    // Clean up any double commas that might have been created
+    viteConfig = cleanupDoubleCommas(viteConfig)
+
     await fs.writeFile(viteConfigPath, viteConfig, 'utf-8')
   }
 }
@@ -38,6 +49,9 @@ export async function addProxyToViteConfig(projectPath: string): Promise<void> {
       /(\s+)(}\s*\)\s*)$/m,
       ',\n  server: {\n    proxy: {\n      \'/api\': {\n        target: process.env.VITE_API_PROXY_URL ?? \'http://localhost:8000\',\n        changeOrigin: true,\n      },\n    },\n  },$1$2'
     )
+
+    // Clean up any double commas that might have been created
+    viteConfig = cleanupDoubleCommas(viteConfig)
 
     await fs.writeFile(viteConfigPath, viteConfig, 'utf-8')
   }

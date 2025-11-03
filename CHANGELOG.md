@@ -7,6 +7,63 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.8.0] - 2025-11-03
+
+### Added
+- **Auth Guards Module**: New dedicated router guard system for authentication
+  - `auth-guards` registry item with `authGuard.ts` module
+  - Auto-refresh user data when JWT exists but user data is missing
+  - Auto-logout on 401 Unauthorized errors
+  - `protectRoutes(router)` helper function for easy installation
+  - Added to `authFeat` bundle for automatic inclusion
+
+- **Automatic i18n Module Merging**: `setup --all` now auto-configures i18n
+  - New `src/i18n/index.ts` template with module import anchors
+  - Automatic injection of i18n imports for installed modules (auth, user, settings, logs)
+  - i18n-injector helper that intelligently merges translations
+  - No manual configuration needed - works out of the box
+
+### Changed
+- **Router Guard Injection**: Simplified guard installation process
+  - CLI now injects `protectRoutes()` instead of inline guard code
+  - Updated router template with cleaner example
+  - Guards are now modular and can be imported from separate files
+
+- **Auth Service Interface**: Enhanced user data fetching
+  - `getCurrentUser()` method now properly validates tokens
+  - Mock service validates tokens against localStorage
+  - Better error handling for expired/invalid tokens
+
+- **Route Naming Convention**: Standardized to PascalCase
+  - Dashboard route: `dashboard` → `Dashboard`
+  - Logs route: `logs` → `Logs`
+  - Settings route: `settings` → `Settings`
+  - Consistent with auth routes naming (Login, Register, etc.)
+
+- **Auth Response Type**: Extended with full token information
+  - Added `refreshToken: string`
+  - Added `tokenType: string`
+  - Added `expiresIn: number`
+  - Changed `token` → `accessToken` for clarity
+
+- **User Type**: Extended with additional user properties
+  - Added `isActive: boolean`
+  - Added `isAdmin: boolean`
+  - Added `createdAt: TDateTime`
+  - Mock service now includes all fields
+
+- **i18n Module Structure**: Decoupled module translations
+  - `shared/i18n/locales/en.ts` and `pl.ts` now contain only common messages
+  - Module-specific translations remain in their respective modules
+  - Users merge translations in their own `src/i18n/index.ts`
+  - Prevents broken imports when modules are not installed
+
+### Fixed
+- Removed extra blank lines at end of files (standardized to 1)
+- Fixed Tailwind CSS class in LogoText component (`bg-gradient-to-r`)
+- Improved code readability in auth guard with simplified flow
+- Fixed i18n import errors by removing module dependencies from shared i18n
+
 ## [0.7.3] - 2025-11-03
 
 ### Fixed

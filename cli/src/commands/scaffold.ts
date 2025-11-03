@@ -95,6 +95,12 @@ Examples:
           templatePath: path.join(__dirname, '../../templates/.env.example.template'),
           targetPath: '.env.example',
         },
+        {
+          name: 'i18n/index.ts',
+          description: 'i18n configuration with automatic module merging',
+          templatePath: path.join(__dirname, '../../templates/i18n-index.ts.template'),
+          targetPath: 'src/i18n/index.ts',
+        },
       ]
 
       let filesToGenerate: ScaffoldFile[] = []

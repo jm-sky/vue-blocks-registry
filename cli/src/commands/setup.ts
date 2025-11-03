@@ -324,6 +324,22 @@ Examples:
           const dlxCmd = packageManager.name === 'npm' ? 'npx' : `${packageManager.name} dlx`
           logger.warn(`Installing layouts/authFull/dashboardFull/userFull/settingsFull/logsFull failed. Try manually: ${dlxCmd} vue-blocks-registry add layouts && ${dlxCmd} vue-blocks-registry add --routes --guards authFull && ${dlxCmd} vue-blocks-registry add --routes dashboardFull userFull settingsFull logsFull`)
         }
+
+        // Inject i18n module imports after installing modules with translations
+        if (options.all) {
+          try {
+            const { injectI18nModules } = await import('../helpers/i18n-injector.js')
+            await injectI18nModules({
+              projectRoot: projectPath,
+              modules: ['auth', 'user', 'settings', 'logs'],
+            })
+            logger.success('Injected i18n module imports into src/i18n/index.ts')
+          }
+          catch (error) {
+            logger.warn('Failed to inject i18n module imports. You may need to add them manually.')
+            console.error(error)
+          }
+        }
       }
 
       // Step 10: Run linter to format the modified files (only if not disabled)

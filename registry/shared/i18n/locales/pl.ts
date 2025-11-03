@@ -1,11 +1,8 @@
 // Registry i18n messages - Polish
-// This file contains only messages for registry components (auth, common, validation, errors)
-// Demo-specific messages should be in src/i18n/locales/
-
-import { authPl } from '@registry/modules/auth/i18n/index'
-import { logsPl } from '@registry/modules/logs/i18n'
-import { settingsPl } from '@registry/modules/settings/i18n'
-import { userPl } from '@registry/modules/user/i18n'
+// This file contains common messages shared across all registry components
+// Module-specific messages (auth, logs, settings, user) are in their respective modules
+// To use module translations, import and merge them in your project's i18n config
+// Example: import { authPl } from '@/modules/auth/i18n'
 
 export default {
   common: {
@@ -51,9 +48,4 @@ export default {
     not_found: 'Zasób nie został znaleziony',
     server_error: 'Błąd serwera. Spróbuj ponownie później',
   },
-  // Module locales (merged)
-  ...authPl,
-  ...userPl,
-  ...settingsPl,
-  ...logsPl,
 }

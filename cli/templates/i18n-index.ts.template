@@ -1,28 +1,28 @@
-// Demo app i18n configuration
-// This merges registry messages with demo-specific messages
+// Application i18n configuration
+// This merges registry messages with app-specific messages
 
 import { createI18n } from 'vue-i18n'
-// Import module-specific messages
-import { authEn } from '@registry/modules/auth/i18n/index'
-import { authPl } from '@registry/modules/auth/i18n/index'
-import { logsEn } from '@registry/modules/logs/i18n'
-import { logsPl } from '@registry/modules/logs/i18n'
-import { settingsEn } from '@registry/modules/settings/i18n'
-import { settingsPl } from '@registry/modules/settings/i18n'
-import { userEn } from '@registry/modules/user/i18n'
-import { userPl } from '@registry/modules/user/i18n'
-import { config, LOCALE_STORAGE_KEY, type SupportedLocale } from '@registry/shared/config/config'
+import { config, LOCALE_STORAGE_KEY, type SupportedLocale } from '@/shared/config/config'
 // Import registry common messages (validation, errors, common)
-import registryEn from '@registry/shared/i18n/locales/en'
-import registryPl from '@registry/shared/i18n/locales/pl'
-// Import demo-specific messages (demo, dashboard)
-import demoEn from './locales/en'
-import demoPl from './locales/pl'
+import registryEn from '@/shared/i18n/locales/en'
+import registryPl from '@/shared/i18n/locales/pl'
+// @vbr-insert-module-imports
+// Module-specific i18n imports will be injected here by CLI
+
+// Import app-specific messages (if you have any)
+// import appEn from './locales/en'
+// import appPl from './locales/pl'
+
 import type { I18nOptions } from 'vue-i18n'
 
+// @vbr-insert-module-merges
 // Merge all messages
-const en = { ...registryEn, ...authEn, ...logsEn, ...settingsEn, ...userEn, ...demoEn }
-const pl = { ...registryPl, ...authPl, ...logsPl, ...settingsPl, ...userPl, ...demoPl }
+const en = { ...registryEn }
+const pl = { ...registryPl }
+
+// If you have app-specific messages, merge them here:
+// const en = { ...registryEn, ...appEn }
+// const pl = { ...registryPl, ...appPl }
 
 // Export merged type for type safety
 export type Messages = typeof en
@@ -52,7 +52,7 @@ const getStoredLocale = (): SupportedLocale => {
   return config.i18n.defaultLocale
 }
 
-// i18n configuration for demo app
+// i18n configuration
 const i18nOptions: I18nOptions<{ message: Messages}> = {
   legacy: false, // Use Composition API mode
   locale: getStoredLocale(),
