@@ -97,7 +97,7 @@ Examples:
         },
         {
           name: 'i18n/index.ts',
-          description: 'i18n configuration with automatic module merging',
+          description: 'Application i18n aggregator (merges registry + module translations). See docs/I18N_ARCHITECTURE.md',
           templatePath: path.join(__dirname, '../../templates/i18n-index.ts.template'),
           targetPath: 'src/i18n/index.ts',
         },

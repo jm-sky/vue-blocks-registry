@@ -222,6 +222,31 @@ node ../cli/dist/index.js add button
    - ✅ CORRECT: `import { AlertCircle } from 'lucide-vue-next'` then `<AlertCircle :size="16" />`
    - ❌ WRONG: `<svg xmlns="..." width="16" height="16">...</svg>`
 
+## Module Architecture & Documentation
+
+When working with specific modules or features, refer to these dedicated documentation files:
+
+### i18n (Internationalization)
+- **File:** `docs/I18N_ARCHITECTURE.md`
+- **Purpose:** Explains the two-layer i18n system:
+  - Registry layer (`src/shared/i18n/`) - Base configuration
+  - Application layer (`src/i18n/`) - Module aggregation
+- **Key concepts:**
+  - How `createI18nInstance()` works
+  - Auto-injection of module translations
+  - Anchor comments: `// @vbr-insert-module-imports`, `// @vbr-insert-module-merges`
+- **Use when:** Adding new modules with translations, debugging i18n issues, or modifying i18n templates
+
+### Module Structure
+- **File:** `docs/GUIDELINES.md`
+- **Purpose:** General project structure and modular organization
+- **Use when:** Creating new modules or understanding module layout
+
+### Import Transformations
+- **File:** `docs/IMPORT-TRANSFORMATION.md`
+- **Purpose:** How `@registry/*` imports are transformed to user project aliases
+- **Use when:** Debugging import issues or modifying transformation logic
+
 ## ESLint Import Validation
 
 The project has ESLint rules to enforce correct import patterns:
@@ -244,4 +269,6 @@ Run `pnpm run lint` to check for import violations.
 - `VERSIONING.md` - Complete release workflow
 - `IMPORT-TRANSFORMATION.md` - Import transformation documentation
 - `CHANGELOG.md` - Version history (MUST be updated before releases)
+- `docs/I18N_ARCHITECTURE.md` - i18n system architecture and module translation management
+- `docs/GUIDELINES.md` - Project structure and module guidelines
 - W plikach SPF .vue zawsze pierwszy powinien być <script setup> a potem dopiero <template>

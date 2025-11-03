@@ -1,6 +1,24 @@
 import fs from 'fs-extra'
 import path from 'path'
 
+/**
+ * i18n Injector - Automatic module translation aggregation
+ *
+ * This helper automatically injects module-specific i18n imports into the
+ * application's aggregator file (src/i18n/index.ts).
+ *
+ * ARCHITECTURE:
+ * - Registry provides base i18n config in: src/shared/i18n/
+ * - Modules provide translations in: src/modules/{module}/i18n/
+ * - Application aggregates all in: src/i18n/index.ts (this file)
+ *
+ * For detailed documentation about i18n architecture, see:
+ * docs/I18N_ARCHITECTURE.md
+ *
+ * For module structure guidelines, see:
+ * docs/GUIDELINES.md
+ */
+
 export interface InjectI18nOptions {
   projectRoot: string
   i18nIndexRelative?: string // default: src/i18n/index.ts
@@ -12,6 +30,9 @@ const I18N_MERGES_ANCHOR = '// @vbr-insert-module-merges'
 
 /**
  * Inject i18n module imports and merges into src/i18n/index.ts
+ *
+ * This function is called automatically when installing modules that contain i18n.
+ * It uses special anchor comments in the template to know where to inject code.
  *
  * Example:
  * ```

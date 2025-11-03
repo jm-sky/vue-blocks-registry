@@ -7,6 +7,43 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.8.2] - 2025-11-04
+
+### Added
+- **Select Component**: Added select dropdown component to registry
+  - 11 Select component files (Select, SelectContent, SelectGroup, SelectItem, etc.)
+  - Full keyboard navigation and accessibility support
+  - Added to registry.json with proper dependencies (reka-ui, utils)
+
+- **i18n Architecture Documentation**: Comprehensive documentation for i18n system
+  - New `docs/I18N_ARCHITECTURE.md` explaining two-layer architecture
+  - Documents registry layer (shared/i18n) vs application layer (i18n)
+  - Explains auto-injection mechanism and anchor comments
+  - Troubleshooting guide and best practices
+
+- **Module Documentation Structure**: Added documentation references in CLAUDE.md
+  - New "Module Architecture & Documentation" section
+  - Direct links to specialized docs (i18n, guidelines, imports)
+  - Helps developers and AI agents find relevant documentation
+
+### Changed
+- **i18n Template Architecture**: Eliminated code duplication in i18n configuration
+  - `src/i18n/index.ts` now uses `createI18nInstance()` from registry
+  - Removed duplicated locale detection and configuration logic
+  - Template now only handles message merging, not configuration
+  - Cleaner, more maintainable application-level i18n setup
+
+### Fixed
+- **Module Dependencies**: Fixed missing registry dependencies
+  - `user-pages`: Added button-link, form, input, type-guards dependencies
+  - `settings-pages`: Added button, form, select dependencies
+  - Modules now install all required components automatically
+
+### Documentation
+- Added inline comments in CLI helpers explaining architecture
+- Updated scaffold.ts with reference to I18N_ARCHITECTURE.md
+- Enhanced i18n-injector.ts with architecture documentation links
+
 ## [0.8.1] - 2025-11-03
 
 ### Fixed

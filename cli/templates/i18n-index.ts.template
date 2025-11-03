@@ -1,22 +1,23 @@
 // Application i18n configuration
-// This merges registry messages with app-specific messages
+// This file merges registry messages with module-specific messages
+// and creates the i18n instance for your application.
+//
+// IMPORTANT: This file uses createI18nInstance() from @/shared/i18n
+// instead of duplicating the i18n configuration logic.
 
-import { createI18n } from 'vue-i18n'
-import { config, LOCALE_STORAGE_KEY, type SupportedLocale } from '@/shared/config/config'
-// Import registry common messages (validation, errors, common)
+import { createI18nInstance } from '@/shared/i18n'
+// Import registry base messages (validation, errors, common)
 import registryEn from '@/shared/i18n/locales/en'
 import registryPl from '@/shared/i18n/locales/pl'
 // @vbr-insert-module-imports
-// Module-specific i18n imports will be injected here by CLI
+// Module-specific i18n imports will be injected here by CLI when you install modules
 
-// Import app-specific messages (if you have any)
+// Import app-specific messages (if you have any custom translations)
 // import appEn from './locales/en'
 // import appPl from './locales/pl'
 
-import type { I18nOptions } from 'vue-i18n'
-
 // @vbr-insert-module-merges
-// Merge all messages
+// Merge all messages together
 const en = { ...registryEn }
 const pl = { ...registryPl }
 
@@ -27,43 +28,14 @@ const pl = { ...registryPl }
 // Export merged type for type safety
 export type Messages = typeof en
 
-const SUPPORTED_LOCALES: SupportedLocale[] = ['en', 'pl']
-
 /**
- * Get stored locale, browser preferred locale, or default from config
+ * Application i18n instance with all merged messages
+ * Uses createI18nInstance from registry which handles locale detection,
+ * localStorage persistence, and browser language detection
  */
-const getStoredLocale = (): SupportedLocale => {
-  // 1. Check localStorage
-  const stored = localStorage.getItem(LOCALE_STORAGE_KEY)
-  if (stored && SUPPORTED_LOCALES.includes(stored as SupportedLocale)) {
-    return stored as SupportedLocale
-  }
-
-  // 2. Check browser preferred language
-  const browserLanguages = navigator.languages.length > 0 ? navigator.languages : [navigator.language]
-  for (const lang of browserLanguages) {
-    const languageCode = lang.split('-')[0]?.toLowerCase()
-    if (languageCode && SUPPORTED_LOCALES.includes(languageCode as SupportedLocale)) {
-      return languageCode as SupportedLocale
-    }
-  }
-
-  // 3. Use default from config
-  return config.i18n.defaultLocale
-}
-
-// i18n configuration
-const i18nOptions: I18nOptions<{ message: Messages}> = {
-  legacy: false, // Use Composition API mode
-  locale: getStoredLocale(),
-  fallbackLocale: config.i18n.fallbackLocale,
+export const i18n = createI18nInstance({
   messages: {
     en,
     pl,
   },
-  globalInjection: true,
-  missingWarn: import.meta.env.DEV,
-  fallbackWarn: import.meta.env.DEV,
-}
-
-export const i18n = createI18n(i18nOptions)
+})

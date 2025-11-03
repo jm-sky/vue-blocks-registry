@@ -32,3 +32,4 @@ pnpm-workspace.yaml
 
 # Test project
 tmp-test-*
+.test
