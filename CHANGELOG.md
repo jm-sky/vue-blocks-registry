@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.7.1] - 2025-11-03
+
+### Fixed
+- Corrected type paths across modules (auth/logs/settings/user).
+
 ## [0.7.0] - 2025-11-03
 
 ### Added
