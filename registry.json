@@ -425,6 +425,29 @@
       ]
     },
     {
+      "name": "auth-i18n",
+      "type": "registry:lib",
+      "title": "Auth i18n",
+      "description": "Authentication module translations (EN, PL)",
+      "categories": ["lib", "auth", "i18n"],
+      "files": [
+        {
+          "path": "modules/auth/i18n/index.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "modules/auth/i18n/locales/en.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "modules/auth/i18n/locales/pl.ts",
+          "type": "registry:lib"
+        }
+      ],
+      "dependencies": [],
+      "registryDependencies": []
+    },
+    {
       "name": "auth-forms",
       "type": "registry:ui",
       "title": "Auth Forms",
@@ -1047,6 +1070,7 @@
         "authFeat",
         "auth-forms",
         "auth-pages",
+        "auth-i18n",
         "layouts"
       ]
     },
@@ -1076,6 +1100,20 @@
       "registryDependencies": []
     },
     {
+      "name": "user-i18n",
+      "type": "registry:lib",
+      "title": "User i18n",
+      "description": "User module translations (EN, PL)",
+      "categories": ["lib", "user", "i18n"],
+      "files": [
+        { "path": "modules/user/i18n/index.ts", "type": "registry:lib" },
+        { "path": "modules/user/i18n/locales/en.ts", "type": "registry:lib" },
+        { "path": "modules/user/i18n/locales/pl.ts", "type": "registry:lib" }
+      ],
+      "dependencies": [],
+      "registryDependencies": []
+    },
+    {
       "name": "userFull",
       "type": "registry:bundle",
       "title": "Complete User Module",
@@ -1086,6 +1124,7 @@
       "registryDependencies": [
         "user-pages",
         "user-routes",
+        "user-i18n",
         "layouts"
       ]
     },
@@ -1114,6 +1153,20 @@
       "registryDependencies": []
     },
     {
+      "name": "settings-i18n",
+      "type": "registry:lib",
+      "title": "Settings i18n",
+      "description": "Settings module translations (EN, PL)",
+      "categories": ["lib", "settings", "i18n"],
+      "files": [
+        { "path": "modules/settings/i18n/index.ts", "type": "registry:lib" },
+        { "path": "modules/settings/i18n/locales/en.ts", "type": "registry:lib" },
+        { "path": "modules/settings/i18n/locales/pl.ts", "type": "registry:lib" }
+      ],
+      "dependencies": [],
+      "registryDependencies": []
+    },
+    {
       "name": "settingsFull",
       "type": "registry:bundle",
       "title": "Complete Settings Module",
@@ -1124,6 +1177,7 @@
       "registryDependencies": [
         "settings-pages",
         "settings-routes",
+        "settings-i18n",
         "layouts"
       ]
     },
@@ -1166,6 +1220,20 @@
       "registryDependencies": []
     },
     {
+      "name": "logs-i18n",
+      "type": "registry:lib",
+      "title": "Logs i18n",
+      "description": "Logs module translations (EN, PL)",
+      "categories": ["lib", "logs", "i18n"],
+      "files": [
+        { "path": "modules/logs/i18n/index.ts", "type": "registry:lib" },
+        { "path": "modules/logs/i18n/locales/en.ts", "type": "registry:lib" },
+        { "path": "modules/logs/i18n/locales/pl.ts", "type": "registry:lib" }
+      ],
+      "dependencies": [],
+      "registryDependencies": []
+    },
+    {
       "name": "logsFull",
       "type": "registry:bundle",
       "title": "Complete Logs Module",
@@ -1177,6 +1245,7 @@
         "logs-components",
         "logs-pages",
         "logs-routes",
+        "logs-i18n",
         "layouts"
       ]
     },

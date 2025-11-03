@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.8.1] - 2025-11-03
+
+### Fixed
+- **Module i18n Installation**: Added missing i18n registry items
+  - Added `auth-i18n`, `user-i18n`, `settings-i18n`, `logs-i18n` to registry
+  - Translation files now properly install with their respective modules
+  - authFull, userFull, settingsFull, logsFull bundles now include i18n dependencies
+  - Fixes broken imports in automatically generated `src/i18n/index.ts`
+
 ## [0.8.0] - 2025-11-03
 
 ### Added
