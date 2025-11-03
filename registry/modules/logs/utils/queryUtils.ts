@@ -1,6 +1,6 @@
 // modules/logs/utils/queryUtils.ts
 import { HttpStatusCode } from 'axios'
-import type { LogsFilter } from '@registry/modules/logs/types/logs'
+import type { LogsFilter } from '@registry/modules/logs/types/logs.type'
 
 export const logsQueryKeys = {
   all: ['logs'] as const,

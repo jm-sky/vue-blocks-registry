@@ -254,7 +254,7 @@ import type {
   User, 
   LoginCredentials, 
   RegisterCredentials 
-} from '../types/user'
+} from '../types/user.type'
 
 const { login } = useAuthQuery()
 

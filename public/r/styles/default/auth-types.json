@@ -11,7 +11,7 @@
   ],
   "files": [
     {
-      "path": "modules/auth/types/user.ts",
+      "path": "modules/auth/types/user.type.ts",
       "type": "registry:lib"
     }
   ],

@@ -1,4 +1,4 @@
-// modules/settings/types/settings.ts
+// modules/settings/types/settings.type.ts
 
 import type { SupportedLocale } from '@registry/shared/i18n'
 

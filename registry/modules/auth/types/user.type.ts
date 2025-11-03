@@ -1,4 +1,4 @@
-// modules/auth/types/user.ts
+// modules/auth/types/user.type.ts
 import type { TDateTime, TULID } from '@registry/shared/types/base.type'
 
 export interface User {

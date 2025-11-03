@@ -1,4 +1,4 @@
-// modules/user/types/user.ts
+// modules/user/types/user.type.ts
 import type { TULID } from '@registry/shared/types/base.type'
 
 export interface User {

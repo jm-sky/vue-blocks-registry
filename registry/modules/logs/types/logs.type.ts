@@ -1,4 +1,4 @@
-// modules/logs/types/logs.ts
+// modules/logs/types/logs.type.ts
 import type { TDateTime, TULID } from '@registry/shared/types/base.type'
 
 export type LogLevel = 'debug' | 'info' | 'warn' | 'error' | 'fatal'

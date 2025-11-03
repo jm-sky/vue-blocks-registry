@@ -3,7 +3,7 @@ import { logsService } from '@registry/modules/logs/services/logsService'
 import { logsQueryKeys, logsRetryFunction } from '@registry/modules/logs/utils/queryUtils'
 import { useQuery, useQueryClient } from '@tanstack/vue-query'
 import { reactive, toRefs, watch } from 'vue'
-import type { LogsFilter } from '@registry/modules/logs/types/logs'
+import type { LogsFilter } from '@registry/modules/logs/types/logs.type'
 
 export function useLogs(initial?: LogsFilter) {
   const queryClient = useQueryClient()
