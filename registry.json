@@ -136,6 +136,69 @@
       ]
     },
     {
+      "name": "select",
+      "type": "registry:ui",
+      "title": "Select",
+      "description": "Select dropdown component with keyboard navigation and accessibility support",
+      "categories": ["ui", "form"],
+      "files": [
+        {
+          "path": "components/ui/select/Select.vue",
+          "type": "registry:ui"
+        },
+        {
+          "path": "components/ui/select/SelectContent.vue",
+          "type": "registry:ui"
+        },
+        {
+          "path": "components/ui/select/SelectGroup.vue",
+          "type": "registry:ui"
+        },
+        {
+          "path": "components/ui/select/SelectItem.vue",
+          "type": "registry:ui"
+        },
+        {
+          "path": "components/ui/select/SelectItemText.vue",
+          "type": "registry:ui"
+        },
+        {
+          "path": "components/ui/select/SelectLabel.vue",
+          "type": "registry:ui"
+        },
+        {
+          "path": "components/ui/select/SelectScrollDownButton.vue",
+          "type": "registry:ui"
+        },
+        {
+          "path": "components/ui/select/SelectScrollUpButton.vue",
+          "type": "registry:ui"
+        },
+        {
+          "path": "components/ui/select/SelectSeparator.vue",
+          "type": "registry:ui"
+        },
+        {
+          "path": "components/ui/select/SelectTrigger.vue",
+          "type": "registry:ui"
+        },
+        {
+          "path": "components/ui/select/SelectValue.vue",
+          "type": "registry:ui"
+        },
+        {
+          "path": "components/ui/select/index.ts",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "reka-ui"
+      ],
+      "registryDependencies": [
+        "utils"
+      ]
+    },
+    {
       "name": "form",
       "type": "registry:ui",
       "title": "Form",
@@ -1084,8 +1147,19 @@
         { "path": "modules/user/pages/ProfileViewPage.vue", "type": "registry:page" },
         { "path": "modules/user/pages/ProfileEditPage.vue", "type": "registry:page" }
       ],
-      "dependencies": [],
-      "registryDependencies": []
+      "dependencies": [
+        "vee-validate",
+        "@vee-validate/zod",
+        "vue-router",
+        "vue-i18n",
+        "lucide-vue-next"
+      ],
+      "registryDependencies": [
+        "button-link",
+        "form",
+        "input",
+        "type-guards"
+      ]
     },
     {
       "name": "user-routes",
@@ -1137,8 +1211,16 @@
       "files": [
         { "path": "modules/settings/pages/SettingsPage.vue", "type": "registry:page" }
       ],
-      "dependencies": [],
-      "registryDependencies": []
+      "dependencies": [
+        "vee-validate",
+        "@vee-validate/zod",
+        "vue-i18n"
+      ],
+      "registryDependencies": [
+        "button",
+        "form",
+        "select"
+      ]
     },
     {
       "name": "settings-routes",
