@@ -34,6 +34,9 @@ function createUserObject(email: string, name: string): User {
     name,
     email,
     avatar: `https://ui-avatars.com/api/?name=${encodeURIComponent(name)}&background=random`,
+    isActive: true,
+    isAdmin: email === 'demo@example.com', // Demo user is admin
+    createdAt: new Date().toISOString(),
   }
 }
 
@@ -71,7 +74,10 @@ class MockAuthService implements IAuthService {
 
     return {
       user: createUserObject(user.email, user.name),
-      token,
+      accessToken: token,
+      refreshToken: `refresh_${token}`,
+      tokenType: 'Bearer',
+      expiresIn: 3600,
     }
   }
 
@@ -94,7 +100,10 @@ class MockAuthService implements IAuthService {
 
     return {
       user: createUserObject(credentials.email, credentials.name),
-      token,
+      accessToken: token,
+      refreshToken: `refresh_${token}`,
+      tokenType: 'Bearer',
+      expiresIn: 3600,
     }
   }
 
@@ -147,11 +156,26 @@ class MockAuthService implements IAuthService {
   async getCurrentUser(): Promise<User> {
     await delay(200)
 
-    // In mock, we'll return the demo user
-    // In real implementation, this would use the JWT token
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    const demoUser = mockUsers.get('demo@example.com')!
-    return createUserObject(demoUser.email, demoUser.name)
+    // In mock, get token from localStorage (same as authStore)
+    const token = localStorage.getItem('jwt_token')
+
+    if (!token) {
+      throw createHttpError(HttpStatusCode.Unauthorized, 'No token provided')
+    }
+
+    const email = mockTokens.get(token)
+
+    if (!email) {
+      throw createHttpError(HttpStatusCode.Unauthorized, 'Invalid or expired token')
+    }
+
+    const user = mockUsers.get(email)
+
+    if (!user) {
+      throw createHttpError(HttpStatusCode.Unauthorized, 'User not found')
+    }
+
+    return createUserObject(user.email, user.name)
   }
 }
 

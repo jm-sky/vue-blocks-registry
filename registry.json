@@ -404,6 +404,27 @@
       ]
     },
     {
+      "name": "auth-guards",
+      "type": "registry:lib",
+      "title": "Auth Guards",
+      "description": "Router guards for authentication with auto user refetch and 401 handling",
+      "categories": ["lib", "auth", "router"],
+      "files": [
+        {
+          "path": "modules/auth/guards/authGuard.ts",
+          "type": "registry:lib"
+        }
+      ],
+      "dependencies": [
+        "vue-router"
+      ],
+      "registryDependencies": [
+        "auth-store",
+        "auth-service",
+        "auth-config"
+      ]
+    },
+    {
       "name": "auth-forms",
       "type": "registry:ui",
       "title": "Auth Forms",
@@ -998,7 +1019,7 @@
       "name": "authFeat",
       "type": "registry:bundle",
       "title": "Authentication Feature Bundle",
-      "description": "Complete authentication feature with store, services, composables, and validation (no UI)",
+      "description": "Complete authentication feature with store, services, composables, guards, and validation (no UI)",
       "categories": ["bundle", "auth"],
       "files": [],
       "dependencies": [],
@@ -1010,7 +1031,8 @@
         "auth-store",
         "auth-service",
         "auth-validation",
-        "auth-composables"
+        "auth-composables",
+        "auth-guards"
       ]
     },
     {

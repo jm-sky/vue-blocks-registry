@@ -1,11 +1,14 @@
 // modules/auth/types/user.ts
-import type { TULID } from '@registry/shared/types/base.type'
+import type { TDateTime, TULID } from '@registry/shared/types/base.type'
 
 export interface User {
   id: TULID
   name: string
   email: string
   avatar?: string
+  isActive: boolean
+  isAdmin: boolean
+  createdAt: TDateTime
 }
 
 export interface LoginCredentials {
@@ -39,5 +42,8 @@ export interface ChangePasswordData {
 
 export interface AuthResponse {
   user: User
-  token: string
+  accessToken: string
+  refreshToken: string
+  tokenType: string
+  expiresIn: number
 }

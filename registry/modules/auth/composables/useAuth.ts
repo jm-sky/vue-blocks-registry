@@ -47,7 +47,7 @@ export function useLogin(service?: IAuthService) {
   return useMutation({
     mutationFn: async (credentials: LoginCredentials) => {
       const response = await (service ?? authService).login(credentials)
-      authStore.setToken(response.token)
+      authStore.setToken(response.accessToken)
       return response
     },
     onSuccess: async (data: AuthResponse) => {
@@ -75,7 +75,7 @@ export function useRegister(service?: IAuthService) {
   return useMutation({
     mutationFn: async (credentials: RegisterCredentials) => {
       const response = await (service ?? authService).register(credentials)
-      authStore.setToken(response.token)
+      authStore.setToken(response.accessToken)
       return response
     },
     onSuccess: async (data: AuthResponse) => {

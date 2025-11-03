@@ -42,6 +42,7 @@ class AuthService implements IAuthService {
   }
 
   async getCurrentUser(): Promise<User> {
+    // Token is sent via apiClient interceptor (Authorization header)
     const response = await apiClient.get<User>('/auth/me')
     return response.data
   }

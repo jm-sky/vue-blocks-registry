@@ -9,13 +9,7 @@ const router = createRouter({
 // @vbr-insert-guards
 // (Do not remove) – global guards can be injected here by CLI
 // Example:
-// router.beforeEach((to, _from, next) => {
-//   const requiresAuth = to.matched.some(r => r.meta?.requiresAuth)
-//   const requiresGuest = to.matched.some(r => r.meta?.requiresGuest)
-//   const isAuthenticated = useAuthStore().isAuthenticated
-//   if (requiresAuth && !isAuthenticated) return next({ name: 'login', query: { redirectTo: to.fullPath } })
-//   if (requiresGuest && isAuthenticated) return next({ name: 'dashboard' })
-//   next()
-// })
+// import { protectRoutes } from '@/modules/auth/guards/authGuard'
+// protectRoutes(router)
 
 export default router
