@@ -1,0 +1,28 @@
+{
+  "$schema": "../../../../registry-item-schema.json",
+  "name": "logs-i18n",
+  "type": "registry:lib",
+  "title": "Logs i18n",
+  "description": "Logs module translations (EN, PL)",
+  "categories": [
+    "lib",
+    "logs",
+    "i18n"
+  ],
+  "files": [
+    {
+      "path": "modules/logs/i18n/index.ts",
+      "type": "registry:lib"
+    },
+    {
+      "path": "modules/logs/i18n/locales/en.ts",
+      "type": "registry:lib"
+    },
+    {
+      "path": "modules/logs/i18n/locales/pl.ts",
+      "type": "registry:lib"
+    }
+  ],
+  "dependencies": [],
+  "registryDependencies": []
+}

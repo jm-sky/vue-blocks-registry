@@ -13,6 +13,7 @@
   "registryDependencies": [
     "settings-pages",
     "settings-routes",
+    "settings-i18n",
     "layouts"
   ]
 }

@@ -13,6 +13,7 @@
   "registryDependencies": [
     "user-pages",
     "user-routes",
+    "user-i18n",
     "layouts"
   ]
 }

@@ -1,0 +1,28 @@
+{
+  "$schema": "../../../../registry-item-schema.json",
+  "name": "user-i18n",
+  "type": "registry:lib",
+  "title": "User i18n",
+  "description": "User module translations (EN, PL)",
+  "categories": [
+    "lib",
+    "user",
+    "i18n"
+  ],
+  "files": [
+    {
+      "path": "modules/user/i18n/index.ts",
+      "type": "registry:lib"
+    },
+    {
+      "path": "modules/user/i18n/locales/en.ts",
+      "type": "registry:lib"
+    },
+    {
+      "path": "modules/user/i18n/locales/pl.ts",
+      "type": "registry:lib"
+    }
+  ],
+  "dependencies": [],
+  "registryDependencies": []
+}

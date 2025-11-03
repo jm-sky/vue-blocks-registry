@@ -1,0 +1,28 @@
+{
+  "$schema": "../../../../registry-item-schema.json",
+  "name": "auth-i18n",
+  "type": "registry:lib",
+  "title": "Auth i18n",
+  "description": "Authentication module translations (EN, PL)",
+  "categories": [
+    "lib",
+    "auth",
+    "i18n"
+  ],
+  "files": [
+    {
+      "path": "modules/auth/i18n/index.ts",
+      "type": "registry:lib"
+    },
+    {
+      "path": "modules/auth/i18n/locales/en.ts",
+      "type": "registry:lib"
+    },
+    {
+      "path": "modules/auth/i18n/locales/pl.ts",
+      "type": "registry:lib"
+    }
+  ],
+  "dependencies": [],
+  "registryDependencies": []
+}

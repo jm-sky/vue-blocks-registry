@@ -1,0 +1,28 @@
+{
+  "$schema": "../../../../registry-item-schema.json",
+  "name": "settings-i18n",
+  "type": "registry:lib",
+  "title": "Settings i18n",
+  "description": "Settings module translations (EN, PL)",
+  "categories": [
+    "lib",
+    "settings",
+    "i18n"
+  ],
+  "files": [
+    {
+      "path": "modules/settings/i18n/index.ts",
+      "type": "registry:lib"
+    },
+    {
+      "path": "modules/settings/i18n/locales/en.ts",
+      "type": "registry:lib"
+    },
+    {
+      "path": "modules/settings/i18n/locales/pl.ts",
+      "type": "registry:lib"
+    }
+  ],
+  "dependencies": [],
+  "registryDependencies": []
+}

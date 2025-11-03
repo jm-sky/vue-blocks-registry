@@ -14,6 +14,7 @@
     "authFeat",
     "auth-forms",
     "auth-pages",
+    "auth-i18n",
     "layouts"
   ]
 }
