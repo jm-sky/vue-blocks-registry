@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.7.0] - 2025-11-03
+
+### Added
+- **Auth Guards**: Introduced route authentication guards for protected navigation
+
+### Changed
+- **Authentication Flow**: Updated flow to integrate guards and improve UX
+
 ## [0.6.0] - 2025-10-31
 
 ### Added
