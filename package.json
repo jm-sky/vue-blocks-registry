@@ -1,9 +1,9 @@
 {
   "name": "vue-blocks-registry",
-  "version": "0.7.1",
+  "version": "0.7.2",
   "type": "module",
   "description": "A modular system for Vue 3 projects with reusable UI components, features, and bundles",
-  "author": "Jan madeyski <jan.madeyski@gmail.com>",
+  "author": "Jan Madeyski <jan.madeyski@gmail.com>",
   "keywords": [
     "vue",
     "vue3",
