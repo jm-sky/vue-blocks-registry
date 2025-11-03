@@ -12,6 +12,8 @@ export type RegistryType =
   | 'registry:page'
   | 'registry:file'
   | 'registry:feature' // Custom type for feature packages
+  | 'registry:layout' // Layout components
+  | 'registry:bundle' // Complete module bundles
 
 export type FileType =
   | 'registry:ui'

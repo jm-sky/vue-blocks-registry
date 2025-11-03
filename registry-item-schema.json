@@ -25,7 +25,9 @@
         "registry:hook",
         "registry:page",
         "registry:file",
-        "registry:feature"
+        "registry:feature",
+        "registry:layout",
+        "registry:bundle"
       ]
     },
     "title": {
@@ -76,7 +78,9 @@
               "registry:lib",
               "registry:hook",
               "registry:page",
-              "registry:file"
+              "registry:file",
+              "registry:feature",
+              "registry:layout"
             ]
           },
           "target": {

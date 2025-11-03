@@ -92,7 +92,7 @@ export const add = new Command()
   - `registry/layouts/AuthenticatedLayout.vue` (+ Sidebar, AppHeader, Menu items),
   - `registry/layouts/AuthenticatedLayout.vue` (+ Sidebar, AppHeader, Menu items),
   - `registry/app/pages/DashboardPage.vue`,
-  - `registry/modules/user/` (pages: `ProfileView.vue`, `ProfileEdit.vue`; services/types/validation wg standardu modułów),
+  - `registry/modules/user/` (pages: `ProfileViewPage.vue`, `ProfileEditPage.vue`; services/types/validation wg standardu modułów),
   - `registry/modules/settings/` (page: `SettingsPage.vue`; feature + page),
   - `registry/modules/logs/` (page: `LogsBrowserPage.vue`, component: `LogsTable.vue`, `logsService.ts` z paginacją/filtrami/sortowaniem),
   - `registry/shared/router/guards.ts` (composables: `useRequireAuth`, `useRequireGuest` lub global guard setup),

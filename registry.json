@@ -1049,8 +1049,7 @@
         "auth-pages",
         "layouts"
       ]
-    }
-    ,
+    },
     {
       "name": "user-pages",
       "type": "registry:page",
@@ -1058,8 +1057,8 @@
       "description": "User profile pages (view and edit)",
       "categories": ["page", "user"],
       "files": [
-        { "path": "modules/user/pages/ProfileView.vue", "type": "registry:page" },
-        { "path": "modules/user/pages/ProfileEdit.vue", "type": "registry:page" }
+        { "path": "modules/user/pages/ProfileViewPage.vue", "type": "registry:page" },
+        { "path": "modules/user/pages/ProfileEditPage.vue", "type": "registry:page" }
       ],
       "dependencies": [],
       "registryDependencies": []
@@ -1180,8 +1179,7 @@
         "logs-routes",
         "layouts"
       ]
-    }
-    ,
+    },
     {
       "name": "dashboard-pages",
       "type": "registry:page",
