@@ -1,0 +1,26 @@
+{
+  "$schema": "../../../../registry-item-schema.json",
+  "name": "auth-guards",
+  "type": "registry:lib",
+  "title": "Auth Guards",
+  "description": "Router guards for authentication with auto user refetch and 401 handling",
+  "categories": [
+    "lib",
+    "auth",
+    "router"
+  ],
+  "files": [
+    {
+      "path": "modules/auth/guards/authGuard.ts",
+      "type": "registry:lib"
+    }
+  ],
+  "dependencies": [
+    "vue-router"
+  ],
+  "registryDependencies": [
+    "auth-store",
+    "auth-service",
+    "auth-config"
+  ]
+}

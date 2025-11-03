@@ -14,10 +14,6 @@
       "type": "registry:ui"
     },
     {
-      "path": "components/ui/button-link/ButtonLinkExternal.vue",
-      "type": "registry:ui"
-    },
-    {
       "path": "components/ui/button-link/index.ts",
       "type": "registry:ui"
     }

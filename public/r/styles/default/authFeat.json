@@ -3,7 +3,7 @@
   "name": "authFeat",
   "type": "registry:bundle",
   "title": "Authentication Feature Bundle",
-  "description": "Complete authentication feature with store, services, composables, and validation (no UI)",
+  "description": "Complete authentication feature with store, services, composables, guards, and validation (no UI)",
   "categories": [
     "bundle",
     "auth"
@@ -18,6 +18,7 @@
     "auth-store",
     "auth-service",
     "auth-validation",
-    "auth-composables"
+    "auth-composables",
+    "auth-guards"
   ]
 }
