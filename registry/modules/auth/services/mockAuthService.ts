@@ -1,3 +1,4 @@
+import { JWT_STORE_KEY } from '@registry/shared/config/config'
 // Mock auth service for demo purposes (no real backend needed)
 import { HttpStatusCode } from 'axios'
 import type { IAuthService } from '@registry/modules/auth/types/auth.type'
@@ -157,7 +158,7 @@ class MockAuthService implements IAuthService {
     await delay(200)
 
     // In mock, get token from localStorage (same as authStore)
-    const token = localStorage.getItem('jwt_token')
+    const token = localStorage.getItem(JWT_STORE_KEY)
 
     if (!token) {
       throw createHttpError(HttpStatusCode.Unauthorized, 'No token provided')

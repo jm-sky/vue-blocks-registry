@@ -36,6 +36,7 @@ export default {
     required: 'To pole jest wymagane',
     email: 'Nieprawidłowy adres email',
     min: 'Musi mieć co najmniej {min} znaków',
+    min_length: 'Musi mieć co najmniej {min} znaków',
     max: 'Może mieć maksymalnie {max} znaków',
     password_mismatch: 'Hasła nie są identyczne',
     password_too_short: 'Hasło musi mieć co najmniej {min} znaków',

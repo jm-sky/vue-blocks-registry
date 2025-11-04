@@ -66,6 +66,7 @@
     "execa": "^9.6.0",
     "floating-vue": "^5.2.2",
     "fs-extra": "^11.3.2",
+    "jwt-decode": "^4.0.0",
     "lucide-vue-next": "^0.546.0",
     "ora": "^9.0.0",
     "pinia": "^3.0.3",

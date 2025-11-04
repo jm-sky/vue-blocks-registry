@@ -1102,6 +1102,89 @@
       ]
     },
     {
+      "name": "tenantFeat",
+      "type": "registry:feature",
+      "title": "Multi-Tenancy Feature",
+      "description": "Complete multi-tenancy feature with tenant selection, switching, store management, JWT context handling, and tenant guard",
+      "categories": ["feature", "tenant", "multi-tenancy"],
+      "files": [
+        {
+          "path": "features/tenantFeat/types/tenant.types.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "features/tenantFeat/lib/jwtDecoder.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "features/tenantFeat/utils/queryUtils.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "features/tenantFeat/store/useTenantStore.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "features/tenantFeat/services/tenantService.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "features/tenantFeat/services/tenantMembershipService.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "features/tenantFeat/composables/useTenant.ts",
+          "type": "registry:hook"
+        },
+        {
+          "path": "features/tenantFeat/composables/useTenantSwitch.ts",
+          "type": "registry:hook"
+        },
+        {
+          "path": "features/tenantFeat/composables/useTenantList.ts",
+          "type": "registry:hook"
+        },
+        {
+          "path": "features/tenantFeat/config/tenant.config.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "features/tenantFeat/config/routes.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "features/tenantFeat/guards/tenantGuard.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "features/tenantFeat/components/TenantCard.vue",
+          "type": "registry:ui"
+        },
+        {
+          "path": "features/tenantFeat/components/TenantGrid.vue",
+          "type": "registry:ui"
+        },
+        {
+          "path": "features/tenantFeat/pages/SelectTenantPage.vue",
+          "type": "registry:page"
+        },
+        {
+          "path": "features/tenantFeat/index.ts",
+          "type": "registry:lib"
+        }
+      ],
+      "dependencies": [
+        "jwt-decode",
+        "@tanstack/vue-query"
+      ],
+      "registryDependencies": [
+        "utils",
+        "button",
+        "input",
+        "card"
+      ]
+    },
+    {
       "name": "authFeat",
       "type": "registry:bundle",
       "title": "Authentication Feature Bundle",

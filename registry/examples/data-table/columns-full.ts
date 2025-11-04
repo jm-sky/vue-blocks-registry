@@ -46,7 +46,7 @@ export const columns: ColumnDef<Payment>[] = [
           variant: 'ghost',
           onClick: () => { column.toggleSorting(column.getIsSorted() === 'asc') },
         },
-        () => ['Email', h(ArrowUpDown, { class: 'ml-2 h-4 w-4' })],
+        () => ['Email', h(ArrowUpDown, { class: 'ml-2 size-4' })],
       )
     },
     cell: ({ row }) => h('div', { class: 'lowercase' }, row.getValue('email')),
@@ -83,11 +83,11 @@ export const columns: ColumnDef<Payment>[] = [
                 default: () =>
                   h(
                     Button,
-                    { variant: 'ghost', class: 'h-8 w-8 p-0' },
+                    { variant: 'ghost', class: 'size-8 p-0' },
                     {
                       default: () => [
                         h('span', { class: 'sr-only' }, 'Open menu'),
-                        h(MoreHorizontal, { class: 'h-4 w-4' }),
+                        h(MoreHorizontal, { class: 'size-4' }),
                       ],
                     },
                   ),

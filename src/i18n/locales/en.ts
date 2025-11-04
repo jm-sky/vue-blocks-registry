@@ -187,6 +187,10 @@ export default {
         description: 'Logs browser with DataTable'
       }
     },
+    i18n_page: {
+      title: 'Internationalization Demo',
+      description: 'Explore the i18n system with locale switchers and translated messages',
+    },
     dashboard_example: {
       title: 'Dashboard Example',
       description: 'Example dashboard with navigation components, widgets and other elements',
@@ -449,5 +453,9 @@ export default {
     max_length: 'Must be at most {max} characters',
     password_mismatch: 'Passwords do not match',
     invalid_format: 'Invalid format'
+  },
+  tenant: {
+    select_tenant: 'Select Tenant',
+    select_tenant_description: 'Choose a tenant to continue',
   },
 }

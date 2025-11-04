@@ -29,7 +29,7 @@ const handleLogout = async () => {
 <template>
   <div class="min-h-screen bg-muted">
     <!-- Top Bar -->
-    <header class="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <header class="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/60">
       <div class="mx-auto flex h-14 max-w-screen-2xl items-center px-4">
         <div class="mr-4 flex items-center gap-2 md:mr-6">
           <RouterLink to="/dashboard" class="flex items-center gap-2 hover:brightness-80 transition-all duration-300">
@@ -59,6 +59,12 @@ const handleLogout = async () => {
                   class="flex items-center gap-3 px-4 py-2 text-sm text-card-foreground hover:bg-accent hover:text-accent-foreground transition-colors"
                 >
                   {{ t('navigation.profile') }}
+                </RouterLink>
+                <RouterLink
+                  to="/settings"
+                  class="flex items-center gap-3 px-4 py-2 text-sm text-card-foreground hover:bg-accent hover:text-accent-foreground transition-colors"
+                >
+                  {{ t('navigation.settings') }}
                 </RouterLink>
               </template>
             </UserNav>

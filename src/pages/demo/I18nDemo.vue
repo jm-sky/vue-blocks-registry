@@ -3,24 +3,17 @@ import { AlertCircle } from 'lucide-vue-next'
 import { useI18n } from 'vue-i18n'
 import { Alert, AlertDescription, AlertTitle } from '@registry/components/ui/alert'
 import { Button } from '@registry/components/ui/button'
-import { useLocale } from '@registry/shared/i18n'
 import LocaleDropdown from '@registry/shared/i18n/components/LocaleDropdown.vue'
 import LocaleSwitcher from '@registry/shared/i18n/components/LocaleSwitcher.vue'
+import LocaleToggle from '@registry/shared/i18n/components/LocaleToggle.vue'
+import DocsPageHeader from './layouts/partials/DocsPageHeader.vue'
 
 const { t } = useI18n()
-const { currentLocale } = useLocale()
 </script>
 
 <template>
-  <div class="container mx-auto max-w-4xl py-10 space-y-8">
-    <div>
-      <h1 class="text-4xl font-bold mb-4">
-        {{ t('common.welcome') }}
-      </h1>
-      <p class="text-lg text-muted-foreground">
-        Current locale: <span class="font-semibold">{{ currentLocale }}</span>
-      </p>
-    </div>
+  <div class="space-y-8">
+    <DocsPageHeader :title="t('demo.i18n_page.title')" :description="t('demo.i18n_page.description')" />
 
     <!-- Locale Switchers Demo -->
     <div class="space-y-4 border rounded-lg p-6">
@@ -28,19 +21,26 @@ const { currentLocale } = useLocale()
         Locale Switchers
       </h2>
 
-      <div class="space-y-4">
-        <div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="p-4 border rounded">
           <h3 class="text-lg font-medium mb-2">
             Button Switcher
           </h3>
           <LocaleSwitcher />
         </div>
 
-        <div>
+        <div class="p-4 border rounded">
           <h3 class="text-lg font-medium mb-2">
             Dropdown Switcher
           </h3>
           <LocaleDropdown />
+        </div>
+
+        <div class="p-4 border rounded">
+          <h3 class="text-lg font-medium mb-2">
+            Toggle Switcher
+          </h3>
+          <LocaleToggle />
         </div>
       </div>
     </div>
@@ -103,7 +103,7 @@ const { currentLocale } = useLocale()
 
       <div class="space-y-4">
         <Alert>
-          <AlertCircle class="h-4 w-4" />
+          <AlertCircle class="size-4" />
           <AlertTitle>{{ t('auth.sign_in_to_account') }}</AlertTitle>
           <AlertDescription>
             {{ t('auth.dont_have_account') }} {{ t('auth.sign_up') }}
@@ -180,15 +180,15 @@ const { currentLocale } = useLocale()
 
       <div class="space-y-2">
         <Alert variant="destructive">
-          <AlertCircle class="h-4 w-4" />
+          <AlertCircle class="size-4" />
           <AlertDescription>{{ t('errors.generic') }}</AlertDescription>
         </Alert>
         <Alert variant="destructive">
-          <AlertCircle class="h-4 w-4" />
+          <AlertCircle class="size-4" />
           <AlertDescription>{{ t('errors.network') }}</AlertDescription>
         </Alert>
         <Alert variant="destructive">
-          <AlertCircle class="h-4 w-4" />
+          <AlertCircle class="size-4" />
           <AlertDescription>{{ t('errors.unauthorized') }}</AlertDescription>
         </Alert>
       </div>

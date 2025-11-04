@@ -38,6 +38,11 @@ const examples = computed(() => [
     title: t('demo.examples_page.logs_example.title'),
     description: t('demo.examples_page.logs_example.description'),
     to: RoutePaths.DEMO_EXAMPLES_LOGS
+  },
+  {
+    title: t('demo.examples_page.tenant_example.title', 'Multi-Tenancy'),
+    description: t('demo.examples_page.tenant_example.description', 'Tenant selection and switching'),
+    to: RoutePaths.DEMO_EXAMPLES_TENANT
   }
 ])
 </script>

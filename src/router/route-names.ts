@@ -21,6 +21,7 @@ export const RouteNames = {
   DEMO_EXAMPLES_SETTINGS: 'DemoExamplesSettings',
   DEMO_EXAMPLES_USER: 'DemoExamplesUser',
   DEMO_EXAMPLES_LOGS: 'DemoExamplesLogs',
+  DEMO_EXAMPLES_TENANT: 'DemoExamplesTenant',
 
   // Auth routes
   AUTH: 'Auth',
@@ -32,6 +33,7 @@ export const RouteNames = {
   AUTH_CHANGE_PASSWORD: 'ChangePassword',
 
   // Protected routes
+  SELECT_TENANT: 'SelectTenant',
   DASHBOARD: 'Dashboard',
   USER_PROFILE: 'UserProfile',
   USER_PROFILE_EDIT: 'UserProfileEdit',
@@ -64,6 +66,7 @@ export const RoutePaths = {
   DEMO_EXAMPLES_SETTINGS: '/demo/examples/settings',
   DEMO_EXAMPLES_USER: '/demo/examples/user',
   DEMO_EXAMPLES_LOGS: '/demo/examples/logs',
+  DEMO_EXAMPLES_TENANT: '/demo/examples/tenant',
 
   AUTH: '/auth',
   AUTH_LOGIN: '/auth/login',
@@ -73,6 +76,7 @@ export const RoutePaths = {
   AUTH_RESET_PASSWORD: '/auth/reset-password',
   AUTH_CHANGE_PASSWORD: '/auth/change-password',
 
+  SELECT_TENANT: '/select-tenant',
   DASHBOARD: '/dashboard',
   USER_PROFILE: '/profile',
   USER_PROFILE_EDIT: '/profile/edit',

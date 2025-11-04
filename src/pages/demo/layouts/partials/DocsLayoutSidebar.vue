@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { FileText, Home, LayoutDashboard, Link2, MousePointerClick, Table } from 'lucide-vue-next'
+import { Building2Icon, FileText, Home, Languages, LayoutDashboard, Link2, LogOutIcon, MousePointerClick, SettingsIcon, Table, UserIcon } from 'lucide-vue-next'
 import { computed, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import LogoIcon from '@/components/brand/LogoIcon.vue'
@@ -33,6 +33,11 @@ const sidebarNav = computed(() => [
     items: [
       { title: t('demo.sidebar.dashboard'), href: RoutePaths.DEMO_EXAMPLES_DASHBOARD, icon: LayoutDashboard },
       { title: t('demo.sidebar.authentication'), href: RoutePaths.DEMO_EXAMPLES_AUTH, icon: FileText },
+      { title: t('demo.examples_page.i18n_example.title'), href: RoutePaths.DEMO_EXAMPLES_I18N, icon: Languages },
+      { title: t('demo.examples_page.settings_example.title'), href: RoutePaths.DEMO_EXAMPLES_SETTINGS, icon: SettingsIcon },
+      { title: t('demo.examples_page.user_example.title'), href: RoutePaths.DEMO_EXAMPLES_USER, icon: UserIcon },
+      { title: t('demo.examples_page.logs_example.title'), href: RoutePaths.DEMO_EXAMPLES_LOGS, icon: LogOutIcon },
+      { title: t('demo.examples_page.tenant_example.title', 'Multi-Tenancy'), href: RoutePaths.DEMO_EXAMPLES_TENANT, icon: Building2Icon }
     ],
   },
 ])

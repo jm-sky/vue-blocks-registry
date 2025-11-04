@@ -59,7 +59,7 @@ const handleColumnVisibilityChange = (columnId: string, visible: boolean) => {
       <DropdownMenuTrigger as-child>
         <Button variant="outline" class="ml-auto">
           Columns
-          <ChevronDown class="ml-2 h-4 w-4" />
+          <ChevronDown class="ml-2 size-4" />
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">

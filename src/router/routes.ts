@@ -89,6 +89,11 @@ export const routes: RouteRecordRaw[] = [
         name: RouteNames.DEMO_EXAMPLES_LOGS,
         component: () => import('@/pages/demo/examples/Logs.vue'),
       },
+      {
+        path: RoutePaths.DEMO_EXAMPLES_TENANT,
+        name: RouteNames.DEMO_EXAMPLES_TENANT,
+        component: () => import('@/pages/demo/examples/TenantSelect.vue'),
+      },
     ],
   },
   {
@@ -128,9 +133,21 @@ export const routes: RouteRecordRaw[] = [
     ],
   },
   {
+    path: RoutePaths.SELECT_TENANT,
+    name: RouteNames.SELECT_TENANT,
+    component: () => import('@/pages/tenant/SelectTenantPage.vue'),
+    meta: {
+      requiresAuth: true,
+    },
+  },
+  {
     path: RoutePaths.DASHBOARD,
     name: RouteNames.DASHBOARD,
     component: () => import('@/pages/dashboard/DashboardPage.vue'),
+    meta: {
+      requiresAuth: true,
+      requiresTenant: true,
+    },
   },
   {
     path: RoutePaths.USER_PROFILE,

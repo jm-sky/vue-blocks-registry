@@ -1,11 +1,14 @@
 <script setup lang="ts">
 import { LogOut, User } from 'lucide-vue-next'
 import { computed } from 'vue'
+import { useI18n } from 'vue-i18n'
 
 export interface UserNavProps {
   userName?: string
   userEmail?: string
 }
+
+const { t } = useI18n()
 
 const props = defineProps<UserNavProps>()
 
@@ -66,7 +69,15 @@ const handleLogout = () => {
             class="flex items-center gap-3 px-4 py-2 text-sm text-card-foreground hover:bg-accent hover:text-accent-foreground transition-colors"
           >
             <User class="size-4" />
-            Profile
+            {{ t('user.profile.title', 'Profile') }}
+          </RouterLink>
+
+          <RouterLink
+            to="/settings"
+            class="flex items-center gap-3 px-4 py-2 text-sm text-card-foreground hover:bg-accent hover:text-accent-foreground transition-colors"
+          >
+            <User class="size-4" />
+            {{ t('settings.page.title', 'Settings') }}
           </RouterLink>
         </slot>
 
@@ -80,7 +91,7 @@ const handleLogout = () => {
           @click="handleLogout"
         >
           <LogOut class="size-4" />
-          Logout
+          {{ t('auth.logout', 'Logout') }}
         </button>
       </div>
     </div>

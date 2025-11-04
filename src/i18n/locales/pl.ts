@@ -187,6 +187,10 @@ export default {
         description: 'Przeglądarka logów z DataTable'
       }
     },
+    i18n_page: {
+      title: 'Demo Internacjonalizacji',
+      description: 'Poznaj system i18n z przełącznikami języków i przetłumaczonymi wiadomościami',
+    },
     dashboard_example: {
       title: 'Przykładowy Panel',
       description: 'Przykładowy dashboard z komponentami nawigacji, widżetów i innymi elementami',
@@ -456,5 +460,9 @@ export default {
     unauthorized: 'Nie masz uprawnień do wykonania tej akcji',
     not_found: 'Zasób nie został znaleziony',
     server_error: 'Błąd serwera. Spróbuj ponownie później'
+  },
+  tenant: {
+    select_tenant: 'Wybierz Tenant',
+    select_tenant_description: 'Wybierz tenant, aby kontynuować',
   },
 }

@@ -35,7 +35,7 @@ export const columnsWithSelection: ColumnDef<Payment>[] = [
         class: 'h-8 px-2 lg:px-3',
       }, () => [
         'ID',
-        h(ArrowUpDown, { class: 'ml-2 h-4 w-4' })
+        h(ArrowUpDown, { class: 'ml-2 size-4' })
       ])
     },
     cell: ({ row }) => {
@@ -52,7 +52,7 @@ export const columnsWithSelection: ColumnDef<Payment>[] = [
         class: 'h-8 px-2 lg:px-3',
       }, () => [
         'Status',
-        h(ArrowUpDown, { class: 'ml-2 h-4 w-4' })
+        h(ArrowUpDown, { class: 'ml-2 size-4' })
       ])
     },
     cell: ({ row }) => {
@@ -69,7 +69,7 @@ export const columnsWithSelection: ColumnDef<Payment>[] = [
         class: 'h-8 px-2 lg:px-3',
       }, () => [
         'Email',
-        h(ArrowUpDown, { class: 'ml-2 h-4 w-4' })
+        h(ArrowUpDown, { class: 'ml-2 size-4' })
       ])
     },
     cell: ({ row }) => {
@@ -86,7 +86,7 @@ export const columnsWithSelection: ColumnDef<Payment>[] = [
         class: 'h-8 px-2 lg:px-3',
       }, () => [
         'Amount',
-        h(ArrowUpDown, { class: 'ml-2 h-4 w-4' })
+        h(ArrowUpDown, { class: 'ml-2 size-4' })
       ])
     },
     cell: ({ row }) => {

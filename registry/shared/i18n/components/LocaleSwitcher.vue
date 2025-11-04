@@ -21,7 +21,7 @@ const { currentLocale, availableLocales, setLocale } = useLocale()
       ]"
       @click="setLocale(locale.code)"
     >
-      <Languages class="mr-2 h-4 w-4" />
+      <Languages class="mr-2 size-4" />
       {{ locale.code.toUpperCase() }}
     </Button>
   </div>

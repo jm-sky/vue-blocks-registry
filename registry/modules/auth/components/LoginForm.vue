@@ -11,16 +11,22 @@ import { useForm } from 'vee-validate'
 import { useI18n } from 'vue-i18n'
 import { useRouter } from 'vue-router'
 import { toast } from 'vue-sonner'
+import type { IAuthService } from '@registry/modules/auth/types/auth.type'
 import type { LoginCredentials } from '@registry/modules/auth/types/user.type'
+
+const { authService, defaultEmail } = defineProps<{
+  authService?: IAuthService
+  defaultEmail?: string
+}>()
 
 const { t } = useI18n()
 const router = useRouter()
-const { login, isLoggingIn } = useAuth()
+const { login, isLoggingIn } = useAuth(authService)
 
 const { handleSubmit, setErrors } = useForm({
   validationSchema: toTypedSchema(loginSchema),
   initialValues: {
-    email: import.meta.env.VITE_DEFAULT_USER_EMAIL ?? '',
+    email: defaultEmail ?? import.meta.env.VITE_DEFAULT_USER_EMAIL ?? '',
     password: import.meta.env.VITE_DEFAULT_USER_PASSWORD ?? ''
   }
 })

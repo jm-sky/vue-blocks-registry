@@ -13,6 +13,7 @@ import { toTypedSchema } from '@vee-validate/zod'
 import { useForm } from 'vee-validate'
 import { useI18n } from 'vue-i18n'
 import { useRoute, useRouter } from 'vue-router'
+import type { IAuthService } from '@registry/modules/auth/types/auth.type'
 import type { LoginCredentials } from '@registry/modules/auth/types/user.type'
 import type { HTMLAttributes } from 'vue'
 
@@ -24,9 +25,10 @@ const message: string | null = route.meta.message as string | null
 
 const props = defineProps<{
   class?: HTMLAttributes['class']
+  authService?: IAuthService
 }>()
 
-const { login } = useAuth()
+const { login } = useAuth(props.authService)
 
 const { handleSubmit, setErrors, isSubmitting } = useForm({
   validationSchema: toTypedSchema(loginSchema),

@@ -79,39 +79,39 @@ const setPageSize = (size: number) => {
       <div class="flex items-center space-x-2">
         <Button
           variant="outline"
-          class="hidden h-8 w-8 p-0 lg:flex"
+          class="hidden size-8 p-0 lg:flex"
           :disabled="!canPreviousPage"
           @click="goToPage(1)"
         >
           <span class="sr-only">Go to first page</span>
-          <ChevronsLeft class="h-4 w-4" />
+          <ChevronsLeft class="size-4" />
         </Button>
         <Button
           variant="outline"
-          class="h-8 w-8 p-0"
+          class="size-8 p-0"
           :disabled="!canPreviousPage"
           @click="goToPage(page - 1)"
         >
           <span class="sr-only">Go to previous page</span>
-          <ChevronLeft class="h-4 w-4" />
+          <ChevronLeft class="size-4" />
         </Button>
         <Button
           variant="outline"
-          class="h-8 w-8 p-0"
+          class="size-8 p-0"
           :disabled="!canNextPage"
           @click="goToPage(page + 1)"
         >
           <span class="sr-only">Go to next page</span>
-          <ChevronRight class="h-4 w-4" />
+          <ChevronRight class="size-4" />
         </Button>
         <Button
           variant="outline"
-          class="hidden h-8 w-8 p-0 lg:flex"
+          class="hidden size-8 p-0 lg:flex"
           :disabled="!canNextPage"
           @click="goToPage(totalPages)"
         >
           <span class="sr-only">Go to last page</span>
-          <ChevronsRight class="h-4 w-4" />
+          <ChevronsRight class="size-4" />
         </Button>
       </div>
     </div>

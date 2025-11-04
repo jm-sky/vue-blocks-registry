@@ -17,6 +17,9 @@ export default defineConfig({
       '@registry': fileURLToPath(new URL('./registry', import.meta.url))
     },
   },
+  server: {
+    port: Number(process.env.VITE_PORT ?? 5176),
+  },
   optimizeDeps: {
     exclude: [
       '@tailwindcss/oxide',

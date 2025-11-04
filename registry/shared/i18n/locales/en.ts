@@ -36,6 +36,7 @@ export default {
     required: 'This field is required',
     email: 'Invalid email address',
     min: 'Must be at least {min} characters',
+    min_length: 'Must be at least {min} characters',
     max: 'Must be at most {max} characters',
     password_mismatch: 'Passwords do not match',
     password_too_short: 'Password must be at least {min} characters',
