@@ -43,10 +43,22 @@ registry/modules/settings/
 1. **Service Pattern**: Interfejs `IAuthService` + implementacja `AuthService` + `MockAuthService` dla demo
 2. **Store Pattern**: Pinia store z localStorage persistence
 3. **Guard Pattern**: Router guard sprawdzający autentykację
-4. **i18n Pattern**: Modułowe tłumaczenia w `i18n/locales/{en,pl}.ts`
-5. **Validation Pattern**: Zod schematy dla formularzy
-6. **Routes Pattern**: `routes.ts` z `RoutePaths` i `RouteNames`
-7. **Registry Items**: Rozdzielenie na `registry:lib`, `registry:ui`, `registry:page`, `registry:bundle`
+4. **JWT Decoding Pattern**: Dekodowanie JWT payload do sprawdzania flag (wzorzec z `tenantFeat/lib/jwtDecoder.ts`)
+5. **i18n Pattern**: Modułowe tłumaczenia w `i18n/locales/{en,pl}.ts`
+6. **Validation Pattern**: Zod schematy dla formularzy
+7. **Routes Pattern**: `routes.ts` z `RoutePaths` i `RouteNames`
+8. **Registry Items**: Rozdzielenie na `registry:lib`, `registry:ui`, `registry:page`, `registry:bundle`
+
+### Wzorzec JWT Decoding (z Tenant Module)
+
+W module Tenant używa się `jwtDecoder.ts` do dekodowania JWT i wyciągania informacji z payload:
+- `tid` (tenantId) - aktualny tenant context
+- `trol` (tenantRole) - rola użytkownika w tenant
+
+**Analogicznie dla 2FA:**
+- `tfa_pending` (boolean) - czy 2FA jest w trakcie weryfikacji (po login, przed verify)
+- `tfa_verified` (boolean) - czy 2FA zostało zweryfikowane w tej sesji
+- `tfa_method` ('totp' | 'webauthn' | null) - która metoda jest wymagana/zweryfikowana
 
 ## Architektura 2FA Module
 
@@ -77,7 +89,9 @@ registry/modules/auth/
 │   ├── TwoFactorSetupPage.vue     # Strona konfiguracji 2FA
 │   └── TwoFactorVerifyPage.vue     # Strona weryfikacji podczas logowania
 ├── guards/
-│   └── twoFactorGuard.ts          # Guard sprawdzający czy użytkownik ma włączone 2FA
+│   └── twoFactorGuard.ts          # Guard sprawdzający JWT payload dla 2FA status
+├── lib/
+│   └── jwtDecoder.ts              # Dekoder JWT dla 2FA flags (wzorzec z tenantFeat)
 ├── config/
 │   └── twoFactor.config.ts        # Konfiguracja (endpoints, timeout, etc.)
 └── i18n/
@@ -91,11 +105,16 @@ registry/modules/auth/
 ```
 registry/modules/settings/
 ├── pages/
-│   └── SettingsPage.vue           # Rozszerzenie o sekcję Security
+│   └── SettingsPage.vue           # Rozszerzenie o sekcję Security z linkiem do setup
 ├── components/
-│   └── SecuritySettings.vue       # Komponent zarządzania 2FA
-└── routes.ts                      # Dodanie sub-route: /settings/security
+│   └── SecuritySettingsCard.vue   # Karta Security z informacją o status 2FA i linkiem do setup
+└── routes.ts                      # Brak zmian - setup 2FA w /auth/2fa/setup
 ```
+
+**Flow Routes:**
+- `/settings` - Strona ustawień z kartą Security pokazującą status 2FA i guzik "Włącz 2FA" / "Zarządzaj 2FA"
+- `/auth/2fa/setup` - Strona konfiguracji 2FA (setup TOTP, dodawanie passkeys)
+- `/auth/2fa/verify` - Strona weryfikacji podczas logowania (wybór metody: TOTP lub WebAuthn)
 
 ## Szczegółowy Plan Implementacji
 
@@ -160,7 +179,15 @@ export interface TwoFactorStatus {
 export interface TwoFactorVerifyResponse {
   verified: boolean
   method: 'totp' | 'webauthn'
-  sessionToken?: string   // Token sesji po weryfikacji
+  accessToken: string     // Nowy access token z flagą tfa_verified=true w payload
+  refreshToken?: string
+}
+
+// JWT Payload Extension (dla dekodowania JWT)
+export interface TwoFactorJWTPayload {
+  tfa_pending?: boolean    // Czy wymagana weryfikacja 2FA
+  tfa_verified?: boolean   // Czy 2FA zostało zweryfikowane
+  tfa_method?: 'totp' | 'webauthn' | null  // Metoda 2FA
 }
 ```
 
@@ -245,7 +272,8 @@ export const passkeyNameSchema = z.object({
 #### `useWebAuthn.ts`
 - Specjalizowany composable dla WebAuthn
 - Funkcje: register, verify, list, delete
-- Wrapper dla Web Authentication API
+- Używa `@simplewebauthn/browser` do komunikacji z Web Authentication API
+- Wrapper nad `startRegistration()` i `startAuthentication()` z biblioteki
 
 ### 5. Komponenty UI
 
@@ -298,20 +326,31 @@ export const passkeyNameSchema = z.object({
 - Renderuje odpowiedni formularz weryfikacji
 - Redirect po udanej weryfikacji
 
-### 7. Guards
+### 7. Guards i JWT Decoding
+
+#### `lib/jwtDecoder.ts` (nowy plik)
+- Dekodowanie JWT tokenu (wzorzec z `tenantFeat/lib/jwtDecoder.ts`)
+- Funkcje helper:
+  - `getTwoFactorStatusFromToken(token: string): TwoFactorJWTPayload`
+  - `isTwoFactorPending(token: string): boolean`
+  - `isTwoFactorVerified(token: string): boolean`
+  - `getTwoFactorMethod(token: string): 'totp' | 'webauthn' | null`
+- Obsługa mock tokens (dla demo)
 
 #### `twoFactorGuard.ts`
-- Sprawdza czy użytkownik ma włączone 2FA
-- Jeśli tak, przekierowuje do `TwoFactorVerifyPage`
+- **Sprawdza JWT payload** (nie store!) - podobnie jak tenant guard sprawdza `tid`
+- Dekoduje token i sprawdza flagę `tfa_pending` w payload
+- Jeśli `tfa_pending === true` → redirect do `TwoFactorVerifyPage`
+- Jeśli `tfa_verified === true` → pozwól przejść dalej
 - Integracja z `authGuard`:
-  - Po udanym login → sprawdź 2FA status
-  - Jeśli 2FA wymagane → redirect do verify
-  - Po verify → kontynuuj do docelowej trasy
+  - `authGuard` sprawdza podstawową autentykację (token + user)
+  - `twoFactorGuard` sprawdza JWT payload dla 2FA status
+  - Po udanym login backend zwraca token z `tfa_pending: true` jeśli użytkownik ma 2FA enabled
+  - Po verify backend zwraca nowy token z `tfa_verified: true`
 
 #### Modyfikacja `authGuard.ts`
-- Po udanym login sprawdź czy user ma 2FA enabled
-- Jeśli tak, zapisz informację o potrzebie weryfikacji
-- `twoFactorGuard` obsłuży weryfikację
+- Brak zmian - `twoFactorGuard` działa niezależnie i sprawdza JWT payload
+- `twoFactorGuard` powinien być wywoływany po `authGuard` (w `router.beforeEach`)
 
 ### 8. Routes
 
@@ -319,8 +358,8 @@ export const passkeyNameSchema = z.object({
 ```typescript
 export const AuthRoutePaths = {
   // ... istniejące
-  twoFactorSetup: '/settings/security/two-factor',
-  twoFactorVerify: '/auth/2fa/verify',
+  twoFactorSetup: '/auth/2fa/setup',        // Setup 2FA (TOTP + WebAuthn)
+  twoFactorVerify: '/auth/2fa/verify',      // Weryfikacja podczas logowania
 }
 
 export const AuthRouteNames = {
@@ -328,25 +367,27 @@ export const AuthRouteNames = {
   TwoFactorSetup: 'TwoFactorSetup',
   TwoFactorVerify: 'TwoFactorVerify',
 }
-```
 
-#### Modyfikacja `modules/settings/routes.ts`
-```typescript
-export const settingsRoutes = [
+export const authRoutes: RouteRecordRaw[] = [
+  // ... istniejące routes
   {
-    path: '/settings',
-    name: 'Settings',
-    component: () => import('@registry/modules/settings/pages/SettingsPage.vue'),
-    children: [
-      {
-        path: 'security',
-        name: 'SettingsSecurity',
-        component: () => import('@registry/modules/auth/pages/TwoFactorSetupPage.vue'),
-      }
-    ]
-  }
+    path: AuthRoutePaths.twoFactorSetup,
+    name: AuthRouteNames.TwoFactorSetup,
+    meta: { requiresAuth: true },
+    component: () => import('@registry/modules/auth/pages/TwoFactorSetupPage.vue'),
+  },
+  {
+    path: AuthRoutePaths.twoFactorVerify,
+    name: AuthRouteNames.TwoFactorVerify,
+    meta: { requiresAuth: true },  // Wymaga token, ale nie weryfikacji 2FA
+    component: () => import('@registry/modules/auth/pages/TwoFactorVerifyPage.vue'),
+  },
 ]
 ```
+
+#### Brak zmian w `modules/settings/routes.ts`
+- Settings pozostaje na `/settings`
+- Security card będzie linkować do `/auth/2fa/setup` (RouterLink)
 
 ### 9. i18n Translations
 
@@ -448,17 +489,21 @@ interface AuthState {
    - `modules/auth/guards/twoFactorGuard.ts`
    - Dependencies: `auth-store`, `two-factor-service`
 
-8. **`two-factor-config`** (registry:lib)
+8. **`two-factor-jwt-decoder`** (registry:lib)
+   - `modules/auth/lib/jwtDecoder.ts`
+   - Dependencies: `jwt-decode` (już w projekcie)
+
+9. **`two-factor-config`** (registry:lib)
    - `modules/auth/config/twoFactor.config.ts`
    - Routes extensions
 
-9. **`two-factor-i18n`** (registry:lib)
-   - Rozszerzenie `modules/auth/i18n/locales/{en,pl}.ts`
+10. **`two-factor-i18n`** (registry:lib)
+    - Rozszerzenie `modules/auth/i18n/locales/{en,pl}.ts`
 
-10. **`twoFactorFeat`** (registry:bundle)
+11. **`twoFactorFeat`** (registry:bundle)
     - Bundle wszystkich powyższych (bez UI)
 
-11. **`twoFactorFull`** (registry:bundle)
+12. **`twoFactorFull`** (registry:bundle)
     - Bundle z UI (komponenty + strony)
 
 ## Pytania i Wątpliwości
@@ -469,11 +514,12 @@ interface AuthState {
 
 ### 2. Integracja z Settings
 - **Pytanie**: Czy strona konfiguracji 2FA powinna być pod `/settings/security` czy `/auth/2fa/setup`?
-- **Rekomendacja**: `/settings/security` - lepiej pasuje do struktury Settings, ale możemy mieć też route w auth dla kompletności
+- **Rozwiązanie**: ✅ **Zgodnie z sugestią użytkownika** - `/settings` z kartą Security pokazującą status i link do `/auth/2fa/setup` (pełna konfiguracja w auth module)
 
 ### 3. WebAuthn Implementation
 - **Pytanie**: Czy używać biblioteki jak `@simplewebauthn/browser` czy natywne Web Authentication API?
-- **Rekomendacja**: Sprawdzić czy natywne API wystarczy, jeśli nie - użyć biblioteki
+- **Rekomendacja**: ✅ **Użyć `@simplewebauthn/browser`** - biblioteka jest solidna, aktualna (v13.2.2), ma dobrą dokumentację i upraszcza pracę z WebAuthn API. Nativne API jest bardziej verbose i wymaga więcej boilerplate.
+- **Biblioteka**: `@simplewebauthn/browser` - wrapper nad Web Authentication API z lepszym DX
 
 ### 4. QR Code Generation
 - **Pytanie**: Która biblioteka do QR code? (`@vueuse/core` już w projekcie, ale nie ma wbudowanego QR code)
@@ -507,9 +553,10 @@ interface AuthState {
 ## Zależności NPM
 
 ### Nowe zależności
-- `qrcode` lub `qrcode-generator` - dla generowania QR code (TOTP)
-- Ewentualnie `@simplewebauthn/browser` - jeśli potrzebne dla WebAuthn (natywne API może wystarczyć)
-- Typy: `@types/qrcode` (jeśli używamy `qrcode`)
+- `qrcode` - dla generowania QR code (TOTP) - popularna biblioteka z dobrą dokumentacją
+- `@types/qrcode` - typy TypeScript dla qrcode
+- `@simplewebauthn/browser` ✅ - **Wybrana biblioteka** dla WebAuthn (solidna, aktualna, dobra dokumentacja)
+- `jwt-decode` - już w projekcie, używana w tenantFeat
 
 ### Istniejące zależności (już w projekcie)
 - `@vueuse/core` v13.9.0 - już zainstalowane (może być użyteczne dla innych utilities)
@@ -522,10 +569,11 @@ interface AuthState {
 ## Kroki Implementacji (Kolejność)
 
 1. **Faza 1: Fundamenty**
-   - Typy TypeScript (`twoFactor.type.ts`)
+   - Typy TypeScript (`twoFactor.type.ts`) - z `TwoFactorJWTPayload`
+   - JWT Decoder (`lib/jwtDecoder.ts`) - wzorzec z tenantFeat
    - Service interfaces (`ITwoFactorService`)
    - Validation schemas
-   - Mock service (podstawowy)
+   - Mock service (podstawowy) - z mock JWT tokens zawierającymi flagi 2FA
 
 2. **Faza 2: TOTP**
    - TOTP service implementation
@@ -542,10 +590,11 @@ interface AuthState {
    - Composables dla WebAuthn
 
 4. **Faza 4: Integracja**
-   - TwoFactorSetupPage
-   - TwoFactorVerifyPage
-   - Guards (twoFactorGuard + modyfikacja authGuard)
+   - TwoFactorSetupPage (`/auth/2fa/setup`)
+   - TwoFactorVerifyPage (`/auth/2fa/verify`)
+   - Guards (`twoFactorGuard` sprawdzający JWT payload)
    - Routes configuration
+   - Security card w Settings (`SecuritySettingsCard.vue`)
 
 5. **Faza 5: Settings Integration**
    - SecuritySettings component
@@ -573,12 +622,19 @@ interface AuthState {
 otpauth://totp/{Issuer}:{AccountName}?secret={Secret}&issuer={Issuer}&algorithm=SHA1&digits=6&period=30
 ```
 
-### WebAuthn Flow
-1. Frontend: Request challenge do backend
-2. Backend: Zwraca `PublicKeyCredentialCreationOptions`
-3. Frontend: Wywołuje `navigator.credentials.create()`
-4. Frontend: Wysyła credential do backend
+### WebAuthn Flow (z @simplewebauthn/browser)
+1. Frontend: Request challenge do backend (`POST /auth/2fa/webauthn/register`)
+2. Backend: Zwraca `PublicKeyCredentialCreationOptions` (z biblioteki server-side)
+3. Frontend: Wywołuje `startRegistration()` z `@simplewebauthn/browser`
+4. Frontend: Wysyła credential do backend (`POST /auth/2fa/webauthn/complete`)
 5. Backend: Weryfikuje i zapisuje passkey
+
+**Analogicznie dla verify:**
+1. Frontend: Request challenge (`POST /auth/2fa/webauthn/verify`)
+2. Backend: Zwraca `PublicKeyCredentialRequestOptions`
+3. Frontend: Wywołuje `startAuthentication()` z biblioteki
+4. Frontend: Wysyła credential do backend
+5. Backend: Weryfikuje i zwraca nowy token z `tfa_verified: true`
 
 ### Security Considerations
 - TOTP secret nie powinien być logowany
@@ -586,6 +642,8 @@ otpauth://totp/{Issuer}:{AccountName}?secret={Secret}&issuer={Issuer}&algorithm=
 - WebAuthn credentials są przechowywane przez przeglądarkę (nie przez nas)
 - Rate limiting dla verify endpoints
 - Session timeout po weryfikacji 2FA
+- **JWT Payload Security**: Flagi `tfa_pending` i `tfa_verified` są w JWT payload i są weryfikowane przez backend - frontend tylko je odczytuje
+- **Token Refresh**: Po verify 2FA backend zwraca nowy token z odpowiednimi flagami - stary token nie powinien być akceptowany
 
 ## Test Cases
 
@@ -641,19 +699,20 @@ Po implementacji należy zaktualizować:
 - Mock service dla demo aplikacji
 
 ✅ **Registry Items**
-- 11 registry items (types, services, validation, composables, components, pages, guards, config, i18n, bundles)
+- 12 registry items (types, services, validation, composables, components, pages, guards, jwt-decoder, config, i18n, bundles)
 - Pełna modularność i opcjonalność komponentów
 
 ### Kluczowe Decyzje Do Podjęcia
 
 1. ✅ Struktura: 2FA jako część `modules/auth/` (nie osobny moduł)
-2. ⚠️ Routes: `/settings/security` dla setup (z możliwością `/auth/2fa/setup`)
-3. ⚠️ WebAuthn: Natywne API vs biblioteka (`@simplewebauthn/browser`)
-4. ⚠️ QR Code: Biblioteka `qrcode` + wrapper composable
+2. ✅ Routes: `/settings` z kartą Security → link do `/auth/2fa/setup` (setup w auth module)
+3. ✅ WebAuthn: **`@simplewebauthn/browser`** - solidna biblioteka z dobrą dokumentacją
+4. ✅ QR Code: Biblioteka `qrcode` + wrapper composable
 5. ✅ Backup Codes: Automatyczne generowanie 10 kodów
-6. ✅ Session: Flaga w store + timeout 30 min
+6. ✅ Session: JWT payload z flagami `tfa_pending` i `tfa_verified` (wzorzec z tenant module)
 7. ✅ Required: Na początku opcjonalne
 8. ✅ Passkeys: Brak limitu (z ostrzeżeniem przy >10)
+9. ✅ JWT Checking: Guard sprawdza JWT payload (nie store) - wzorzec z tenant guard
 
 ### Szacunkowa Złożoność
 
@@ -664,7 +723,16 @@ Po implementacji należy zaktualizować:
 
 ### Następne Kroki
 
-1. Przejrzeć plan i odpowiedzieć na pytania oznaczone ⚠️
-2. Potwierdzić wybór bibliotek (QR code, WebAuthn)
+1. ✅ Plan zatwierdzony - wszystkie pytania rozwiązane
+2. ✅ Biblioteki wybrane:
+   - QR Code: `qrcode` + `@types/qrcode`
+   - WebAuthn: `@simplewebauthn/browser`
 3. Rozpocząć implementację od Fazy 1 (Fundamenty)
 4. Testować każdą fazę przed przejściem do następnej
+
+### Ważne Uwagi Implementacyjne
+
+- **JWT Payload**: Backend musi zwracać tokeny z flagami `tfa_pending` i `tfa_verified` w payload
+- **Guard Order**: `twoFactorGuard` powinien być wywoływany po `authGuard` (w `router.beforeEach`)
+- **Mock Tokens**: Mock service musi generować tokeny z flagami 2FA (wzorzec z tenant mock tokens)
+- **Settings Integration**: Security card w Settings będzie tylko informacyjna z linkiem - pełna konfiguracja w `/auth/2fa/setup`
