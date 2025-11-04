@@ -18,6 +18,17 @@
       "type": "registry:page"
     }
   ],
-  "dependencies": [],
-  "registryDependencies": []
+  "dependencies": [
+    "vee-validate",
+    "@vee-validate/zod",
+    "vue-router",
+    "vue-i18n",
+    "lucide-vue-next"
+  ],
+  "registryDependencies": [
+    "button-link",
+    "form",
+    "input",
+    "type-guards"
+  ]
 }
