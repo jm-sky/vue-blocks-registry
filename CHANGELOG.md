@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.8.3] - 2025-11-04
+
+### Fixed
+- **Main Template i18n Import**: Fixed incorrect i18n import path in main.ts template
+  - Changed from `@/shared/i18n` to `@/i18n` to match the two-layer i18n architecture
+  - Aligns with documentation in I18N_ARCHITECTURE.md
+  - Fixes import errors when scaffolding new projects
+
 ## [0.8.2] - 2025-11-04
 
 ### Added
