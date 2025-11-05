@@ -7,6 +7,86 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.9.0] - 2025-11-05
+
+### Added
+- **Two-Factor Authentication (2FA) System**: Complete production-ready 2FA implementation
+  - **TOTP Support**: Time-based One-Time Password authentication
+    - QR code generation for easy setup with authenticator apps
+    - Manual secret entry option
+    - 6-digit code verification
+    - 10 backup codes for account recovery
+    - Enable/disable functionality
+    - Multi-step wizard for user-friendly setup
+  - **WebAuthn Passkeys Support**: Modern biometric authentication
+    - Register multiple passkeys with custom names
+    - Biometric authentication (Face ID, Touch ID, fingerprint)
+    - Hardware security key support (YubiKey, etc.)
+    - Manage registered passkeys (list, delete)
+    - Track last usage per passkey
+    - Cross-platform compatibility
+  - **2FA Components**: Complete UI component suite
+    - `TotpSetupForm` - TOTP setup wizard with QR code
+    - `TotpVerifyForm` - TOTP code verification
+    - `TotpQrCode` - QR code display component
+    - `WebAuthnRegisterForm` - Passkey registration
+    - `WebAuthnVerifyForm` - Passkey verification
+    - `PasskeyList` - Passkey management list
+  - **2FA Pages**: Ready-to-use page components
+    - `TwoFactorSetupPage` - Complete 2FA setup page
+    - `TwoFactorVerifyPage` - 2FA verification page
+  - **2FA Services**: Production-ready service layer
+    - `twoFactorService` - API service for 2FA operations
+    - `mockTwoFactorService` - Mock service for development/demos
+    - Full TypeScript type definitions
+  - **2FA Composables**: Vue composables for easy integration
+    - `useTotp` - TOTP setup and verification logic
+    - `useWebAuthn` - WebAuthn passkey management
+    - `useTwoFactor` - Combined 2FA status and methods
+  - **2FA Router Guard**: Automatic route protection
+    - `twoFactorGuard` - Enforces 2FA verification for protected routes
+    - JWT-based 2FA status checking (`tfaPending`, `tfaVerified`, `tfaMethod` flags)
+    - Automatic redirection to verification page when needed
+  - **Security Settings**: Integration with settings module
+    - `SecuritySettingsCard` component for 2FA management
+    - Enable/disable TOTP and WebAuthn
+    - View registered passkeys
+    - Manage backup codes
+  - **JWT Enhancement**: Extended JWT payload with 2FA flags
+    - `tfaPending` - 2FA verification required
+    - `tfaVerified` - 2FA verification completed
+    - `tfaMethod` - Active 2FA method (TOTP or WebAuthn)
+    - Enhanced JWT decoder with 2FA status extraction
+  - **i18n Support**: Full internationalization
+    - English and Polish translations for all 2FA features
+    - Auth module i18n extended with 2FA messages
+    - Settings module i18n extended with security settings
+  - **Documentation**: Comprehensive 2FA guide
+    - `docs/2FA_README.md` - Complete implementation guide
+    - Usage examples and API documentation
+    - Router setup instructions
+    - Mock service usage guide
+  - **Registry Bundles**: New 2FA bundles for easy installation
+    - `twoFactorFeat` - Core 2FA functionality (services, composables, types)
+    - `twoFactorFull` - Complete 2FA bundle (includes UI components and pages)
+  - **Tabs Component**: Added tabs UI component for 2FA setup wizard
+    - Tabs, TabsList, TabsTrigger, TabsContent components
+    - Full keyboard navigation support
+
+### Changed
+- **JWT Types**: Refactored JWT type definitions
+  - Replaced `MockJWTPayload` and `MockJWTPayloadOptions` with `JWTPayload` and `JWTPayloadOptions`
+  - Centralized JWT types in `shared/types/jwt.type.ts`
+  - Enhanced type safety across JWT handling
+- **Router Injector**: Updated router injector to support 2FA routes
+- **Auth Routes**: Extended auth routes with 2FA pages
+  - `/auth/2fa/setup` - 2FA setup page
+  - `/auth/2fa/verify` - 2FA verification page
+
+### Fixed
+- **Code Cleanup**: Removed trailing blank lines in router files
+- **Tenant Service**: Updated to use new JWT types for consistency
+
 ## [0.8.3] - 2025-11-04
 
 ### Fixed
