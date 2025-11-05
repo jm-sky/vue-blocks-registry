@@ -1,13 +1,15 @@
-export interface MockJWTPayloadOptions {
+export type JWTTwoFactorMethod = 'totp' | 'webauthn'
+
+export interface JWTPayloadOptions {
   email: string
   tid?: string
   trol?: string
   tfaPending?: boolean // Whether 2FA verification is required
   tfaVerified?: boolean // Whether 2FA has been verified
-  tfaMethod?: 'totp' | 'webauthn' | null // 2FA method
+  tfaMethod?: JWTTwoFactorMethod | null // 2FA method
 }
 
-export interface MockJWTPayload {
+export interface JWTPayload {
   sub: string    // Subject (User ID)
   email: string  // User Email
   tid?: string   // Tenant ID
@@ -17,5 +19,5 @@ export interface MockJWTPayload {
   aud?: string   // Audience
   tfaPending?: boolean // Whether 2FA verification is required
   tfaVerified?: boolean // Whether 2FA has been verified
-  tfaMethod?: 'totp' | 'webauthn' | null // 2FA method
+  tfaMethod?: JWTTwoFactorMethod | null // 2FA method
 }

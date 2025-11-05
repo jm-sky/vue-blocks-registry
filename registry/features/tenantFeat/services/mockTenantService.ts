@@ -9,7 +9,7 @@ import type {
 } from '../types/tenant.types'
 import type { ITenantService } from '../types/tenantService.type'
 import { TenantRole } from '../types/tenant.types'
-import type { MockJWTPayloadOptions } from '@registry/shared/types/mock.type'
+import type { JWTPayloadOptions } from '@registry/shared/types/jwt.type'
 
 // Mock tenants database (in-memory)
 // Each user (by email) has access to specific tenants with specific roles
@@ -86,7 +86,7 @@ const mockUserTenants = new Map<string, { tenant: Tenant; role: TenantRole }[]>(
  */
 export const generateMockTenantToken = (email: string, tenantId: string, tenantRole: TenantRole): string => {
  // JWT Payload
-  const payload: MockJWTPayloadOptions = {
+  const payload: JWTPayloadOptions = {
     email,
     tid: tenantId,
     trol: tenantRole,

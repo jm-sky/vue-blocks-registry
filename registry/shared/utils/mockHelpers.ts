@@ -1,5 +1,5 @@
 import { JWT_STORE_KEY } from '@registry/shared/config/config'
-import type { MockJWTPayload, MockJWTPayloadOptions } from '../types/mock.type'
+import type { JWTPayload, JWTPayloadOptions } from '../types/jwt.type'
 import { decodeJWT } from './jwtDecoder'
 import type { HttpStatusCode } from 'axios'
 
@@ -25,7 +25,7 @@ export function base64UrlEncode(str: string): string {
     .replace(/=/g, '')
 }
 
-export const generateMockJWT = (options: MockJWTPayloadOptions): string => {
+export const generateMockJWT = (options: JWTPayloadOptions): string => {
   const now = Math.floor(Date.now() / 1000)
   const userId = `usr_${options.email.split('@')[0]}`
 
@@ -36,7 +36,7 @@ export const generateMockJWT = (options: MockJWTPayloadOptions): string => {
   }
 
   // JWT Payload
-  const payload: MockJWTPayload = {
+  const payload: JWTPayload = {
     ...options,
     sub: userId,
     iat: now,
