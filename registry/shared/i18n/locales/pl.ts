@@ -26,6 +26,9 @@ export default {
     next: 'Następny',
     columns: 'Kolumny',
     open_menu: 'Otwórz menu',
+    back: 'Wstecz',
+    done: 'Gotowe',
+    never: 'Nigdy',
     copyToClipboard: {
       success: 'Skopiowano do schowka',
       copied: 'Skopiowano',

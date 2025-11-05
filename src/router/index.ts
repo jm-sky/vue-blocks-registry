@@ -1,5 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import { protectTenantRoutes } from '@registry/features/tenantFeat/guards/tenantGuard'
+import { protectRoutes } from '@registry/modules/auth/guards/authGuard'
+import { protectRoutesWithTwoFactor } from '@registry/modules/auth/guards/twoFactorGuard'
 import { routes } from './routes'
 
 const router = createRouter({
@@ -7,7 +9,9 @@ const router = createRouter({
   routes,
 })
 
-// Protect routes that require tenant context
+// Apply guards in order (auth -> 2FA -> tenant)
+protectRoutes(router)
+protectRoutesWithTwoFactor(router)
 protectTenantRoutes(router)
 
 export default router

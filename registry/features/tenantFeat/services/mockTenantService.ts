@@ -1,5 +1,5 @@
-import { JWT_STORE_KEY } from '@registry/shared/config/config'
 // Mock tenant service for demo purposes (no real backend needed)
+import { createHttpError,delay, generateMockJWT, getCurrentUserEmailFromMockJWT } from '@registry/shared/utils/mockHelpers'
 import { HttpStatusCode } from 'axios'
 import type {
   CreateTenantDto,
@@ -8,8 +8,8 @@ import type {
   UpdateTenantDto,
 } from '../types/tenant.types'
 import type { ITenantService } from '../types/tenantService.type'
-import { decodeJWT } from '../lib/jwtDecoder'
 import { TenantRole } from '../types/tenant.types'
+import type { MockJWTPayloadOptions } from '@registry/shared/types/mock.type'
 
 // Mock tenants database (in-memory)
 // Each user (by email) has access to specific tenants with specific roles
@@ -79,86 +79,20 @@ const mockUserTenants = new Map<string, { tenant: Tenant; role: TenantRole }[]>(
   ],
 ])
 
-// Helper to get current user email from token
-function getCurrentUserEmail(): string | null {
-  const token = localStorage.getItem(JWT_STORE_KEY)
-  if (!token) return null
-
-  try {
-    // Decode JWT token (supports both real JWT and legacy mock tokens)
-    const payload = decodeJWT(token)
-    return payload.email
-  } catch {
-    // Fallback for legacy mock tokens
-    const match = /^mock_jwt_(.+?)_\d+$/.exec(token)
-    return match ? match[1] ?? null : null
-  }
-}
-
-/**
- * Base64URL encoding (JWT-safe base64 encoding)
- */
-function base64UrlEncode(str: string): string {
-  return btoa(str)
-    .replace(/\+/g, '-')
-    .replace(/\//g, '_')
-    .replace(/=/g, '')
-}
 
 /**
  * Generate a proper JWT token with tenant context
  * Creates unsigned JWT (no signature) or with random signature for mock purposes
  */
-function generateTenantToken(email: string, tenantId: string, tenantRole: TenantRole): string {
-  const now = Math.floor(Date.now() / 1000)
-  const userId = `usr_${email.split('@')[0]}`
-
-  // JWT Header (unsigned JWT)
-  const header = {
-    alg: 'none',
-    typ: 'JWT',
-  }
-
-  // JWT Payload
-  const payload = {
-    sub: userId,
-    email: email,
+export const generateMockTenantToken = (email: string, tenantId: string, tenantRole: TenantRole): string => {
+ // JWT Payload
+  const payload: MockJWTPayloadOptions = {
+    email,
     tid: tenantId,
     trol: tenantRole,
-    iat: now,
-    exp: now + 3600, // 1 hour expiration
   }
 
-  // Encode header and payload
-  const encodedHeader = base64UrlEncode(JSON.stringify(header))
-  const encodedPayload = base64UrlEncode(JSON.stringify(payload))
-
-  // For unsigned JWT, third part is empty (ends with dot)
-  // For mock with random signature, generate random base64 string
-  const randomSignature = base64UrlEncode(
-    Math.random().toString(36) + Date.now().toString(36)
-  )
-
-  // Return JWT with random signature (can be changed to empty string for unsigned)
-  return `${encodedHeader}.${encodedPayload}.${randomSignature}`
-}
-
-function createHttpError(status: HttpStatusCode, message: string, errors?: Record<string, string[]>): Error {
-  const error = new Error(message)
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  ;(error as any).response = {
-    status,
-    data: {
-      message,
-      errors,
-    },
-  }
-  return error
-}
-
-// Simulate network delay
-function delay(ms = 500): Promise<void> {
-  return new Promise(resolve => setTimeout(resolve, ms))
+  return generateMockJWT(payload)
 }
 
 class MockTenantService implements ITenantService {
@@ -168,7 +102,7 @@ class MockTenantService implements ITenantService {
   async getTenants(): Promise<Tenant[]> {
     await delay()
 
-    const email = getCurrentUserEmail()
+    const email = getCurrentUserEmailFromMockJWT()
     if (!email) {
       throw createHttpError(HttpStatusCode.Unauthorized, 'User not authenticated')
     }
@@ -187,7 +121,7 @@ class MockTenantService implements ITenantService {
   async getTenant(tenantId: string): Promise<Tenant> {
     await delay()
 
-    const email = getCurrentUserEmail()
+    const email = getCurrentUserEmailFromMockJWT()
     if (!email) {
       throw createHttpError(HttpStatusCode.Unauthorized, 'User not authenticated')
     }
@@ -211,7 +145,7 @@ class MockTenantService implements ITenantService {
   async createTenant(data: CreateTenantDto): Promise<Tenant> {
     await delay()
 
-    const email = getCurrentUserEmail()
+    const email = getCurrentUserEmailFromMockJWT()
     if (!email) {
       throw createHttpError(HttpStatusCode.Unauthorized, 'User not authenticated')
     }
@@ -243,7 +177,7 @@ class MockTenantService implements ITenantService {
   async updateTenant(tenantId: string, data: UpdateTenantDto): Promise<Tenant> {
     await delay()
 
-    const email = getCurrentUserEmail()
+    const email = getCurrentUserEmailFromMockJWT()
     if (!email) {
       throw createHttpError(HttpStatusCode.Unauthorized, 'User not authenticated')
     }
@@ -280,7 +214,7 @@ class MockTenantService implements ITenantService {
   async switchTenant(tenantId: string): Promise<SwitchTenantResponse> {
     await delay(300)
 
-    const email = getCurrentUserEmail()
+    const email = getCurrentUserEmailFromMockJWT()
     if (!email) {
       throw createHttpError(HttpStatusCode.Unauthorized, 'User not authenticated')
     }
@@ -296,7 +230,7 @@ class MockTenantService implements ITenantService {
     }
 
     // Generate new token with tenant context
-    const newToken = generateTenantToken(email, tenantId, userTenant.role)
+    const newToken = generateMockTenantToken(email, tenantId, userTenant.role)
 
     return {
       token: newToken,

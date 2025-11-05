@@ -56,9 +56,9 @@ W module Tenant używa się `jwtDecoder.ts` do dekodowania JWT i wyciągania inf
 - `trol` (tenantRole) - rola użytkownika w tenant
 
 **Analogicznie dla 2FA:**
-- `tfa_pending` (boolean) - czy 2FA jest w trakcie weryfikacji (po login, przed verify)
-- `tfa_verified` (boolean) - czy 2FA zostało zweryfikowane w tej sesji
-- `tfa_method` ('totp' | 'webauthn' | null) - która metoda jest wymagana/zweryfikowana
+- `tfaPending` (boolean) - czy 2FA jest w trakcie weryfikacji (po login, przed verify)
+- `tfaVerified` (boolean) - czy 2FA zostało zweryfikowane w tej sesji
+- `tfaMethod` ('totp' | 'webauthn' | null) - która metoda jest wymagana/zweryfikowana
 
 ## Architektura 2FA Module
 
@@ -179,15 +179,15 @@ export interface TwoFactorStatus {
 export interface TwoFactorVerifyResponse {
   verified: boolean
   method: 'totp' | 'webauthn'
-  accessToken: string     // Nowy access token z flagą tfa_verified=true w payload
+  accessToken: string     // Nowy access token z flagą tfaVerified=true w payload
   refreshToken?: string
 }
 
 // JWT Payload Extension (dla dekodowania JWT)
 export interface TwoFactorJWTPayload {
-  tfa_pending?: boolean    // Czy wymagana weryfikacja 2FA
-  tfa_verified?: boolean   // Czy 2FA zostało zweryfikowane
-  tfa_method?: 'totp' | 'webauthn' | null  // Metoda 2FA
+  tfaPending?: boolean    // Czy wymagana weryfikacja 2FA
+  tfaVerified?: boolean   // Czy 2FA zostało zweryfikowane
+  tfaMethod?: 'totp' | 'webauthn' | null  // Metoda 2FA
 }
 ```
 
@@ -339,14 +339,14 @@ export const passkeyNameSchema = z.object({
 
 #### `twoFactorGuard.ts`
 - **Sprawdza JWT payload** (nie store!) - podobnie jak tenant guard sprawdza `tid`
-- Dekoduje token i sprawdza flagę `tfa_pending` w payload
-- Jeśli `tfa_pending === true` → redirect do `TwoFactorVerifyPage`
-- Jeśli `tfa_verified === true` → pozwól przejść dalej
+- Dekoduje token i sprawdza flagę `tfaPending` w payload
+- Jeśli `tfaPending === true` → redirect do `TwoFactorVerifyPage`
+- Jeśli `tfaVerified === true` → pozwól przejść dalej
 - Integracja z `authGuard`:
   - `authGuard` sprawdza podstawową autentykację (token + user)
   - `twoFactorGuard` sprawdza JWT payload dla 2FA status
-  - Po udanym login backend zwraca token z `tfa_pending: true` jeśli użytkownik ma 2FA enabled
-  - Po verify backend zwraca nowy token z `tfa_verified: true`
+  - Po udanym login backend zwraca token z `tfaPending: true` jeśli użytkownik ma 2FA enabled
+  - Po verify backend zwraca nowy token z `tfaVerified: true`
 
 #### Modyfikacja `authGuard.ts`
 - Brak zmian - `twoFactorGuard` działa niezależnie i sprawdza JWT payload
@@ -634,7 +634,7 @@ otpauth://totp/{Issuer}:{AccountName}?secret={Secret}&issuer={Issuer}&algorithm=
 2. Backend: Zwraca `PublicKeyCredentialRequestOptions`
 3. Frontend: Wywołuje `startAuthentication()` z biblioteki
 4. Frontend: Wysyła credential do backend
-5. Backend: Weryfikuje i zwraca nowy token z `tfa_verified: true`
+5. Backend: Weryfikuje i zwraca nowy token z `tfaVerified: true`
 
 ### Security Considerations
 - TOTP secret nie powinien być logowany
@@ -642,7 +642,7 @@ otpauth://totp/{Issuer}:{AccountName}?secret={Secret}&issuer={Issuer}&algorithm=
 - WebAuthn credentials są przechowywane przez przeglądarkę (nie przez nas)
 - Rate limiting dla verify endpoints
 - Session timeout po weryfikacji 2FA
-- **JWT Payload Security**: Flagi `tfa_pending` i `tfa_verified` są w JWT payload i są weryfikowane przez backend - frontend tylko je odczytuje
+- **JWT Payload Security**: Flagi `tfaPending` i `tfaVerified` są w JWT payload i są weryfikowane przez backend - frontend tylko je odczytuje
 - **Token Refresh**: Po verify 2FA backend zwraca nowy token z odpowiednimi flagami - stary token nie powinien być akceptowany
 
 ## Test Cases
@@ -709,7 +709,7 @@ Po implementacji należy zaktualizować:
 3. ✅ WebAuthn: **`@simplewebauthn/browser`** - solidna biblioteka z dobrą dokumentacją
 4. ✅ QR Code: Biblioteka `qrcode` + wrapper composable
 5. ✅ Backup Codes: Automatyczne generowanie 10 kodów
-6. ✅ Session: JWT payload z flagami `tfa_pending` i `tfa_verified` (wzorzec z tenant module)
+6. ✅ Session: JWT payload z flagami `tfaPending` i `tfaVerified` (wzorzec z tenant module)
 7. ✅ Required: Na początku opcjonalne
 8. ✅ Passkeys: Brak limitu (z ostrzeżeniem przy >10)
 9. ✅ JWT Checking: Guard sprawdza JWT payload (nie store) - wzorzec z tenant guard
@@ -732,7 +732,7 @@ Po implementacji należy zaktualizować:
 
 ### Ważne Uwagi Implementacyjne
 
-- **JWT Payload**: Backend musi zwracać tokeny z flagami `tfa_pending` i `tfa_verified` w payload
+- **JWT Payload**: Backend musi zwracać tokeny z flagami `tfaPending` i `tfaVerified` w payload
 - **Guard Order**: `twoFactorGuard` powinien być wywoływany po `authGuard` (w `router.beforeEach`)
 - **Mock Tokens**: Mock service musi generować tokeny z flagami 2FA (wzorzec z tenant mock tokens)
 - **Settings Integration**: Security card w Settings będzie tylko informacyjna z linkiem - pełna konfiguracja w `/auth/2fa/setup`

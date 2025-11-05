@@ -130,6 +130,22 @@ export const routes: RouteRecordRaw[] = [
         name: RouteNames.AUTH_RESET_PASSWORD,
         component: () => import('@registry/modules/auth/pages/ResetPasswordPage.vue'),
       },
+      {
+        path: RoutePaths.AUTH_TWO_FACTOR_SETUP,
+        name: RouteNames.AUTH_TWO_FACTOR_SETUP,
+        component: () => import('@/pages/auth/TwoFactorSetupPage.vue'),
+        meta: {
+          requiresAuth: true,
+        },
+      },
+      {
+        path: RoutePaths.AUTH_TWO_FACTOR_VERIFY,
+        name: RouteNames.AUTH_TWO_FACTOR_VERIFY,
+        component: () => import('@/pages/auth/TwoFactorVerifyPage.vue'),
+        meta: {
+          requiresAuth: true,
+        },
+      },
     ],
   },
   {

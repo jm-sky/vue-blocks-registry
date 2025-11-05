@@ -8,16 +8,19 @@ import SelectItem from '@registry/components/ui/select/SelectItem.vue'
 import SelectLabel from '@registry/components/ui/select/SelectLabel.vue'
 import SelectTrigger from '@registry/components/ui/select/SelectTrigger.vue'
 import SelectValue from '@registry/components/ui/select/SelectValue.vue'
+import SecuritySettingsCard from '@registry/modules/settings/components/SecuritySettingsCard.vue'
 import { useSettings } from '@registry/modules/settings/composables/useSettings'
 import { settingsSchema } from '@registry/modules/settings/validation/settings.schema'
 import { toTypedSchema } from '@vee-validate/zod'
 import { useForm } from 'vee-validate'
 import { watch } from 'vue'
 import { useI18n } from 'vue-i18n'
+import type { ITwoFactorService } from '@registry/modules/auth/types/twoFactor.type'
 import type { ISettingsService, Settings } from '@registry/modules/settings/types/settings.type'
 
 const props = defineProps<{
   service?: ISettingsService
+  twoFactorService?: ITwoFactorService
 }>()
 
 const { t } = useI18n()
@@ -147,6 +150,11 @@ const onSubmit = handleSubmit(async (values) => {
         </Button>
       </div>
     </form>
+
+    <!-- Security Settings -->
+    <div class="max-w-2xl mx-auto">
+      <SecuritySettingsCard :service="props.twoFactorService" />
+    </div>
   </div>
 </template>
 
