@@ -31,6 +31,8 @@ export const RouteNames = {
   AUTH_FORGOT_PASSWORD: 'ForgotPassword',
   AUTH_RESET_PASSWORD: 'ResetPassword',
   AUTH_CHANGE_PASSWORD: 'ChangePassword',
+  AUTH_TWO_FACTOR_SETUP: 'TwoFactorSetup',
+  AUTH_TWO_FACTOR_VERIFY: 'TwoFactorVerify',
 
   // Protected routes
   SELECT_TENANT: 'SelectTenant',
@@ -75,6 +77,8 @@ export const RoutePaths = {
   AUTH_FORGOT_PASSWORD: '/auth/forgot-password',
   AUTH_RESET_PASSWORD: '/auth/reset-password',
   AUTH_CHANGE_PASSWORD: '/auth/change-password',
+  AUTH_TWO_FACTOR_SETUP: '/auth/2fa/setup',
+  AUTH_TWO_FACTOR_VERIFY: '/auth/2fa/verify',
 
   SELECT_TENANT: '/select-tenant',
   DASHBOARD: '/dashboard',

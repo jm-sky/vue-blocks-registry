@@ -3,8 +3,8 @@ import { CheckIcon, CopyIcon } from 'lucide-vue-next'
 import { ref } from 'vue'
 import { Button } from '@/components/ui/button'
 import { CodeBlock } from '@/components/ui/code-block'
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { useCopyToClipboard } from '@/composables/useClipboard'
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@registry/components/ui/tabs'
 import type { BundledLanguage, BundledTheme } from 'shiki'
 
 interface Props {

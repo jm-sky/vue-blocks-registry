@@ -10,6 +10,8 @@ export const AuthRoutePaths = {
   forgotPassword: import.meta.env.VITE_AUTH_FORGOT_PASSWORD_PATH ?? '/auth/forgot-password',
   resetPassword: import.meta.env.VITE_AUTH_RESET_PASSWORD_PATH ?? '/auth/reset-password',
   changePassword: import.meta.env.VITE_AUTH_CHANGE_PASSWORD_PATH ?? '/auth/change-password',
+  twoFactorSetup: import.meta.env.VITE_AUTH_TWO_FACTOR_SETUP_PATH ?? '/auth/2fa/setup',
+  twoFactorVerify: import.meta.env.VITE_AUTH_TWO_FACTOR_VERIFY_PATH ?? '/auth/2fa/verify',
   dashboard: import.meta.env.VITE_AUTH_DASHBOARD_PATH ?? '/dashboard',
 } as const
 
@@ -20,6 +22,8 @@ export const AuthRouteNames = {
   forgotPassword: 'ForgotPassword',
   resetPassword: 'ResetPassword',
   changePassword: 'ChangePassword',
+  twoFactorSetup: 'TwoFactorSetup',
+  twoFactorVerify: 'TwoFactorVerify',
   dashboard: 'Dashboard',
 } as const
 
@@ -48,5 +52,17 @@ export const authRoutes: RouteRecordRaw[] = [
     path: AuthRoutePaths.changePassword,
     name: AuthRouteNames.changePassword,
     component: () => import('@registry/modules/auth/pages/ChangePasswordPage.vue'),
+  },
+  {
+    path: AuthRoutePaths.twoFactorSetup,
+    name: AuthRouteNames.twoFactorSetup,
+    meta: { requiresAuth: true },
+    component: () => import('@registry/modules/auth/pages/TwoFactorSetupPage.vue'),
+  },
+  {
+    path: AuthRoutePaths.twoFactorVerify,
+    name: AuthRouteNames.twoFactorVerify,
+    meta: { requiresAuth: true },
+    component: () => import('@registry/modules/auth/pages/TwoFactorVerifyPage.vue'),
   },
 ]

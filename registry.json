@@ -10,7 +10,10 @@
       "type": "registry:lib",
       "title": "Utils",
       "description": "Utility functions for class name merging and conditional styling",
-      "categories": ["lib", "utils"],
+      "categories": [
+        "lib",
+        "utils"
+      ],
       "files": [
         {
           "path": "lib/utils.ts",
@@ -29,7 +32,10 @@
       "type": "registry:ui",
       "title": "Button",
       "description": "A highly customizable button component with multiple variants, sizes, and special vibe effects for enhanced user experience",
-      "categories": ["ui", "form"],
+      "categories": [
+        "ui",
+        "form"
+      ],
       "files": [
         {
           "path": "components/ui/button/Button.vue",
@@ -53,7 +59,10 @@
       "type": "registry:ui",
       "title": "Button Link",
       "description": "Button component that renders as a RouterLink with all Button variants and RouterLink props support",
-      "categories": ["ui", "navigation"],
+      "categories": [
+        "ui",
+        "navigation"
+      ],
       "files": [
         {
           "path": "components/ui/button-link/ButtonLink.vue",
@@ -77,7 +86,10 @@
       "type": "registry:ui",
       "title": "Logo Text",
       "description": "Logo text component with gradient styling",
-      "categories": ["ui", "branding"],
+      "categories": [
+        "ui",
+        "branding"
+      ],
       "files": [
         {
           "path": "components/ui/LogoText.vue",
@@ -96,7 +108,10 @@
       "type": "registry:ui",
       "title": "Label",
       "description": "Accessible label component for form elements",
-      "categories": ["ui", "form"],
+      "categories": [
+        "ui",
+        "form"
+      ],
       "files": [
         {
           "path": "components/ui/label/Label.vue",
@@ -119,7 +134,10 @@
       "type": "registry:ui",
       "title": "Input",
       "description": "Text input component with various types support",
-      "categories": ["ui", "form"],
+      "categories": [
+        "ui",
+        "form"
+      ],
       "files": [
         {
           "path": "components/ui/input/Input.vue",
@@ -140,7 +158,10 @@
       "type": "registry:ui",
       "title": "Select",
       "description": "Select dropdown component with keyboard navigation and accessibility support",
-      "categories": ["ui", "form"],
+      "categories": [
+        "ui",
+        "form"
+      ],
       "files": [
         {
           "path": "components/ui/select/Select.vue",
@@ -203,7 +224,10 @@
       "type": "registry:ui",
       "title": "Form",
       "description": "Form components with vee-validate integration for validation",
-      "categories": ["ui", "form"],
+      "categories": [
+        "ui",
+        "form"
+      ],
       "files": [
         {
           "path": "components/ui/form/FormControl.vue",
@@ -255,7 +279,10 @@
       "type": "registry:lib",
       "title": "Config",
       "description": "Application configuration with environment variables and JWT storage key",
-      "categories": ["lib", "config"],
+      "categories": [
+        "lib",
+        "config"
+      ],
       "files": [
         {
           "path": "shared/config/config.ts",
@@ -270,7 +297,11 @@
       "type": "registry:lib",
       "title": "Type Guards",
       "description": "TypeScript type guards for validation error handling with Axios",
-      "categories": ["lib", "utils", "types"],
+      "categories": [
+        "lib",
+        "utils",
+        "types"
+      ],
       "files": [
         {
           "path": "shared/utils/typeGuards.ts",
@@ -287,7 +318,10 @@
       "type": "registry:lib",
       "title": "API Client",
       "description": "Axios API client with base configuration and automatically applied auth interceptor",
-      "categories": ["lib", "services"],
+      "categories": [
+        "lib",
+        "services"
+      ],
       "files": [
         {
           "path": "shared/services/apiClient.ts",
@@ -310,7 +344,11 @@
       "type": "registry:lib",
       "title": "Auth Types",
       "description": "TypeScript types and interfaces for authentication module",
-      "categories": ["lib", "types", "auth"],
+      "categories": [
+        "lib",
+        "types",
+        "auth"
+      ],
       "files": [
         {
           "path": "modules/auth/types/user.type.ts",
@@ -327,7 +365,11 @@
       "type": "registry:lib",
       "title": "Auth Store",
       "description": "Pinia store for authentication state management with localStorage persistence",
-      "categories": ["lib", "store", "auth"],
+      "categories": [
+        "lib",
+        "store",
+        "auth"
+      ],
       "files": [
         {
           "path": "modules/auth/store/useAuthStore.ts",
@@ -348,7 +390,11 @@
       "type": "registry:lib",
       "title": "Auth Service",
       "description": "Authentication API service with login, register, password reset and change methods",
-      "categories": ["lib", "services", "auth"],
+      "categories": [
+        "lib",
+        "services",
+        "auth"
+      ],
       "files": [
         {
           "path": "modules/auth/services/authService.ts",
@@ -366,7 +412,11 @@
       "type": "registry:lib",
       "title": "Auth Validation Schemas",
       "description": "Zod validation schemas for authentication forms (login, register, password reset, change)",
-      "categories": ["lib", "validation", "auth"],
+      "categories": [
+        "lib",
+        "validation",
+        "auth"
+      ],
       "files": [
         {
           "path": "modules/auth/validation/login.schema.ts",
@@ -399,7 +449,11 @@
       "type": "registry:lib",
       "title": "Auth Config",
       "description": "Authentication configuration files (auth.config, queryClient, routes, queryUtils)",
-      "categories": ["lib", "config", "auth"],
+      "categories": [
+        "lib",
+        "config",
+        "auth"
+      ],
       "files": [
         {
           "path": "modules/auth/config/auth.config.ts",
@@ -430,7 +484,10 @@
       "type": "registry:lib",
       "title": "Base Types",
       "description": "Base TypeScript types (TULID, etc.)",
-      "categories": ["lib", "types"],
+      "categories": [
+        "lib",
+        "types"
+      ],
       "files": [
         {
           "path": "shared/types/base.type.ts",
@@ -445,7 +502,11 @@
       "type": "registry:lib",
       "title": "Auth Composables",
       "description": "Vue composables for authentication (useAuth, useLogout)",
-      "categories": ["lib", "composables", "auth"],
+      "categories": [
+        "lib",
+        "composables",
+        "auth"
+      ],
       "files": [
         {
           "path": "modules/auth/composables/useAuth.ts",
@@ -471,7 +532,11 @@
       "type": "registry:lib",
       "title": "Auth Guards",
       "description": "Router guards for authentication with auto user refetch and 401 handling",
-      "categories": ["lib", "auth", "router"],
+      "categories": [
+        "lib",
+        "auth",
+        "router"
+      ],
       "files": [
         {
           "path": "modules/auth/guards/authGuard.ts",
@@ -492,7 +557,11 @@
       "type": "registry:lib",
       "title": "Auth i18n",
       "description": "Authentication module translations (EN, PL)",
-      "categories": ["lib", "auth", "i18n"],
+      "categories": [
+        "lib",
+        "auth",
+        "i18n"
+      ],
       "files": [
         {
           "path": "modules/auth/i18n/index.ts",
@@ -515,7 +584,11 @@
       "type": "registry:ui",
       "title": "Auth Forms",
       "description": "Authentication form components (LoginForm, RegisterForm, LogoutButton)",
-      "categories": ["ui", "form", "auth"],
+      "categories": [
+        "ui",
+        "form",
+        "auth"
+      ],
       "files": [
         {
           "path": "modules/auth/components/LoginForm.vue",
@@ -549,7 +622,10 @@
       "type": "registry:page",
       "title": "Auth Pages",
       "description": "Authentication pages (Login, Register, Forgot/Reset/Change Password)",
-      "categories": ["page", "auth"],
+      "categories": [
+        "page",
+        "auth"
+      ],
       "files": [
         {
           "path": "modules/auth/pages/LoginPage.vue",
@@ -593,7 +669,9 @@
       "type": "registry:layout",
       "title": "App Layouts",
       "description": "Application layouts (AuthenticatedLayout with MainNav/UserNav, PublicLayout for landing pages, GuestLayoutCentered/CenteredGlass/TwoColumns for auth pages)",
-      "categories": ["layout"],
+      "categories": [
+        "layout"
+      ],
       "files": [
         {
           "path": "layouts/AuthenticatedLayout.vue",
@@ -634,7 +712,10 @@
       "type": "registry:ui",
       "title": "Alert",
       "description": "Alert component for displaying important messages with variants",
-      "categories": ["ui", "feedback"],
+      "categories": [
+        "ui",
+        "feedback"
+      ],
       "files": [
         {
           "path": "components/ui/alert/Alert.vue",
@@ -665,7 +746,10 @@
       "type": "registry:feature",
       "title": "Dark Mode",
       "description": "Dark mode toggle component with smooth icon transitions and composable for theme management",
-      "categories": ["feature", "ui"],
+      "categories": [
+        "feature",
+        "ui"
+      ],
       "files": [
         {
           "path": "shared/components/DarkModeToggle.vue",
@@ -689,7 +773,10 @@
       "type": "registry:ui",
       "title": "Hover Link",
       "description": "Link component with glass-morphism hover effect and smooth transitions",
-      "categories": ["ui", "navigation"],
+      "categories": [
+        "ui",
+        "navigation"
+      ],
       "files": [
         {
           "path": "components/ui/hover-link/HoverLink.vue",
@@ -712,7 +799,10 @@
       "type": "registry:ui",
       "title": "Scroll To Top",
       "description": "Fixed position button that appears after scrolling down, with smooth scroll to top behavior",
-      "categories": ["ui", "navigation"],
+      "categories": [
+        "ui",
+        "navigation"
+      ],
       "files": [
         {
           "path": "components/ui/scroll-to-top/ScrollToTop.vue",
@@ -733,7 +823,10 @@
       "type": "registry:ui",
       "title": "Table",
       "description": "Base table components from shadcn-vue (Table, TableHeader, TableBody, TableRow, TableHead, TableCell, TableEmpty, TableCaption, TableFooter)",
-      "categories": ["ui", "data"],
+      "categories": [
+        "ui",
+        "data"
+      ],
       "files": [
         {
           "path": "components/ui/table/Table.vue",
@@ -786,7 +879,10 @@
       "type": "registry:ui",
       "title": "Checkbox",
       "description": "Checkbox component from shadcn-vue for forms and row selection",
-      "categories": ["ui", "form"],
+      "categories": [
+        "ui",
+        "form"
+      ],
       "files": [
         {
           "path": "components/ui/checkbox/Checkbox.vue",
@@ -809,7 +905,10 @@
       "type": "registry:ui",
       "title": "Dropdown Menu",
       "description": "Dropdown menu components from shadcn-vue for actions and options",
-      "categories": ["ui", "navigation"],
+      "categories": [
+        "ui",
+        "navigation"
+      ],
       "files": [
         {
           "path": "components/ui/dropdown-menu/DropdownMenu.vue",
@@ -884,7 +983,10 @@
       "type": "registry:ui",
       "title": "DataTable",
       "description": "Advanced DataTable with TanStack Table v8 - sorting, filtering, pagination, row selection, column visibility",
-      "categories": ["ui", "data"],
+      "categories": [
+        "ui",
+        "data"
+      ],
       "files": [
         {
           "path": "components/data-table/DataTable.vue",
@@ -921,7 +1023,10 @@
       "type": "registry:ui",
       "title": "Layout Components",
       "description": "Utility components for page layouts (MainNav, UserNav, PageCard, PageListHeader, PageListWrapper)",
-      "categories": ["ui", "layout"],
+      "categories": [
+        "ui",
+        "layout"
+      ],
       "files": [
         {
           "path": "components/layout/MainNav.vue",
@@ -959,7 +1064,11 @@
       "type": "registry:lib",
       "title": "i18n Configuration",
       "description": "Type-safe Vue i18n configuration with PL and EN locales (TypeScript), storage persistence, and createI18n helper",
-      "categories": ["lib", "i18n", "config"],
+      "categories": [
+        "lib",
+        "i18n",
+        "config"
+      ],
       "files": [
         {
           "path": "shared/i18n/config/i18n.ts",
@@ -990,7 +1099,11 @@
       "type": "registry:lib",
       "title": "i18n Composables",
       "description": "Vue composable for locale management with localStorage persistence and locale switching",
-      "categories": ["lib", "i18n", "composables"],
+      "categories": [
+        "lib",
+        "i18n",
+        "composables"
+      ],
       "files": [
         {
           "path": "shared/i18n/composables/useLocale.ts",
@@ -1010,7 +1123,10 @@
       "type": "registry:ui",
       "title": "Locale Switcher",
       "description": "Language switcher component with button toggle for PL/EN locales",
-      "categories": ["ui", "i18n"],
+      "categories": [
+        "ui",
+        "i18n"
+      ],
       "files": [
         {
           "path": "shared/i18n/components/LocaleSwitcher.vue",
@@ -1030,7 +1146,10 @@
       "type": "registry:ui",
       "title": "Locale Dropdown",
       "description": "Dropdown menu for language selection with icon button",
-      "categories": ["ui", "i18n"],
+      "categories": [
+        "ui",
+        "i18n"
+      ],
       "files": [
         {
           "path": "shared/i18n/components/LocaleDropdown.vue",
@@ -1051,7 +1170,10 @@
       "type": "registry:ui",
       "title": "Locale Toggle",
       "description": "Animated toggle button for quick language switching with smooth transitions",
-      "categories": ["ui", "i18n"],
+      "categories": [
+        "ui",
+        "i18n"
+      ],
       "files": [
         {
           "path": "shared/i18n/components/LocaleToggle.vue",
@@ -1069,7 +1191,10 @@
       "type": "registry:ui",
       "title": "Sonner",
       "description": "Toast notification component using vue-sonner",
-      "categories": ["ui", "notification"],
+      "categories": [
+        "ui",
+        "notification"
+      ],
       "files": [
         {
           "path": "components/ui/sonner/Sonner.vue",
@@ -1090,7 +1215,10 @@
       "type": "registry:feature",
       "title": "Internationalization (i18n)",
       "description": "Complete i18n setup with PL/EN translations, locale switcher components, and composables",
-      "categories": ["feature", "i18n"],
+      "categories": [
+        "feature",
+        "i18n"
+      ],
       "files": [],
       "dependencies": [],
       "registryDependencies": [
@@ -1106,7 +1234,11 @@
       "type": "registry:feature",
       "title": "Multi-Tenancy Feature",
       "description": "Complete multi-tenancy feature with tenant selection, switching, store management, JWT context handling, and tenant guard",
-      "categories": ["feature", "tenant", "multi-tenancy"],
+      "categories": [
+        "feature",
+        "tenant",
+        "multi-tenancy"
+      ],
       "files": [
         {
           "path": "features/tenantFeat/types/tenant.types.ts",
@@ -1189,7 +1321,10 @@
       "type": "registry:bundle",
       "title": "Authentication Feature Bundle",
       "description": "Complete authentication feature with store, services, composables, guards, and validation (no UI)",
-      "categories": ["bundle", "auth"],
+      "categories": [
+        "bundle",
+        "auth"
+      ],
       "files": [],
       "dependencies": [],
       "registryDependencies": [
@@ -1209,7 +1344,10 @@
       "type": "registry:bundle",
       "title": "Complete Authentication Module",
       "description": "Full authentication module with pages, forms, layouts, store, services, and all dependencies",
-      "categories": ["bundle", "auth"],
+      "categories": [
+        "bundle",
+        "auth"
+      ],
       "files": [],
       "dependencies": [],
       "registryDependencies": [
@@ -1221,14 +1359,389 @@
       ]
     },
     {
+      "name": "two-factor-types",
+      "type": "registry:lib",
+      "title": "Two-Factor Authentication Types",
+      "description": "TypeScript type definitions for TOTP, WebAuthn, JWT payload, and 2FA service interface",
+      "categories": [
+        "lib",
+        "types",
+        "auth",
+        "2fa"
+      ],
+      "files": [
+        {
+          "path": "modules/auth/types/twoFactor.type.ts",
+          "type": "registry:lib"
+        }
+      ],
+      "dependencies": [],
+      "registryDependencies": [
+        "base-types"
+      ]
+    },
+    {
+      "name": "two-factor-jwt-decoder",
+      "type": "registry:lib",
+      "title": "2FA JWT Decoder",
+      "description": "JWT token decoder with 2FA status extraction (tfaPending, tfaVerified, tfaMethod)",
+      "categories": [
+        "lib",
+        "auth",
+        "2fa"
+      ],
+      "files": [
+        {
+          "path": "modules/auth/lib/jwtDecoder.ts",
+          "type": "registry:lib"
+        }
+      ],
+      "dependencies": [
+        "jwt-decode"
+      ],
+      "registryDependencies": [
+        "two-factor-types"
+      ]
+    },
+    {
+      "name": "two-factor-service",
+      "type": "registry:lib",
+      "title": "Two-Factor Authentication Service",
+      "description": "Service layer for TOTP and WebAuthn operations (real and mock implementations)",
+      "categories": [
+        "lib",
+        "services",
+        "auth",
+        "2fa"
+      ],
+      "files": [
+        {
+          "path": "modules/auth/services/twoFactorService.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "modules/auth/services/mockTwoFactorService.ts",
+          "type": "registry:lib"
+        }
+      ],
+      "dependencies": [
+        "qrcode",
+        "@simplewebauthn/browser"
+      ],
+      "registryDependencies": [
+        "two-factor-types",
+        "http-client"
+      ]
+    },
+    {
+      "name": "two-factor-validation",
+      "type": "registry:lib",
+      "title": "2FA Validation Schemas",
+      "description": "Zod validation schemas for TOTP codes and passkey names",
+      "categories": [
+        "lib",
+        "validation",
+        "auth",
+        "2fa"
+      ],
+      "files": [
+        {
+          "path": "modules/auth/validation/totp.schema.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "modules/auth/validation/webauthn.schema.ts",
+          "type": "registry:lib"
+        }
+      ],
+      "dependencies": [
+        "zod"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "two-factor-composables",
+      "type": "registry:lib",
+      "title": "2FA Composables",
+      "description": "TanStack Query composables for TOTP and WebAuthn operations",
+      "categories": [
+        "lib",
+        "composables",
+        "auth",
+        "2fa"
+      ],
+      "files": [
+        {
+          "path": "modules/auth/composables/useTwoFactor.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "modules/auth/composables/useTotp.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "modules/auth/composables/useWebAuthn.ts",
+          "type": "registry:lib"
+        }
+      ],
+      "dependencies": [
+        "@tanstack/vue-query",
+        "@simplewebauthn/browser"
+      ],
+      "registryDependencies": [
+        "two-factor-service",
+        "two-factor-types"
+      ]
+    },
+    {
+      "name": "two-factor-components",
+      "type": "registry:ui",
+      "title": "2FA UI Components",
+      "description": "TOTP and WebAuthn UI components (QR code, setup forms, verify forms, passkey list)",
+      "categories": [
+        "ui",
+        "auth",
+        "2fa"
+      ],
+      "files": [
+        {
+          "path": "modules/auth/components/TotpQrCode.vue",
+          "type": "registry:ui"
+        },
+        {
+          "path": "modules/auth/components/TotpSetupForm.vue",
+          "type": "registry:ui"
+        },
+        {
+          "path": "modules/auth/components/TotpVerifyForm.vue",
+          "type": "registry:ui"
+        },
+        {
+          "path": "modules/auth/components/WebAuthnRegisterForm.vue",
+          "type": "registry:ui"
+        },
+        {
+          "path": "modules/auth/components/WebAuthnVerifyForm.vue",
+          "type": "registry:ui"
+        },
+        {
+          "path": "modules/auth/components/PasskeyList.vue",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "vee-validate",
+        "@vee-validate/zod",
+        "vue-i18n",
+        "lucide-vue-next",
+        "vue-sonner",
+        "@vueuse/core"
+      ],
+      "registryDependencies": [
+        "button",
+        "card",
+        "form",
+        "input",
+        "table",
+        "tabs",
+        "two-factor-composables",
+        "two-factor-validation"
+      ]
+    },
+    {
+      "name": "two-factor-pages",
+      "type": "registry:page",
+      "title": "2FA Pages",
+      "description": "Two-factor authentication setup and verification pages",
+      "categories": [
+        "page",
+        "auth",
+        "2fa"
+      ],
+      "files": [
+        {
+          "path": "modules/auth/pages/TwoFactorSetupPage.vue",
+          "type": "registry:page"
+        },
+        {
+          "path": "modules/auth/pages/TwoFactorVerifyPage.vue",
+          "type": "registry:page"
+        }
+      ],
+      "dependencies": [
+        "vue-router",
+        "vue-i18n",
+        "lucide-vue-next",
+        "vue-sonner"
+      ],
+      "registryDependencies": [
+        "two-factor-components",
+        "two-factor-composables",
+        "layouts",
+        "layout-components",
+        "card",
+        "button",
+        "tabs"
+      ]
+    },
+    {
+      "name": "two-factor-guards",
+      "type": "registry:lib",
+      "title": "2FA Router Guards",
+      "description": "Router guard for JWT-based 2FA verification enforcement",
+      "categories": [
+        "lib",
+        "guards",
+        "auth",
+        "2fa"
+      ],
+      "files": [
+        {
+          "path": "modules/auth/guards/twoFactorGuard.ts",
+          "type": "registry:lib"
+        }
+      ],
+      "dependencies": [
+        "vue-router"
+      ],
+      "registryDependencies": [
+        "two-factor-jwt-decoder",
+        "auth-store"
+      ]
+    },
+    {
+      "name": "two-factor-config",
+      "type": "registry:lib",
+      "title": "2FA Route Configuration",
+      "description": "2FA route paths and names added to auth config",
+      "categories": [
+        "lib",
+        "config",
+        "auth",
+        "2fa"
+      ],
+      "files": [
+        {
+          "path": "modules/auth/config/routes.ts",
+          "type": "registry:lib"
+        }
+      ],
+      "dependencies": [
+        "vue-router"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "two-factor-i18n",
+      "type": "registry:lib",
+      "title": "2FA Translations",
+      "description": "Two-factor authentication translations (EN, PL) integrated with auth module i18n",
+      "categories": [
+        "lib",
+        "i18n",
+        "auth",
+        "2fa"
+      ],
+      "files": [
+        {
+          "path": "modules/auth/i18n/locales/en.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "modules/auth/i18n/locales/pl.ts",
+          "type": "registry:lib"
+        }
+      ],
+      "dependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "security-settings-card",
+      "type": "registry:ui",
+      "title": "Security Settings Card",
+      "description": "Settings page card showing 2FA status with link to setup",
+      "categories": [
+        "ui",
+        "settings",
+        "2fa"
+      ],
+      "files": [
+        {
+          "path": "modules/settings/components/SecuritySettingsCard.vue",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "vue-router",
+        "vue-i18n",
+        "lucide-vue-next"
+      ],
+      "registryDependencies": [
+        "card",
+        "button",
+        "two-factor-composables"
+      ]
+    },
+    {
+      "name": "twoFactorFeat",
+      "type": "registry:bundle",
+      "title": "Two-Factor Authentication (Core)",
+      "description": "Core 2FA functionality without UI components (types, services, composables, guards)",
+      "categories": [
+        "bundle",
+        "auth",
+        "2fa"
+      ],
+      "files": [],
+      "dependencies": [],
+      "registryDependencies": [
+        "two-factor-types",
+        "two-factor-jwt-decoder",
+        "two-factor-service",
+        "two-factor-validation",
+        "two-factor-composables",
+        "two-factor-guards",
+        "two-factor-config",
+        "two-factor-i18n"
+      ]
+    },
+    {
+      "name": "twoFactorFull",
+      "type": "registry:bundle",
+      "title": "Two-Factor Authentication (Complete)",
+      "description": "Complete 2FA module with UI components, pages, and Settings integration",
+      "categories": [
+        "bundle",
+        "auth",
+        "2fa"
+      ],
+      "files": [],
+      "dependencies": [],
+      "registryDependencies": [
+        "twoFactorFeat",
+        "two-factor-components",
+        "two-factor-pages",
+        "security-settings-card"
+      ]
+    },
+    {
       "name": "user-pages",
       "type": "registry:page",
       "title": "User Pages",
       "description": "User profile pages (view and edit)",
-      "categories": ["page", "user"],
+      "categories": [
+        "page",
+        "user"
+      ],
       "files": [
-        { "path": "modules/user/pages/ProfileViewPage.vue", "type": "registry:page" },
-        { "path": "modules/user/pages/ProfileEditPage.vue", "type": "registry:page" }
+        {
+          "path": "modules/user/pages/ProfileViewPage.vue",
+          "type": "registry:page"
+        },
+        {
+          "path": "modules/user/pages/ProfileEditPage.vue",
+          "type": "registry:page"
+        }
       ],
       "dependencies": [
         "vee-validate",
@@ -1249,9 +1762,15 @@
       "type": "registry:lib",
       "title": "User Routes",
       "description": "Route definitions for user module",
-      "categories": ["lib", "user"],
+      "categories": [
+        "lib",
+        "user"
+      ],
       "files": [
-        { "path": "modules/user/routes.ts", "type": "registry:lib" }
+        {
+          "path": "modules/user/routes.ts",
+          "type": "registry:lib"
+        }
       ],
       "dependencies": [],
       "registryDependencies": []
@@ -1261,11 +1780,24 @@
       "type": "registry:lib",
       "title": "User i18n",
       "description": "User module translations (EN, PL)",
-      "categories": ["lib", "user", "i18n"],
+      "categories": [
+        "lib",
+        "user",
+        "i18n"
+      ],
       "files": [
-        { "path": "modules/user/i18n/index.ts", "type": "registry:lib" },
-        { "path": "modules/user/i18n/locales/en.ts", "type": "registry:lib" },
-        { "path": "modules/user/i18n/locales/pl.ts", "type": "registry:lib" }
+        {
+          "path": "modules/user/i18n/index.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "modules/user/i18n/locales/en.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "modules/user/i18n/locales/pl.ts",
+          "type": "registry:lib"
+        }
       ],
       "dependencies": [],
       "registryDependencies": []
@@ -1275,7 +1807,10 @@
       "type": "registry:bundle",
       "title": "Complete User Module",
       "description": "User module with profile pages and routes",
-      "categories": ["bundle", "user"],
+      "categories": [
+        "bundle",
+        "user"
+      ],
       "files": [],
       "dependencies": [],
       "registryDependencies": [
@@ -1290,9 +1825,15 @@
       "type": "registry:page",
       "title": "Settings Page",
       "description": "Application settings page",
-      "categories": ["page", "settings"],
+      "categories": [
+        "page",
+        "settings"
+      ],
       "files": [
-        { "path": "modules/settings/pages/SettingsPage.vue", "type": "registry:page" }
+        {
+          "path": "modules/settings/pages/SettingsPage.vue",
+          "type": "registry:page"
+        }
       ],
       "dependencies": [
         "vee-validate",
@@ -1310,9 +1851,15 @@
       "type": "registry:lib",
       "title": "Settings Routes",
       "description": "Route definitions for settings module",
-      "categories": ["lib", "settings"],
+      "categories": [
+        "lib",
+        "settings"
+      ],
       "files": [
-        { "path": "modules/settings/routes.ts", "type": "registry:lib" }
+        {
+          "path": "modules/settings/routes.ts",
+          "type": "registry:lib"
+        }
       ],
       "dependencies": [],
       "registryDependencies": []
@@ -1322,11 +1869,24 @@
       "type": "registry:lib",
       "title": "Settings i18n",
       "description": "Settings module translations (EN, PL)",
-      "categories": ["lib", "settings", "i18n"],
+      "categories": [
+        "lib",
+        "settings",
+        "i18n"
+      ],
       "files": [
-        { "path": "modules/settings/i18n/index.ts", "type": "registry:lib" },
-        { "path": "modules/settings/i18n/locales/en.ts", "type": "registry:lib" },
-        { "path": "modules/settings/i18n/locales/pl.ts", "type": "registry:lib" }
+        {
+          "path": "modules/settings/i18n/index.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "modules/settings/i18n/locales/en.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "modules/settings/i18n/locales/pl.ts",
+          "type": "registry:lib"
+        }
       ],
       "dependencies": [],
       "registryDependencies": []
@@ -1336,7 +1896,10 @@
       "type": "registry:bundle",
       "title": "Complete Settings Module",
       "description": "Settings module with page and routes",
-      "categories": ["bundle", "settings"],
+      "categories": [
+        "bundle",
+        "settings"
+      ],
       "files": [],
       "dependencies": [],
       "registryDependencies": [
@@ -1351,9 +1914,15 @@
       "type": "registry:ui",
       "title": "Logs Components",
       "description": "Logs table component",
-      "categories": ["ui", "logs"],
+      "categories": [
+        "ui",
+        "logs"
+      ],
       "files": [
-        { "path": "modules/logs/components/LogsTable.vue", "type": "registry:ui" }
+        {
+          "path": "modules/logs/components/LogsTable.vue",
+          "type": "registry:ui"
+        }
       ],
       "dependencies": [],
       "registryDependencies": []
@@ -1363,9 +1932,15 @@
       "type": "registry:page",
       "title": "Logs Page",
       "description": "Logs browser page",
-      "categories": ["page", "logs"],
+      "categories": [
+        "page",
+        "logs"
+      ],
       "files": [
-        { "path": "modules/logs/pages/LogsBrowserPage.vue", "type": "registry:page" }
+        {
+          "path": "modules/logs/pages/LogsBrowserPage.vue",
+          "type": "registry:page"
+        }
       ],
       "dependencies": [],
       "registryDependencies": [
@@ -1377,9 +1952,15 @@
       "type": "registry:lib",
       "title": "Logs Routes",
       "description": "Route definitions for logs module",
-      "categories": ["lib", "logs"],
+      "categories": [
+        "lib",
+        "logs"
+      ],
       "files": [
-        { "path": "modules/logs/routes.ts", "type": "registry:lib" }
+        {
+          "path": "modules/logs/routes.ts",
+          "type": "registry:lib"
+        }
       ],
       "dependencies": [],
       "registryDependencies": []
@@ -1389,11 +1970,24 @@
       "type": "registry:lib",
       "title": "Logs i18n",
       "description": "Logs module translations (EN, PL)",
-      "categories": ["lib", "logs", "i18n"],
+      "categories": [
+        "lib",
+        "logs",
+        "i18n"
+      ],
       "files": [
-        { "path": "modules/logs/i18n/index.ts", "type": "registry:lib" },
-        { "path": "modules/logs/i18n/locales/en.ts", "type": "registry:lib" },
-        { "path": "modules/logs/i18n/locales/pl.ts", "type": "registry:lib" }
+        {
+          "path": "modules/logs/i18n/index.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "modules/logs/i18n/locales/en.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "modules/logs/i18n/locales/pl.ts",
+          "type": "registry:lib"
+        }
       ],
       "dependencies": [],
       "registryDependencies": []
@@ -1403,7 +1997,10 @@
       "type": "registry:bundle",
       "title": "Complete Logs Module",
       "description": "Logs module with page, components and routes",
-      "categories": ["bundle", "logs"],
+      "categories": [
+        "bundle",
+        "logs"
+      ],
       "files": [],
       "dependencies": [],
       "registryDependencies": [
@@ -1419,9 +2016,15 @@
       "type": "registry:page",
       "title": "Dashboard Page",
       "description": "Welcome dashboard page",
-      "categories": ["page", "dashboard"],
+      "categories": [
+        "page",
+        "dashboard"
+      ],
       "files": [
-        { "path": "modules/dashboard/pages/DashboardPage.vue", "type": "registry:page" }
+        {
+          "path": "modules/dashboard/pages/DashboardPage.vue",
+          "type": "registry:page"
+        }
       ],
       "dependencies": [],
       "registryDependencies": []
@@ -1431,9 +2034,15 @@
       "type": "registry:lib",
       "title": "Dashboard Routes",
       "description": "Route definitions for dashboard module",
-      "categories": ["lib", "dashboard"],
+      "categories": [
+        "lib",
+        "dashboard"
+      ],
       "files": [
-        { "path": "modules/dashboard/routes.ts", "type": "registry:lib" }
+        {
+          "path": "modules/dashboard/routes.ts",
+          "type": "registry:lib"
+        }
       ],
       "dependencies": [],
       "registryDependencies": []
@@ -1443,7 +2052,10 @@
       "type": "registry:bundle",
       "title": "Complete Dashboard Module",
       "description": "Dashboard module with page and routes",
-      "categories": ["bundle", "dashboard"],
+      "categories": [
+        "bundle",
+        "dashboard"
+      ],
       "files": [],
       "dependencies": [],
       "registryDependencies": [

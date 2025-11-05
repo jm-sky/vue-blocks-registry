@@ -1,5 +1,6 @@
-import { JWT_STORE_KEY } from '@registry/shared/config/config'
 // Mock auth service for demo purposes (no real backend needed)
+import { JWT_STORE_KEY } from '@registry/shared/config/config'
+import { createHttpError, delay, generateMockJWT } from '@registry/shared/utils/mockHelpers'
 import { HttpStatusCode } from 'axios'
 import type { IAuthService } from '@registry/modules/auth/types/auth.type'
 import type {
@@ -22,10 +23,8 @@ const mockUsers = new Map<string, { email: string; password: string; name: strin
 const mockTokens = new Map<string, string>()
 
 // Helper to generate mock JWT token
-function generateMockToken(email: string): string {
-  const token = `mock_jwt_${email}_${Date.now()}`
-  mockTokens.set(token, email)
-  return token
+export const generateMockToken = (email: string): string => {
+  return generateMockJWT({ email })
 }
 
 // Helper to create User object
@@ -39,24 +38,6 @@ function createUserObject(email: string, name: string): User {
     isAdmin: email === 'demo@example.com', // Demo user is admin
     createdAt: new Date().toISOString(),
   }
-}
-
-function createHttpError(status: HttpStatusCode, message: string, errors?: Record<string, string[]>): Error {
-  const error = new Error(message)
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  ;(error as any).response = {
-    status,
-    data: {
-      message,
-      errors,
-    },
-  }
-  return error
-}
-
-// Simulate network delay
-function delay(ms = 500): Promise<void> {
-  return new Promise(resolve => setTimeout(resolve, ms))
 }
 
 class MockAuthService implements IAuthService {

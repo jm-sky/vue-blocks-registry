@@ -53,8 +53,8 @@ export function useTenant(service?: ITenantService) {
    */
   const { data: tenantDetails, isLoading, error } = useQuery({
     queryKey: computed(() => tenantQueryKeys.detail(tenantId.value ?? '')),
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    queryFn: () => (service ?? tenantService).getTenant(tenantId.value!),
+     
+    queryFn: () => (service ?? tenantService).getTenant(tenantId.value),
     enabled: computed(() => !!tenantId.value),
     retry: tenantRetryFunction,
     staleTime: config.query.staleTime,

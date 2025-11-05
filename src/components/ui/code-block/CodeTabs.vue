@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { type BundledLanguage, type BundledTheme } from 'shiki'
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '../tabs'
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '../../../../registry/components/ui/tabs'
 import CodeBlock from './CodeBlock.vue'
 import type { VNode } from 'vue'
 

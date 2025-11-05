@@ -33,5 +33,23 @@ export const settingsPl = {
         },
       },
     },
+    security: {
+      title: 'Bezpieczeństwo',
+      description: 'Zarządzaj bezpieczeństwem konta i uwierzytelnianiem dwuskładnikowym',
+      setup: 'Włącz 2FA',
+      manage: 'Zarządzaj 2FA',
+      not_configured: 'Uwierzytelnianie dwuskładnikowe nie jest włączone. Włącz je dla lepszego bezpieczeństwa.',
+      totp: {
+        title: 'Aplikacja uwierzytelniająca',
+        enabled: 'Włączona',
+        disabled: 'Nie skonfigurowana',
+      },
+      passkeys: {
+        title: 'Klucze dostępu',
+        enabled: 'Włączone',
+        disabled: 'Nie skonfigurowane',
+        count: 'Zarejestrowano {count} klucz(y) dostępu',
+      },
+    },
   },
 }

@@ -34,7 +34,7 @@ const onSubmit = handleSubmit(async (values: ResetPasswordData) => {
   try {
     const response = await resetPassword(values)
     successMessage.value = response.message
-    setTimeout(() => router.push('/auth/login'), 2000)
+    setTimeout(() => void router.push('/auth/login'), 2000)
   } catch (err: unknown) {
     if (isValidationError(err)) {
       setErrors(err.response.data.errors)

@@ -33,5 +33,23 @@ export const settingsEn = {
         },
       },
     },
+    security: {
+      title: 'Security',
+      description: 'Manage your account security and two-factor authentication',
+      setup: 'Enable 2FA',
+      manage: 'Manage 2FA',
+      not_configured: 'Two-factor authentication is not enabled. Enable it for enhanced security.',
+      totp: {
+        title: 'Authenticator App',
+        enabled: 'Enabled',
+        disabled: 'Not configured',
+      },
+      passkeys: {
+        title: 'Passkeys',
+        enabled: 'Enabled',
+        disabled: 'Not configured',
+        count: '{count} passkey(s) registered',
+      },
+    },
   },
 }

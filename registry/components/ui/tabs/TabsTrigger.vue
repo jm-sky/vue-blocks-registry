@@ -1,7 +1,7 @@
 <script setup lang="ts">
+import { cn } from '@registry/lib/utils'
 import { reactiveOmit } from '@vueuse/core'
 import { TabsTrigger, useForwardProps } from 'reka-ui'
-import { cn } from '@/lib/utils'
 import type { TabsTriggerProps } from 'reka-ui'
 import type { HTMLAttributes } from 'vue'
 
