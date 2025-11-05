@@ -1,0 +1,31 @@
+{
+  "$schema": "../../../../registry-item-schema.json",
+  "name": "two-factor-service",
+  "type": "registry:lib",
+  "title": "Two-Factor Authentication Service",
+  "description": "Service layer for TOTP and WebAuthn operations (real and mock implementations)",
+  "categories": [
+    "lib",
+    "services",
+    "auth",
+    "2fa"
+  ],
+  "files": [
+    {
+      "path": "modules/auth/services/twoFactorService.ts",
+      "type": "registry:lib"
+    },
+    {
+      "path": "modules/auth/services/mockTwoFactorService.ts",
+      "type": "registry:lib"
+    }
+  ],
+  "dependencies": [
+    "qrcode",
+    "@simplewebauthn/browser"
+  ],
+  "registryDependencies": [
+    "two-factor-types",
+    "http-client"
+  ]
+}

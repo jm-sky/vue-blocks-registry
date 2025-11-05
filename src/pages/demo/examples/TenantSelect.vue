@@ -1,23 +1,15 @@
 <script setup lang="ts">
-import { onErrorCaptured, onMounted } from 'vue'
+import { onErrorCaptured } from 'vue'
 import { useI18n } from 'vue-i18n'
 import InstallationCode from '@/components/demo/InstallationCode.vue'
 import TenantGridDemo from '@/components/tenant/TenantGridDemo.vue'
 import DemoBadge from '@/components/ui/badge/DemoBadge.vue'
 import StatusBadge from '@/components/ui/badge/StatusBadge.vue'
-import { mockTenantService } from '@registry/features/tenantFeat/services/mockTenantService'
-import { useTenantStore } from '@registry/features/tenantFeat/store/useTenantStore'
 import DocsPageHeader from '../layouts/partials/DocsPageHeader.vue'
 
 const { t } = useI18n()
-const tenantStore = useTenantStore()
 
 const installCodeFull = 'npx vue-blocks-registry add tenantFeat'
-
-// Use mock service for demo
-onMounted(() => {
-  tenantStore.setService(mockTenantService)
-})
 
 // Capture errors to prevent page crash
 onErrorCaptured((err, instance, info) => {
@@ -37,8 +29,8 @@ onErrorCaptured((err, instance, info) => {
       <DemoBadge variant="info">
         {{ t('demo.badges.feature', 'Feature') }}
       </DemoBadge>
-      <StatusBadge status="ready">
-        {{ t('demo.badges.ready', 'Ready') }}
+      <StatusBadge status="beta">
+        {{ t('demo.badges.beta', 'Beta') }}
       </StatusBadge>
     </div>
 

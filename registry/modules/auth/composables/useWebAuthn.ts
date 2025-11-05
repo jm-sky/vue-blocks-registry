@@ -7,6 +7,7 @@ import type {
   ITwoFactorService,
   WebAuthnRegisterRequest,
 } from '@registry/modules/auth/types/twoFactor.type'
+import type { PublicKeyCredentialDescriptorJSON } from '@simplewebauthn/browser'
 
 function toBase64(buffer: ArrayBuffer | BufferSource): string {
   if (buffer instanceof ArrayBuffer) {
@@ -53,7 +54,7 @@ export function useRegisterPasskey(service?: ITwoFactorService) {
           timeout: registerResponse.credentialCreationOptions.timeout,
           excludeCredentials: registerResponse.credentialCreationOptions.excludeCredentials?.map((cred): PublicKeyCredentialDescriptorJSON => ({
             id: toBase64(cred.id),
-            type: cred.type,
+            type: 'public-key' as const,
             transports: cred.transports,
           })),
           authenticatorSelection: registerResponse.credentialCreationOptions.authenticatorSelection,

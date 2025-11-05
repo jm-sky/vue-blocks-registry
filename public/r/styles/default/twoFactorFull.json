@@ -1,0 +1,20 @@
+{
+  "$schema": "../../../../registry-item-schema.json",
+  "name": "twoFactorFull",
+  "type": "registry:bundle",
+  "title": "Two-Factor Authentication (Complete)",
+  "description": "Complete 2FA module with UI components, pages, and Settings integration",
+  "categories": [
+    "bundle",
+    "auth",
+    "2fa"
+  ],
+  "files": [],
+  "dependencies": [],
+  "registryDependencies": [
+    "twoFactorFeat",
+    "two-factor-components",
+    "two-factor-pages",
+    "security-settings-card"
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "$schema": "../../../../registry-item-schema.json",
+  "name": "two-factor-config",
+  "type": "registry:lib",
+  "title": "2FA Route Configuration",
+  "description": "2FA route paths and names added to auth config",
+  "categories": [
+    "lib",
+    "config",
+    "auth",
+    "2fa"
+  ],
+  "files": [
+    {
+      "path": "modules/auth/config/routes.ts",
+      "type": "registry:lib"
+    }
+  ],
+  "dependencies": [
+    "vue-router"
+  ],
+  "registryDependencies": []
+}

@@ -1,0 +1,28 @@
+{
+  "$schema": "../../../../registry-item-schema.json",
+  "name": "security-settings-card",
+  "type": "registry:ui",
+  "title": "Security Settings Card",
+  "description": "Settings page card showing 2FA status with link to setup",
+  "categories": [
+    "ui",
+    "settings",
+    "2fa"
+  ],
+  "files": [
+    {
+      "path": "modules/settings/components/SecuritySettingsCard.vue",
+      "type": "registry:ui"
+    }
+  ],
+  "dependencies": [
+    "vue-router",
+    "vue-i18n",
+    "lucide-vue-next"
+  ],
+  "registryDependencies": [
+    "card",
+    "button",
+    "two-factor-composables"
+  ]
+}

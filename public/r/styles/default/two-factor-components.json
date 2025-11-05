@@ -1,0 +1,56 @@
+{
+  "$schema": "../../../../registry-item-schema.json",
+  "name": "two-factor-components",
+  "type": "registry:ui",
+  "title": "2FA UI Components",
+  "description": "TOTP and WebAuthn UI components (QR code, setup forms, verify forms, passkey list)",
+  "categories": [
+    "ui",
+    "auth",
+    "2fa"
+  ],
+  "files": [
+    {
+      "path": "modules/auth/components/TotpQrCode.vue",
+      "type": "registry:ui"
+    },
+    {
+      "path": "modules/auth/components/TotpSetupForm.vue",
+      "type": "registry:ui"
+    },
+    {
+      "path": "modules/auth/components/TotpVerifyForm.vue",
+      "type": "registry:ui"
+    },
+    {
+      "path": "modules/auth/components/WebAuthnRegisterForm.vue",
+      "type": "registry:ui"
+    },
+    {
+      "path": "modules/auth/components/WebAuthnVerifyForm.vue",
+      "type": "registry:ui"
+    },
+    {
+      "path": "modules/auth/components/PasskeyList.vue",
+      "type": "registry:ui"
+    }
+  ],
+  "dependencies": [
+    "vee-validate",
+    "@vee-validate/zod",
+    "vue-i18n",
+    "lucide-vue-next",
+    "vue-sonner",
+    "@vueuse/core"
+  ],
+  "registryDependencies": [
+    "button",
+    "card",
+    "form",
+    "input",
+    "table",
+    "tabs",
+    "two-factor-composables",
+    "two-factor-validation"
+  ]
+}

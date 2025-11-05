@@ -1,0 +1,24 @@
+{
+  "$schema": "../../../../registry-item-schema.json",
+  "name": "two-factor-jwt-decoder",
+  "type": "registry:lib",
+  "title": "2FA JWT Decoder",
+  "description": "JWT token decoder with 2FA status extraction (tfaPending, tfaVerified, tfaMethod)",
+  "categories": [
+    "lib",
+    "auth",
+    "2fa"
+  ],
+  "files": [
+    {
+      "path": "modules/auth/lib/jwtDecoder.ts",
+      "type": "registry:lib"
+    }
+  ],
+  "dependencies": [
+    "jwt-decode"
+  ],
+  "registryDependencies": [
+    "two-factor-types"
+  ]
+}

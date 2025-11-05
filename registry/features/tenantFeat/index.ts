@@ -36,9 +36,6 @@ export { tenantMembershipService } from './services/tenantMembershipService'
 // Services
 export { tenantService } from './services/tenantService'
 
-// Services
-export { tenantService } from './services/tenantService'
-
 // Store
 export { useTenantStore } from './store/useTenantStore'
 

@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { isAxiosError } from 'axios'
-import { onMounted } from 'vue'
 import { computed, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { toast } from 'vue-sonner'
@@ -11,11 +10,9 @@ import { useTenantList } from '@registry/features/tenantFeat/composables/useTena
 import { useTenantSwitch } from '@registry/features/tenantFeat/composables/useTenantSwitch'
 import { TenantRoutePaths } from '@registry/features/tenantFeat/config/routes'
 import { mockTenantService } from '@registry/features/tenantFeat/services/mockTenantService'
-import { useTenantStore } from '@registry/features/tenantFeat/store/useTenantStore'
 import type { Tenant } from '@registry/features/tenantFeat/types/tenant.types'
 
 const router = useRouter()
-const tenantStore = useTenantStore()
 const { tenants, isLoading } = useTenantList(mockTenantService)
 const { switchTenant: switchTenantMutation, isSwitching } = useTenantSwitch()
 const { tenantId } = useTenant(mockTenantService)
@@ -55,11 +52,6 @@ const handleTenantSelect = async (tenant: Tenant) => {
     },
   })
 }
-
-// Set mock service in store for useTenantSwitch
-onMounted(() => {
-  tenantStore.setService(mockTenantService)
-})
 </script>
 
 <template>

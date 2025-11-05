@@ -1,0 +1,23 @@
+{
+  "$schema": "../../../../registry-item-schema.json",
+  "name": "two-factor-types",
+  "type": "registry:lib",
+  "title": "Two-Factor Authentication Types",
+  "description": "TypeScript type definitions for TOTP, WebAuthn, JWT payload, and 2FA service interface",
+  "categories": [
+    "lib",
+    "types",
+    "auth",
+    "2fa"
+  ],
+  "files": [
+    {
+      "path": "modules/auth/types/twoFactor.type.ts",
+      "type": "registry:lib"
+    }
+  ],
+  "dependencies": [],
+  "registryDependencies": [
+    "base-types"
+  ]
+}

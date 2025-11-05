@@ -1,0 +1,35 @@
+{
+  "$schema": "../../../../registry-item-schema.json",
+  "name": "two-factor-composables",
+  "type": "registry:lib",
+  "title": "2FA Composables",
+  "description": "TanStack Query composables for TOTP and WebAuthn operations",
+  "categories": [
+    "lib",
+    "composables",
+    "auth",
+    "2fa"
+  ],
+  "files": [
+    {
+      "path": "modules/auth/composables/useTwoFactor.ts",
+      "type": "registry:lib"
+    },
+    {
+      "path": "modules/auth/composables/useTotp.ts",
+      "type": "registry:lib"
+    },
+    {
+      "path": "modules/auth/composables/useWebAuthn.ts",
+      "type": "registry:lib"
+    }
+  ],
+  "dependencies": [
+    "@tanstack/vue-query",
+    "@simplewebauthn/browser"
+  ],
+  "registryDependencies": [
+    "two-factor-service",
+    "two-factor-types"
+  ]
+}

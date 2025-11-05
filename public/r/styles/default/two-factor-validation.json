@@ -1,0 +1,27 @@
+{
+  "$schema": "../../../../registry-item-schema.json",
+  "name": "two-factor-validation",
+  "type": "registry:lib",
+  "title": "2FA Validation Schemas",
+  "description": "Zod validation schemas for TOTP codes and passkey names",
+  "categories": [
+    "lib",
+    "validation",
+    "auth",
+    "2fa"
+  ],
+  "files": [
+    {
+      "path": "modules/auth/validation/totp.schema.ts",
+      "type": "registry:lib"
+    },
+    {
+      "path": "modules/auth/validation/webauthn.schema.ts",
+      "type": "registry:lib"
+    }
+  ],
+  "dependencies": [
+    "zod"
+  ],
+  "registryDependencies": []
+}

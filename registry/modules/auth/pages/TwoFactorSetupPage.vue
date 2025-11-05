@@ -21,8 +21,10 @@ const props = defineProps<{
 const { t } = useI18n()
 const router = useRouter()
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const { data: twoFactorStatus } = useTwoFactorStatus(props.service)
 const { data: totpStatus, refetch: refetchTotpStatus } = useTotpStatus(props.service)
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const { data: webauthnStatus, refetch: refetchWebAuthnStatus } = useWebAuthnStatus(props.service)
 const { mutateAsync: disableTotp, isPending: isDisabling } = useDisableTotp(props.service)
 

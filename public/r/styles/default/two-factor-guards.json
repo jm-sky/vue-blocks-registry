@@ -1,0 +1,26 @@
+{
+  "$schema": "../../../../registry-item-schema.json",
+  "name": "two-factor-guards",
+  "type": "registry:lib",
+  "title": "2FA Router Guards",
+  "description": "Router guard for JWT-based 2FA verification enforcement",
+  "categories": [
+    "lib",
+    "guards",
+    "auth",
+    "2fa"
+  ],
+  "files": [
+    {
+      "path": "modules/auth/guards/twoFactorGuard.ts",
+      "type": "registry:lib"
+    }
+  ],
+  "dependencies": [
+    "vue-router"
+  ],
+  "registryDependencies": [
+    "two-factor-jwt-decoder",
+    "auth-store"
+  ]
+}

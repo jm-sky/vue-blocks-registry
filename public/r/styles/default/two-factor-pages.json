@@ -1,0 +1,37 @@
+{
+  "$schema": "../../../../registry-item-schema.json",
+  "name": "two-factor-pages",
+  "type": "registry:page",
+  "title": "2FA Pages",
+  "description": "Two-factor authentication setup and verification pages",
+  "categories": [
+    "page",
+    "auth",
+    "2fa"
+  ],
+  "files": [
+    {
+      "path": "modules/auth/pages/TwoFactorSetupPage.vue",
+      "type": "registry:page"
+    },
+    {
+      "path": "modules/auth/pages/TwoFactorVerifyPage.vue",
+      "type": "registry:page"
+    }
+  ],
+  "dependencies": [
+    "vue-router",
+    "vue-i18n",
+    "lucide-vue-next",
+    "vue-sonner"
+  ],
+  "registryDependencies": [
+    "two-factor-components",
+    "two-factor-composables",
+    "layouts",
+    "layout-components",
+    "card",
+    "button",
+    "tabs"
+  ]
+}

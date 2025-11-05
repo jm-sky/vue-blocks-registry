@@ -1,0 +1,25 @@
+{
+  "$schema": "../../../../registry-item-schema.json",
+  "name": "two-factor-i18n",
+  "type": "registry:lib",
+  "title": "2FA Translations",
+  "description": "Two-factor authentication translations (EN, PL) integrated with auth module i18n",
+  "categories": [
+    "lib",
+    "i18n",
+    "auth",
+    "2fa"
+  ],
+  "files": [
+    {
+      "path": "modules/auth/i18n/locales/en.ts",
+      "type": "registry:lib"
+    },
+    {
+      "path": "modules/auth/i18n/locales/pl.ts",
+      "type": "registry:lib"
+    }
+  ],
+  "dependencies": [],
+  "registryDependencies": []
+}
