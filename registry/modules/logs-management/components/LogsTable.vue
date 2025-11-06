@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { DataTable } from '@registry/components/data-table'
-import { useLogs } from '@registry/modules/logs/composables/useLogs'
+import { useLogs } from '@registry/modules/logs-management/composables/useLogs'
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
-import type { LogEntry } from '@registry/modules/logs/types/logs.type'
+import type { LogEntry } from '@registry/modules/logs-management/types/logs.type'
 import type { ColumnDef } from '@tanstack/vue-table'
 
 const { t } = useI18n()

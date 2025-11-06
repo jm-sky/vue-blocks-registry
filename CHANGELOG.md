@@ -7,6 +7,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.9.1] - 2025-11-06
+
+### Fixed
+- **Module Naming Conflict**: Resolved gitignore conflict with logs module
+  - Module `logs` renamed to `logs-management` to avoid conflicts with common `.gitignore` patterns
+  - No longer requires manual `.gitignore` exceptions (`!app/modules/logs`)
+  - All references updated across registry, CLI, and documentation
+
+### Added
+- **Account Deletion Feature (Phase 1)**: Basic account deletion functionality
+  - Backend endpoint DELETE /api/auth/account
+  - Soft delete with data anonymization
+  - Removal of related data (2FA, passkeys)
+  - Frontend confirmation modal
+  - API integration
+
 ## [0.9.0] - 2025-11-05
 
 ### Added
@@ -270,7 +286,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 - **Logs Module**: Added missing logs module files that were ignored by .gitignore
-  - Fixed .gitignore pattern that was unintentionally ignoring `registry/modules/logs/` directory
+  - Fixed .gitignore pattern that was unintentionally ignoring `registry/modules/logs-management/` directory (module renamed from `logs` to `logs-management`)
   - Added LogsTable.vue, LogsBrowserPage.vue, and routes.ts for logs module
   - logsFull bundle now installs correctly
 

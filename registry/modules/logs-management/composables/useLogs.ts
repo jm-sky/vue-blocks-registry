@@ -1,9 +1,9 @@
-// modules/logs/composables/useLogs.ts
-import { logsService } from '@registry/modules/logs/services/logsService'
-import { logsQueryKeys, logsRetryFunction } from '@registry/modules/logs/utils/queryUtils'
+// modules/logs-management/composables/useLogs.ts
+import { logsService } from '@registry/modules/logs-management/services/logsService'
+import { logsQueryKeys, logsRetryFunction } from '@registry/modules/logs-management/utils/queryUtils'
 import { useQuery, useQueryClient } from '@tanstack/vue-query'
 import { reactive, toRefs, watch } from 'vue'
-import type { LogsFilter } from '@registry/modules/logs/types/logs.type'
+import type { LogsFilter } from '@registry/modules/logs-management/types/logs.type'
 
 export function useLogs(initial?: LogsFilter) {
   const queryClient = useQueryClient()

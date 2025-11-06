@@ -331,7 +331,7 @@ async function tryInjectForBundle(
       spreadLines.push('...settingsRoutes,')
     }
     if (lower.includes('logs')) {
-      importLines.push('import { logsRoutes } from \'@/modules/logs/routes\'')
+      importLines.push('import { logsRoutes } from \'@/modules/logs-management/routes\'')
       spreadLines.push('...logsRoutes,')
     }
   }

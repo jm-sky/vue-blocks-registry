@@ -1,5 +1,5 @@
 // Mock logs service for demo purposes
-import type { LogEntry, LogLevel, LogsFilter } from '@registry/modules/logs/types/logs.type'
+import type { LogEntry, LogLevel, LogsFilter } from '@registry/modules/logs-management/types/logs.type'
 
 function delay(ms = 300): Promise<void> {
   return new Promise(resolve => setTimeout(resolve, ms))

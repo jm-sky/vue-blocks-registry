@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import LogsTable from '@registry/modules/logs/components/LogsTable.vue'
+import LogsTable from '@registry/modules/logs-management/components/LogsTable.vue'
 import { useI18n } from 'vue-i18n'
 
 const { t } = useI18n()

@@ -94,7 +94,7 @@ export const add = new Command()
   - `registry/app/pages/DashboardPage.vue`,
   - `registry/modules/user/` (pages: `ProfileViewPage.vue`, `ProfileEditPage.vue`; services/types/validation wg standardu modułów),
   - `registry/modules/settings/` (page: `SettingsPage.vue`; feature + page),
-  - `registry/modules/logs/` (page: `LogsBrowserPage.vue`, component: `LogsTable.vue`, `logsService.ts` z paginacją/filtrami/sortowaniem),
+  - `registry/modules/logs-management/` (page: `LogsBrowserPage.vue`, component: `LogsTable.vue`, `logsService.ts` z paginacją/filtrami/sortowaniem),
   - `registry/shared/router/guards.ts` (composables: `useRequireAuth`, `useRequireGuest` lub global guard setup),
   - `registry/shared/router/routes-helpers.ts` (opcjonalnie: ułatwia łączenie tras modułów).
 

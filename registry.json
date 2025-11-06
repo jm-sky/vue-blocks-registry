@@ -1920,7 +1920,7 @@
       ],
       "files": [
         {
-          "path": "modules/logs/components/LogsTable.vue",
+          "path": "modules/logs-management/components/LogsTable.vue",
           "type": "registry:ui"
         }
       ],
@@ -1938,7 +1938,7 @@
       ],
       "files": [
         {
-          "path": "modules/logs/pages/LogsBrowserPage.vue",
+          "path": "modules/logs-management/pages/LogsBrowserPage.vue",
           "type": "registry:page"
         }
       ],
@@ -1958,7 +1958,7 @@
       ],
       "files": [
         {
-          "path": "modules/logs/routes.ts",
+          "path": "modules/logs-management/routes.ts",
           "type": "registry:lib"
         }
       ],
@@ -1977,15 +1977,15 @@
       ],
       "files": [
         {
-          "path": "modules/logs/i18n/index.ts",
+          "path": "modules/logs-management/i18n/index.ts",
           "type": "registry:lib"
         },
         {
-          "path": "modules/logs/i18n/locales/en.ts",
+          "path": "modules/logs-management/i18n/locales/en.ts",
           "type": "registry:lib"
         },
         {
-          "path": "modules/logs/i18n/locales/pl.ts",
+          "path": "modules/logs-management/i18n/locales/pl.ts",
           "type": "registry:lib"
         }
       ],

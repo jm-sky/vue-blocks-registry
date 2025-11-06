@@ -10,7 +10,7 @@
   ],
   "files": [
     {
-      "path": "modules/logs/components/LogsTable.vue",
+      "path": "modules/logs-management/components/LogsTable.vue",
       "type": "registry:ui"
     }
   ],

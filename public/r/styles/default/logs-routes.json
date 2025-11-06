@@ -10,7 +10,7 @@
   ],
   "files": [
     {
-      "path": "modules/logs/routes.ts",
+      "path": "modules/logs-management/routes.ts",
       "type": "registry:lib"
     }
   ],

@@ -10,7 +10,7 @@
   ],
   "files": [
     {
-      "path": "modules/logs/pages/LogsBrowserPage.vue",
+      "path": "modules/logs-management/pages/LogsBrowserPage.vue",
       "type": "registry:page"
     }
   ],

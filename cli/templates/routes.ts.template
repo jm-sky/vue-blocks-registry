@@ -6,7 +6,7 @@ import type { RouteRecordRaw } from 'vue-router'
 // import { authRoutes } from '@/modules/auth/routes'
 // import { userRoutes } from '@/modules/user/routes'
 // import { settingsRoutes } from '@/modules/settings/routes'
-// import { logsRoutes } from '@/modules/logs/routes'
+// import { logsRoutes } from '@/modules/logs-management/routes'
 
 export const routes: RouteRecordRaw[] = [
   {
