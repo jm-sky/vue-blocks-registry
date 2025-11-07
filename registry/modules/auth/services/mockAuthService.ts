@@ -54,6 +54,9 @@ class MockAuthService implements IAuthService {
 
     const token = generateMockToken(credentials.email)
 
+    // Store token mapping for getCurrentUser
+    mockTokens.set(token, credentials.email)
+
     return {
       user: createUserObject(user.email, user.name),
       accessToken: token,
@@ -79,6 +82,9 @@ class MockAuthService implements IAuthService {
     })
 
     const token = generateMockToken(credentials.email)
+
+    // Store token mapping for getCurrentUser
+    mockTokens.set(token, credentials.email)
 
     return {
       user: createUserObject(credentials.email, credentials.name),
@@ -158,6 +164,43 @@ class MockAuthService implements IAuthService {
     }
 
     return createUserObject(user.email, user.name)
+  }
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  async deleteAccount(confirmation: string, password?: string): Promise<{ message: string }> {
+    await delay()
+
+    if (confirmation !== 'DELETE') {
+      throw createHttpError(HttpStatusCode.BadRequest, 'Invalid confirmation', {
+        confirmation: ['Confirmation must be "DELETE"'],
+      })
+    }
+
+    // In mock, get current user from token
+    const token = localStorage.getItem(JWT_STORE_KEY)
+
+    if (!token) {
+      throw createHttpError(HttpStatusCode.Unauthorized, 'No token provided')
+    }
+
+    const email = mockTokens.get(token)
+
+    if (!email) {
+      throw createHttpError(HttpStatusCode.Unauthorized, 'Invalid or expired token')
+    }
+
+    // Remove user from mock database
+    mockUsers.delete(email)
+    mockTokens.delete(token)
+
+    // Clear localStorage
+    localStorage.removeItem(JWT_STORE_KEY)
+
+    console.log('[Mock] User account deleted:', email)
+
+    return {
+      message: 'Account has been successfully deleted',
+    }
   }
 }
 

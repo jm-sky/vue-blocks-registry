@@ -149,6 +149,31 @@ export function useChangePassword(service?: IAuthService) {
 }
 
 /**
+ * Hook for delete account
+ */
+export function useDeleteAccount(service?: IAuthService) {
+  const authStore = useAuthStore()
+  const queryClient = useQueryClient()
+
+  return useMutation({
+    mutationFn: ({ confirmation, password }: { confirmation: string; password?: string }) =>
+      (service ?? authService).deleteAccount(confirmation, password),
+    onSuccess: () => {
+      // Clear all auth-related cache
+      queryClient.removeQueries({ queryKey: authQueryKeys.all })
+
+      // Clear auth store
+      authStore.logout()
+    },
+    onError: () => {
+      // Even if deletion fails, we keep the user logged in
+      // (in case of temporary network issues)
+    },
+    retry: authMutationRetryFunction,
+  })
+}
+
+/**
  * Main auth composable with TanStack Query integration
  */
 export function useAuth(service?: IAuthService) {
@@ -165,6 +190,7 @@ export function useAuth(service?: IAuthService) {
   const forgotPasswordMutation = useForgotPassword(service)
   const resetPasswordMutation = useResetPassword(service)
   const changePasswordMutation = useChangePassword(service)
+  const deleteAccountMutation = useDeleteAccount(service)
 
   // Computed values (keep refs reactive)
   const user = computed<User | null>(() => currentUserQuery.data.value ?? authStore.user)
@@ -200,6 +226,7 @@ export function useAuth(service?: IAuthService) {
     forgotPassword: forgotPasswordMutation.mutateAsync,
     resetPassword: resetPasswordMutation.mutateAsync,
     changePassword: changePasswordMutation.mutateAsync,
+    deleteAccount: deleteAccountMutation.mutateAsync,
     fetchUser,
 
     // Mutation states
@@ -209,6 +236,7 @@ export function useAuth(service?: IAuthService) {
     isForgotPasswordLoading: forgotPasswordMutation.isPending,
     isResetPasswordLoading: resetPasswordMutation.isPending,
     isChangePasswordLoading: changePasswordMutation.isPending,
+    isDeletingAccount: deleteAccountMutation.isPending,
 
     // Helpers
     updateUser,

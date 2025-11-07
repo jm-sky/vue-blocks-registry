@@ -46,6 +46,13 @@ class AuthService implements IAuthService {
     const response = await apiClient.get<User>('/auth/me')
     return response.data
   }
+
+  async deleteAccount(confirmation: string, password?: string): Promise<{ message: string }> {
+    const response = await apiClient.delete<{ message: string }>('/auth/account', {
+      data: { confirmation, password },
+    })
+    return response.data
+  }
 }
 
 export const authService = new AuthService()

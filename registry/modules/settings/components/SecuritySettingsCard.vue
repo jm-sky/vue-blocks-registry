@@ -1,8 +1,9 @@
 <script setup lang="ts">
+import Badge from '@registry/components/ui/badge/Badge.vue'
 import { Button } from '@registry/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@registry/components/ui/card'
 import { useTwoFactorStatus } from '@registry/modules/auth/composables/useTwoFactor'
-import { CheckCircle2, Shield, XCircle } from 'lucide-vue-next'
+import { CheckCircle2, Shield, ShieldEllipsisIcon, TabletIcon, XCircle } from 'lucide-vue-next'
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRouter } from 'vue-router'
@@ -53,14 +54,11 @@ const handleManage2FA = async () => {
       <div v-else class="space-y-4">
         <!-- TOTP Status -->
         <div class="flex items-center justify-between p-3 bg-muted/30 rounded-lg">
-          <div class="flex items-center gap-3">
-            <div v-if="twoFactorStatus?.totp.enabled" class="text-success">
-              <CheckCircle2 :size="20" />
-            </div>
-            <div v-else class="text-muted-foreground">
-              <XCircle :size="20" />
-            </div>
+          <div class="flex items-center gap-3 flex-1">
             <div>
+              <TabletIcon :size="20" />
+            </div>
+            <div class="flex-1">
               <p class="font-medium text-sm">
                 {{ t('settings.security.totp.title') }}
               </p>
@@ -68,19 +66,24 @@ const handleManage2FA = async () => {
                 {{ twoFactorStatus?.totp.enabled ? t('settings.security.totp.enabled') : t('settings.security.totp.disabled') }}
               </p>
             </div>
+            <Badge v-if="twoFactorStatus?.totp.enabled" variant="success-outline" class="py-1">
+              <CheckCircle2 class="size-4! text-success" />
+              {{ t('settings.security.totp.enabled') }}
+            </Badge>
+            <Badge v-else variant="outline" class="py-1 border-muted-foreground/50 opacity-50">
+              <XCircle class="size-4! text-muted-foreground" />
+              {{ t('settings.security.totp.disabled') }}
+            </Badge>
           </div>
         </div>
 
         <!-- WebAuthn Status -->
         <div class="flex items-center justify-between p-3 bg-muted/30 rounded-lg">
-          <div class="flex items-center gap-3">
-            <div v-if="twoFactorStatus?.webauthn.enabled" class="text-success">
-              <CheckCircle2 :size="20" />
-            </div>
-            <div v-else class="text-muted-foreground">
-              <XCircle :size="20" />
-            </div>
+          <div class="flex items-center gap-3 flex-1">
             <div>
+              <ShieldEllipsisIcon :size="20" />
+            </div>
+            <div class="flex-1">
               <p class="font-medium text-sm">
                 {{ t('settings.security.passkeys.title') }}
               </p>
@@ -91,6 +94,14 @@ const handleManage2FA = async () => {
                 }}
               </p>
             </div>
+            <Badge v-if="twoFactorStatus?.webauthn.enabled" variant="success-outline" class="py-1">
+              <CheckCircle2 class="size-4! text-success" />
+              {{ t('settings.security.passkeys.enabled') }}
+            </Badge>
+            <Badge v-else variant="outline" class="py-1 border-muted-foreground/50 opacity-50">
+              <XCircle class="size-4! text-muted-foreground" />
+              {{ t('settings.security.passkeys.disabled') }}
+            </Badge>
           </div>
         </div>
 

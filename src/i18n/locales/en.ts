@@ -176,7 +176,41 @@ export default {
       },
       settings_example: {
         title: 'Settings',
-        description: 'Demo settings integration'
+        description: 'Demo settings integration',
+        view_full_settings: 'View Full Settings',
+        general: {
+          title: 'General Settings',
+          description: 'Manage your general account preferences',
+          dark_mode: 'Dark Mode',
+          dark_mode_description: 'Toggle between light and dark theme',
+          language: 'Language',
+          language_description: 'Select your preferred language'
+        },
+        delete_account: {
+          title: 'Delete Account',
+          description: 'Permanently delete your account and all associated data',
+          warning_title: 'Warning: This action cannot be undone',
+          warning_1: 'All your data will be permanently deleted',
+          warning_2: 'You will lose access to all your account features',
+          warning_3: 'This action is irreversible',
+          button: 'Delete Account',
+          modal: {
+            title: 'Delete Account',
+            description: 'Are you sure you want to delete your account? This action cannot be undone.',
+            warning_title: 'Important',
+            warning_text: 'Once you delete your account, all your data, including profile information, settings, and any other associated data, will be permanently removed and cannot be recovered.',
+            confirmation_label: 'Type DELETE to confirm',
+            confirmation_hint: 'Please type "DELETE" (all caps) in the field above to confirm',
+            confirm_checkbox: 'I understand that this action is permanent and cannot be undone',
+            cancel: 'Cancel',
+            delete_button: 'Delete Account',
+            success: 'Account has been successfully deleted',
+            errors: {
+              invalid_confirmation: 'Please type DELETE and confirm your understanding',
+              generic: 'An error occurred while deleting your account. Please try again.'
+            }
+          }
+        }
       },
       user_example: {
         title: 'User',

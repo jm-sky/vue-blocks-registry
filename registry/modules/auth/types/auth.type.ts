@@ -8,4 +8,5 @@ export interface IAuthService {
   resetPassword(data: ResetPasswordData): Promise<{ message: string }>
   changePassword(data: ChangePasswordData): Promise<{ message: string }>
   getCurrentUser(): Promise<User>
+  deleteAccount(confirmation: string, password?: string): Promise<{ message: string }>
 }
