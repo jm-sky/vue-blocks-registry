@@ -7,6 +7,57 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.10.1] - 2025-11-07
+
+### Added
+- **Settings Module Registry Entries**: Complete registry definitions for settings module
+  - `settings-types` - TypeScript type definitions (Theme, Settings, ISettingsService)
+  - `settings-utils` - TanStack Query utilities (query keys, retry functions)
+  - `settings-service` - Settings API service with real and mock implementations
+  - `settings-validation` - Zod validation schemas for settings forms
+  - `settings-composables` - Vue composables (useSettings, useUpdateSettings)
+  - `settings-components` - UI components (PreferencesSettingsCard, DeleteAccountCard)
+  - All components now available in CLI via `vue-blocks-registry add settings-*`
+
+- **Test Automation**: Full setup validation script
+  - `scripts/test-full-setup.sh` - Automated testing of full CLI setup
+  - Runs linter, type-check, and build on generated projects
+  - Provides detailed error reporting and validation summary
+
+- **Documentation**: Issue tracking and resolution documentation
+  - `docs/issues/v0.9.1--2025-11-06/` - Historical issue documentation
+  - `docs/issues/v0.9.1--2025-11-07/` - Current issue documentation
+  - Documented account deletion implementation status
+  - Documented logs-management module renaming
+
+### Changed
+- **Settings Bundle**: Updated registry dependencies
+  - `settings-pages` now depends on `settings-components` and `security-settings-card`
+  - `settingsFull` bundle now includes all 11 module components (was 4)
+  - Improved dependency resolution for complete module installation
+
+### Fixed
+- **i18n Module Integration**: Fixed logs-management module naming
+  - CLI now uses `logs-management` instead of `logs` in i18n injection
+  - Updated `cli/src/commands/setup.ts` module list
+  - Added `toCamelCase()` helper in `i18n-injector.ts` for hyphenated module names
+  - Renamed exports: `logsEn`/`logsPl` → `logsManagementEn`/`logsManagementPl`
+  - Fixed imports in demo app `src/i18n/index.ts`
+
+- **Demo App**: Fixed badge component imports
+  - Updated `src/pages/demo/examples/Auth.vue` to use `@/components/ui/badge/`
+  - Updated `src/pages/demo/examples/TenantSelect.vue` to use `@/components/ui/badge/`
+  - Fixed TypeScript compilation errors in demo pages
+
+- **Test Script**: Improved error detection
+  - Added `set -o pipefail` to `scripts/test-full-setup.sh`
+  - Script now correctly reports validation failures
+  - Better error output formatting and summary
+
+- **Code Quality**: Minor linting fixes
+  - Removed trailing newlines in `cli/src/helpers/router-injector.ts`
+  - Removed trailing newlines in `registry/modules/dashboard/routes.ts`
+
 ## [0.10.0] - 2025-11-07
 
 ### Added

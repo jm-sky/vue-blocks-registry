@@ -6,5 +6,3 @@ export const dashboardRoutes = [
     component: () => import('@registry/modules/dashboard/pages/DashboardPage.vue'),
   },
 ]
-
-

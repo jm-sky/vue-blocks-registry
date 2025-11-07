@@ -1,0 +1,42 @@
+{
+  "$schema": "../../../../registry-item-schema.json",
+  "name": "settings-components",
+  "type": "registry:ui",
+  "title": "Settings Components",
+  "description": "Settings UI components (PreferencesSettingsCard, DeleteAccountCard)",
+  "categories": [
+    "ui",
+    "settings"
+  ],
+  "files": [
+    {
+      "path": "modules/settings/components/PreferencesSettingsCard.vue",
+      "type": "registry:ui"
+    },
+    {
+      "path": "modules/settings/components/DeleteAccountCard.vue",
+      "type": "registry:ui"
+    }
+  ],
+  "dependencies": [
+    "vee-validate",
+    "@vee-validate/zod",
+    "vue-i18n",
+    "vue-router",
+    "vue-sonner",
+    "lucide-vue-next"
+  ],
+  "registryDependencies": [
+    "button",
+    "card",
+    "checkbox",
+    "input",
+    "label",
+    "form",
+    "select",
+    "badge",
+    "settings-composables",
+    "settings-validation",
+    "auth-composables"
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "$schema": "../../../../registry-item-schema.json",
+  "name": "settings-validation",
+  "type": "registry:lib",
+  "title": "Settings Validation Schemas",
+  "description": "Zod validation schemas for settings forms",
+  "categories": [
+    "lib",
+    "validation",
+    "settings"
+  ],
+  "files": [
+    {
+      "path": "modules/settings/validation/settings.schema.ts",
+      "type": "registry:lib"
+    }
+  ],
+  "dependencies": [
+    "zod"
+  ],
+  "registryDependencies": []
+}

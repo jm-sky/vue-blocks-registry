@@ -338,7 +338,7 @@ Examples:
             const { injectI18nModules } = await import('../helpers/i18n-injector.js')
             await injectI18nModules({
               projectRoot: projectPath,
-              modules: ['auth', 'user', 'settings', 'logs'],
+              modules: ['auth', 'user', 'settings', 'logs-management'],
             })
             logger.success('Injected i18n module imports into src/i18n/index.ts')
           }

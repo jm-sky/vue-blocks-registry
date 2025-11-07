@@ -1,0 +1,22 @@
+{
+  "$schema": "../../../../registry-item-schema.json",
+  "name": "settings-utils",
+  "type": "registry:lib",
+  "title": "Settings Query Utils",
+  "description": "TanStack Query utilities for settings (query keys, retry functions)",
+  "categories": [
+    "lib",
+    "utils",
+    "settings"
+  ],
+  "files": [
+    {
+      "path": "modules/settings/utils/queryUtils.ts",
+      "type": "registry:lib"
+    }
+  ],
+  "dependencies": [
+    "axios"
+  ],
+  "registryDependencies": []
+}

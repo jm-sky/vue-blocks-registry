@@ -5,8 +5,8 @@ import { createI18n } from 'vue-i18n'
 // Import module-specific messages
 import { authEn } from '@registry/modules/auth/i18n/index'
 import { authPl } from '@registry/modules/auth/i18n/index'
-import { logsEn } from '@registry/modules/logs-management/i18n'
-import { logsPl } from '@registry/modules/logs-management/i18n'
+import { logsManagementEn } from '@registry/modules/logs-management/i18n'
+import { logsManagementPl } from '@registry/modules/logs-management/i18n'
 import { settingsEn } from '@registry/modules/settings/i18n'
 import { settingsPl } from '@registry/modules/settings/i18n'
 import { userEn } from '@registry/modules/user/i18n'
@@ -21,8 +21,8 @@ import demoPl from './locales/pl'
 import type { I18nOptions } from 'vue-i18n'
 
 // Merge all messages
-const en = { ...registryEn, ...authEn, ...logsEn, ...settingsEn, ...userEn, ...demoEn }
-const pl = { ...registryPl, ...authPl, ...logsPl, ...settingsPl, ...userPl, ...demoPl }
+const en = { ...registryEn, ...authEn, ...logsManagementEn, ...settingsEn, ...userEn, ...demoEn }
+const pl = { ...registryPl, ...authPl, ...logsManagementPl, ...settingsPl, ...userPl, ...demoPl }
 
 // Export merged type for type safety
 export type Messages = typeof en

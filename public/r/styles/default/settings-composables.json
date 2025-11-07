@@ -1,0 +1,26 @@
+{
+  "$schema": "../../../../registry-item-schema.json",
+  "name": "settings-composables",
+  "type": "registry:lib",
+  "title": "Settings Composables",
+  "description": "Vue composables for settings management (useSettings, useUpdateSettings)",
+  "categories": [
+    "lib",
+    "composables",
+    "settings"
+  ],
+  "files": [
+    {
+      "path": "modules/settings/composables/useSettings.ts",
+      "type": "registry:lib"
+    }
+  ],
+  "dependencies": [
+    "@tanstack/vue-query"
+  ],
+  "registryDependencies": [
+    "settings-service",
+    "settings-types",
+    "settings-utils"
+  ]
+}

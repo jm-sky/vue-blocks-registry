@@ -1,4 +1,4 @@
-export const logsEn = {
+export const logsManagementEn = {
   logs: {
     page: {
       title: 'Logs',

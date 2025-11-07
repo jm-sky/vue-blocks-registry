@@ -66,11 +66,17 @@ export async function injectI18nModules(options: InjectI18nOptions): Promise<voi
 
   let content = await fs.readFile(i18nIndexPath, 'utf-8')
 
+  // Helper function to convert module name to camelCase for variable names
+  const toCamelCase = (str: string): string => {
+    return str.replace(/-([a-z])/g, (_, letter) => letter.toUpperCase())
+  }
+
   // Generate import lines for each module
   const importLines: string[] = []
   for (const module of options.modules) {
-    importLines.push(`import { ${module}En } from '@/modules/${module}/i18n'`)
-    importLines.push(`import { ${module}Pl } from '@/modules/${module}/i18n'`)
+    const varName = toCamelCase(module)
+    importLines.push(`import { ${varName}En } from '@/modules/${module}/i18n'`)
+    importLines.push(`import { ${varName}Pl } from '@/modules/${module}/i18n'`)
   }
 
   // Inject imports
@@ -89,8 +95,9 @@ export async function injectI18nModules(options: InjectI18nOptions): Promise<voi
   const mergeFragmentsEn: string[] = []
   const mergeFragmentsPl: string[] = []
   for (const module of options.modules) {
-    mergeFragmentsEn.push(`...${module}En`)
-    mergeFragmentsPl.push(`...${module}Pl`)
+    const varName = toCamelCase(module)
+    mergeFragmentsEn.push(`...${varName}En`)
+    mergeFragmentsPl.push(`...${varName}Pl`)
   }
 
   // Inject merges

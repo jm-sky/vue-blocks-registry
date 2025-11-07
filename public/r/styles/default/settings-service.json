@@ -1,0 +1,27 @@
+{
+  "$schema": "../../../../registry-item-schema.json",
+  "name": "settings-service",
+  "type": "registry:lib",
+  "title": "Settings Service",
+  "description": "Settings API service with get and update methods (real and mock implementations)",
+  "categories": [
+    "lib",
+    "services",
+    "settings"
+  ],
+  "files": [
+    {
+      "path": "modules/settings/services/settingsService.ts",
+      "type": "registry:lib"
+    },
+    {
+      "path": "modules/settings/services/mockSettingsService.ts",
+      "type": "registry:lib"
+    }
+  ],
+  "dependencies": [],
+  "registryDependencies": [
+    "http-client",
+    "settings-types"
+  ]
+}

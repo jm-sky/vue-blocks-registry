@@ -3,8 +3,8 @@ import { onErrorCaptured } from 'vue'
 import { useI18n } from 'vue-i18n'
 import InstallationCode from '@/components/demo/InstallationCode.vue'
 import TenantGridDemo from '@/components/tenant/TenantGridDemo.vue'
-import DemoBadge from '@registry/components/ui/badge/DemoBadge.vue'
-import StatusBadge from '@registry/components/ui/badge/StatusBadge.vue'
+import DemoBadge from '@/components/ui/badge/DemoBadge.vue'
+import StatusBadge from '@/components/ui/badge/StatusBadge.vue'
 import DocsPageHeader from '../layouts/partials/DocsPageHeader.vue'
 
 const { t } = useI18n()

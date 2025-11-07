@@ -3,7 +3,7 @@
   "name": "settingsFull",
   "type": "registry:bundle",
   "title": "Complete Settings Module",
-  "description": "Settings module with page and routes",
+  "description": "Settings module with pages, components, services, and all dependencies",
   "categories": [
     "bundle",
     "settings"
@@ -11,6 +11,13 @@
   "files": [],
   "dependencies": [],
   "registryDependencies": [
+    "settings-types",
+    "settings-utils",
+    "settings-service",
+    "settings-validation",
+    "settings-composables",
+    "settings-components",
+    "security-settings-card",
     "settings-pages",
     "settings-routes",
     "settings-i18n",

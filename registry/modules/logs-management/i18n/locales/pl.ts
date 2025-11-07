@@ -1,4 +1,4 @@
-export const logsPl = {
+export const logsManagementPl = {
   logs: {
     page: {
       title: 'Logi',

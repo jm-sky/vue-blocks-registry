@@ -1,0 +1,22 @@
+{
+  "$schema": "../../../../registry-item-schema.json",
+  "name": "settings-types",
+  "type": "registry:lib",
+  "title": "Settings Types",
+  "description": "TypeScript type definitions for settings (Theme, Settings, ISettingsService)",
+  "categories": [
+    "lib",
+    "types",
+    "settings"
+  ],
+  "files": [
+    {
+      "path": "modules/settings/types/settings.type.ts",
+      "type": "registry:lib"
+    }
+  ],
+  "dependencies": [],
+  "registryDependencies": [
+    "i18n-config"
+  ]
+}

@@ -2,8 +2,8 @@
 import { BookIcon, CheckCircleIcon, SettingsIcon } from 'lucide-vue-next'
 import { useI18n } from 'vue-i18n'
 import InstallationCode from '@/components/demo/InstallationCode.vue'
-import DemoBadge from '@registry/components/ui/badge/DemoBadge.vue'
-import StatusBadge from '@registry/components/ui/badge/StatusBadge.vue'
+import DemoBadge from '@/components/ui/badge/DemoBadge.vue'
+import StatusBadge from '@/components/ui/badge/StatusBadge.vue'
 import HoverCard from '@registry/components/ui/hover-card/HoverCard.vue'
 import DocsPageHeader from '../layouts/partials/DocsPageHeader.vue'
 

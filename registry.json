@@ -1656,6 +1656,161 @@
       "registryDependencies": []
     },
     {
+      "name": "settings-types",
+      "type": "registry:lib",
+      "title": "Settings Types",
+      "description": "TypeScript type definitions for settings (Theme, Settings, ISettingsService)",
+      "categories": [
+        "lib",
+        "types",
+        "settings"
+      ],
+      "files": [
+        {
+          "path": "modules/settings/types/settings.type.ts",
+          "type": "registry:lib"
+        }
+      ],
+      "dependencies": [],
+      "registryDependencies": [
+        "i18n-config"
+      ]
+    },
+    {
+      "name": "settings-utils",
+      "type": "registry:lib",
+      "title": "Settings Query Utils",
+      "description": "TanStack Query utilities for settings (query keys, retry functions)",
+      "categories": [
+        "lib",
+        "utils",
+        "settings"
+      ],
+      "files": [
+        {
+          "path": "modules/settings/utils/queryUtils.ts",
+          "type": "registry:lib"
+        }
+      ],
+      "dependencies": [
+        "axios"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "settings-service",
+      "type": "registry:lib",
+      "title": "Settings Service",
+      "description": "Settings API service with get and update methods (real and mock implementations)",
+      "categories": [
+        "lib",
+        "services",
+        "settings"
+      ],
+      "files": [
+        {
+          "path": "modules/settings/services/settingsService.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "modules/settings/services/mockSettingsService.ts",
+          "type": "registry:lib"
+        }
+      ],
+      "dependencies": [],
+      "registryDependencies": [
+        "http-client",
+        "settings-types"
+      ]
+    },
+    {
+      "name": "settings-validation",
+      "type": "registry:lib",
+      "title": "Settings Validation Schemas",
+      "description": "Zod validation schemas for settings forms",
+      "categories": [
+        "lib",
+        "validation",
+        "settings"
+      ],
+      "files": [
+        {
+          "path": "modules/settings/validation/settings.schema.ts",
+          "type": "registry:lib"
+        }
+      ],
+      "dependencies": [
+        "zod"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "settings-composables",
+      "type": "registry:lib",
+      "title": "Settings Composables",
+      "description": "Vue composables for settings management (useSettings, useUpdateSettings)",
+      "categories": [
+        "lib",
+        "composables",
+        "settings"
+      ],
+      "files": [
+        {
+          "path": "modules/settings/composables/useSettings.ts",
+          "type": "registry:lib"
+        }
+      ],
+      "dependencies": [
+        "@tanstack/vue-query"
+      ],
+      "registryDependencies": [
+        "settings-service",
+        "settings-types",
+        "settings-utils"
+      ]
+    },
+    {
+      "name": "settings-components",
+      "type": "registry:ui",
+      "title": "Settings Components",
+      "description": "Settings UI components (PreferencesSettingsCard, DeleteAccountCard)",
+      "categories": [
+        "ui",
+        "settings"
+      ],
+      "files": [
+        {
+          "path": "modules/settings/components/PreferencesSettingsCard.vue",
+          "type": "registry:ui"
+        },
+        {
+          "path": "modules/settings/components/DeleteAccountCard.vue",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "vee-validate",
+        "@vee-validate/zod",
+        "vue-i18n",
+        "vue-router",
+        "vue-sonner",
+        "lucide-vue-next"
+      ],
+      "registryDependencies": [
+        "button",
+        "card",
+        "checkbox",
+        "input",
+        "label",
+        "form",
+        "select",
+        "badge",
+        "settings-composables",
+        "settings-validation",
+        "auth-composables"
+      ]
+    },
+    {
       "name": "security-settings-card",
       "type": "registry:ui",
       "title": "Security Settings Card",
@@ -1836,14 +1991,11 @@
         }
       ],
       "dependencies": [
-        "vee-validate",
-        "@vee-validate/zod",
         "vue-i18n"
       ],
       "registryDependencies": [
-        "button",
-        "form",
-        "select"
+        "settings-components",
+        "security-settings-card"
       ]
     },
     {
@@ -1895,7 +2047,7 @@
       "name": "settingsFull",
       "type": "registry:bundle",
       "title": "Complete Settings Module",
-      "description": "Settings module with page and routes",
+      "description": "Settings module with pages, components, services, and all dependencies",
       "categories": [
         "bundle",
         "settings"
@@ -1903,6 +2055,13 @@
       "files": [],
       "dependencies": [],
       "registryDependencies": [
+        "settings-types",
+        "settings-utils",
+        "settings-service",
+        "settings-validation",
+        "settings-composables",
+        "settings-components",
+        "security-settings-card",
         "settings-pages",
         "settings-routes",
         "settings-i18n",
