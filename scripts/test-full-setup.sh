@@ -13,6 +13,7 @@
 #   ./scripts/test-full-setup.sh my-test-app
 
 set -e
+set -o pipefail
 
 # Colors for output
 GREEN='\033[0;32m'
