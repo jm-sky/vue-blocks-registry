@@ -1,0 +1,22 @@
+{
+  "$schema": "../../../../registry-item-schema.json",
+  "name": "user-validation",
+  "type": "registry:lib",
+  "title": "User Validation",
+  "description": "Zod validation schemas for user profile",
+  "categories": [
+    "lib",
+    "validation",
+    "user"
+  ],
+  "files": [
+    {
+      "path": "modules/user/validation/profile.schema.ts",
+      "type": "registry:lib"
+    }
+  ],
+  "dependencies": [
+    "zod"
+  ],
+  "registryDependencies": []
+}

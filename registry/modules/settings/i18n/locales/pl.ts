@@ -52,7 +52,20 @@ export const settingsPl = {
         title: 'Klucze dostępu',
         enabled: 'Włączone',
         disabled: 'Nie skonfigurowane',
-        count: 'Zarejestrowano {count} klucz(y) dostępu',
+        count: 'Nie zarejestrowano kluczy dostępu | Zarejestrowano {count} klucz dostępu | Zarejestrowano {count} klucze dostępu',
+      },
+      preferred_method: {
+        title: 'Preferowana metoda 2FA',
+        description: 'Ustaw preferowaną metodę uwierzytelniania dwuskładnikowego',
+        label: 'Preferowana metoda',
+        placeholder: 'Wybierz preferowaną metodę',
+        options: {
+          none: 'Automatycznie',
+          totp: 'Aplikacja uwierzytelniająca',
+          webauthn: 'Klucze dostępu',
+        },
+        saved: 'Zaktualizowano preferowaną metodę',
+        error: 'Nie udało się zaktualizować preferowanej metody',
       },
     },
     delete_account: {

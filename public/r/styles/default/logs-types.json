@@ -1,0 +1,22 @@
+{
+  "$schema": "../../../../registry-item-schema.json",
+  "name": "logs-types",
+  "type": "registry:lib",
+  "title": "Logs Types",
+  "description": "TypeScript type definitions for logs module",
+  "categories": [
+    "lib",
+    "types",
+    "logs"
+  ],
+  "files": [
+    {
+      "path": "modules/logs-management/types/logs.type.ts",
+      "type": "registry:lib"
+    }
+  ],
+  "dependencies": [],
+  "registryDependencies": [
+    "base-types"
+  ]
+}

@@ -52,7 +52,20 @@ export const settingsEn = {
         title: 'Passkeys',
         enabled: 'Enabled',
         disabled: 'Not configured',
-        count: '{count} passkey(s) registered',
+        count: 'No passkeys registered | {count} passkey registered | {count} passkeys registered',
+      },
+      preferred_method: {
+        title: 'Preferred 2FA Method',
+        description: 'Set your preferred method to use for two-factor authentication',
+        label: 'Preferred Method',
+        placeholder: 'Select preferred method',
+        options: {
+          none: 'Automatic',
+          totp: 'Authenticator App',
+          webauthn: 'Passkeys',
+        },
+        saved: 'Preferred method updated',
+        error: 'Failed to update preferred method',
       },
     },
     delete_account: {

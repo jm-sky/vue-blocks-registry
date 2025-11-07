@@ -7,6 +7,58 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.11.0] - 2025-11-07
+
+### Added
+- **2FA Preferred Method Feature**: Users can now set their preferred 2FA verification method
+  - Extended `User` type with `preferredTwoFactorMethod` field ('totp' | 'webauthn' | null)
+  - Added `UpdatePreferredMethodRequest` interface to 2FA types
+  - Added `updatePreferredMethod()` to `ITwoFactorService` and implementations
+  - New `useUpdatePreferredMethod()` composable with TanStack Query mutation
+  - UI selector in `SecuritySettingsCard` (shows only when both TOTP and WebAuthn enabled)
+  - `TwoFactorVerifyPage` now respects user's preferred method with intelligent fallback
+  - Translations in English and Polish for all new UI elements
+  - Method preference persisted in localStorage (demo mode) and backend (production)
+
+- **User Module Registry Entries**: Complete registry definitions for user module
+  - `user-types` - User, UpdateUserProfileData, AvatarUploadResponse, IUserService
+  - `user-config` - User module configuration (query settings, stale time, retry logic)
+  - `user-utils` - TanStack Query utilities (query keys, retry functions)
+  - `user-service` - User API service with real and mock implementations
+  - `user-validation` - Zod validation schemas for profile updates
+  - `user-composables` - useUser, useUserProfile, useUpdateProfile, useUploadAvatar, useDeleteAvatar
+  - `userFull` bundle now includes all 10 module components
+
+- **Logs Module Registry Entries**: Complete registry definitions for logs-management module
+  - `logs-types` - LogEntry, LogLevel, LogsFilter type definitions
+  - `logs-utils` - TanStack Query utilities (query keys, retry functions)
+  - `logs-service` - Logs API service with real and mock implementations
+  - `logs-composables` - useLogs composable with filtering and pagination
+  - `logsFull` bundle now includes all 9 module components
+
+- **Setup Command Enhancement**: twoFactorFull now installed by default in `--all` mode
+  - `pnpm dlx vue-blocks-registry setup --all` now includes complete 2FA module
+  - Installs between authFull and tenantFeat for proper dependency order
+  - Updated help text and error messages to reflect new bundle
+
+### Changed
+- **SecuritySettingsCard UI**: Redesigned preferred method selector
+  - Compact inline layout matching GitHub's 2FA settings design
+  - Select dropdown with fixed width (w-48)
+  - Removed info box, streamlined interface
+  - Shows only when both TOTP and WebAuthn are enabled
+
+- **Translations**: Simplified option labels
+  - EN: "Automatic", "Authenticator App", "Passkeys" (removed technical suffixes)
+  - PL: "Automatycznie", "Aplikacja uwierzytelniająca", "Klucze dostępu"
+  - Passkey count now uses pluralization: "No passkeys | {count} passkey | {count} passkeys"
+
+### Fixed
+- **DeleteAccountCard Import**: Fixed card component import
+  - Changed from `'@registry/components/ui/card/Card.vue'` to barrel export
+  - Now correctly imports from `'@registry/components/ui/card'`
+  - Resolves TypeScript compilation errors in user projects
+
 ## [0.10.1] - 2025-11-07
 
 ### Added

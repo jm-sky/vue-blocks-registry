@@ -1,0 +1,28 @@
+{
+  "$schema": "../../../../registry-item-schema.json",
+  "name": "logs-service",
+  "type": "registry:lib",
+  "title": "Logs Service",
+  "description": "Logs API service and mock service",
+  "categories": [
+    "lib",
+    "service",
+    "logs"
+  ],
+  "files": [
+    {
+      "path": "modules/logs-management/services/logsService.ts",
+      "type": "registry:lib"
+    },
+    {
+      "path": "modules/logs-management/services/mockLogsService.ts",
+      "type": "registry:lib"
+    }
+  ],
+  "dependencies": [],
+  "registryDependencies": [
+    "logs-types",
+    "http-client",
+    "config"
+  ]
+}

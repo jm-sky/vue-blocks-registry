@@ -55,6 +55,10 @@ export interface TwoFactorStatus {
   required: boolean // Whether 2FA is required (global setting)
 }
 
+export interface UpdatePreferredMethodRequest {
+  preferredMethod: 'totp' | 'webauthn' | null
+}
+
 export interface TwoFactorVerifyResponse {
   verified: boolean
   method: 'totp' | 'webauthn'
@@ -91,4 +95,5 @@ export interface ITwoFactorService {
 
   // Combined
   getTwoFactorStatus(): Promise<TwoFactorStatus>
+  updatePreferredMethod(request: UpdatePreferredMethodRequest): Promise<{ preferredMethod: 'totp' | 'webauthn' | null }>
 }

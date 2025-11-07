@@ -8,6 +8,7 @@ import type {
   TotpStatus,
   TwoFactorStatus,
   TwoFactorVerifyResponse,
+  UpdatePreferredMethodRequest,
   WebAuthnRegisterRequest,
   WebAuthnRegisterResponse,
   WebAuthnStatus,
@@ -20,6 +21,7 @@ const TOTP_STATUS_KEY = 'vbr_totp_status'
 const TOTP_BACKUP_CODES_KEY = 'vbr_totp_backup_codes'
 const PASSKEYS_KEY = 'vbr_passkeys'
 const WEBAUTHN_STATUS_KEY = 'vbr_webauthn_status'
+const PREFERRED_METHOD_KEY = 'vbr_preferred_2fa_method'
 
 // Helper to generate random string
 function generateRandomString(length: number): string {
@@ -346,6 +348,31 @@ class MockTwoFactorService implements ITwoFactorService {
       totp,
       webauthn,
       required: false, // 2FA is optional in demo
+    }
+  }
+
+  async updatePreferredMethod(
+    request: UpdatePreferredMethodRequest
+  ): Promise<{ preferredMethod: 'totp' | 'webauthn' | null }> {
+    await delay(300)
+
+    // Store preferred method
+    if (request.preferredMethod) {
+      localStorage.setItem(PREFERRED_METHOD_KEY, request.preferredMethod)
+    } else {
+      localStorage.removeItem(PREFERRED_METHOD_KEY)
+    }
+
+    // Also update in auth store if exists
+    const currentUser = localStorage.getItem('vbr_current_user')
+    if (currentUser) {
+      const user = JSON.parse(currentUser)
+      user.preferredTwoFactorMethod = request.preferredMethod
+      localStorage.setItem('vbr_current_user', JSON.stringify(user))
+    }
+
+    return {
+      preferredMethod: request.preferredMethod,
     }
   }
 }

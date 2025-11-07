@@ -7,6 +7,7 @@ import type {
   TotpStatus,
   TwoFactorStatus,
   TwoFactorVerifyResponse,
+  UpdatePreferredMethodRequest,
   WebAuthnRegisterRequest,
   WebAuthnRegisterResponse,
   WebAuthnStatus,
@@ -120,6 +121,16 @@ class TwoFactorService implements ITwoFactorService {
   // Combined Methods
   async getTwoFactorStatus(): Promise<TwoFactorStatus> {
     const response = await apiClient.get<TwoFactorStatus>('/auth/2fa/status')
+    return response.data
+  }
+
+  async updatePreferredMethod(
+    request: UpdatePreferredMethodRequest
+  ): Promise<{ preferredMethod: 'totp' | 'webauthn' | null }> {
+    const response = await apiClient.patch<{ preferredMethod: 'totp' | 'webauthn' | null }>(
+      '/auth/2fa/preferred-method',
+      request
+    )
     return response.data
   }
 }

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Button } from '@registry/components/ui/button'
-import Card from '@registry/components/ui/card/Card.vue'
+import { Card } from '@registry/components/ui/card'
 import { Checkbox } from '@registry/components/ui/checkbox'
 import { Input } from '@registry/components/ui/input'
 import { Label } from '@registry/components/ui/label'

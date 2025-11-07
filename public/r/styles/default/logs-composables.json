@@ -1,0 +1,27 @@
+{
+  "$schema": "../../../../registry-item-schema.json",
+  "name": "logs-composables",
+  "type": "registry:lib",
+  "title": "Logs Composables",
+  "description": "Vue composables for logs management with TanStack Query",
+  "categories": [
+    "lib",
+    "composables",
+    "logs"
+  ],
+  "files": [
+    {
+      "path": "modules/logs-management/composables/useLogs.ts",
+      "type": "registry:lib"
+    }
+  ],
+  "dependencies": [
+    "@tanstack/vue-query",
+    "vue"
+  ],
+  "registryDependencies": [
+    "logs-types",
+    "logs-service",
+    "logs-utils"
+  ]
+}

@@ -1958,6 +1958,139 @@
       "registryDependencies": []
     },
     {
+      "name": "user-types",
+      "type": "registry:lib",
+      "title": "User Types",
+      "description": "TypeScript type definitions for user module",
+      "categories": [
+        "lib",
+        "types",
+        "user"
+      ],
+      "files": [
+        {
+          "path": "modules/user/types/user.type.ts",
+          "type": "registry:lib"
+        }
+      ],
+      "dependencies": [],
+      "registryDependencies": [
+        "base-types"
+      ]
+    },
+    {
+      "name": "user-config",
+      "type": "registry:lib",
+      "title": "User Config",
+      "description": "User module configuration (query settings, stale time, retry logic)",
+      "categories": [
+        "lib",
+        "config",
+        "user"
+      ],
+      "files": [
+        {
+          "path": "modules/user/config/user.config.ts",
+          "type": "registry:lib"
+        }
+      ],
+      "dependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "user-utils",
+      "type": "registry:lib",
+      "title": "User Utils",
+      "description": "User module utilities (query keys, retry functions)",
+      "categories": [
+        "lib",
+        "utils",
+        "user"
+      ],
+      "files": [
+        {
+          "path": "modules/user/utils/queryUtils.ts",
+          "type": "registry:lib"
+        }
+      ],
+      "dependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "user-service",
+      "type": "registry:lib",
+      "title": "User Service",
+      "description": "User API service and mock service",
+      "categories": [
+        "lib",
+        "service",
+        "user"
+      ],
+      "files": [
+        {
+          "path": "modules/user/services/userService.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "modules/user/services/mockUserService.ts",
+          "type": "registry:lib"
+        }
+      ],
+      "dependencies": [],
+      "registryDependencies": [
+        "user-types",
+        "http-client",
+        "config"
+      ]
+    },
+    {
+      "name": "user-validation",
+      "type": "registry:lib",
+      "title": "User Validation",
+      "description": "Zod validation schemas for user profile",
+      "categories": [
+        "lib",
+        "validation",
+        "user"
+      ],
+      "files": [
+        {
+          "path": "modules/user/validation/profile.schema.ts",
+          "type": "registry:lib"
+        }
+      ],
+      "dependencies": [
+        "zod"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "user-composables",
+      "type": "registry:lib",
+      "title": "User Composables",
+      "description": "Vue composables for user profile management with TanStack Query",
+      "categories": [
+        "lib",
+        "composables",
+        "user"
+      ],
+      "files": [
+        {
+          "path": "modules/user/composables/useUser.ts",
+          "type": "registry:lib"
+        }
+      ],
+      "dependencies": [
+        "@tanstack/vue-query"
+      ],
+      "registryDependencies": [
+        "user-types",
+        "user-service",
+        "user-config",
+        "user-utils"
+      ]
+    },
+    {
       "name": "userFull",
       "type": "registry:bundle",
       "title": "Complete User Module",
@@ -1969,6 +2102,12 @@
       "files": [],
       "dependencies": [],
       "registryDependencies": [
+        "user-types",
+        "user-config",
+        "user-utils",
+        "user-service",
+        "user-validation",
+        "user-composables",
         "user-pages",
         "user-routes",
         "user-i18n",
@@ -2152,6 +2291,99 @@
       "registryDependencies": []
     },
     {
+      "name": "logs-types",
+      "type": "registry:lib",
+      "title": "Logs Types",
+      "description": "TypeScript type definitions for logs module",
+      "categories": [
+        "lib",
+        "types",
+        "logs"
+      ],
+      "files": [
+        {
+          "path": "modules/logs-management/types/logs.type.ts",
+          "type": "registry:lib"
+        }
+      ],
+      "dependencies": [],
+      "registryDependencies": [
+        "base-types"
+      ]
+    },
+    {
+      "name": "logs-utils",
+      "type": "registry:lib",
+      "title": "Logs Utils",
+      "description": "Logs module utilities (query keys, retry functions)",
+      "categories": [
+        "lib",
+        "utils",
+        "logs"
+      ],
+      "files": [
+        {
+          "path": "modules/logs-management/utils/queryUtils.ts",
+          "type": "registry:lib"
+        }
+      ],
+      "dependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "logs-service",
+      "type": "registry:lib",
+      "title": "Logs Service",
+      "description": "Logs API service and mock service",
+      "categories": [
+        "lib",
+        "service",
+        "logs"
+      ],
+      "files": [
+        {
+          "path": "modules/logs-management/services/logsService.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "modules/logs-management/services/mockLogsService.ts",
+          "type": "registry:lib"
+        }
+      ],
+      "dependencies": [],
+      "registryDependencies": [
+        "logs-types",
+        "http-client",
+        "config"
+      ]
+    },
+    {
+      "name": "logs-composables",
+      "type": "registry:lib",
+      "title": "Logs Composables",
+      "description": "Vue composables for logs management with TanStack Query",
+      "categories": [
+        "lib",
+        "composables",
+        "logs"
+      ],
+      "files": [
+        {
+          "path": "modules/logs-management/composables/useLogs.ts",
+          "type": "registry:lib"
+        }
+      ],
+      "dependencies": [
+        "@tanstack/vue-query",
+        "vue"
+      ],
+      "registryDependencies": [
+        "logs-types",
+        "logs-service",
+        "logs-utils"
+      ]
+    },
+    {
       "name": "logsFull",
       "type": "registry:bundle",
       "title": "Complete Logs Module",
@@ -2163,6 +2395,10 @@
       "files": [],
       "dependencies": [],
       "registryDependencies": [
+        "logs-types",
+        "logs-utils",
+        "logs-service",
+        "logs-composables",
         "logs-components",
         "logs-pages",
         "logs-routes",

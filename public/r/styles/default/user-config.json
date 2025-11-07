@@ -1,0 +1,20 @@
+{
+  "$schema": "../../../../registry-item-schema.json",
+  "name": "user-config",
+  "type": "registry:lib",
+  "title": "User Config",
+  "description": "User module configuration (query settings, stale time, retry logic)",
+  "categories": [
+    "lib",
+    "config",
+    "user"
+  ],
+  "files": [
+    {
+      "path": "modules/user/config/user.config.ts",
+      "type": "registry:lib"
+    }
+  ],
+  "dependencies": [],
+  "registryDependencies": []
+}

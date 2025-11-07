@@ -1,0 +1,20 @@
+{
+  "$schema": "../../../../registry-item-schema.json",
+  "name": "logs-utils",
+  "type": "registry:lib",
+  "title": "Logs Utils",
+  "description": "Logs module utilities (query keys, retry functions)",
+  "categories": [
+    "lib",
+    "utils",
+    "logs"
+  ],
+  "files": [
+    {
+      "path": "modules/logs-management/utils/queryUtils.ts",
+      "type": "registry:lib"
+    }
+  ],
+  "dependencies": [],
+  "registryDependencies": []
+}

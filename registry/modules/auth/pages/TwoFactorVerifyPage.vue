@@ -5,6 +5,7 @@ import GuestLayoutCentered from '@registry/layouts/GuestLayoutCentered.vue'
 import TotpVerifyForm from '@registry/modules/auth/components/TotpVerifyForm.vue'
 import WebAuthnVerifyForm from '@registry/modules/auth/components/WebAuthnVerifyForm.vue'
 import { useTotpStatus, useWebAuthnStatus } from '@registry/modules/auth/composables/useTwoFactor'
+import { useAuthStore } from '@registry/modules/auth/store/useAuthStore'
 import { Shield } from 'lucide-vue-next'
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
@@ -17,6 +18,7 @@ const props = defineProps<{
 
 const { t } = useI18n()
 const router = useRouter()
+const authStore = useAuthStore()
 
 const { data: totpStatus } = useTotpStatus(props.service)
 const { data: webauthnStatus } = useWebAuthnStatus(props.service)
@@ -25,8 +27,21 @@ const { data: webauthnStatus } = useWebAuthnStatus(props.service)
 const hasTOTP = computed(() => totpStatus.value?.enabled ?? false)
 const hasWebAuthn = computed(() => (webauthnStatus.value?.passkeys.length ?? 0) > 0)
 
-// Default to TOTP if available, otherwise WebAuthn
-const defaultMethod = computed(() => (hasTOTP.value ? 'totp' : 'webauthn'))
+// Get preferred method from user, with fallback logic
+const defaultMethod = computed(() => {
+  const preferred = authStore.user?.preferredTwoFactorMethod
+
+  // If user has a preferred method and it's available, use it
+  if (preferred === 'totp' && hasTOTP.value) {
+    return 'totp'
+  }
+  if (preferred === 'webauthn' && hasWebAuthn.value) {
+    return 'webauthn'
+  }
+
+  // Fallback to TOTP if available, otherwise WebAuthn
+  return hasTOTP.value ? 'totp' : 'webauthn'
+})
 
 const handleVerificationSuccess = async (accessToken: string) => {
   // Store new token with tfaVerified flag

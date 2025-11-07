@@ -9,6 +9,7 @@ export interface User {
   isActive: boolean
   isAdmin: boolean
   createdAt: TDateTime
+  preferredTwoFactorMethod?: 'totp' | 'webauthn' | null
 }
 
 export interface LoginCredentials {

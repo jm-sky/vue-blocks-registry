@@ -11,6 +11,10 @@
   "files": [],
   "dependencies": [],
   "registryDependencies": [
+    "logs-types",
+    "logs-utils",
+    "logs-service",
+    "logs-composables",
     "logs-components",
     "logs-pages",
     "logs-routes",

@@ -15,7 +15,7 @@ export const setup = new Command()
   .option('-y, --yes', 'Use default configuration', false)
   .option('-s, --scaffold', 'Run scaffold after setup to generate foundational files', false)
   .option('--auth-full', 'Install and wire up full auth module (authFull)', false)
-  .option('--all', 'Full bootstrap: scaffold + init + authFull + tenantFeat + layouts', false)
+  .option('--all', 'Full bootstrap: scaffold + init + authFull + twoFactorFull + tenantFeat + layouts + dashboard/user/settings/logs', false)
   .option('--dont-lint', 'Skip running linter at the end', false)
   .addHelpText('after', `
 Examples:
@@ -293,6 +293,13 @@ Examples:
             ['add', '--yes', '--overwrite', '--routes', '--guards', 'authFull'],
             { cwd: projectPath, stdio: 'inherit' }
           )
+          // Install twoFactorFull with routes and guards (requires authFull)
+          await executeDlx(
+            packageManager,
+            'vue-blocks-registry',
+            ['add', '--yes', '--overwrite', '--routes', '--guards', 'twoFactorFull'],
+            { cwd: projectPath, stdio: 'inherit' }
+          )
           // Install tenantFeat with routes and guards (requires authFull)
           await executeDlx(
             packageManager,
@@ -329,7 +336,7 @@ Examples:
         catch {
           const packageManager = detectPackageManager(projectPath)
           const dlxCmd = packageManager.name === 'npm' ? 'npx' : `${packageManager.name} dlx`
-          logger.warn(`Installing layouts/authFull/tenantFeat/dashboardFull/userFull/settingsFull/logsFull failed. Try manually: ${dlxCmd} vue-blocks-registry add layouts && ${dlxCmd} vue-blocks-registry add --routes --guards authFull && ${dlxCmd} vue-blocks-registry add --routes --guards tenantFeat && ${dlxCmd} vue-blocks-registry add --routes dashboardFull userFull settingsFull logsFull`)
+          logger.warn(`Installing layouts/authFull/twoFactorFull/tenantFeat/dashboardFull/userFull/settingsFull/logsFull failed. Try manually: ${dlxCmd} vue-blocks-registry add layouts && ${dlxCmd} vue-blocks-registry add --routes --guards authFull && ${dlxCmd} vue-blocks-registry add --routes --guards twoFactorFull && ${dlxCmd} vue-blocks-registry add --routes --guards tenantFeat && ${dlxCmd} vue-blocks-registry add --routes dashboardFull userFull settingsFull logsFull`)
         }
 
         // Inject i18n module imports after installing modules with translations

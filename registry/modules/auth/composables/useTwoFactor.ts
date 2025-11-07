@@ -1,7 +1,7 @@
 // modules/auth/composables/useTwoFactor.ts
 import { mockTwoFactorService } from '@registry/modules/auth/services/mockTwoFactorService'
-import { useQuery } from '@tanstack/vue-query'
-import type { ITwoFactorService } from '@registry/modules/auth/types/twoFactor.type'
+import { useMutation, useQuery, useQueryClient } from '@tanstack/vue-query'
+import type { ITwoFactorService, UpdatePreferredMethodRequest } from '@registry/modules/auth/types/twoFactor.type'
 
 // Query keys for 2FA
 export const twoFactorQueryKeys = {
@@ -53,5 +53,21 @@ export function usePasskeys(service?: ITwoFactorService) {
     queryKey: twoFactorQueryKeys.passkeys(),
     queryFn: () => (service ?? mockTwoFactorService).listPasskeys(),
     staleTime: 5 * 60 * 1000, // 5 minutes
+  })
+}
+
+/**
+ * Hook for updating preferred 2FA method
+ */
+export function useUpdatePreferredMethod(service?: ITwoFactorService) {
+  const queryClient = useQueryClient()
+
+  return useMutation({
+    mutationFn: (request: UpdatePreferredMethodRequest) =>
+      (service ?? mockTwoFactorService).updatePreferredMethod(request),
+    onSuccess: () => {
+      // Invalidate 2FA status to refetch
+      void queryClient.invalidateQueries({ queryKey: twoFactorQueryKeys.status() })
+    },
   })
 }

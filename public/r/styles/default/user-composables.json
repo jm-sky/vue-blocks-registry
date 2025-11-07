@@ -1,0 +1,27 @@
+{
+  "$schema": "../../../../registry-item-schema.json",
+  "name": "user-composables",
+  "type": "registry:lib",
+  "title": "User Composables",
+  "description": "Vue composables for user profile management with TanStack Query",
+  "categories": [
+    "lib",
+    "composables",
+    "user"
+  ],
+  "files": [
+    {
+      "path": "modules/user/composables/useUser.ts",
+      "type": "registry:lib"
+    }
+  ],
+  "dependencies": [
+    "@tanstack/vue-query"
+  ],
+  "registryDependencies": [
+    "user-types",
+    "user-service",
+    "user-config",
+    "user-utils"
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "$schema": "../../../../registry-item-schema.json",
+  "name": "user-service",
+  "type": "registry:lib",
+  "title": "User Service",
+  "description": "User API service and mock service",
+  "categories": [
+    "lib",
+    "service",
+    "user"
+  ],
+  "files": [
+    {
+      "path": "modules/user/services/userService.ts",
+      "type": "registry:lib"
+    },
+    {
+      "path": "modules/user/services/mockUserService.ts",
+      "type": "registry:lib"
+    }
+  ],
+  "dependencies": [],
+  "registryDependencies": [
+    "user-types",
+    "http-client",
+    "config"
+  ]
+}

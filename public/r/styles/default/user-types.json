@@ -1,0 +1,22 @@
+{
+  "$schema": "../../../../registry-item-schema.json",
+  "name": "user-types",
+  "type": "registry:lib",
+  "title": "User Types",
+  "description": "TypeScript type definitions for user module",
+  "categories": [
+    "lib",
+    "types",
+    "user"
+  ],
+  "files": [
+    {
+      "path": "modules/user/types/user.type.ts",
+      "type": "registry:lib"
+    }
+  ],
+  "dependencies": [],
+  "registryDependencies": [
+    "base-types"
+  ]
+}
