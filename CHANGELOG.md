@@ -7,6 +7,46 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.10.0] - 2025-11-07
+
+### Added
+- **Account Deletion Feature**: Complete account deletion functionality
+  - `deleteAccount` method in `IAuthService` interface
+  - Implementation in `authService` (DELETE /api/auth/account endpoint)
+  - Mock implementation in `mockAuthService` for demo purposes
+  - `useDeleteAccount` composable with automatic logout on success
+  - Integration with `useAuth` composable
+  - Delete Account section in Settings page with confirmation modal
+  - Full i18n support (EN/PL) for delete account feature
+  - Security warnings and confirmation flow (type DELETE + checkbox)
+
+- **Settings Page Components**: Modular settings page architecture
+  - `PreferencesSettingsCard` component for theme and locale settings
+  - `DeleteAccountCard` component for account deletion
+  - Refactored `SettingsPage` to use separate card components
+  - Improved code organization and maintainability
+
+- **Demo Settings Page**: Enhanced demo settings page
+  - Full settings page with preferences and delete account sections
+  - Delete account modal with confirmation flow
+  - Demo integration showing account deletion functionality
+
+- **Badge Component**: New UI badge component
+  - Badge.vue component
+  - Badge index exports
+
+### Changed
+- **Settings Page Refactoring**: Modularized settings page
+  - Extracted preferences section to `PreferencesSettingsCard`
+  - Extracted delete account section to `DeleteAccountCard`
+  - Simplified `SettingsPage` to use card components
+  - Better separation of concerns
+
+- **Settings i18n**: Enhanced settings translations
+  - Added `preferences` section translations (EN/PL)
+  - Added `delete_account` section translations (EN/PL)
+  - Comprehensive modal translations for delete account flow
+
 ## [0.9.1] - 2025-11-06
 
 ### Fixed
