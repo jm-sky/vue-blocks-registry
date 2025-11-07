@@ -15,6 +15,10 @@
       "type": "registry:lib"
     },
     {
+      "path": "features/tenantFeat/types/tenantService.type.ts",
+      "type": "registry:lib"
+    },
+    {
       "path": "features/tenantFeat/lib/jwtDecoder.ts",
       "type": "registry:lib"
     },
@@ -73,6 +77,10 @@
     {
       "path": "features/tenantFeat/index.ts",
       "type": "registry:lib"
+    },
+    {
+      "path": "features/tenantFeat/services/mockTenantService.ts",
+      "type": "registry:lib"
     }
   ],
   "dependencies": [
@@ -83,6 +91,7 @@
     "utils",
     "button",
     "input",
-    "card"
+    "card",
+    "mock-helpers"
   ]
 }

@@ -39,6 +39,7 @@
     "auth-forms",
     "auth-validation",
     "auth-service",
+    "auth-types",
     "button",
     "form",
     "input",

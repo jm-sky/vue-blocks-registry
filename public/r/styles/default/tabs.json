@@ -1,0 +1,39 @@
+{
+  "$schema": "../../../../registry-item-schema.json",
+  "name": "tabs",
+  "type": "registry:ui",
+  "title": "Tabs",
+  "description": "Tabs component with list, trigger, and content sections",
+  "categories": [
+    "ui"
+  ],
+  "files": [
+    {
+      "path": "components/ui/tabs/Tabs.vue",
+      "type": "registry:ui"
+    },
+    {
+      "path": "components/ui/tabs/TabsContent.vue",
+      "type": "registry:ui"
+    },
+    {
+      "path": "components/ui/tabs/TabsList.vue",
+      "type": "registry:ui"
+    },
+    {
+      "path": "components/ui/tabs/TabsTrigger.vue",
+      "type": "registry:ui"
+    },
+    {
+      "path": "components/ui/tabs/index.ts",
+      "type": "registry:ui"
+    }
+  ],
+  "dependencies": [
+    "reka-ui",
+    "@vueuse/core"
+  ],
+  "registryDependencies": [
+    "utils"
+  ]
+}

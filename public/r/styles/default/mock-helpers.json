@@ -1,0 +1,33 @@
+{
+  "$schema": "../../../../registry-item-schema.json",
+  "name": "mock-helpers",
+  "type": "registry:lib",
+  "title": "Mock Helpers",
+  "description": "Utility functions for creating mock services (JWT generation, HTTP errors, delays)",
+  "categories": [
+    "lib",
+    "utils",
+    "testing"
+  ],
+  "files": [
+    {
+      "path": "shared/utils/jwtDecoder.ts",
+      "type": "registry:lib"
+    },
+    {
+      "path": "shared/types/jwt.type.ts",
+      "type": "registry:lib"
+    },
+    {
+      "path": "shared/utils/mockHelpers.ts",
+      "type": "registry:lib"
+    }
+  ],
+  "dependencies": [
+    "axios"
+  ],
+  "registryDependencies": [
+    "config",
+    "base-types"
+  ]
+}

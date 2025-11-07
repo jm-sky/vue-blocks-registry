@@ -30,6 +30,10 @@
       "type": "registry:ui"
     },
     {
+      "path": "components/layout/GuestLayoutCard.vue",
+      "type": "registry:ui"
+    },
+    {
       "path": "components/layout/index.ts",
       "type": "registry:ui"
     }

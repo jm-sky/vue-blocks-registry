@@ -69,6 +69,10 @@
           "type": "registry:ui"
         },
         {
+          "path": "components/ui/button-link/ButtonLinkExternal.vue",
+          "type": "registry:ui"
+        },
+        {
           "path": "components/ui/button-link/index.ts",
           "type": "registry:ui"
         }
@@ -220,6 +224,118 @@
       ]
     },
     {
+      "name": "badge",
+      "type": "registry:ui",
+      "title": "Badge",
+      "description": "Badge component with multiple variants including success and destructive",
+      "categories": [
+        "ui"
+      ],
+      "files": [
+        {
+          "path": "components/ui/badge/Badge.vue",
+          "type": "registry:ui"
+        },
+        {
+          "path": "components/ui/badge/index.ts",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "reka-ui",
+        "class-variance-authority",
+        "@vueuse/core"
+      ],
+      "registryDependencies": [
+        "utils"
+      ]
+    },
+    {
+      "name": "card",
+      "type": "registry:ui",
+      "title": "Card",
+      "description": "Card component with header, content, footer, and title sections",
+      "categories": [
+        "ui"
+      ],
+      "files": [
+        {
+          "path": "components/ui/card/Card.vue",
+          "type": "registry:ui"
+        },
+        {
+          "path": "components/ui/card/CardAction.vue",
+          "type": "registry:ui"
+        },
+        {
+          "path": "components/ui/card/CardContent.vue",
+          "type": "registry:ui"
+        },
+        {
+          "path": "components/ui/card/CardDescription.vue",
+          "type": "registry:ui"
+        },
+        {
+          "path": "components/ui/card/CardFooter.vue",
+          "type": "registry:ui"
+        },
+        {
+          "path": "components/ui/card/CardHeader.vue",
+          "type": "registry:ui"
+        },
+        {
+          "path": "components/ui/card/CardTitle.vue",
+          "type": "registry:ui"
+        },
+        {
+          "path": "components/ui/card/index.ts",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [],
+      "registryDependencies": [
+        "utils"
+      ]
+    },
+    {
+      "name": "tabs",
+      "type": "registry:ui",
+      "title": "Tabs",
+      "description": "Tabs component with list, trigger, and content sections",
+      "categories": [
+        "ui"
+      ],
+      "files": [
+        {
+          "path": "components/ui/tabs/Tabs.vue",
+          "type": "registry:ui"
+        },
+        {
+          "path": "components/ui/tabs/TabsContent.vue",
+          "type": "registry:ui"
+        },
+        {
+          "path": "components/ui/tabs/TabsList.vue",
+          "type": "registry:ui"
+        },
+        {
+          "path": "components/ui/tabs/TabsTrigger.vue",
+          "type": "registry:ui"
+        },
+        {
+          "path": "components/ui/tabs/index.ts",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "reka-ui",
+        "@vueuse/core"
+      ],
+      "registryDependencies": [
+        "utils"
+      ]
+    },
+    {
       "name": "form",
       "type": "registry:ui",
       "title": "Form",
@@ -314,6 +430,38 @@
       "registryDependencies": []
     },
     {
+      "name": "mock-helpers",
+      "type": "registry:lib",
+      "title": "Mock Helpers",
+      "description": "Utility functions for creating mock services (JWT generation, HTTP errors, delays)",
+      "categories": [
+        "lib",
+        "utils",
+        "testing"
+      ],
+      "files": [
+        {
+          "path": "shared/utils/jwtDecoder.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "shared/types/jwt.type.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "shared/utils/mockHelpers.ts",
+          "type": "registry:lib"
+        }
+      ],
+      "dependencies": [
+        "axios"
+      ],
+      "registryDependencies": [
+        "config",
+        "base-types"
+      ]
+    },
+    {
       "name": "http-client",
       "type": "registry:lib",
       "title": "API Client",
@@ -352,6 +500,10 @@
       "files": [
         {
           "path": "modules/auth/types/user.type.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "modules/auth/types/auth.type.ts",
           "type": "registry:lib"
         }
       ],
@@ -614,6 +766,7 @@
         "input",
         "auth-validation",
         "auth-composables",
+        "auth-types",
         "type-guards"
       ]
     },
@@ -657,6 +810,7 @@
         "auth-forms",
         "auth-validation",
         "auth-service",
+        "auth-types",
         "button",
         "form",
         "input",
@@ -993,6 +1147,38 @@
           "type": "registry:ui"
         },
         {
+          "path": "components/data-table/DataTableBasic.vue",
+          "type": "registry:ui"
+        },
+        {
+          "path": "components/data-table/DataTableEmpty.vue",
+          "type": "registry:ui"
+        },
+        {
+          "path": "components/data-table/DataTableToolbar.vue",
+          "type": "registry:ui"
+        },
+        {
+          "path": "components/data-table/DataTableWithFiltering.vue",
+          "type": "registry:ui"
+        },
+        {
+          "path": "components/data-table/DataTableWithPagination.vue",
+          "type": "registry:ui"
+        },
+        {
+          "path": "components/data-table/DataTableWithSorting.vue",
+          "type": "registry:ui"
+        },
+        {
+          "path": "components/data-table/Pagination.vue",
+          "type": "registry:ui"
+        },
+        {
+          "path": "components/data-table/index.ts",
+          "type": "registry:ui"
+        },
+        {
           "path": "examples/data-table/types.ts",
           "type": "registry:example"
         },
@@ -1046,6 +1232,10 @@
         },
         {
           "path": "components/layout/PageListWrapper.vue",
+          "type": "registry:ui"
+        },
+        {
+          "path": "components/layout/GuestLayoutCard.vue",
           "type": "registry:ui"
         },
         {
@@ -1245,6 +1435,10 @@
           "type": "registry:lib"
         },
         {
+          "path": "features/tenantFeat/types/tenantService.type.ts",
+          "type": "registry:lib"
+        },
+        {
           "path": "features/tenantFeat/lib/jwtDecoder.ts",
           "type": "registry:lib"
         },
@@ -1303,6 +1497,10 @@
         {
           "path": "features/tenantFeat/index.ts",
           "type": "registry:lib"
+        },
+        {
+          "path": "features/tenantFeat/services/mockTenantService.ts",
+          "type": "registry:lib"
         }
       ],
       "dependencies": [
@@ -1313,7 +1511,8 @@
         "utils",
         "button",
         "input",
-        "card"
+        "card",
+        "mock-helpers"
       ]
     },
     {
@@ -1430,7 +1629,8 @@
       ],
       "registryDependencies": [
         "two-factor-types",
-        "http-client"
+        "http-client",
+        "mock-helpers"
       ]
     },
     {
@@ -2223,7 +2423,9 @@
         }
       ],
       "dependencies": [],
-      "registryDependencies": []
+      "registryDependencies": [
+        "data-table"
+      ]
     },
     {
       "name": "logs-pages",

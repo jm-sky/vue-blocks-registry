@@ -7,6 +7,37 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.11.1] - 2025-11-07
+
+### Added
+- **Success Color Support**: Automatic addition of success color CSS variables in generated projects
+  - CLI `setup` command now automatically adds `--success` color to CSS files
+  - Adds `--color-success: var(--success);` to `@theme inline` section
+  - Adds `--success: oklch(0.696 0.17 162.48);` to `:root` and `.dark` sections
+  - Enables `text-success` and `border-success` utility classes in generated projects
+  - Function is idempotent - won't add duplicates if color already exists
+  - Non-blocking - setup continues even if color addition fails
+
+### Fixed
+- **Missing Registry Components**: Added missing UI components to registry.json
+  - Added `card` component with all sub-components (Card, CardHeader, CardContent, etc.)
+  - Added `tabs` component with all sub-components (Tabs, TabsList, TabsTrigger, TabsContent)
+  - Added `badge` component with variants including success and destructive
+  - Added `ButtonLinkExternal.vue` to button-link component
+  - Added `GuestLayoutCard.vue` to layout-components bundle
+  - Added all `data-table` sub-components (DataTableEmpty, DataTableToolbar, Pagination, etc.)
+  - Added `auth.type.ts` to auth-types registry item
+  - Added `tenantService.type.ts` and `mockTenantService.ts` to tenantFeat
+  - Added `mock-helpers` registry item with jwtDecoder and jwt.type dependencies
+- **Missing Registry Dependencies**: Fixed missing dependencies in registry items
+  - Added `auth-types` to `auth-forms` and `auth-pages` registryDependencies
+  - Added `data-table` to `logs-components` registryDependencies
+  - Added `mock-helpers` to `two-factor-service`, `tenantFeat`, and other services using mocks
+- **Import Errors**: Fixed all TypeScript compilation errors in generated projects
+  - All components now install with correct dependencies
+  - All imports resolve correctly after transformation
+  - Full setup test now passes type-check and build validation
+
 ## [0.11.0] - 2025-11-07
 
 ### Added
