@@ -231,6 +231,17 @@ Examples:
         throw error
       }
 
+      // Step 6a: Add success color to CSS file
+      const successColorSpinner = ora('Adding success color to CSS...').start()
+      try {
+        await addSuccessColorToCSS(projectPath)
+        successColorSpinner.succeed('Success color added to CSS')
+      }
+      catch {
+        successColorSpinner.warn('Failed to add success color to CSS (you can add it manually)')
+        // Non-blocking - continue even if this fails
+      }
+
       // Step 7: Run scaffold if requested (or implied by --all)
       if (options.scaffold) {
         logger.break()
@@ -397,3 +408,53 @@ Examples:
       process.exit(1)
     }
   })
+
+/**
+ * Adds success color CSS variables to the style.css file
+ * This adds support for text-success and border-success utility classes
+ */
+async function addSuccessColorToCSS(projectPath: string): Promise<void> {
+  const cssPath = path.join(projectPath, 'src/css/style.css')
+
+  // Check if CSS file exists
+  if (!await fs.pathExists(cssPath)) {
+    throw new Error(`CSS file not found at ${cssPath}`)
+  }
+
+  let cssContent = await fs.readFile(cssPath, 'utf-8')
+
+  // Check if success color already exists
+  if (cssContent.includes('--color-success:') || cssContent.includes('--success:')) {
+    // Already has success color, skip
+    return
+  }
+
+  // Add --color-success to @theme inline section (after --color-accent-foreground, before --color-destructive)
+  const themeInlineMatch = /(@theme inline\s*\{[^}]*--color-accent-foreground:[^;]+;)/s.exec(cssContent)
+  if (themeInlineMatch) {
+    cssContent = cssContent.replace(
+      /(@theme inline\s*\{[^}]*--color-accent-foreground:[^;]+;)/s,
+      '$1\n  --color-success: var(--success);'
+    )
+  }
+
+  // Add --success to :root section (after --accent-foreground, before --destructive)
+  const rootMatch = /(:root\s*\{[^}]*--accent-foreground:[^;]+;)/s.exec(cssContent)
+  if (rootMatch) {
+    cssContent = cssContent.replace(
+      /(:root\s*\{[^}]*--accent-foreground:[^;]+;)/s,
+      '$1\n  --success: oklch(0.696 0.17 162.48);'
+    )
+  }
+
+  // Add --success to .dark section (after --accent-foreground, before --destructive)
+  const darkMatch = /(\.dark\s*\{[^}]*--accent-foreground:[^;]+;)/s.exec(cssContent)
+  if (darkMatch) {
+    cssContent = cssContent.replace(
+      /(\.dark\s*\{[^}]*--accent-foreground:[^;]+;)/s,
+      '$1\n  --success: oklch(0.696 0.17 162.48);'
+    )
+  }
+
+  await fs.writeFile(cssPath, cssContent, 'utf-8')
+}

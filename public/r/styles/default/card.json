@@ -1,0 +1,48 @@
+{
+  "$schema": "../../../../registry-item-schema.json",
+  "name": "card",
+  "type": "registry:ui",
+  "title": "Card",
+  "description": "Card component with header, content, footer, and title sections",
+  "categories": [
+    "ui"
+  ],
+  "files": [
+    {
+      "path": "components/ui/card/Card.vue",
+      "type": "registry:ui"
+    },
+    {
+      "path": "components/ui/card/CardAction.vue",
+      "type": "registry:ui"
+    },
+    {
+      "path": "components/ui/card/CardContent.vue",
+      "type": "registry:ui"
+    },
+    {
+      "path": "components/ui/card/CardDescription.vue",
+      "type": "registry:ui"
+    },
+    {
+      "path": "components/ui/card/CardFooter.vue",
+      "type": "registry:ui"
+    },
+    {
+      "path": "components/ui/card/CardHeader.vue",
+      "type": "registry:ui"
+    },
+    {
+      "path": "components/ui/card/CardTitle.vue",
+      "type": "registry:ui"
+    },
+    {
+      "path": "components/ui/card/index.ts",
+      "type": "registry:ui"
+    }
+  ],
+  "dependencies": [],
+  "registryDependencies": [
+    "utils"
+  ]
+}

@@ -15,5 +15,7 @@
     }
   ],
   "dependencies": [],
-  "registryDependencies": []
+  "registryDependencies": [
+    "data-table"
+  ]
 }
