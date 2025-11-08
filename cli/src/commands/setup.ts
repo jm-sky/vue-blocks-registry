@@ -150,10 +150,14 @@ Examples:
         const cssPath = path.join(cssDir, 'style.css')
 
         await fs.ensureDir(cssDir)
-        await fs.writeFile(cssPath, `@import "tailwindcss";
+        const cssExists = await fs.pathExists(cssPath)
+
+        if (!cssExists) {
+          await fs.writeFile(cssPath, `@import "tailwindcss";
 @import "tw-animate-css";
 
 /* Your custom styles here */`, 'utf-8')
+        }
 
         // Update main.ts to import the CSS file
         const mainTsPath = path.join(projectPath, 'src/main.ts')
@@ -167,7 +171,9 @@ Examples:
 
         await fs.writeFile(mainTsPath, mainTs, 'utf-8')
 
-        cssSpinner.succeed('Tailwind CSS file created')
+        await applyDefaultPrimaryColorToCSS(projectPath)
+
+        cssSpinner.succeed(cssExists ? 'Tailwind CSS file found' : 'Tailwind CSS file created')
       }
       catch (error) {
         cssSpinner.fail('Failed to create Tailwind CSS file')
@@ -235,6 +241,7 @@ Examples:
       const successColorSpinner = ora('Adding success color to CSS...').start()
       try {
         await addSuccessColorToCSS(projectPath)
+        await applyDefaultPrimaryColorToCSS(projectPath)
         successColorSpinner.succeed('Success color added to CSS')
       }
       catch {
@@ -457,4 +464,51 @@ async function addSuccessColorToCSS(projectPath: string): Promise<void> {
   }
 
   await fs.writeFile(cssPath, cssContent, 'utf-8')
+}
+
+async function applyDefaultPrimaryColorToCSS(projectPath: string): Promise<void> {
+  const cssPath = path.join(projectPath, 'src/css/style.css')
+
+  if (!await fs.pathExists(cssPath)) {
+    return
+  }
+
+  const cssContent = await fs.readFile(cssPath, 'utf-8')
+
+  const updatedContent = [
+    { block: ':root', variable: '--primary', value: 'oklch(0.7 0.15 220)' },
+    { block: ':root', variable: '--primary-foreground', value: 'oklch(0.985 0 0)' },
+    { block: ':root', variable: '--ring', value: 'oklch(0.7 0.15 220)' },
+    { block: '\\.dark', variable: '--primary', value: 'oklch(0.75 0.15 220)' },
+    { block: '\\.dark', variable: '--primary-foreground', value: 'oklch(0.145 0 0)' },
+    { block: '\\.dark', variable: '--ring', value: 'oklch(0.75 0.15 220)' },
+  ].reduce((acc, { block, variable, value }) => {
+    return replaceCssVariableInBlock(acc, block, variable, value)
+  }, cssContent)
+
+  if (updatedContent !== cssContent) {
+    await fs.writeFile(cssPath, updatedContent, 'utf-8')
+  }
+}
+
+function replaceCssVariableInBlock(cssContent: string, blockSelector: string, variable: string, value: string): string {
+  const blockRegex = new RegExp(`(${blockSelector}\\s*\\{)([\\s\\S]*?)(\\})`, 'g')
+
+  return cssContent.replace(blockRegex, (match, start, body, end) => {
+    const variableRegex = new RegExp(`(${escapeRegex(variable)}\\s*:\\s*)([^;]+)(;)`)
+
+    if (variableRegex.test(body)) {
+      body = body.replace(variableRegex, `$1${value}$3`)
+    }
+    else {
+      const trimmedBody = body.replace(/\s*$/, '')
+      body = `${trimmedBody}\n  ${variable}: ${value};\n`
+    }
+
+    return `${start}${body}${end}`
+  })
+}
+
+function escapeRegex(value: string): string {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
 }

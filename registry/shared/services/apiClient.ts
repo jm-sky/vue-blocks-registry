@@ -3,7 +3,11 @@ import axios from 'axios'
 import { authInterceptor } from './auth.interceptor'
 
 export const apiClient = axios.create({
-  baseURL: import.meta.env.VITE_API_BASE_URL ?? 'http://localhost:3000/api',
+  // W dev użyj relatywnej ścieżki dla proxy Vite (zero-config)
+  // W production użyj VITE_API_BASE_URL jeśli ustawione, w przeciwnym razie '/api'
+  baseURL: import.meta.env.DEV 
+    ? '/api' 
+    : (import.meta.env.VITE_API_BASE_URL ?? '/api'),
   timeout: 10000,
   headers: {
     'Content-Type': 'application/json',

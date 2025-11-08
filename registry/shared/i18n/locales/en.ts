@@ -52,4 +52,9 @@ export default {
     not_found: 'Resource not found',
     server_error: 'Server error. Please try again later',
   },
+  navigation: {
+    dashboard: 'Dashboard',
+    profile: 'Profile',
+    settings: 'Settings',
+  },
 }

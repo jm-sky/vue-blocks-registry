@@ -52,4 +52,9 @@ export default {
     not_found: 'Zasób nie został znaleziony',
     server_error: 'Błąd serwera. Spróbuj ponownie później',
   },
+  navigation: {
+    dashboard: 'Panel',
+    profile: 'Profil',
+    settings: 'Ustawienia',
+  },
 }

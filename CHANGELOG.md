@@ -7,6 +7,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.11.2] - 2025-11-08
+
+### Added
+- **Authenticated Page Wrapper**: New `AuthenticatedPage.vue` layout combining AuthenticatedLayout with PageCard for consistent page scaffolding.
+
+### Changed
+- **CLI Setup Styling**: `setup` command now applies Sky primary color defaults (`--primary`, `--ring`) when generating `style.css`, without overwriting existing files.
+- **HTML Title Configuration**: Added `htmlTitlePlugin` to `vite.config.ts` to keep `index.html` title in sync with `VITE_APP_NAME` or fallback value.
+- **API Client Defaults**: Updated shared Axios client to use `/api` base URL in development (Vite proxy) while respecting `VITE_API_BASE_URL` in production environments.
+
+### Fixed
+- **Navigation Translations**: Added missing navigation keys (`dashboard`, `profile`, `settings`) to shared English and Polish locale files to prevent fallback key rendering.
+
 ## [0.11.1] - 2025-11-07
 
 ### Added
