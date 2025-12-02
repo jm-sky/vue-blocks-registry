@@ -9,11 +9,9 @@ function htmlTitlePlugin(): Plugin {
   return {
     name: 'html-title',
     transformIndexHtml(html) {
-      const appName = process.env.VITE_APP_NAME ??
-                     import.meta.env.VITE_APP_NAME ??
-                     'MyApp'
+      const appName = process.env.VITE_APP_NAME ?? 'MyApp'
       return html.replace(
-        /<title>.*?<\/title>/i, 
+        /<title>.*?<\/title>/i,
         `<title>${appName}</title>`
       )
     },
