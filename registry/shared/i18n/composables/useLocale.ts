@@ -39,8 +39,8 @@ export function useLocale() {
   const nextLocale = computed<ILocale>(() => {
     const currentIndex = SUPPORTED_LOCALES.indexOf(currentLocale.value)
     const nextIndex = (currentIndex + 1) % SUPPORTED_LOCALES.length
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    return availableLocales.value[nextIndex] ?? availableLocales.value[0]!
+     
+    return availableLocales.value[nextIndex] ?? availableLocales.value[0]
   })
 
   const setLocale = (newLocale: SupportedLocale) => {
@@ -50,10 +50,7 @@ export function useLocale() {
   const toggleLocale = () => {
     const currentIndex = SUPPORTED_LOCALES.indexOf(currentLocale.value)
     const nextIndex = (currentIndex + 1) % SUPPORTED_LOCALES.length
-    const nextLocale = SUPPORTED_LOCALES[nextIndex]
-    if (nextLocale) {
-      currentLocale.value = nextLocale
-    }
+    currentLocale.value = SUPPORTED_LOCALES[nextIndex]
   }
 
   return {

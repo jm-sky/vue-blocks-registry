@@ -11,8 +11,8 @@ function generateMockLogs(count = 50): LogEntry[] {
   const now = Date.now()
   const logs: LogEntry[] = []
   for (let i = 0; i < count; i++) {
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    const lvl = levels[Math.floor(Math.random() * levels.length)]!
+     
+    const lvl = levels[Math.floor(Math.random() * levels.length)]
     logs.push({
       id: `log_${i.toString().padStart(4, '0')}`,
       level: lvl,

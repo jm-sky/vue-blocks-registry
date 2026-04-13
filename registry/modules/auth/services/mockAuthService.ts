@@ -46,7 +46,7 @@ class MockAuthService implements IAuthService {
 
     const user = mockUsers.get(credentials.email)
 
-    if (!user || user.password !== credentials.password) {
+    if (user?.password !== credentials.password) {
       throw createHttpError(HttpStatusCode.UnprocessableEntity, 'Invalid email or password', {
         email: ['Invalid email or password'],
       })
