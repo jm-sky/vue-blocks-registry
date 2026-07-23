@@ -1,5 +1,4 @@
 import { Command } from 'commander'
-import { execa } from 'execa'
 import fs from 'fs-extra'
 import ora from 'ora'
 import path from 'path'
@@ -10,7 +9,7 @@ import { cleanupDefaultVueFiles } from '../helpers/project-cleanup.js'
 import { injectRoutesAndGuards } from '../helpers/router-injector.js'
 import { getConfig } from '../utils/config.js'
 import { logger } from '../utils/logger.js'
-import { detectPackageManager, getAddCommand } from '../utils/package-manager.js'
+import { detectPackageManager, runAddCommand } from '../utils/package-manager.js'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
@@ -265,9 +264,7 @@ async function installDependencies(
     const spinner = ora('Installing runtime dependencies...').start()
     try {
       const packageManager = detectPackageManager(cwd)
-      const addCommand = getAddCommand(packageManager, runtimeDeps)
-
-      await execa(addCommand[0], addCommand.slice(1), { cwd })
+      await runAddCommand(packageManager, runtimeDeps, { cwd })
       spinner.succeed('Runtime dependencies installed')
     }
     catch {
@@ -282,9 +279,7 @@ async function installDependencies(
     const spinner = ora('Installing dev dependencies...').start()
     try {
       const packageManager = detectPackageManager(cwd)
-      const addCommand = getAddCommand(packageManager, devDeps, true)
-
-      await execa(addCommand[0], addCommand.slice(1), { cwd })
+      await runAddCommand(packageManager, devDeps, { cwd }, true)
       spinner.succeed('Dev dependencies installed')
     }
     catch {

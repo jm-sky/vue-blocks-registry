@@ -13,6 +13,25 @@ export interface PackageManagerInfo {
 }
 
 /**
+ * npm package name with optional scope and optional version/tag suffix.
+ * Rejects leading dashes (flag injection) and shell metacharacters.
+ */
+const NPM_DEPENDENCY_RE
+  = /^(?:@[a-z0-9-~][a-z0-9-._~]*\/)?[a-z0-9-~][a-z0-9-._~]*(?:@[^@\s]+)?$/i
+
+/**
+ * Validate registry-provided dependency strings before passing them to a package manager.
+ */
+export function assertSafeNpmDependencies(dependencies: string[]): string[] {
+  for (const dep of dependencies) {
+    if (!dep || dep.startsWith('-') || !NPM_DEPENDENCY_RE.test(dep)) {
+      throw new Error(`Invalid npm package name: ${dep}`)
+    }
+  }
+  return dependencies
+}
+
+/**
  * Detects the package manager used in the project
  * Checks for lock files in order of preference: pnpm-lock.yaml, yarn.lock, package-lock.json
  */
@@ -57,23 +76,43 @@ export function detectPackageManager(cwd: string): PackageManagerInfo {
 }
 
 /**
- * Gets the appropriate add command for installing dependencies
+ * Gets argv (without the binary) for installing dependencies.
  */
-export function getAddCommand(packageManager: PackageManagerInfo, dependencies: string[], isDev = false): string[] {
-  const baseCommand = [packageManager.command, ...packageManager.addCommand]
+export function getAddArgs(packageManager: PackageManagerInfo, dependencies: string[], isDev = false): string[] {
+  const safeDeps = assertSafeNpmDependencies(dependencies)
+  const args = [...packageManager.addCommand]
 
   if (isDev) {
-    // Add dev flag based on package manager
     if (packageManager.name === 'npm') {
-      baseCommand.push('--save-dev')
+      args.push('--save-dev')
     }
     else {
-      // pnpm and yarn use -D
-      baseCommand.push('-D')
+      args.push('-D')
     }
   }
 
-  return [...baseCommand, ...dependencies]
+  return [...args, ...safeDeps]
+}
+
+/**
+ * Gets the full command array [binary, ...args] for installing dependencies.
+ * Prefer {@link runAddCommand} / {@link getAddArgs} at call sites so the binary
+ * is never taken from user-controlled input.
+ */
+export function getAddCommand(packageManager: PackageManagerInfo, dependencies: string[], isDev = false): string[] {
+  return [packageManager.command, ...getAddArgs(packageManager, dependencies, isDev)]
+}
+
+/**
+ * Install dependencies with a fixed package-manager binary and validated package names.
+ */
+export async function runAddCommand(
+  packageManager: PackageManagerInfo,
+  dependencies: string[],
+  options?: ExecaOptions,
+  isDev = false,
+) {
+  return execa(packageManager.command, getAddArgs(packageManager, dependencies, isDev), options)
 }
 
 /**
@@ -99,6 +138,8 @@ export async function executeDlx(
     // Use local CLI instead of dlx
     return execa('node', [localCliPath, ...args], options)
   }
+
+  assertSafeNpmDependencies([packageName])
 
   if (packageManager.name === 'npm') {
     // npm uses npx instead of npm dlx
