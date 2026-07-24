@@ -14,6 +14,7 @@ overrides:
   picomatch@4.0.3: 4.0.4
   brace-expansion@1.1.12: 1.1.13
   brace-expansion@2.0.2: 2.0.3
+  postcss@<8.5.12: 8.5.16
 
 importers:
 
@@ -133,7 +134,7 @@ importers:
         version: 6.0.6(vite@7.3.2(@types/node@22.18.12)(jiti@2.6.1)(lightningcss@1.32.0)(tsx@4.21.0))(vue@3.5.32(typescript@5.9.3))
       '@vitest/eslint-plugin':
         specifier: ^1.6.15
-        version: 1.6.15(@typescript-eslint/eslint-plugin@8.58.2(@typescript-eslint/parser@8.58.2(eslint@9.39.4(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.4(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.4(jiti@2.6.1))(typescript@5.9.3)(vitest@3.2.4(@types/node@22.18.12)(jiti@2.6.1)(jsdom@27.0.1(postcss@8.5.9))(lightningcss@1.32.0)(tsx@4.21.0))
+        version: 1.6.15(@typescript-eslint/eslint-plugin@8.58.2(@typescript-eslint/parser@8.58.2(eslint@9.39.4(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.4(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.4(jiti@2.6.1))(typescript@5.9.3)(vitest@3.2.4(@types/node@22.18.12)(jiti@2.6.1)(jsdom@27.0.1(postcss@8.5.16))(lightningcss@1.32.0)(tsx@4.21.0))
       '@vue/eslint-config-typescript':
         specifier: ^14.7.0
         version: 14.7.0(eslint-plugin-vue@10.8.0(@typescript-eslint/parser@8.58.2(eslint@9.39.4(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.4(jiti@2.6.1))(vue-eslint-parser@10.4.0(eslint@9.39.4(jiti@2.6.1))))(eslint@9.39.4(jiti@2.6.1))(typescript@5.9.3)
@@ -160,7 +161,7 @@ importers:
         version: 2.6.1
       jsdom:
         specifier: ^27.0.0
-        version: 27.0.1(postcss@8.5.9)
+        version: 27.0.1(postcss@8.5.16)
       npm-run-all2:
         specifier: ^8.0.4
         version: 8.0.4
@@ -181,7 +182,7 @@ importers:
         version: 8.1.1(vite@7.3.2(@types/node@22.18.12)(jiti@2.6.1)(lightningcss@1.32.0)(tsx@4.21.0))(vue@3.5.32(typescript@5.9.3))
       vitest:
         specifier: ^3.2.4
-        version: 3.2.4(@types/node@22.18.12)(jiti@2.6.1)(jsdom@27.0.1(postcss@8.5.9))(lightningcss@1.32.0)(tsx@4.21.0)
+        version: 3.2.4(@types/node@22.18.12)(jiti@2.6.1)(jsdom@27.0.1(postcss@8.5.16))(lightningcss@1.32.0)(tsx@4.21.0)
       vue-tsc:
         specifier: ^3.2.6
         version: 3.2.6(typescript@5.9.3)
@@ -374,7 +375,7 @@ packages:
     resolution: {integrity: sha512-zSlIxa20WvMojjpCSy8WrNpcZ61RqfTfX3XTaOeVlGJrt/8HF3YbzgFZa01yTbT4GWQLwfTcC3EB8i3XnB647Q==}
     engines: {node: '>=18'}
     peerDependencies:
-      postcss: ^8.4
+      postcss: 8.5.16
 
   '@csstools/css-tokenizer@3.0.4':
     resolution: {integrity: sha512-Vd/9EVDiu6PPJt9yAh6roZP6El1xHrdvIVGjyBsHR0RYwNHgL7FJPyIIW4fANJNG6FtyZfvlRPpFI4ZM/lubvw==}
@@ -2410,8 +2411,8 @@ packages:
   muggle-string@0.4.1:
     resolution: {integrity: sha512-VNTrAak/KhO2i8dqqnqnAHOa3cYBwXEZe9h+D5h/1ZqFSTEFHdM65lR7RoIqq3tBBYavsOXV84NoHXZ0AkPyqQ==}
 
-  nanoid@3.3.11:
-    resolution: {integrity: sha512-N8SpfPUnUp1bK+PMYW8qSWdl9U+wwNWI4QKxOYDy9JAro3WMX7p2OeVRF9v+347pnakNevPmiHhNmZ2HbFA76w==}
+  nanoid@3.3.16:
+    resolution: {integrity: sha512-bzlKTyNJ7+LdGIIwy8ijFpIqEQIvafahV7eYykJ8Cvh42EdJeODoJ6gUJXpQJvej1BddH8OqTXZNE/KfbWAu8Q==}
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
     hasBin: true
 
@@ -2573,12 +2574,8 @@ packages:
     resolution: {integrity: sha512-orRsuYpJVw8LdAwqqLykBj9ecS5/cRHlI5+nvTo8LcCKmzDmqVORXtOIYEEQuL9D4BxtA1lm5isAqzQZCoQ6Eg==}
     engines: {node: '>=4'}
 
-  postcss@8.5.6:
-    resolution: {integrity: sha512-3Ybi1tAuwAP9s0r1UQ2J4n5Y0G05bJkpUIO0/bI9MhwmD70S5aTWbXGBwxHrelT+XM1k6dM0pk+SwNkpTRN7Pg==}
-    engines: {node: ^10 || ^12 || >=14}
-
-  postcss@8.5.9:
-    resolution: {integrity: sha512-7a70Nsot+EMX9fFU3064K/kdHWZqGVY+BADLyXc8Dfv+mTLLVl6JzJpPaCZ2kQL9gIJvKXSLMHhqdRRjwQeFtw==}
+  postcss@8.5.16:
+    resolution: {integrity: sha512-vuwillviilfKZsg0VGj5R/YwwcHx4SLsIOI/7K6mQkWx+l5cUHTjj5g0AasTBcyXsbfTgrwsUNmVUb5xVwyPwg==}
     engines: {node: ^10 || ^12 || >=14}
 
   prelude-ls@1.2.1:
@@ -3484,9 +3481,9 @@ snapshots:
     dependencies:
       '@csstools/css-tokenizer': 3.0.4
 
-  '@csstools/css-syntax-patches-for-csstree@1.0.14(postcss@8.5.9)':
+  '@csstools/css-syntax-patches-for-csstree@1.0.14(postcss@8.5.16)':
     dependencies:
-      postcss: 8.5.9
+      postcss: 8.5.16
 
   '@csstools/css-tokenizer@3.0.4': {}
 
@@ -4237,7 +4234,7 @@ snapshots:
       vite: 7.3.2(@types/node@22.18.12)(jiti@2.6.1)(lightningcss@1.32.0)(tsx@4.21.0)
       vue: 3.5.32(typescript@5.9.3)
 
-  '@vitest/eslint-plugin@1.6.15(@typescript-eslint/eslint-plugin@8.58.2(@typescript-eslint/parser@8.58.2(eslint@9.39.4(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.4(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.4(jiti@2.6.1))(typescript@5.9.3)(vitest@3.2.4(@types/node@22.18.12)(jiti@2.6.1)(jsdom@27.0.1(postcss@8.5.9))(lightningcss@1.32.0)(tsx@4.21.0))':
+  '@vitest/eslint-plugin@1.6.15(@typescript-eslint/eslint-plugin@8.58.2(@typescript-eslint/parser@8.58.2(eslint@9.39.4(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.4(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.4(jiti@2.6.1))(typescript@5.9.3)(vitest@3.2.4(@types/node@22.18.12)(jiti@2.6.1)(jsdom@27.0.1(postcss@8.5.16))(lightningcss@1.32.0)(tsx@4.21.0))':
     dependencies:
       '@typescript-eslint/scope-manager': 8.58.2
       '@typescript-eslint/utils': 8.58.2(eslint@9.39.4(jiti@2.6.1))(typescript@5.9.3)
@@ -4245,7 +4242,7 @@ snapshots:
     optionalDependencies:
       '@typescript-eslint/eslint-plugin': 8.58.2(@typescript-eslint/parser@8.58.2(eslint@9.39.4(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.4(jiti@2.6.1))(typescript@5.9.3)
       typescript: 5.9.3
-      vitest: 3.2.4(@types/node@22.18.12)(jiti@2.6.1)(jsdom@27.0.1(postcss@8.5.9))(lightningcss@1.32.0)(tsx@4.21.0)
+      vitest: 3.2.4(@types/node@22.18.12)(jiti@2.6.1)(jsdom@27.0.1(postcss@8.5.16))(lightningcss@1.32.0)(tsx@4.21.0)
     transitivePeerDependencies:
       - supports-color
 
@@ -4367,7 +4364,7 @@ snapshots:
       '@vue/shared': 3.5.22
       estree-walker: 2.0.2
       magic-string: 0.30.21
-      postcss: 8.5.6
+      postcss: 8.5.16
       source-map-js: 1.2.1
 
   '@vue/compiler-sfc@3.5.32':
@@ -4379,7 +4376,7 @@ snapshots:
       '@vue/shared': 3.5.32
       estree-walker: 2.0.2
       magic-string: 0.30.21
-      postcss: 8.5.9
+      postcss: 8.5.16
       source-map-js: 1.2.1
 
   '@vue/compiler-ssr@3.5.22':
@@ -4697,10 +4694,10 @@ snapshots:
 
   cssesc@3.0.0: {}
 
-  cssstyle@5.3.1(postcss@8.5.9):
+  cssstyle@5.3.1(postcss@8.5.16):
     dependencies:
       '@asamuzakjp/css-color': 4.0.5
-      '@csstools/css-syntax-patches-for-csstree': 1.0.14(postcss@8.5.9)
+      '@csstools/css-syntax-patches-for-csstree': 1.0.14(postcss@8.5.16)
       css-tree: 3.1.0
     transitivePeerDependencies:
       - postcss
@@ -5229,10 +5226,10 @@ snapshots:
     dependencies:
       argparse: 2.0.1
 
-  jsdom@27.0.1(postcss@8.5.9):
+  jsdom@27.0.1(postcss@8.5.16):
     dependencies:
       '@asamuzakjp/dom-selector': 6.7.3
-      cssstyle: 5.3.1(postcss@8.5.9)
+      cssstyle: 5.3.1(postcss@8.5.16)
       data-urls: 6.0.0
       decimal.js: 10.6.0
       html-encoding-sniffer: 4.0.0
@@ -5436,7 +5433,7 @@ snapshots:
 
   muggle-string@0.4.1: {}
 
-  nanoid@3.3.11: {}
+  nanoid@3.3.16: {}
 
   natural-compare@1.4.0: {}
 
@@ -5588,15 +5585,9 @@ snapshots:
       cssesc: 3.0.0
       util-deprecate: 1.0.2
 
-  postcss@8.5.6:
+  postcss@8.5.16:
     dependencies:
-      nanoid: 3.3.11
-      picocolors: 1.1.1
-      source-map-js: 1.2.1
-
-  postcss@8.5.9:
-    dependencies:
-      nanoid: 3.3.11
+      nanoid: 3.3.16
       picocolors: 1.1.1
       source-map-js: 1.2.1
 
@@ -6076,7 +6067,7 @@ snapshots:
       esbuild: 0.27.7
       fdir: 6.5.0(picomatch@4.0.4)
       picomatch: 4.0.4
-      postcss: 8.5.6
+      postcss: 8.5.16
       rollup: 4.60.1
       tinyglobby: 0.2.15
     optionalDependencies:
@@ -6086,7 +6077,7 @@ snapshots:
       lightningcss: 1.32.0
       tsx: 4.21.0
 
-  vitest@3.2.4(@types/node@22.18.12)(jiti@2.6.1)(jsdom@27.0.1(postcss@8.5.9))(lightningcss@1.32.0)(tsx@4.21.0):
+  vitest@3.2.4(@types/node@22.18.12)(jiti@2.6.1)(jsdom@27.0.1(postcss@8.5.16))(lightningcss@1.32.0)(tsx@4.21.0):
     dependencies:
       '@types/chai': 5.2.3
       '@vitest/expect': 3.2.4
@@ -6113,7 +6104,7 @@ snapshots:
       why-is-node-running: 2.3.0
     optionalDependencies:
       '@types/node': 22.18.12
-      jsdom: 27.0.1(postcss@8.5.9)
+      jsdom: 27.0.1(postcss@8.5.16)
     transitivePeerDependencies:
       - jiti
       - less
